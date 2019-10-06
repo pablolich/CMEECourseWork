@@ -1,0 +1,13 @@
+#1
+wc -l ../Data/*.fasta
+#2
+cat ../Data/E.coli.fasta | tail -78103
+#3
+cat ../Data/E.coli.fasta | tail -78103 | wc -m
+#4
+#the -o option prints only the matching portion in a line. Counting the lines would then
+#tell us what is the number of AGTC strings in the genome
+grep -o 'AGTC' ../Data/E.coli.fasta | wc -l
+#5
+num_a=$(grep -o 'A' ../Data/E.coli.fasta | wc -l) & num_t=$(grep -o 'T' ../Data/E.coli.fasta | wc -l) & num_g=$(grep -o 'G' ../Data/E.coli.fasta | wc -l) & num_c=$(grep -o 'C' ../Data/E.coli.fasta | wc -l)
+
