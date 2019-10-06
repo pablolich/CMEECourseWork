@@ -5,3 +5,7 @@ Tue Oct  1 15:56:55 BST 2019
 	How do I make $USER to appear correctly in my terminal when called from a script? (MyExampleScript.sh
 	How do I write the Author, Desc, Script... at the beginning of every document I create?
 	How do I automatically generate a readme in each week?
+
+Sun Oct  6 17:23:26 BST 2019
+
+	My comments appear in my github page in a kindof artificial way... 
