@@ -1,3 +1,7 @@
+'''This script has two parts, the first part writes three separate lists
+containing each subelement of the elements in the list birds using list 
+comprehensions. The second part does the same thing using normal for loops'''
+
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
           ('Junco phaeonotus','Yellow-eyed junco',19.5),
@@ -5,7 +9,8 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Tachycineata bicolor','Tree swallow',20.2),
          )
 
-#(1) Write three separate list comprehensions that create three different
+## FIRST_PART
+#Write three separate list comprehensions that create three different
 # lists containing the latin names, common names and mean body masses for
 # each species in birds, respectively. 
 
@@ -19,7 +24,8 @@ common = [birds[i][1] for i in range(len(birds))]
 mass = [birds[i][2] for i in range(len(birds))]
 
 
-# (2) Now do the same using conventional loops (you can choose to do this 
+## SECOND_PART
+#Now do the same using conventional loops (you can choose to do this 
 # before 1 !). 
 
 #Latin names
