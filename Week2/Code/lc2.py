@@ -1,3 +1,8 @@
+'''This script extends on the work of lc1.py, but this time, working with 
+tuples
+'''
+
+
 # Average UK Rainfall (mm) for 1910 by month
 # http://www.metoffice.gov.uk/climate/uk/datasets
 rainfall = (('JAN',111.4),
