@@ -1,3 +1,6 @@
+'''In this script we print the information of each species contained in the
+tuple in one output block per species'''
+
 birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
           ('Delichon urbica','House martin',19),
           ('Junco phaeonotus','Yellow-eyed junco',19.5),

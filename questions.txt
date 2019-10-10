@@ -12,3 +12,10 @@ Tue Oct  8 11:31:16 BST 2019
 
 	How do I send a section of code to the terminal?
 	Check if my bibliography works with compiling latex from terminal
+
+
+Thu Oct 10 11:13:56 BST 2019
+
+	Why is it useful to pass the variables from the terminal to future reassignment inside the function?
+
+	

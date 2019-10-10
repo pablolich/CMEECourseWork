@@ -7,3 +7,8 @@
 
 
 cat $1 | tr -s "," " " > $2 
+
+#We use print the input file and pipe the output to a tr command, that
+#erases and shrinks all the comas, and substitutes them for spaces. 
+#The output is sent to a second file which name needs to be specified 
+#when calling the bash script
