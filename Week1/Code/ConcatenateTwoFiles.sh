@@ -2,6 +2,6 @@
 
 cat $1 > $3
 cat $2 >> $3
-echo "Merged File is"
+echo "Merged File is:\n"
 cat $3
 exit

@@ -82,10 +82,10 @@ t=$(grep -o 'T' ../Data/E.coli.fasta | wc -l) &&
 g=$(grep -o 'G' ../Data/E.coli.fasta | wc -l) &&
 c=$(grep -o 'C' ../Data/E.coli.fasta | wc -l) &&
 at=`expr $a + $t` && gc=`expr $g + $c` &&
-ratio=$(echo "scale=4 ; $at/$gc" | bc) &&
-echo -e "\n\nThe ratio AT/GC is: $ratio\n"
+ratio=$(echo "scale=4 ; $at/$gc" | bc ) &&
+echo -e "\n\nThe ratio AT/GC is: 0$ratio\n"
 
-########################################################################
+#######################################################################
 ###Explanation
 #First, we count the occurrences of each letter separately and we store 
 #them in the variables a, t, g, c. Second, we use the command expr to 

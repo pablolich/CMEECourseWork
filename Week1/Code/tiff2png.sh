@@ -1,12 +1,12 @@
-!/bin/bash
+#!/bin/bash
 
-for f in *.tif
-    
+#In this bash script we run through all the tiff files specified in the directory ($1). 
+#Convert them into jpg files
+#Move them to the sandbox directory.
+
+for f in $1*.tiff 
     do
-	
 	echo "Converting $f";
-	convert "$f" "$(basename "$f" .tif).jpg";
-
+	convert "$f" "$(basename "$f" .tiff).jpg";
     done
-
-exit
+mv *.jpg ../Sandbox/

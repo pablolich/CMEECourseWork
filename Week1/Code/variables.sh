@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # Author: Pablo Lechon pl1619@ic.ac.uk
 # Script: variables.sh
 # Desc: trying variables in bash
@@ -6,12 +6,16 @@
 
 #Shows the use of varables
 MyVar='some string'
-echo 'the current value of the variable is' $MyVar
+echo -e '\nthe current value of the variable is' $MyVar
 echo 'Please enter a new string'
 read MyVar
 echo 'the current value of the variable is' $MyVar
+echo
 
 ## Reading multiple values
-echo 'enter two numbers separated by space(s)'
+echo 'Enter two numbers separated by space(s)'
 read a b
-echo 'you entered' $a 'and' $b '. Their sum is:' `expr $a + $b`
+echo -e 'You entered' $a 'and' $b 
+echo -e 'Their sum is:' `expr $a + $b`
+echo
+

@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 # Author: Your name pl1619@ic.ac.uk
 # Script: tabtocsv.sh
 # Desc: substitute the tabs in the files wiht commas
@@ -7,7 +7,10 @@
 # Arguments: 1 -> tab delimited file
 # Date: Oct 2019
 
-echo 'Creating a comma delimited version of $1...'
+echo -e "\nCreating a comma delimited version of $1..."
 cat $1 | tr -s '\t' ',' >> $1.csv
-echo 'Done!'
+echo -e '\nDone!\n'
+head $1
+echo
+
 exit

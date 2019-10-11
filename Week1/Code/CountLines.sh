@@ -7,5 +7,4 @@
 # Date: Oct 2019
 
 NumLines=`wc -l <  $1`
-echo "the file $1 has $NumLines lines"
-echo
+echo -e "\nThe file $1 has \b$NumLines lines\n"
