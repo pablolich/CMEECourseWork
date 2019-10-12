@@ -1,0 +1,615 @@
+Starting weekly assessment for Pablo, Week1
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 3.57 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week1, Assessment, Week2, .git
+
+Found the following files in parent directory: .gitignore, README.md, questions.txt
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+My CMEE Cousework Repository
+Do you like this better?
+Third experiment
+4th
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 2 weekly directories: Week1, Week2
+
+The Week1 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK1...
+
+Found the following directories: Code, Data, Sandbox, Results
+
+Found the following files: 
+
+Checking for readme file in weekly directory...
+
+README file missing, 1 pt deducted
+
+Current Points = 99
+
+Found following files in results directory: README.md...
+
+Found 12 code files: ConcatenateTwoFiles.sh, UnixPrac1.sh, CountLines.sh, variables.sh, CompileLaTeX.sh, tiff2png.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, tabtocsv.sh, boilerplate.sh
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file ConcatenateTwoFiles.sh...
+
+File contents are:
+**********************************************************************
+!/bin/bash
+
+cat $1 > $3
+cat $2 >> $3
+echo "Merged File is:\n"
+cat $3
+exit
+**********************************************************************
+
+Testing ConcatenateTwoFiles.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Merged File is:\n
+
+**********************************************************************
+
+Encountered error (or warning):
+ConcatenateTwoFiles.sh: line 1: !/bin/bash: No such file or directory
+ConcatenateTwoFiles.sh: line 3: $3: ambiguous redirect
+ConcatenateTwoFiles.sh: line 4: $3: ambiguous redirect
+
+======================================================================
+Inspecting script file UnixPrac1.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash 
+
+#Author: Pablo Lechon Alonso (plechon@ucm.es)
+#Script: UnixPrac1.sh
+#Desc: Fasta exercise
+#Arguments: None
+#Date: Oct 2019
+
+#The following bash script performs several operations on the fasta files 
+
+
+#########################################################################
+###1. Count how many lines there are in each file###
+#########################################################################
+
+echo -e '\nNumber of lines of each file:\n' && wc -l ../Data/*.fasta
+
+#########################################################################
+##Explanation
+#The wc comand counts the lines, words, and characters in the file. The 
+#-l option specifies that I only want thel ines to be counted. 
+#########################################################################
+
+
+
+#########################################################################
+###2 Print everything starting from the second line for the E. coli genome
+#########################################################################
+
+echo -e '\n\n Printing the whole genome:\n' &&
+cat ../Data/E.coli.fasta | tail -78103
+
+#########################################################################
+##Explanation
+#The cat command prints through the screen whatever file give as an input
+#we have piped a tail command to it that only prints the last 78103 lines
+#or, in other words, all the file except the first line
+#########################################################################
+
+
+
+#########################################################################
+###3 Count the sequence length of this genome
+#########################################################################
+
+echo -e '\n\nThe sequence length of the genome is:\c'&&
+cat ../Data/E.coli.fasta | tail -78103 | tr -d "\n" | wc -m
+
+#########################################################################
+###Explanation
+#The cat command prints the genome. The piped tail command extracts the 
+#first line. The tr command with the -d(elete) option on deletes all the
+#"\n" characters. Finally, we count the caracters with the -m option on 
+#########################################################################
+
+
+
+#########################################################################
+###4 Count the matches of a particular sequence, "ATGC" in the genome of
+#E. coli (hint: Start by removing the first line and removing newline 
+#characters)
+#########################################################################
+
+echo -e '\n\nNumber of matches of the ATGC sequence in the genome:\c'&&
+grep -o 'ATGC' ../Data/E.coli.fasta | wc -l
+
+#########################################################################
+###Explanation
+#We use grep command to search for a particuar string inside a file. The
+#-o option prints only the matching portion in a line. Counting the lines
+#would then tell us what is the number of AGTC strings in the genome
+#########################################################################
+
+
+
+#########################################################################
+###5 Compute the AT/GC ratio. That is, the (A+T)/(G+C) ratio. 
+#########################################################################
+
+a=$(grep -o 'A' ../Data/E.coli.fasta | wc -l) &&
+t=$(grep -o 'T' ../Data/E.coli.fasta | wc -l) &&
+g=$(grep -o 'G' ../Data/E.coli.fasta | wc -l) &&
+c=$(grep -o 'C' ../Data/E.coli.fasta | wc -l) &&
+at=`expr $a + $t` && gc=`expr $g + $c` &&
+ratio=$(echo "scale=4 ; $at/$gc" | bc ) &&
+echo -e "\n\nThe ratio AT/GC is: 0$ratio\n"
+
+#######################################################################
+###Explanation
+#First, we count the occurrences of each letter separately and we store 
+#them in the variables a, t, g, c. Second, we use the command expr to 
+#sum variables appropietely in pairs. 
+#Third, we divide them and set a number of decimals for the output using
+#scale=4 and send the output to bc, a builtin unix calculator, that 
+#reads the echo output (sacle=4 ; $at/$gc), and performs those
+#instructions.
+########################################################################
+
+**********************************************************************
+
+Testing UnixPrac1.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+Number of lines of each file:
+
+     28 ../Data/407228326.fasta
+    127 ../Data/407228412.fasta
+  78104 ../Data/E.coli.fasta
+  78259 total
+
+
+ Printing the whole genome:
+
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC
+TGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG
+TCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC
+ACAACATCCATGAAACGCATTAGCACCACCATTACCACCACCATCACCATTACCACAGGT
+AACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAGCCCGCACCTGACAGTGCGGG
+CTTTTTTTTTCGACCAAAGGTAACGA
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 1.26224s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+**********************************************************************
+!/bin/bash
+
+# Author: Pablo Lechon, pl1619@ic.ac.uk
+# Script: CountLines.sh
+# Description: Counts the lines of input
+# Arguments: 1-> txt file
+# Date: Oct 2019
+
+NumLines=`wc -l <  $1`
+echo -e "\nThe file $1 has \b$NumLines lines\n"
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+The file  has  lines
+
+
+**********************************************************************
+
+Encountered error (or warning):
+CountLines.sh: line 1: !/bin/bash: No such file or directory
+CountLines.sh: line 9: $1: ambiguous redirect
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Pablo Lechon pl1619@ic.ac.uk
+# Script: variables.sh
+# Desc: trying variables in bash
+# Date: Oct 2019
+
+#Shows the use of varables
+MyVar='some string'
+echo -e '\nthe current value of the variable is' $MyVar
+echo 'Please enter a new string'
+read MyVar
+echo 'the current value of the variable is' $MyVar
+echo
+
+## Reading multiple values
+echo 'Enter two numbers separated by space(s)'
+read a b
+echo -e 'You entered' $a 'and' $b 
+echo -e 'Their sum is:' `expr $a + $b`
+echo
+
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+the current value of the variable is some string
+Please enter a new string
+the current value of the variable is
+
+Enter two numbers separated by space(s)
+You entered and
+Their sum is:
+
+
+**********************************************************************
+
+Encountered error (or warning):
+expr: syntax error
+
+======================================================================
+Inspecting script file CompileLaTeX.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash 
+pdflatex $1.tex
+bibtex $1
+pdflatex $1.tex
+pdflatex $1.tex
+
+## Cleanup
+#First,we send all the new created files to the folder compile. Then we find
+#all the files in our current directory that don't have the 
+#extension .tex and .pdf. We have to specify that we want to find only files
+#otherwise we will also get the hidden directories. Once we have them
+#we delete with -delete
+
+mkdir -p compiled && mv $1.* compiled/ 
+find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
+mv ./compiled/* . && rmdir compiled
+mv $1.pdf ../Sandbox/
+
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/usr/share/texlive/texmf-dist/tex/latex/tools/.tex
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
+File ignored)
+*
+! Emergency stop.
+<*> .tex
+        
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on .log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (pre
+**********************************************************************
+
+Encountered error (or warning):
+bibtex: Need exactly one file argument.
+Try `bibtex --help' for more information.
+mv: cannot move '.' to 'compiled/.': Device or resource busy
+mv: cannot move '..' to 'compiled/..': Device or resource busy
+mv: cannot stat './compiled/*': No such file or directory
+mv: cannot stat '.pdf': No such file or directory
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+
+#In this bash script we run through all the tiff files specified in the directory ($1). 
+#Convert them into jpg files
+#Move them to the sandbox directory.
+
+for f in $1*.tiff 
+    do
+	echo "Converting $f";
+	convert "$f" "$(basename "$f" .tiff).jpg";
+    done
+mv *.jpg ../Sandbox/
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Converting *.tiff
+
+**********************************************************************
+
+Encountered error (or warning):
+convert: unable to open image `*.tiff': No such file or directory @ error/blob.c/OpenBlob/2712.
+convert: no images defined `*.jpg' @ error/convert.c/ConvertImageCommand/3210.
+mv: cannot stat '*.jpg': No such file or directory
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+#Author: Pablo Lechon Alonso: plechon@ucm.es
+#Script: csvtospace.sh
+#Desc: transform csv files to space separated files
+#Arguments: csv file
+#Date: Oct 2019
+
+echo -e "\nConverting $1 from csv to space separated file ($2)"
+cat $1 | tr -s "," " " > $2 
+echo -e '\nDone!\n'
+head $2
+echo	
+
+#We use print the input file and pipe the output to a tr command, that
+#erases and shrinks all the comas, and substitutes them for spaces. 
+#The output is sent to a second file which name needs to be specified 
+#when calling the bash script
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+Converting  from csv to space separated file ()
+
+Done!
+
+
+
+**********************************************************************
+
+Encountered error (or warning):
+csvtospace.sh: line 9: $2: ambiguous redirect
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Your Name}
+
+\date{}
+
+\begin{document}
+  \maketitle
+  
+  \begin{abstract}
+    This paper must be cool!
+  \end{abstract}
+  
+  \section{Introduction}
+    Blah Blah!
+  
+  \section{Materials \& Methods}
+  One of the most famous equations is:
+  \begin{equation}
+    E = mc^2
+  \end{equation}
+  This equation was first proposed by Einstein in 1905 
+  \cite{einstein1905does}.
+  
+  \bibliographystyle{plain}
+  \bibliography{FirstBiblio}
+\end{document}
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+
+# Author: Your name pl1619@ic.ac.uk
+# Script: MyExampleScript.sh
+# Desc: Example
+# Date: Oct 2019
+
+msg1="Hello"
+msg2=$USER
+echo "$msg1 $msg2"
+echo "Hello $USER"
+echo
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00353s
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+**********************************************************************
+@article{einstein1905does,
+  title={Does the inertia of a body depend upon its energy-content?},
+  author={Einstein, A.},
+  journal={Annalen der Physik},
+  volume={18},
+  pages={639--641},
+  year={1905}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file tabtocsv.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+# Author: Your name pl1619@ic.ac.uk
+# Script: tabtocsv.sh
+# Desc: substitute the tabs in the files wiht commas
+# and saves the output to a .csv file
+
+# Arguments: 1 -> tab delimited file
+# Date: Oct 2019
+
+echo -e "\nCreating a comma delimited version of $1..."
+cat $1 | tr -s '\t' ',' >> $1.csv
+echo -e '\nDone!\n'
+head $1
+echo
+
+exit
+**********************************************************************
+
+Testing tabtocsv.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+Creating a comma delimited version of ...
+
+Done!
+
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00456s
+
+======================================================================
+Inspecting script file boilerplate.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+#Author: pl1619@ic.ac.uk
+# Script: boilerplate.sh
+# Desc: simple boilerplate for shell scripts
+# Arguments: none
+# Date: Oct 2018
+
+echo -e '\nthis is a shell script! \n' #what does -e do?
+
+exit
+**********************************************************************
+
+Testing boilerplate.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+this is a shell script! 
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00405s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 6 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 99
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
