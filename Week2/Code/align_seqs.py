@@ -15,6 +15,7 @@ __version__ = '0.0.1'
 
 from itertools import compress # To mask lists
 import warnings
+import sys
 
 ## CONSTANTS ##
 
@@ -46,11 +47,9 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 
     return score
 
-       
-## CODE ##
-
-if (__name__ == '__main__'): 
-    #Load data
+def main(argv):
+    '''Main function'''
+     #Load data
     _file = 'seq.txt'
 
     with open('../Data/' + _file) as f:
@@ -91,3 +90,10 @@ if (__name__ == '__main__'):
         print(my_best_align, file = f)
         print(s1, file = f)
         print(my_best_score, file = f)
+       
+## CODE ##
+
+if (__name__ == '__main__'): 
+    status = main(sys.argv)
+    sys.exit(status)
+   

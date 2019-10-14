@@ -1,10 +1,12 @@
 #!/usr/bin/env python3 
 
 '''Takes any two fasta sequences (in separate files) to be aligned as input. 
-It outputs the best alignment along with its corresponding score in a text file
-If no inupts files are given, it uses default files stored in ../Data/'''
+It outputs the best alignment along with its corresponding score in a text
+file and records all the equally best alignments, saving them in ../Results/
+directory. If no inupts files are given, it uses default files stored in 
+../Data/'''
 
-__appname__ = '[align_seqs_fasta.py]'
+__appname__ = '[align_seqs_better.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
@@ -67,15 +69,17 @@ def main(argv):
             l1, l2 = l2, l1 # swap the two lengths
 
         #Now try to find the best match (highest score) for the two sequences
-        my_best_align = None
-        my_best_score = -1
+        #Create empty lists where all the possible alignments and scores well
+        #be saved
+        my_best_align = []#[0]*len(s1)
+        my_best_score = []#[0]*len(s1)
 
         # Note that you just take the last alignment with the highest score
+        import ipdb; ipdb.set_trace(context = 20)
         for i in range(l1):
             z = calculate_score(s1, s2, l1, l2, i)
-            if z > my_best_score:
-                my_best_align = "." * i + s2 # think about what this is doing!
-                my_best_score = z 
+            my_best_align.append( "." * i + s2)
+            my_best_score.append(z) 
 
     #Save the output to a txt file
     with open('../Data/out.txt', 'w+') as f:

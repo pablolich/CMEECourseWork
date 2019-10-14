@@ -2,7 +2,7 @@
 
 '''This program is the first one we do in the CMEE course.'''
 
-__appname__ = '[App_name_here]'
+__appname__ = '[cfexercise1.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 

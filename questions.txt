@@ -1,7 +1,6 @@
 
 Tue Oct  1 15:56:55 BST 2019
 
-	How do I open an arbitrary application from terminal, what name should I use?
 	How do I write the Author, Desc, Script... at the beginning of every document I create?
 	How do I automatically generate a readme in each week?
 
@@ -11,8 +10,6 @@ Sun Oct  6 17:23:26 BST 2019
 Tue Oct  8 11:31:16 BST 2019
 
 	How do I send a section of code to the terminal?
-	Check if my bibliography works with compiling latex from terminal
-
 
 Thu Oct 10 11:13:56 BST 2019
 
@@ -24,7 +21,6 @@ Sat Oct 12 19:38:08 BST 2019
 	Can I use input('...') to let the user introduce the name of the file 
 they want?
 
-	Is my use of if (__name__ == '__main__'): a correct use in 
 slign_seqs.py?
 
 

@@ -18,13 +18,14 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 
 order_names = set([i[1] for i in taxa])
 
-#Create an empty dictionary with appropiate keys
+#Create an empty dictionary with appropiate keys: order_names
 
 dict_names = {i:[] for i in order_names}
 
 #Populate the dictionary
 
 for i in order_names:
-    for j in taxa:
-        if j[1] == i:
-            dict_names[i].append(j[0])
+    #if the key is the same, add the species to the dictionary
+    [dict_names[i].append(j[0]) for j in taxa if j[1] == i]
+
+print(dict_names)
