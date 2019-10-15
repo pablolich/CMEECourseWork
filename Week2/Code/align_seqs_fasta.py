@@ -12,7 +12,7 @@ __version__ = '0.0.1'
 
 import warnings
 import sys
-from align_seqs import calculate_score, mask_list
+from align_seqs import calculate_score, mask_list, sort_seq, save_out
 
 ## CONSTANTS ##
 
@@ -55,15 +55,7 @@ def main(argv):
         seq2 = ''.join(seq2)
 
         #Assign the longer sequence to s1 and its length to l1
-        l1 = len(seq1)
-        l2 = len(seq2)
-        if l1 >= l2:
-            s1 = seq1
-            s2 = seq2
-        else:
-            s1 = seq2
-            s2 = seq1
-            l1, l2 = l2, l1 # swap the two lengths
+        s1, s2, l1, l2 = sort_seq(seq1, seq2)
 
         #Now try to find the best match (highest score) for the two sequences
         my_best_align = None
@@ -77,10 +69,8 @@ def main(argv):
                 my_best_score = z 
 
     #Save the output to a txt file
-    with open('../Results/out.txt', 'w+') as f:
-        print(my_best_align, file = f)
-        print(s1, file = f)
-        print(my_best_score, file = f)
+    save_out(0, [my_best_align, s1, my_best_score])
+
 ## CODE ##
 
 if (__name__ == '__main__'): 

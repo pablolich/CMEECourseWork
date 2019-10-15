@@ -53,6 +53,27 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 
     return score
 
+def sort_seq(seq1, seq2):
+    '''Assigns s1 and l1 to the longer sequence and s2 and l2 to the shorter'''
+    l1 = len(seq1)
+    l2 = len(seq2)
+    if l1 >= l2:
+        s1 = seq1
+        s2 = seq2
+    else:
+        s1 = seq2
+        s2 = seq1
+        l1, l2 = l2, l1 # swap the two lengths
+    return s1, s2, l1, l2
+
+def save_out(i, names):
+    '''Save the ith output files to a txt file'''
+    with open('../Results/out_'+str(i)+'.txt', 'w+') as f:
+        print(names[0], file = f)
+        print(names[1], file = f)
+        print(names[2], file = f)
+    return 0
+
 def main(argv):
     '''Main function'''
      #Load data
@@ -69,16 +90,8 @@ def main(argv):
 
         seq1 = seq[0]
         seq2 = seq[1]
-
-        l1 = len(seq1)
-        l2 = len(seq2)
-        if l1 >= l2:
-            s1 = seq1
-            s2 = seq2
-        else:
-            s1 = seq2
-            s2 = seq1
-            l1, l2 = l2, l1 # swap the two lengths
+        #Assign the longer sequence to s1 and its length to l1
+        s1, s2, l1, l2 = sort_seq(seq1, seq2)
 
         # now try to find the best match (highest score) for the two sequences
         my_best_align = None
@@ -91,11 +104,8 @@ def main(argv):
                 my_best_align = "." * i + s2 # think about what this is doing!
                 my_best_score = z 
 
-    #Save the output to a txt file
-    with open('../Results/out.txt', 'w+') as f:
-        print(my_best_align, file = f)
-        print(s1, file = f)
-        print(my_best_score, file = f)
+    #Save output to txt files
+    save_out(0,[my_best_align, s1, my_best_score])
        
 ## CODE ##
 
