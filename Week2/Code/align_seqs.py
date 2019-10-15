@@ -13,7 +13,6 @@ __version__ = '0.0.1'
 
 ## IMPORTS ##
 
-from itertools import compress # To mask lists
 import warnings
 import sys
 
@@ -21,6 +20,13 @@ import sys
 
 
 ## FUNCTIONS ##
+
+def mask_list(l1, l2):
+    '''Mask a list using another list of indexes or boolean values.'''
+    if type(l2[0]).__name__ == 'bool':
+        return [l1[i] for i in range(len(l2)) if l2[i]]
+    else: 
+        return [l1[i] for i in l2 if i]
 
 def calculate_score(s1, s2, l1, l2, startpoint):
     '''Calculates the number of coincidences of two aligned genomes.
@@ -58,7 +64,7 @@ def main(argv):
         #Removing empty elements in the array due to unexpected \n 
         if not all(seq): 
             mask = [bool(i) for i in seq]
-            seq = list(compress(seq, mask))
+            seq = mask_list(seq, mask)
             warnings.warn('Empty elements of the array have been removed') 
 
         seq1 = seq[0]
@@ -86,7 +92,7 @@ def main(argv):
                 my_best_score = z 
 
     #Save the output to a txt file
-    with open('../Data/out.txt', 'w+') as f:
+    with open('../Results/out.txt', 'w+') as f:
         print(my_best_align, file = f)
         print(s1, file = f)
         print(my_best_score, file = f)

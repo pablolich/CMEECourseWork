@@ -12,29 +12,18 @@ __version__ = '0.0.1'
 
 ## IMPORTS ##
 
-from itertools import compress # To mask lists
 import warnings
 import sys
-from align_seqs import calculate_score
+from align_seqs import calculate_score, mask_list
+from align_seqs_fasta import non_valid_character_detector as nv
 
 ## CONSTANTS ##
 
 
 ## FUNCTIONS ##
 
-def non_valid_character_detector(genome):
-    '''Delete empty lines and lines that are not part of the genome'''
-    #Delete empty list elements if they exist
-    if not all(genome):
-        mask = [bool(i) for i in genome]
-        genome = list(compress(genome, mask))
-    #Remove lines that are not part of the actual genome
-    for i in genome:
-        if i[0] != 'A' and i[0] != 'G' and i[0] != 'T' and i[0] != 'C':
-            genome.remove(i)
-    return genome
-
 def main(argv):
+    '''Main function'''
     #Distribute variables (if given)
     if len(sys.argv) == 3:
         _file1 = sys.argv[1]
@@ -50,8 +39,8 @@ def main(argv):
     with open(_file1) as f1, open(_file2) as f2:
         #Separate the files by lines into a lis and getting rid of the first 2
         #lines
-        seq1 = non_valid_character_detector(f1.read().split('\n'))
-        seq2 = non_valid_character_detector(f2.read().split('\n'))
+        seq1 = nv(f1.read().split('\n'))
+        seq2 = nv(f2.read().split('\n'))
 
         ##Removing \n characters
         seq1 = ''.join(seq1)
@@ -75,17 +64,25 @@ def main(argv):
         my_best_score = []#[0]*len(s1)
 
         # Note that you just take the last alignment with the highest score
-        import ipdb; ipdb.set_trace(context = 20)
         for i in range(l1):
             z = calculate_score(s1, s2, l1, l2, i)
             my_best_align.append( "." * i + s2)
             my_best_score.append(z) 
+        #Find the positions of the maximum score
+        max_ind = [i for i in range(len(my_best_score)) 
+                   if my_best_score[i] == max(my_best_score)]
+        #Mask the alignments and scores according to those positions
+        best_aligns = mask_list(my_best_align, max_ind)
+        best_scores = mask_list(my_best_score, max_ind)
+        import ipdb; ipdb.set_trace(context = 20)
 
-    #Save the output to a txt file
-    with open('../Data/out.txt', 'w+') as f:
-        print(my_best_align, file = f)
-        print(s1, file = f)
-        print(my_best_score, file = f)
+    #Save best aligns to output files
+    for i in range(len(best_scores)):
+        with open('../Results/out_'+str(i)+'.txt', 'w+') as f:
+            print(best_aligns[i], file = f)
+            print(s1, file = f)
+            print(best_scores[i], file = f)
+
 ## CODE ##
 
 if (__name__ == '__main__'): 

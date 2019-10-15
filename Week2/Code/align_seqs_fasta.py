@@ -10,10 +10,9 @@ __version__ = '0.0.1'
 
 ## IMPORTS ##
 
-from itertools import compress # To mask lists
 import warnings
 import sys
-from align_seqs import calculate_score
+from align_seqs import calculate_score, mask_list
 
 ## CONSTANTS ##
 
@@ -25,7 +24,7 @@ def non_valid_character_detector(genome):
     #Delete empty list elements if they exist
     if not all(genome):
         mask = [bool(i) for i in genome]
-        genome = list(compress(genome, mask))
+        genome = mask_list(genome, mask)
     #Remove lines that are not part of the actual genome
     for i in genome:
         if i[0] != 'A' and i[0] != 'G' and i[0] != 'T' and i[0] != 'C':
@@ -78,7 +77,7 @@ def main(argv):
                 my_best_score = z 
 
     #Save the output to a txt file
-    with open('../Data/out.txt', 'w+') as f:
+    with open('../Results/out.txt', 'w+') as f:
         print(my_best_align, file = f)
         print(s1, file = f)
         print(my_best_score, file = f)

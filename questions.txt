@@ -35,3 +35,11 @@ Mon Oct 14 10:34:10 BST 2019
 
 
 
+Tue Oct 15 00:04:37 BST 2019
+	
+	How can I do the saving of the equally best_alignments with pickle?
+
+	Do we output the best alignments to the results folder, or to a subfolder inside results?
+	How do I keep my computer alive while it is running and shut it down when it finishes?
+
+
