@@ -1,3 +1,7 @@
+#!/usr/bin/env python3 
+
+'''Learning what loops in python are'''
+
 # FOR loops in Python
 for i in range(5):
     print(i)

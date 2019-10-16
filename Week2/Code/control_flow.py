@@ -72,6 +72,7 @@ The second part is where we store the variables we have passed through from the
 terminal. we would pass them we can then distribute them through our program
 I am not sure of why is this useful, but I think it has to do with 
 compartimentalization of our coding.'''
+
 if (__name__ == '__main__'):
     status = main(sys.argv)
     sys.exit(status)

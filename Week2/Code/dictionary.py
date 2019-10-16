@@ -1,3 +1,10 @@
+#!/usr/bin/env python3 
+
+''' Write a short python script to populate a dictionary called taxa_dic 
+derived from  taxa so that it maps order names to sets of taxa. E.g.
+'Chiroptera' : set(['Myotis lucifugus']) etc.''' 
+
+
 taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Gerbillus henleyi','Rodentia',),
          ('Peromyscus crinitus', 'Rodentia'),
@@ -10,9 +17,6 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
          ('Canis lupus', 'Carnivora')
         ]
 
-# Write a short python script to populate a dictionary called taxa_dic 
-# derived from  taxa so that it maps order names to sets of taxa. 
-# E.g. 'Chiroptera' : set(['Myotis lucifugus']) etc. 
 
 #Create a set containing the possible order names
 
