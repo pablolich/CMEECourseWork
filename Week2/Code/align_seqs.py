@@ -1,8 +1,7 @@
-#!/usr/bin/env python3 
 
 '''Start by positioning the beginning of the shorter sequence at all positions 
 (bases) of the longer one (the start position), and count the number of bases 
-matched downstream. Then, for each start position, count the "score" as total 
+matchebv, downstream. Then, for each start position, count the "score" as total 
 of number of bases matched. The alignment with the highest score wins. Ties are
 possible, in which case, you just take the an arbitrary alignment (e.g., first 
 or last) with the highest score.'''

@@ -1,3 +1,8 @@
+#!/usr/bin/env python3 
+
+'''Exercise to predict how many times hello will be printed. Control Flow and
+division exercises'''
+
 for j in range(12):
     if j % 3 == 0:
         print('hello')

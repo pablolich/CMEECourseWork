@@ -2,9 +2,9 @@
 
 '''Takes any two fasta sequences (in separate files) to be aligned as input. 
 It outputs the best alignment along with its corresponding score in a text
-file and records all the equally best alignments, saving them in ../Results/
-directory. If no inupts files are given, it uses default files stored in 
-../Data/'''
+file and records all the equally best alignments, saving them in 
+../Results/out_[i].txt, with i being the ith equally best alignment. If no 
+inupts files are given, it uses default files stored in ../Data/'''
 
 __appname__ = '[align_seqs_better.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
