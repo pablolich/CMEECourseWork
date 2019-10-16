@@ -59,6 +59,7 @@ def is_an_oak(name):
         return False
 
 def select_range(_list, ind, _range):
+    import ipdb; ipdb.set_trace(context = 20)
     '''Select a range of elements in a list around a center value
 
     Keyword arguments:
@@ -120,6 +121,7 @@ def auto_corretor(actual, attempt, tol):
 
 def main(argv): 
     '''Main function'''
+    auto_corretor('quercus', 'queinircus', 90)
     f = open('../data/TestOaksData.csv','r')
     g = open('../data/JustOaksData.csv','w')
     taxa = csv.reader(f)
