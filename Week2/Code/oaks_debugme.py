@@ -39,27 +39,23 @@ def is_an_oak(name):
 
     #Generate a list of possible typos by permuting every character and 
     #doubling it
-    _str = 'qquercuss'
-    _str2 = 'quercus'
-    perm_str = permutations(list(_str))
-    perm_str2 = permutations(list(_str2))
-    list1 = [i for i in perm_str]
-    list2 = [i for i in perm_str2]
-    listone = [''.join(i) for i in list1]
-    listtwo = [''.join(i) for i in list2]
-    #List of possible typos (pretty long)
-    listtot = listone + listtwo
-    for i in listtot:
-        if name.lower().startswith(i):
-            name = 'quercus'
-    _bool = name.lower().startswith('quercus')
-    if name.lower().startswith('quercus'):
+#    _str = 'qquercuss'
+#    _str2 = 'quercus'
+#    perm_str = permutations(list(_str))
+#    perm_str2 = permutations(list(_str2))
+#    list1 = [i for i in perm_str]
+#    list2 = [i for i in perm_str2]
+#    listone = [''.join(i) for i in list1]
+#    listtwo = [''.join(i) for i in list2]
+#    #List of possible typos (pretty long)
+#    listtot = listone + listtwo
+
+    try:
+        name = auto_corretor('quercus', name.lower(), 90)
         return True
-    else:
-        return False
+    except: return False
 
 def select_range(_list, ind, _range):
-    import ipdb; ipdb.set_trace(context = 20)
     '''Select a range of elements in a list around a center value
 
     Keyword arguments:
@@ -81,7 +77,11 @@ def select_range(_list, ind, _range):
     return _out
 
 def auto_corretor(actual, attempt, tol):
-    '''Rewrite 'attempt' string as 'actual' string if they are similar
+    '''Rewrite 'attempt' string as 'actual' string if they are similar. To 
+    determine if they are similar the letters of 'acutal' are compared to 
+    subsets of (three) letters of 'attempt'. This is done to avoid concluding
+    that two different words that are share the same amount of words are the
+    same word. 
 
     Keyword argument:
     actual (str): correct version of the word
@@ -93,10 +93,11 @@ def auto_corretor(actual, attempt, tol):
     l_attempt = list(attempt)
     l_actual = list(actual)
     intersect = []
-    subtract_switch = 0
+    hold_switch = 0 #Hold i when deleting characters from l_attempt
     k = 0#An index for l_attempt, that we will fiddle around with 
+    i = 0#An index for l_actual.
     #Compare how much do they have in common
-    for i in range(len(l_actual)):
+    while i < len(l_actual):
         #Select a range of words in which to search for the considered
         #character.
         #If the character is repeated, specify which one will be the central
@@ -107,21 +108,21 @@ def auto_corretor(actual, attempt, tol):
         #between the characters in l_actual and l_attempt is biunivoc.
         #try and except because the comprehension list might be empty, in
         #which case selecting the first element would yield an error
-        try: intersect += [j for j in sub_list if j == l_actual[i]][0] 
+        try:
+            intersect += [j for j in sub_list if j == l_actual[i]][0] 
+            k += 1
+            i += 1
         except: 
             del l_attempt[k]
-            k += 1
             pass #Since there is nothing to add, we keep running the code
         #eliminate the found intersecting element in order to iterate through
         #the whole l_attempt word, which might me longer than l_actual
         
-        #similarity = 100*len(intersect)/len(l_actual)
-    return intersect
+    return ''.join(intersect)
 
 
 def main(argv): 
     '''Main function'''
-    auto_corretor('quercus', 'queinircus', 90)
     f = open('../data/TestOaksData.csv','r')
     g = open('../data/JustOaksData.csv','w')
     taxa = csv.reader(f)

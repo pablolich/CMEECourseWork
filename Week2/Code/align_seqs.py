@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 '''Start by positioning the beginning of the shorter sequence at all positions 
 (bases) of the longer one (the start position), and count the number of bases 
