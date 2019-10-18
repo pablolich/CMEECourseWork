@@ -1,5 +1,6 @@
-# This function calculates heights of trees given distance of each tree 
-# from its base and angle to its top, using  the trigonometric formula 
+# This script loads the treeheights file with the heights of trees g
+# and calculates the height of each tree based on its distance and inclination degrees
+#  using  the trigonometric formula 
 #
 # height = distance * tan(radians)
 #
@@ -10,13 +11,30 @@
 # OUTPUT
 # The heights of the tree, same units as "distance"
 
+#########################################################################################
+
+#Functions
+
 TreeHeight <- function(degrees, distance){
 	radians <- degrees * pi / 180
 	height <- distance * tan(radians)
-	print(paste('Tree height is:' , height))
-
+	
 	return(height)
 }
 
-TreeHeight(37, 40)
+#Code
+
+#load data
+trees = read.csv('../Data/trees.csv')
+
+#Vectorized version
+height <- TreeHeight(trees$Distance.m, trees$Angle.degrees)
+
+#Create data frame
+TreeHts <- data.frame('Species' = trees$Species, 'Distance.m' = trees$Distance.m,
+                      'Angle.degrees' = trees$Angle.degrees, 'Tree.Height.m' = height)
+
+#Save to csv
+write.csv(TreeHts, '../Results/TreeHts.csv', row.names = F)
+
 
