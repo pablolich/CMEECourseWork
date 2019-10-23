@@ -66,7 +66,7 @@ def str2float(_list, column):
 def main(argv):
     '''Main function'''
     #load data and massage it a little
-    with open(sys.argv[1]) as trees_csv:
+    with open('../Data/' + sys.argv[1]) as trees_csv:
         trees = trees_csv.readlines()
         #delete '\n' at the end of lines
         trees_rm = [i.replace('\n', '').replace('"', '') for i in trees]

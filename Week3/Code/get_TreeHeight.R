@@ -16,7 +16,7 @@
 ###############################################################################
 
 args = commandArgs(trailingOnly=TRUE)
-print(length(args))
+
 if (length(args) == 0){
 	stop("One argument must be supplied (input file)")
 }
