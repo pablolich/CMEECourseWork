@@ -14,6 +14,8 @@ MyDF$Prey.mass.unit[ind] = 'g'
 
 require(ggplot2)
 
+#Generate plot
+
 ggplot(MyDF, aes(MyDF$Prey.mass, MyDF$Predator.mass)) + 
   geom_point(shape = I(3), aes(colour = Predator.lifestage)) + 
   geom_smooth(method = 'lm', aes(colour = MyDF$Predator.lifestage), fullrange = T, size = 0.5) +
@@ -21,7 +23,8 @@ ggplot(MyDF, aes(MyDF$Prey.mass, MyDF$Predator.mass)) +
   facet_grid(MyDF$Type.of.feeding.interaction ~ .) + #To arrange them by rows, put the ~ . at the right
   theme_bw()+
   theme(legend.position="bottom", legend.title = element_text(size = 8.4, face = 'bold',), 
-        legend.text = element_text(size = 8.4, margin = margin(t = 0.5)), panel.grid.minor = element_line(colour = 'gray96'),
+        legend.text = element_text(size = 8.4, margin = margin(t = 0.5)), 
+	panel.grid.minor = element_line(colour = 'gray96'),
         legend.key.size = unit(1,'line'), plot.margin = unit(c(1, 3, 1, 3), 'cm'), 
         legend.spacing.x = unit(0.05, 'cm'),
         legend.title.align = 0.5, legend.text.align = 0.5)+
