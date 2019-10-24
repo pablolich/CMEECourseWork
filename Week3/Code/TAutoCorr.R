@@ -40,9 +40,9 @@ abline(h = mean, col = 'black', lwd = 1, lty = 'dashed')
 
 #Add legend to the plot
 
-legend(1960, 24.12, legend='Mean temperature',
+legend('bottom', legend='Mean temperature',
        col='black', lty='dashed', cex=0.8, 
-       box.col = 'white', box.lty = 'dotdash') #Formatting the legend box
+       box.lwd = 0,box.col = "white") #Formatting the legend box
 
 
 ########################################################################################
@@ -73,8 +73,7 @@ cor_matrix = cor(X)
 
 cor_consecutive_years = cor_matrix[col(cor_matrix) == row(cor_matrix) + 1]
 h1 = hist(cor_consecutive_years, main = 'Random correlations',
-          xlab = 'Correlation',
-          breaks = seq(-0.4, 0.4, 0.05))
+          xlab = 'Correlation')
 abline(v = corr, col = 'red', type = 'l', lty = 'dashed')
 
 #To calculate the p-value we calculate what fraction of the correlation 
