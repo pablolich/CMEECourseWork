@@ -77,7 +77,7 @@ cor_matrix = cor(X)
 
 cor_consecutive_years = cor_matrix[col(cor_matrix) == row(cor_matrix) + 1]
 
-pdf('../Results/hist_p_value.pdf')
+pdf('../Results/hist_p_value.pdf', 4.5, 4.5)
 
 h1 = hist(cor_consecutive_years, main = 'Random correlations', col = 'grey88', xlab = 'Correlation',
           axes = F)
