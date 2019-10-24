@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-# This script loads the a file with the heights of trees g
+# This script loads the a file with the heights of trees that the user inputs 
 # and calculates the height of each tree based on its distance and inclination 
 #degrees  using  the trigonometric formula 
 #

@@ -1,3 +1,9 @@
+#!/usr/bin/env R 
+
+
+#Demonstration of diferent control flow statements if, for, while...
+
+
 ## If statement
 a <- TRUE
 if (a == TRUE){

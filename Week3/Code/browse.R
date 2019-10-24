@@ -1,3 +1,7 @@
+#!/usr/bin/env R
+
+#Demonstrates how browser can be used to debug a function
+
 Exponential <- function(N0 = 1, r = 1, generations = 10){
 	#Runs a simulation of exonential growth
 	#Returns a vector of length generations

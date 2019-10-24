@@ -1,6 +1,6 @@
 #!/usr/bin/env R 
 
-#
+#Runs simulation of Ricker model with vector preallocation. Generates a plot of the population evolution.
 
 Ricker <- function(N0=1, r=1, K=10, generations=50)
 {
