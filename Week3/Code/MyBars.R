@@ -1,3 +1,7 @@
+#!/usr/bin/env R 
+
+#Commands for anotating in plots with ggplot
+
 a <- read.table("../Data/Results.txt", header = TRUE)
 head(a)
 

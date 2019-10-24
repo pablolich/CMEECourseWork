@@ -1,10 +1,12 @@
+#!/usr/bin/env R
+
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################
 require(reshape2)
 
 ############# Load the dataset ###############
-# header = false because the raw data don't have real headers
+# header = FALSE because the raw data don't have real headers
 MyData <- as.matrix(read.csv("../data/PoundHillData.csv",header = F), stringsAsFactors = F) 
 
 # header = true because we do have metadata headers
