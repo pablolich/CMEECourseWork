@@ -2,6 +2,8 @@
 *.tmp
 __pycache__/
 
+questions.txt
+
 ########Git ignore for r##########
 
 # History files
