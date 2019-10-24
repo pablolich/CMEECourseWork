@@ -1,3 +1,7 @@
+#!/usr/bin/env R 
+
+#Represents on a world map data from location in which we have species information.
+
 #Load the maps package
 require(maps)
 

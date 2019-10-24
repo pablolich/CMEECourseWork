@@ -1,5 +1,9 @@
+#!/usr/bin/env R 
+
+#Extention of PP_Regress.R. This time, the groups are made attending also to the location of the
+#species.
+
 MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
-#attach(MyDF)
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')
 MyDF$Prey.mass[ind] = MyDF$Prey.mass[ind]/1000
