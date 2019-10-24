@@ -1,3 +1,9 @@
+#!/usr/bin/env R
+
+
+#Showing how vectorized ways and tapply functions are faster than loops
+
+
 ######### Functions ##########
 
 ## A function to take a sample of size n from a population "popn" and return its mean

@@ -1,3 +1,5 @@
+#!/usr/bin/env R 
+
 # This script loads the treeheights file with the heights of trees g
 # and calculates the height of each tree based on its distance and inclination degrees
 #  using  the trigonometric formula 

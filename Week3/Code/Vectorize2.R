@@ -1,4 +1,7 @@
-# Runs the stochastic Ricker equation with gaussian fluctuations
+#!/usr/bin/env R 
+
+
+# Runs the stochastic Ricker equation with gaussian fluctuations. 
 
 #remove all objects (ls returns a vector of strings with the names of all objects
 rm(list=ls()) 

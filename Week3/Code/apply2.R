@@ -1,5 +1,10 @@
-#This function multiplies the elements of a vector by 100 if theri sum is greater than 0
+#!/usr/bin/env R 
+
+
+
+#This function multiplies the elements of a vector by 100 if their sum is greater than 0
 #otherwise, it just returns the vector
+
 SomeOperation <- function(v){
 	if(sum(v)>0){
 		return (v*100)

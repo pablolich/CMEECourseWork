@@ -1,3 +1,7 @@
+#!/usr/bin/env R 
+
+#Learning how to use apply function
+
 ## Build a random matrix
 M <- matrix(rnorm(100), 10, 10)
 

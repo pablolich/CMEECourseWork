@@ -1,3 +1,7 @@
+#!/usr/bin/env R
+
+#Demonstrates how prealocation increases speed.
+
 a <- NA
 nonpre<- function(){
 	for (i in 1:10){

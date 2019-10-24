@@ -1,3 +1,7 @@
+#!/usr/bin/env R
+
+#Annotating in plots with ggplot2
+
 require(ggplot2)
 
 x <- seq(0, 100, by = 0.1)

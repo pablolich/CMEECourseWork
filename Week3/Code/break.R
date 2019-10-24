@@ -1,3 +1,7 @@
+#!/usr/bin/env R 
+
+#Ilustrate how break command works
+
 i <- 0 #Initialize i
 	while(i < Inf) {
 		if (i == 10) {
