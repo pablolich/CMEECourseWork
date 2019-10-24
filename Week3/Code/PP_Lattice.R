@@ -4,6 +4,7 @@ MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')
 MyDF$Prey.mass[ind] = MyDF$Prey.mass[ind]/1000
+MyDF$Prey.mass.unit[ind] = 'g'
 library(lattice)
 library(plyr)
 pdf('../Results/Pred_Lattice.pdf', 11.7, 8.3)
