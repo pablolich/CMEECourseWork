@@ -14,5 +14,5 @@ pdflatex $1.tex
 mkdir -p compiled && mv $1.* compiled/ 
 find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
 mv ./compiled/* . && rmdir compiled
-mv $1.pdf ../Sandbox/
+mv $1.pdf ../Results/
 

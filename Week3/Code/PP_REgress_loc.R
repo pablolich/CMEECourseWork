@@ -21,5 +21,7 @@ table = ddply(new_df, .(lifestage.feeding.location), summarize,
               f.statistic = as.numeric(glance(lm(log10(predator.mass)~log10(prey.mass)))[4]),
               p.value = summary(lm(log10(predator.mass)~log10(prey.mass)))$coefficients[8])
 
+write.table(table, '../Results/PP_Regres_loc_Results.csv', row.names = F, quote = F) 
+
 #Warnings suggest that in fact this is too complicate to be meaningful
 

@@ -5,6 +5,9 @@
 rm(list = ls())
 setwd(paste("~/Desktop/Imperial/CMEECourseWork/Week3/Code/", sep = ''))
 load('../Data/KeyWestAnnualMeanTemperature.RData', envir = globalenv())
+set.seed(44434862)
+
+pdf('../Results/temp_evolution.pdf', 5.5,3.5)
 
 par(mfrow = (c(1,1)))
 #Create a function to generate a continuous color palette
@@ -44,6 +47,7 @@ legend('bottom', legend='Mean temperature',
        col='black', lty='dashed', cex=0.8, 
        box.lwd = 0,box.col = "white") #Formatting the legend box
 
+graphics.off()
 
 ########################################################################################
 ##CALULATING CORRELATION COEFFICIENT BETWEEN SUCCESIVE YEARS##
@@ -58,7 +62,7 @@ corr = cor(year1, year2)
 
 #Check wether this correlation is significant or not
 #Generate a matrix of correlations if our temperatures were randomly distributed
-n_simulations = 10000
+n_simulations = 10000 #If change this, change the breaks in the histogram below!
 X = matrix(NA, length(ats$Temp), n_simulations)
 for (i in seq(n_simulations)){
   #Each column of the matrix is substituted by a random order of temperatures.
@@ -72,11 +76,21 @@ cor_matrix = cor(X)
 #or (i+1, i), since the matrix is symmetric
 
 cor_consecutive_years = cor_matrix[col(cor_matrix) == row(cor_matrix) + 1]
-h1 = hist(cor_consecutive_years, main = 'Random correlations',
-          xlab = 'Correlation')
+
+pdf('../Results/hist_p_value.pdf')
+
+h1 = hist(cor_consecutive_years, main = 'Random correlations', col = 'grey88', xlab = 'Correlation',
+          axes = F)
+axis(side=1, at=c(-0.4,-0.2,0, 0.2,0.4), labels=c(-0.4,-0.2,0, 0.2, 0.4))
+axis(side=2, at=c(0,1000,2000), labels=c(0,1000,2000))
 abline(v = corr, col = 'red', type = 'l', lty = 'dashed')
+
+graphics.off()
+
+
 
 #To calculate the p-value we calculate what fraction of the correlation 
 #coefficients from the previous step were greater than that from step 1
 
 p_value = sum(cor_consecutive_years > corr)/n_simulations
+

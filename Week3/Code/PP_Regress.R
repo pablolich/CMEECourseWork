@@ -45,3 +45,4 @@ table = ddply(new_df, .(lifestage.feeding), summarize,
               f.statistic = as.numeric(glance(lm(log10(predator.mass)~log10(prey.mass)))[4]),
               p.value = summary(lm(log10(predator.mass)~log10(prey.mass)))$coefficients[8])
 
+write.table(table, '../Results/PP_Regres_Results.csv', row.names = F, quote = F) 
