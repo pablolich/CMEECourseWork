@@ -3,6 +3,7 @@
 __pycache__/
 
 questions.txt
+.DS_Store
 
 ########Git ignore for r##########
 
