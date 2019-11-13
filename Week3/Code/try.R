@@ -1,7 +1,7 @@
 #!/usr/bin/env R 
 
 
-#
+#Demonstrates how the try command works
 
 
 doit <- function(x){
