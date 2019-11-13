@@ -1,0 +1,6 @@
+
+Mon Nov  4 17:47:30 GMT 2019
+
+We will start trying to fit all three models to Lactobacioulus at 20 degrees 
+1
+	Finish selecting the good data from dat
