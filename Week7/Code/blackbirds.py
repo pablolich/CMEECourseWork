@@ -1,7 +1,7 @@
 import re
 
 # Read the file (using a different, more python 3 way, just for fun!)
-with open('../data/blackbirds.txt', 'r') as f:
+with open('../Data/blackbirds.txt', 'r') as f:
     text = f.read()
 
 # replace \t's and \n's with a spaces:
@@ -17,6 +17,10 @@ text = text.decode('ascii', 'ignore') # Now decode back to string
 
 # Now extend this script so that it captures the Kingdom, Phylum and Species
 # name for each species and prints it out to screen neatly.
+#First try to capture kingdom
+
+textf = re.findall(r'Kingdom\s\w+|Phylum\s\w+|Species\s\w+\s\w+', text)
+[print(i) for i in textf]
 
 # Hint: you may want to use re.findall(my_reg, text)... Keep in mind that there
 # are multiple ways to skin this cat! Your solution could involve multiple

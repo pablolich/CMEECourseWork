@@ -32,6 +32,7 @@ def main(argv):
     '''Main function'''
     MaxN = 30
     C = 0.75
+    import ipdb; ipdb.set_trace(context = 20t0)
     AdjL = sc.array(GenRdmAdjList(MaxN, C))
     Sps = sc.unique(AdjL)
     pos = nx.circular_layout(Sps)
