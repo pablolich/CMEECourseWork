@@ -1,4 +1,4 @@
-#!/bin/bash 
+u!/bin/bash 
 
 #Runs both LV1.py and LV2.py
 echo 'Profiling for LV1.py :' > ../Results/profiling.txt
