@@ -1,4 +1,8 @@
-""" This is blah blah"""
+#!/usr/bin/env python3
+
+'''
+Find directories and files that satisfy certain conditions using subprocess
+'''
 
 import subprocess
 import numpy as np

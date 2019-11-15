@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+#Draw network from class notes.
+
 __appname__ = '[DrawFW.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
