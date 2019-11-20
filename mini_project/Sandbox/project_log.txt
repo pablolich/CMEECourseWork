@@ -1,6 +1,7 @@
 
 Mon Nov  4 17:47:30 GMT 2019
 
+<<<<<<< HEAD
 We will start trying to fit all three models to Lactobacioulus planetarium_20 degrees 
 1
 	Finish selecting the good data from dat
@@ -27,3 +28,8 @@ Things to do
 	1. Idear una manera de asignar A (asintota cuando x --> inf), r (rapidez de crecimiento de los microbios, y lamda, valor de x en el que empieza a subir la grafica
 	2. Get the second derivative, and find the inflexion points analiticaly to prove that r mean different things in one model and in another one. 
 
+=======
+We will start trying to fit all three models to Lactobacioulus at 20 degrees 
+1
+	Finish selecting the good data from dat
+>>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8

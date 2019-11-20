@@ -8,15 +8,21 @@ __version__ = '0.0.1'
 
 import sys
 import pandas as pd
+<<<<<<< HEAD
 import scipy as sc
 from numpy import exp
 import matplotlib.pylab as plt
 from lmfit import Model
+=======
+from scipy.optimize import least_squares
+from numpy import exp
+>>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
 
 ## CONSTANTS ##
 
 
 ## FUNCTIONS ##
+<<<<<<< HEAD
 
 def load_data():
     #load data
@@ -150,6 +156,24 @@ def main(argv):
     plt.plot(dat_plot.Time, result_buchanan.best_fit, 'k--',
              label = 'Buchanan')
     plt.legend()
+=======
+def logistic_equation(t, N_0 = 1, r = 1, K = 1):
+    return (N_0 * K * exp(r * t))/(K + N_0 * (exp(r * t)-1))
+
+def first_approach(time, population):
+    'First fit to very good data'
+#    good_dat = 
+
+    return
+    
+
+def main(argv):
+    '''Main function'''
+    #load data
+    import ipdb; ipdb.set_trace(context = 20)
+    dat = pd.read_csv('../Data/growth_data.csv')
+    print(logistic_equation(2))
+>>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
 
     return 0 
 
