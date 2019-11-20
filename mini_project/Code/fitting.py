@@ -8,27 +8,17 @@ __version__ = '0.0.1'
 
 import sys
 import pandas as pd
-<<<<<<< HEAD
-<<<<<<< HEAD
 import scipy as sc
 from numpy import exp
 import matplotlib.pylab as plt
 from lmfit import Model
-=======
 from scipy.optimize import least_squares
 from numpy import exp
->>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
-=======
-from scipy.optimize import least_squares
-from numpy import exp
->>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
 
 ## CONSTANTS ##
 
 
 ## FUNCTIONS ##
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 def load_data():
     #load data
@@ -66,9 +56,10 @@ def gompertz(t, A, r, lam):
 #
 def baranyi_nonexp(t, y_0, r, h0, y_max):
     #calculate at
-    A = 1/r * sc.log( exp(-r*t) + exp(-h0) - exp(-r*t - h0))
-    return( y_0 + r*t + A - sc.log(  1 + ( exp(r*t + A) - 1 ) / \
-            ( exp(y_max - y_0) )  ) )
+    return( y_0 + r*t + 1/r * sc.log( exp(-r*t) + exp(-h0) - \
+            exp(-r*t - h0)) - sc.log(  1 + ( exp(r*t + 1/r * sc.log( exp(-r*t)\
+            + exp(-h0) - exp(-r*t - h0))) - 1 ) / \
+            (exp(y_max - y_0) )) ) 
 
 def buchanan(t, N_min, r, t_lag, t_max):
     #N_max = N_min + r * (t_max - t_lag)
@@ -89,8 +80,7 @@ def main(argv):
     model_cubic = Model(cubic)
     model_logistic = Model(logistic_equation) 
     model_gompertz = Model(gompertz)
-    model_gompertz_samraat = Model(gompertz_samraat)
-#    model_baranyi = Model(baranyi)
+    #model_gompertz_samraat = Model(gompertz_samraat)
     model_baranyi_nonexp = Model(baranyi_nonexp)
     model_buchanan = Model(buchanan)
 
@@ -110,30 +100,22 @@ def main(argv):
                                          A = A_init ,  
                                          r = r_init, lam = lam_init)
 
-    result_gompertz_samraat = model_gompertz_samraat.fit(dat_plot.PopBio,
-                                                t = dat_plot.Time, 
-                                                N_max = max(dat_plot.PopBio),
-                                                N_0 = min(dat_plot.PopBio),
-                                                A = A_init, 
-                                                r_max = r_init, 
-                                                t_lag = lam_init)
+    #result_gompertz_samraat = model_gompertz_samraat.fit(dat_plot.PopBio,
+    #                                            t = dat_plot.Time, 
+    #                                            N_max = max(dat_plot.PopBio),
+    #                                            N_0 = min(dat_plot.PopBio),
+    #                                            A = A_init, 
+    #                                            r_max = r_init, 
+    #                                            t_lag = lam_init)
+    #
     
     #Initial parameters for baranyi
-    #r_init = 0.4
-    #h0_init = 0.01
-    #N_0_init = dat_plot.PopBio.iloc[0]
-    #N_max_init = dat_plot.PopBio.iloc[-1]
-    #result_baranyi = model_baranyi.fit(dat_plot.PopBio, 
-    #                                   t = dat_plot.Time,
-    #                                   N_0 = N_0_init, r = r_init, 
-    #                                   h0 = h0_init, N_max = N_max_init)
-    
-    import ipdb; ipdb.set_trace(context = 20)
-    r_init = 0.25
+    r_init = 0.5
     h0_init = 0.1
-    y_0_init = dat_plot.y_t.iloc[0]
-    y_max_init = dat_plot.y_t.iloc[-1]
-    result_baranyi_nonexp = model_baranyi_nonexp.fit(dat_plot.PopBio, 
+    y_0_init = 2
+    y_max_init = 9
+    
+    result_baranyi_nonexp = model_baranyi_nonexp.fit(dat_plot.y_t, 
                                        t = dat_plot.Time,
                                        y_0 = y_0_init, r = r_init, 
                                        h0 = h0_init, y_max = y_max_init)
@@ -153,38 +135,14 @@ def main(argv):
              label = 'Cuadratic')
     plt.plot(dat_plot.Time, result_logistic.best_fit, 'r-', label = 'Logistic')
     plt.plot(dat_plot.Time, result_gompertz.best_fit, 'b-', label = 'Gompertz')
-    plt.plot(dat_plot.Time, exp(result_baranyi.best_fit), 'g-', 
-             label = 'Baranyi')
     plt.plot(dat_plot.Time, exp(result_baranyi_nonexp.best_fit), 'y-', 
              label = 'Baranyi')
-    plt.plot(dat_plot.Time, result_gompertz_samraat.best_fit, 'c-', 
-             label = 'Gompertz Samraat')
+    #plt.plot(dat_plot.Time, result_gompertz_samraat.best_fit, 'c-', 
+    #         label = 'Gompertz Samraat')
     plt.plot(dat_plot.Time, result_buchanan.best_fit, 'k--',
              label = 'Buchanan')
     plt.legend()
-=======
-=======
->>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
-def logistic_equation(t, N_0 = 1, r = 1, K = 1):
-    return (N_0 * K * exp(r * t))/(K + N_0 * (exp(r * t)-1))
-
-def first_approach(time, population):
-    'First fit to very good data'
-#    good_dat = 
-
-    return
-    
-
-def main(argv):
-    '''Main function'''
-    #load data
-    import ipdb; ipdb.set_trace(context = 20)
-    dat = pd.read_csv('../Data/growth_data.csv')
-    print(logistic_equation(2))
-<<<<<<< HEAD
->>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
-=======
->>>>>>> b7de61022d1269e4411477d144fd8201aa2e54c8
+    plt.show()
 
     return 0 
 
