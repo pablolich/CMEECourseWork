@@ -56,7 +56,7 @@ def gompertz(t, A, r, lam):
 #
 def baranyi_nonexp(t, y_0, r, h0, y_max):
     #calculate at
-    return( y_0 + r*t + 1/r * sc.log( exp(-r*t) + exp(-h0) - \
+    return( exp(y_0) + r*t + 1/r * sc.log( exp(-r*t) + exp(-h0) - \
             exp(-r*t - h0)) - sc.log(  1 + ( exp(r*t + 1/r * sc.log( exp(-r*t)\
             + exp(-h0) - exp(-r*t - h0))) - 1 ) / \
             (exp(y_max - y_0) )) ) 
@@ -70,10 +70,20 @@ def gompertz_samraat(t, r_max, N_max, N_0, t_lag):
     return(N_0 + (N_max - N_0) * exp(-exp(r_max * exp(1) * (t_lag - t)\
            /((N_max - N_0) * sc.log(10)) + 1)))
 
+def unique_id(dat):
+    '''Create column with unique id to dat'''
+    return [[dat.Species[i] + str(dat.Temp[i]) + dat.Medium[i]] 
+            for i in sc.arange(len(dat))]
+
+#def model_fitting(model):
+#    '''Perform complete fitting of the model'''
+#    for i in model
 
 def main(argv):
     '''Main function'''
     dat, dat_plot = load_data()    
+    #create and append unique id to data
+    dat['unique_id'] = unique_id(dat)
 
     #Create Models
     model_cuadratic = Model(cuadratic)
@@ -94,7 +104,7 @@ def main(argv):
 
     #Initial parameters for gompertz
     A_init = max(dat_plot.PopBio)/min(dat_plot.PopBio)
-    r_init = 100
+    r_init = 1
     lam_init = 20
     result_gompertz = model_gompertz.fit(dat_plot.PopBio, t = dat_plot.Time,
                                          A = A_init ,  
@@ -142,7 +152,9 @@ def main(argv):
     plt.plot(dat_plot.Time, result_buchanan.best_fit, 'k--',
              label = 'Buchanan')
     plt.legend()
-    plt.show()
+    plt.savefig('../Results/fitting1.pdf')
+    
+
 
     return 0 
 
