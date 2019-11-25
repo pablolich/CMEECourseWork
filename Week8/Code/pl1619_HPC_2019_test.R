@@ -1,0 +1,25 @@
+# CMEE 2019 HPC excercises R code HPC run code proforma
+setwd("~/Desktop/Imperial/CMEECourseWork/Week8/Code")
+rm(list=ls()) # good practice 
+source("pl1619_HPC_2019_main.R")
+# it should take a faction of a second to source your file
+# if it takes longer you're using the main file to do actual simulations
+# it should be used only for defining functions that will be useful for your cluster run and which will be marked automatically
+
+# do what you like here to test your functions (this won't be marked)
+# for example
+# should return 4 when you've written the function correctly for question 1
+
+# you may also like to use this file for playing around and debugging
+# but please make sure it's all tidied up by the time it's made its way into the main.R file or other files.
+#neutral_step_speciation(c(1,2,3,4), 0.8)
+
+#neutral_generation_speciation(community = c(1,2,3,4), speciation_rate = 0.8)
+
+#question_12()
+
+#species_abundance(c(1,2,3,4,3,4,5,5))
+
+octaves(c(100, 64, 63, 5, 4, 3, 2, 2, 1, 1, 1, 1))
+
+question_16()

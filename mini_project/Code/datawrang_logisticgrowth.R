@@ -32,6 +32,8 @@ write.csv(d_species, file = '../Data/growth_data.csv', row.names = F)
 
 #Plot all species
 list_species = unique(d_species$Species)
+k = 0
+#pdf(file = paste('../Sandbox/all_plots.pdf', sep = ''), height = 11, width = 8)
 for (i in list_species){
   ind = which(d_species$Species == i)
   d_species_plot = d_species[ind,]
@@ -48,15 +50,17 @@ for (i in list_species){
          xlab = 'Time (h)', 
          ylab = 'Pop', 
          pch = 20, cex = 2.5, 
-         col = jColors$color[d_species_plot$matchRetVal],
-         log = 'xy')
+         col = jColors$color[d_species_plot$matchRetVal])
     #Generate a list of the mediums in ploted in the (i,j) plot
     list_mediums = unique(d_species_plot$Medium)
     legend('topleft', legend = list_mediums, 
            col = jColors$color[match(list_mediums, jColors$Medium)],
            lty=1:2, cex=0.8,box.lty=0)
+    k = k+1
+    
   }
   graphics.off()
 }
+print(k)
 
 
