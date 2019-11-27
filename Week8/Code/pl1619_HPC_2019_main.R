@@ -214,15 +214,91 @@ question_16 <- function()  {
 
 # Question 17
 cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interval_oct, burn_in_generations, output_file_name)  {
-  
+  community = init_community_min(size)
+  richness = c()
+  octaves_ = list()
+  i = 1
+  generation = 0 #To record the initial richness
+  #divide by 60 to transform to minutes
+  ptm <- proc.time()
+  while (as.numeric((proc.time() - ptm)[3]) <= (wall_time*60)){
+    #When generation reaches an interval_rich multiple, calculate richness and store it.
+    if ((generation %% interval_rich == 0) & (generation <= burn_in_generations)){
+      richness = c(richness, length(unique(community)))
+    }
+    if (generation %% interval_oct == 0){
+      octaves_ = c(octaves_, list(octaves(species_abundance(community))))
+    }
+    community = neutral_generation_speciation(community, speciation_rate)
+    generation = generation + 1
+  }
+  #Convert output to lists
+  tot_time = proc.time() - ptm
+  richness = list(richness)
+  community = list(community)
+  args = list(speciation_rate, size, wall_time, interval_rich, interval_oct, burn_in_generations)
+  #Save lists to a rda file
+  save( tot_time, richness, community, args, octaves_, file =  output_file_name)
+  return(0)
 }
+
 
 # Questions 18 and 19 involve writing code elsewhere to run your simulations on the cluster
 
 # Question 20 
 process_cluster_results <- function()  {
   # clear any existing graphs and plot your graph within the R window
-  combined_results <- list() #create your list output here to return
+  list_files = list.files('.', pattern = 'result_')
+  octaves_500 = rep(0,1); octaves_1000 = rep(0,1); octaves_2500 = rep(0,1); octaves_5000 = rep(0,1)
+  #Counters for each size
+  count_500 = 0; count_1000 = 0; count_2500 = 0; count_5000 = 0
+  for (i in list_files){
+    load(i) 
+    #Get rid of the burn period
+    burn = args[[6]]
+    octaves_del = octaves_[-seq(burn)]
+    #Add the elements in the current octave set to the running total per size
+    if (length(community[[1]]) == 500){
+      for (j in seq(length(octaves_del))){
+        octaves_500 = sum_vect(octaves_500, octaves_del[[j]])
+        count_500 = count_500 + 1
+      }
+    }
+    else if (length(community[[1]]) == 1000){
+      for (j in seq(length(octaves_del))){
+        octaves_1000 = sum_vect(octaves_1000, octaves_del[[j]])
+        count_1000 = count_1000 + 1
+      }
+    } 
+    else if (length(community[[1]]) == 2500){
+      for (j in seq(length(octaves_del))){
+        octaves_2500 = sum_vect(octaves_2500, octaves_del[[j]])
+        count_2500 = count_2500 + 1
+      }
+    } 
+    else {
+      for (j in seq(length(octaves_del))){
+        octaves_5000 = sum_vect(octaves_5000, octaves_del[[j]])
+        count_5000 = count_5000 + 1
+      }
+    }
+    
+    #Average octaves
+    av_octave_500 = octaves_500/count_500
+    av_octave_1000 = octaves_1000/count_1000
+    av_octave_2500 = octaves_2500/count_2500
+    av_octave_5000 = octaves_5000/count_5000
+    
+    #Plot in a four panel graph
+    mydata <- data.frame(Barplot1=av_octave_500, Barplot2=av_octave_1000,
+                         Barplot3=av_octave_2500, Barplot4=av_octave_5000)
+    print(mydata)
+    barplot(as.matrix(mydata), main="Interesting", ylab="Total", beside=TRUE, 
+            col=terrain.colors(5))
+    legend(13, 12, c("Label1","Label2","Label3","Label4","Label5"), cex=0.6, 
+           fill=terrain.colors(5))
+  }
+  combined_results = list(av_octave_500 , av_octave_1000 , av_octave_2500 , av_octave_5000)
   return(combined_results)
 }
 

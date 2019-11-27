@@ -22,4 +22,7 @@ source("pl1619_HPC_2019_main.R")
 
 octaves(c(100, 64, 63, 5, 4, 3, 2, 2, 1, 1, 1, 1))
 
-question_16()
+#question_16()
+
+cluster_run(speciation_rate = 0.1, size = 100, wall_time = 0.1, interval_rich = 1, interval_oct = 10, 
+            burn_in_generations = 200, output_file_name = 'my_test_file_1.rda')
