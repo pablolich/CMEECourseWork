@@ -72,14 +72,27 @@ question_8 <- function() {
   generations = 200
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
-  time_series = neutral_time_series(community = init_community_max(size), duration = generations)
-  plot(seq(1,generations+1), time_series, pch = 19, cex = 0.5)
+  y = neutral_time_series(community = init_community_max(size), duration = generations)
+  x = seq(generations + 1)
+  df = data.frame(x, y)
+  ggplot(df, aes(x, y)) + 
+    geom_point(size = 1.5) + 
+    theme_bw() + 
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
+          axis.text=element_text(size=12),
+          axis.title=element_text(size=16)) + 
+    labs(title = 'Time series of Neutral Model', x = 'Generations', y = 'Richness') 
+  
+    ggsave(filename = 'timeseries.pdf', plot = last_plot(), path = '.',
+           scale = 2, width = 8, height = 4, units = 'cm')
+ 
   return(cat('
-  In this graph we can see how the richness decreases with generations. This reflects very 
-  well the Volter model we saw in class, ilustrated with the voting systems. The richness decreases because 
-  when after every generation some species go extinct, and others reproduce to occupy their positions.  
-  This favors the species who reproduces more, until the system converges to a stable state in which  
-  only one species remains.
+  In this graph we can see how the richness decreases with generations because 
+  after every generation some species go extinct, and others reproduce to occupy their positions.
+  The species that reproduce have more chances to reproduce in the next generation, so the stable
+  state of this system is that of one dominant species.
              '))
 }
 
@@ -147,21 +160,36 @@ question_12 <- function() {
   time_series_min = neutral_time_series_speciation(community = init_community_min(size), 
                                                    duration = generations,
                                                    speciation_rate = speciation_rate)
+  x = seq(generations + 1)
+  dfmin = data.frame(x, time_series = time_series_min, Initial.State = rep('Min', length(time_series_min)))
+  dfmax = data.frame(x, time_series = time_series_max, Initial.State = rep('Max', length(time_series_max)))
+  df = rbind(dfmin, dfmax)
+  ggplot(df, aes(x, time_series, color = Initial.State)) + 
+    geom_point(size = 0.7) + 
+    geom_line(size = 0.2)+
+    theme_bw() + 
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
+          axis.text=element_text(size=12),
+          axis.title=element_text(size=16), 
+          legend.position = c(0.2,0.8),
+          legend.background = element_rect(linetype = 1, color = 'white', size = 0.2),
+          ) + 
+    labs(title = 'Time series of Neutral Model with speciation', x = 'Generations', y = 'Richness', 
+         col = 'Initial Diversity') 
   
-  plot(seq(1,generations+1), time_series_max, pch = 19, cex = 0.5, col = 'blue')
-  points(seq(1,generations+1), time_series_min, pch = 19, cex = 0.5, col = 'green')
+  ggsave(filename = 'timeseries_spec.pdf', plot = last_plot(), path = '.',
+         scale = 2, width = 8, height = 4, units = 'cm')
+  
+  
   return(cat('
-  In this graph we can see how the richness evolves with generations for two initial conditions
-  In the first one, we have the maximum richness. This reflects very well the Volter model we saw in class,
-  ilustrated with the voting systems. The richness decreases because when after every generation some 
-  species go extinct, and others reproduce to occupy their positions. However, since there is a weak 
-  speciation, the satble state is not a static equilibrium, but a dynamic equilibrium state where the 
-  richness oscilates around a non-one average value. It is expected that if we increase the speciation 
-  rate, the average value will increase. As for the second initial condition, minimum richness, the system
-  also converges to the dynamic stable state described above.
+  In this graph we can see how the richness evolves with generations for two initial conditions; maximum
+  diversity (blue), and minimum diversity (red). Due to the existance ofa weak speciation, the satble state
+  is not a static, but a dynamic equilibrium state where the richness oscilates of both initial states
+  converges to a non-one average value. It is expected that if we increase the speciation rate, the 
+  average value will increase.
              '))
-  
-  return("type your written answer here")
 }
 
 # Question 13
@@ -194,22 +222,61 @@ question_16 <- function()  {
   stable_state = 2000
   speciation_rate = 0.1
   record = 20
+  #Minimum diversity
   community = init_community_min(100)
-  octaves_ = 0
+  octaves_min = 0
   for (i in seq(init_gen + stable_state)){
     community = neutral_generation_speciation(community, speciation_rate)
     if (i >= init_gen){
       if (i%%record == 0){
         #Cum sum octaves
-        octaves_ = sum_vect(octaves_, octaves(species_abundance(community)))
+        octaves_min = sum_vect(octaves_min, octaves(species_abundance(community)))
       }
     }
   }
-  barplot(round(octaves_/(stable_state/record)))
+  #Maximum diversity
+  community = init_community_max(100)
+  octaves_max = 0
+  for (i in seq(init_gen + stable_state)){
+    community = neutral_generation_speciation(community, speciation_rate)
+    if (i >= init_gen){
+      if (i%%record == 0){
+        #Cum sum octaves
+        octaves_max = sum_vect(octaves_max, octaves(species_abundance(community)))
+      }
+    }
+  }
+  av_octaves_min = octaves_min/(stable_state/record)
+  av_octaves_max = octaves_max/(stable_state/record)
+  df_min = data.frame(x = seq(length(av_octaves_max)), av_oct = av_octaves_max, 
+                      Initial.State = rep('Max', length(av_octaves_max)))
+  df_max = data.frame(x = seq(length(av_octaves_min)), av_oct = av_octaves_min, 
+                      Initial.State = rep('Min', length(av_octaves_min)))
+  df = rbind(df_min, df_max)
+  
+  ggplot(data=df, aes(x, y=av_oct, fill=Initial.State)) +
+    geom_bar(stat="identity", position=position_dodge())+
+    theme_minimal()+
+    theme(#panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
+          axis.text=element_text(size=12),
+          axis.title=element_text(size=16), 
+          legend.position = c(0.73 ,0.825),
+          legend.background = element_rect(color = NA, fill = alpha('white', 0)),
+          legend.spacing.y = unit(0.05, 'cm')) + 
+    labs(title = 'Species abundance octave vector', x = 'n', y = 'Richness', fill = 'Initial\nDiversity') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5), labels = c(0,1,2,3,4,5,6))+
+  
+    
+  ggsave(filename = 'octave_vectors.pdf', plot = last_plot(), path = '.',
+         scale = 2, width = 8, height = 6, units = 'cm')
+  
   return(cat("
-  It doesn't change from max to min, and we arrive to an equilibrium in which one species 
-  dominate and the other ones are minoritary, but still exist
+  When running our neutral model from both minimal and maximal initial diversities, we arrive in both cases
+  to an equilibrium in which one species dominates and the other ones are minoritary, but still exist.
              "))
+  
 }
 
 # Question 17
@@ -224,7 +291,7 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interva
   while (as.numeric((proc.time() - ptm)[3]) <= (wall_time*60)){
     #When generation reaches an interval_rich multiple, calculate richness and store it.
     if ((generation %% interval_rich == 0) & (generation <= burn_in_generations)){
-      richness = c(richness, length(unique(community)))
+      richness = c(richness, species_richness(community))
     }
     if (generation %% interval_oct == 0){
       octaves_ = c(octaves_, list(octaves(species_abundance(community))))
@@ -252,55 +319,118 @@ process_cluster_results <- function()  {
   octaves_500 = rep(0,1); octaves_1000 = rep(0,1); octaves_2500 = rep(0,1); octaves_5000 = rep(0,1)
   #Counters for each size
   count_500 = 0; count_1000 = 0; count_2500 = 0; count_5000 = 0
-  for (i in list_files){
+  
+  for (i in list_files){ #iterates over the simulations
     load(i) 
     #Get rid of the burn period
-    burn = args[[6]]
+    burn = args[[6]]/args[[5]] #divide by iterval_oct to make it the same scale
     octaves_del = octaves_[-seq(burn)]
+    
     #Add the elements in the current octave set to the running total per size
     if (length(community[[1]]) == 500){
-      for (j in seq(length(octaves_del))){
+      for (j in seq(length(octaves_del))){ #iterates over the generations (the ones recorded)
         octaves_500 = sum_vect(octaves_500, octaves_del[[j]])
         count_500 = count_500 + 1
       }
-    }
-    else if (length(community[[1]]) == 1000){
-      for (j in seq(length(octaves_del))){
-        octaves_1000 = sum_vect(octaves_1000, octaves_del[[j]])
-        count_1000 = count_1000 + 1
+    } else if (length(community[[1]]) == 1000){
+        for (k in seq(length(octaves_del))){
+          octaves_1000 = sum_vect(octaves_1000, octaves_del[[k]])
+          count_1000 = count_1000 + 1
       }
-    } 
-    else if (length(community[[1]]) == 2500){
-      for (j in seq(length(octaves_del))){
-        octaves_2500 = sum_vect(octaves_2500, octaves_del[[j]])
-        count_2500 = count_2500 + 1
+    } else if (length(community[[1]]) == 2500){
+        for (l in seq(length(octaves_del))){
+          octaves_2500 = sum_vect(octaves_2500, octaves_del[[l]])
+          count_2500 = count_2500 + 1
+          }
+    } else {
+          for (m in seq(length(octaves_del))){
+            octaves_5000 = sum_vect(octaves_5000, octaves_del[[m]])
+            count_5000 = count_5000 + 1
+        }
       }
-    } 
-    else {
-      for (j in seq(length(octaves_del))){
-        octaves_5000 = sum_vect(octaves_5000, octaves_del[[j]])
-        count_5000 = count_5000 + 1
-      }
-    }
-    
-    #Average octaves
-    av_octave_500 = octaves_500/count_500
-    av_octave_1000 = octaves_1000/count_1000
-    av_octave_2500 = octaves_2500/count_2500
-    av_octave_5000 = octaves_5000/count_5000
-    
-    #Plot in a four panel graph
-    mydata <- data.frame(Barplot1=av_octave_500, Barplot2=av_octave_1000,
-                         Barplot3=av_octave_2500, Barplot4=av_octave_5000)
-    print(mydata)
-    barplot(as.matrix(mydata), main="Interesting", ylab="Total", beside=TRUE, 
-            col=terrain.colors(5))
-    legend(13, 12, c("Label1","Label2","Label3","Label4","Label5"), cex=0.6, 
-           fill=terrain.colors(5))
+
   }
-  combined_results = list(av_octave_500 , av_octave_1000 , av_octave_2500 , av_octave_5000)
+  
+  #Average octaves
+  av_octave_500 = octaves_500/count_500; av_octave_1000 = octaves_1000/count_1000
+  av_octave_2500 = octaves_2500/count_2500; av_octave_5000 = octaves_5000/count_5000
+  
+  #Plot in a four panel graph
+  combined_results <- list(av_octave_500, av_octave_1000, av_octave_2500, av_octave_5000)
+  
+  av_octave_500 = combined_results[[1]]
+  av_octave_1000 = combined_results[[2]]
+  av_octave_2500 = combined_results[[3]]
+  av_octave_5000 = combined_results[[4]]
+  
+  df_500 = data.frame(x = seq(length(av_octave_500)), av_oct = av_octave_500)
+  df_1000 = data.frame(x = seq(length(av_octave_1000)), av_oct = av_octave_1000)
+  df_2500 = data.frame(x = seq(length(av_octave_2500)), av_oct = av_octave_2500)
+  df_5000 = data.frame(x = seq(length(av_octave_5000)), av_oct = av_octave_5000)
+  
+  
+  o_500  <- ggplot(data=df_500, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue1')+
+    theme_minimal()+
+    theme(#panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(),
+      axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9)) +
+    annotate("text", x=Inf, y = Inf, vjust=1, hjust=1, 
+             label = "L = 500", size = 5)
+  
+  o_1000  <- ggplot(data=df_1000, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue2')+
+    theme_minimal()+
+    theme(#panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(),
+      axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10))+
+    annotate("text", x=Inf, y = Inf, vjust=1, hjust=1,
+             label = "L = 1000", size = 5)
+  
+  o_2500  <- ggplot(data=df_2500, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue3')+
+    theme_minimal()+
+    theme(#panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(),
+      axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10,11))+
+    annotate("text", x=Inf, y = Inf, vjust=1, hjust=1,
+             label = "L = 2500", size = 5)
+  
+  o_5000  <- ggplot(data=df_5000, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue4')+
+    theme_minimal()+
+    theme(#panel.grid.major = element_blank(), 
+      panel.grid.minor = element_blank(),
+      axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9, 10, 11,12))+
+    annotate("text",x=Inf, y = Inf, vjust=1, hjust=1,
+             label = "L = 5000", size = 5)
+  ggsave(filename = 'hpc_octave_vectors.pdf', plot = last_plot(), path = '.',
+         scale = 3, width = 8, height = 6, units = 'cm')
+  
+  figure <- ggarrange(o_500, o_1000, o_2500, o_5000, 
+                      labels = c("A", "B", "C", 'D'),
+                      ncol = 2, nrow = 2)
+  annotate_figure(figure,
+                  top = text_grob("Averaged abundance octaves",
+                                  face = "bold", size = 18))%>%
+    ggexport(filename = "hpc_averaged_octaves.pdf", width = 8, height = 8)
+  
   return(combined_results)
 }
+data = process_cluster_results()
+
 
 # Question 21
 question_21 <- function()  {

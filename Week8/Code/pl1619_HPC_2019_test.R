@@ -1,5 +1,7 @@
 # CMEE 2019 HPC excercises R code HPC run code proforma
 setwd("~/Desktop/Imperial/CMEECourseWork/Week8/Code")
+library(ggplot2)
+library(ggpubr)
 rm(list=ls()) # good practice 
 source("pl1619_HPC_2019_main.R")
 # it should take a faction of a second to source your file
@@ -20,9 +22,9 @@ source("pl1619_HPC_2019_main.R")
 
 #species_abundance(c(1,2,3,4,3,4,5,5))
 
-octaves(c(100, 64, 63, 5, 4, 3, 2, 2, 1, 1, 1, 1))
+#octaves(c(100, 64, 63, 5, 4, 3, 2, 2, 1, 1, 1, 1))
 
 #question_16()
 
-cluster_run(speciation_rate = 0.1, size = 100, wall_time = 0.1, interval_rich = 1, interval_oct = 10, 
-            burn_in_generations = 200, output_file_name = 'my_test_file_1.rda')
+#cluster_run(speciation_rate = 0.1, size = 100, wall_time = 0.1, interval_rich = 1, interval_oct = 10, 
+ #           burn_in_generations = 200, output_file_name = 'my_test_file_1.rda')
