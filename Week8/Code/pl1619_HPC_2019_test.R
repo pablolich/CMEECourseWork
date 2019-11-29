@@ -28,3 +28,28 @@ source("pl1619_HPC_2019_main.R")
 
 #cluster_run(speciation_rate = 0.1, size = 100, wall_time = 0.1, interval_rich = 1, interval_oct = 10, 
  #           burn_in_generations = 200, output_file_name = 'my_test_file_1.rda')
+
+
+chaos_game()
+
+#Turtle
+
+plot.new()
+plot.new()
+plot.window(xlim=c(-10,20), ylim=c(-10,20))
+axis(1)
+axis(2)
+#turtle(start_position = c(0,0), direction = pi/4, length = 1)
+#elbow(start_position = c(0,0), direction = pi/5, length = 1)
+text = spiral(start_position = c(0,15), direction = 0, length = 10)
+
+
+
+
+
+
+
+
+
+
+

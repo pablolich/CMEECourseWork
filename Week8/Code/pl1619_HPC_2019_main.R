@@ -1,6 +1,7 @@
 # CMEE 2019 HPC excercises R code main proforma
 # you don't HAVE to use this but it will be very helpful.  If you opt to write everything yourself from scratch please ensure you use EXACTLY the same function and parameter names and beware that you may loose marks if it doesn't work properly because of not using the proforma.
-
+library(ggplot2)
+library(ggpubr)
 name <- "Pablo Lechon"
 preferred_name <- "Pablo"
 email <- "plechon@ucm.es"
@@ -75,7 +76,7 @@ question_8 <- function() {
   y = neutral_time_series(community = init_community_max(size), duration = generations)
   x = seq(generations + 1)
   df = data.frame(x, y)
-  ggplot(df, aes(x, y)) + 
+  p = ggplot(df, aes(x, y)) + 
     geom_point(size = 1.5) + 
     theme_bw() + 
     theme(panel.grid.major = element_blank(), 
@@ -83,11 +84,9 @@ question_8 <- function() {
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
           axis.text=element_text(size=12),
           axis.title=element_text(size=16)) + 
-    labs(title = 'Time series of Neutral Model', x = 'Generations', y = 'Richness') 
+    labs(title = 'Time series of Neutral Model', x = 'Generations', y = 'Richness')
+  print(p)
   
-    ggsave(filename = 'timeseries.pdf', plot = last_plot(), path = '.',
-           scale = 2, width = 8, height = 4, units = 'cm')
- 
   return(cat('
   In this graph we can see how the richness decreases with generations because 
   after every generation some species go extinct, and others reproduce to occupy their positions.
@@ -164,7 +163,7 @@ question_12 <- function() {
   dfmin = data.frame(x, time_series = time_series_min, Initial.State = rep('Min', length(time_series_min)))
   dfmax = data.frame(x, time_series = time_series_max, Initial.State = rep('Max', length(time_series_max)))
   df = rbind(dfmin, dfmax)
-  ggplot(df, aes(x, time_series, color = Initial.State)) + 
+  p = ggplot(df, aes(x, time_series, color = Initial.State)) + 
     geom_point(size = 0.7) + 
     geom_line(size = 0.2)+
     theme_bw() + 
@@ -178,10 +177,7 @@ question_12 <- function() {
           ) + 
     labs(title = 'Time series of Neutral Model with speciation', x = 'Generations', y = 'Richness', 
          col = 'Initial Diversity') 
-  
-  ggsave(filename = 'timeseries_spec.pdf', plot = last_plot(), path = '.',
-         scale = 2, width = 8, height = 4, units = 'cm')
-  
+  print(p)
   
   return(cat('
   In this graph we can see how the richness evolves with generations for two initial conditions; maximum
@@ -254,7 +250,7 @@ question_16 <- function()  {
                       Initial.State = rep('Min', length(av_octaves_min)))
   df = rbind(df_min, df_max)
   
-  ggplot(data=df, aes(x, y=av_oct, fill=Initial.State)) +
+  p = ggplot(data=df, aes(x, y=av_oct, fill=Initial.State)) +
     geom_bar(stat="identity", position=position_dodge())+
     theme_minimal()+
     theme(#panel.grid.major = element_blank(), 
@@ -266,11 +262,9 @@ question_16 <- function()  {
           legend.background = element_rect(color = NA, fill = alpha('white', 0)),
           legend.spacing.y = unit(0.05, 'cm')) + 
     labs(title = 'Species abundance octave vector', x = 'n', y = 'Richness', fill = 'Initial\nDiversity') +
-    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5), labels = c(0,1,2,3,4,5,6))+
-  
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5), labels = c(0,1,2,3,4,5,6))
+  print(p)
     
-  ggsave(filename = 'octave_vectors.pdf', plot = last_plot(), path = '.',
-         scale = 2, width = 8, height = 6, units = 'cm')
   
   return(cat("
   When running our neutral model from both minimal and maximal initial diversities, we arrive in both cases
@@ -424,75 +418,162 @@ process_cluster_results <- function()  {
                       ncol = 2, nrow = 2)
   annotate_figure(figure,
                   top = text_grob("Averaged abundance octaves",
-                                  face = "bold", size = 18))%>%
-    ggexport(filename = "hpc_averaged_octaves.pdf", width = 8, height = 8)
+                                  face = "bold", size = 18))
+  print(figure)
   
   return(combined_results)
 }
-data = process_cluster_results()
-
 
 # Question 21
 question_21 <- function()  {
-  return("type your written answer here")
+  n = 3
+  t = 8
+  D = log(n)/log(t)
+  answer = list(D, 'The answer is the solution to the equation n^D = t, where n is the ratio by 
+  which we are increasing the fundamental element, and t is the number of 
+  fundamental elements we have when we increas it by n amount, and D is the dimension')
+  return(answer)
 }
 
 # Question 22
 question_22 <- function()  {
-  return("type your written answer here")
+  n = 3
+  t = 20
+  D = log(n)/log(t)
+  answer = list(D, 'The answer is the solution to the equation n^D = t, where n is the ratio by 
+  which we are increasing the fundamental element, and t is the number of 
+  fundamental elements we have when we increas it by n amount')
+  return(answer)
 }
 
 # Question 23
 chaos_game <- function()  {
   # clear any existing graphs and plot your graph within the R window
-  return("type your written answer here")
+  graphics.off()
+  #Points
+  x = c(0,3,4,0,4,1)
+  init_points = matrix(x, nrow = length(x)/2, ncol = 2)
+ 
+#Generate dataframe with half movements towards randomly chosen principal points.
+  it = 100000
+  points = matrix(rep(0,2*it), nrow = it, ncol = 2)
+  for (i in seq(it-1)){
+    #Choose a point
+    ind = sample(seq(dim(init_points)[1]),1)
+    points[i+1,] = 0.5 * (points[i,] + init_points[ind,])
+  }
+  #Plot the first poin
+  df_init = data.frame(init_points, color = rep('blue', dim(init_points)[1]), 
+                  sizes = rep(1.5,dim(init_points)[1]))
+  df_points = data.frame(points, color = rep('magenta', dim(points)[1]), 
+                  sizes = rep(1, dim(points)[1]))     
+  df = rbind(df_init, df_points)
+  p = ggplot(df, aes(X1, X2)) + 
+    geom_point(aes(color = color, size = sizes)) +
+    theme_classic()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() )+
+    labs(title = 'Chaos Game')
+  print(p)
+  
+  
+return(df)
 }
 
 # Question 24
 turtle <- function(start_position, direction, length)  {
-
-  return() # you should return your endpoint here.
+  #Calculate endpoint coordinates
+  Bx = length*cos(direction) + start_position[1]
+  By = length*sin(direction) + start_position[2]
+  segments(x0=start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col = 'green')
+  
+  return(c(Bx,By)) # you should return your endpoint here.
 }
 
 # Question 25
 elbow <- function(start_position, direction, length)  {
-  
+  end = turtle(start_position, direction, length)
+  turtle(start_position = end, direction = direction - pi/4, length = 0.95*length)
 }
 
 # Question 26
 spiral <- function(start_position, direction, length)  {
-  return("type your written answer here")
+  end = turtle(start_position, direction, length)
+  if (length>1e-10){spiral(start_position = end, direction - pi/4 , length= 0.9*length )}
+  else{return("The spiral function calls itself undefinetly until the line is too small compared to the precision
+         of the computer to be drawn.")}
 }
 
 # Question 27
 draw_spiral <- function()  {
   # clear any existing graphs and plot your graph within the R window
-  
+  graphics.off()
+  plot.new()
+  plot.new()
+  plot.window(xlim=c(0,16), ylim=c(-5,10))
+  axis(1)
+  axis(2)
+  text = spiral(start_position = c(0,15), direction = 0, length = 10)
+  return(text)
 }
 
 # Question 28
 tree <- function(start_position, direction, length)  {
-  
+  end = turtle(start_position, direction, length)
+  if (length>0.01){
+    tree(start_position = end, direction - pi/4 , length= 0.65*length)
+    tree(start_position = end, direction + pi/4 , length= 0.65*length)
+    }
 }
 draw_tree <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot.new()
+  plot.new()
+  plot.window(xlim=c(0,10), ylim=c(0,10))
+  axis(1)
+  axis(2)
+  tree(start_position = c(5,0), direction = pi/2, length = 3.5)
 }
 
 # Question 29
 fern <- function(start_position, direction, length)  {
-  
+  end = turtle(start_position, direction, length)
+  if (length>0.02){
+    fern(start_position = end, direction + pi/4 , length= 0.38*length)
+    fern(start_position = end, direction , length= 0.87*length)
+  }
 }
 draw_fern <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot.new()
+  plot.new()
+  plot.window(xlim=c(-5,5), ylim=c(0,18))
+  axis(1)
+  axis(2)
+  fern(start_position = c(0,0), direction = pi/2, length = 2)
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length)  {
-  
+fern2 <- function(start_position, direction, length, dir = 1)  {
+  end = turtle(start_position, direction, length)
+  if (length>0.02){
+    fern2(start_position = end, direction + dir*pi/6, length= 0.38*length, dir)
+    fern2(start_position = end, direction , length= 0.87*length, dir*-1)
+  }
 }
 draw_fern2 <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  plot.new()
+  plot.new()
+  plot.window(xlim=c(-5,5), ylim=c(0,18))
+  axis(1)
+  axis(2)
+  fern2(start_position = c(0,0), direction = pi/2, length = 2)
 }
+
 
 # Challenge questions - these are optional, substantially harder, and a maximum of 16% is available for doing them.  
 
