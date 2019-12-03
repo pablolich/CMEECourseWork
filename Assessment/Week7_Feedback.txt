@@ -1,0 +1,1914 @@
+Starting weekly assessment for Pablo, Week7
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 78.51 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week4, .git, Week3, mini_project
+
+Found the following files in parent directory: .gitignore, README.md
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+*.log
+__pycache__/
+
+questions.txt
+.DS_Store
+
+########Git ignore for r##########
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+Computational Methods in Ecology and Evolution (CMEE) MSc
+
+
+WEEK 1
+
+	- Unix
+	- Shell scripting
+	- Version control with Git
+	- Scientific documents with LaTeX
+
+WEEK 2 
+
+	- Biological computing in Python I
+
+Author
+
+Pablo Lechon (plechon@ucm.es)
+
+
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 8 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8
+
+The Week7 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK7...
+
+Found the following directories: Code, Data, Results
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# WEEK 3 README
+
+This folder contains four subfolders: Data, were we store the data used in our code;
+Code, were we have the writen code; Sandbox, were we store everything that is not
+Data or Code; and Results, where all the results of our code go to.
+
+## Code
+1. `Draw.py` - Draw network from class notes
+2. `LV1.py` - Integrates the Lotka-Volterra model and outputs a time series plot with the evolution of both sppecies, as well as a phase diagram.
+3. `LV2.py` - Integrates the Lotka-Volterra model with a modified prey-density dependence and outputs a time series plot with the evolution of both species, as long as a phase diagram
+4. `LV3.py` - Discrete time version of `LV2.py`.
+5. `LV4.py` - Discrete version of `LV2.py` with random gaussian fluctuation in the resource growth
+6. `Nets.R` - Generates a network plot to be reproduced with python
+7. `Nets_R.py` - Reproduction of the R network plot with python
+8. `Test.R` - Auxiliary R file to be called from python
+9. `TestR.py` - Calling R files from python9 
+10. `blackbirds.py` - Regex exercise
+11. `fmr.R` - Auxiliary R file to be called from python
+12. `networks.py` - Function to generate an adjacent list
+13. `profileme.py` - Auxiliary function that will be profiled
+14. `profileme2.py` - Auxiliary function to be profiled
+15. `regex.py` - Regex practice
+16. `run_LV.sh` - Runing LV1 and LV2 with the profiling option on, Save results to profiling.txt
+17. `run_fm_r.py` - Run an .R file from python and print in screen the R console output, as well as wether the run was succesful or not
+18. `sympy.ipynb` - Python notebook on symbolic calculus
+19. `using_os.py` - Find directories and files that satisfy certain conditions using subprocess
+
+## Data
+1. `NagyEtAl1999.csv` - Data containing information of metabolic rate and body mass
+2. `QMEE_Net_Mat_nodes.csv` - Information on the nodes of ICL colaborations with other entities
+3. `QMEE_Net_Mat_edges.csv` - Information on the edges of ICL colaborations with other entities
+4. `blackbirds.txt` - Data containing information on species, kingdom, phylum of birds.
+
+
+**********************************************************************
+
+Found following files in results directory: TestR.Rout, LV1_model.pdf, fmr_plot.pdf, LV2_model.pdf, LV4_model.pdf, listC.csv, .gitignore, LV3_model.pdf, TestR_errFile.Rout, QMEENet.svg, profiling.txt...
+ideally, Results directory should be empty other than, perhaps, a readme. 
+
+Found 19 code files: TestR.py, LV3.py, profileme2.py, blackbirds.py, regex.py, profileme.py, LV4.py, networks.py, Test.R, fmr.R, using_os.py, LV1.py, DrawFW.py, Nets.R, Nets_R.py, sympy.ipynb, LV2.py, run_fm_r.py, run_LV.sh
+
+Found the following extra files: .gitignore
+0.5 pt deducted per extra file
+
+Current Points = 99.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file TestR.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3 
+
+#Calling R from python
+
+import subprocess
+
+subprocess.Popen("Rscript --verbose Test.R > ../Results/TestR.Rout 2> \
+                 ../Results/TestR_errFile.Rout", shell=True).wait()
+
+
+**********************************************************************
+
+Testing TestR.py...
+
+TestR.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 97.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.12884s
+
+======================================================================
+Inspecting script file LV3.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''Discrete time version of LV2.py'''
+
+__appname__ = '[LV3.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import matplotlib.pylab as p
+import scipy as sc
+
+## CONSTANTS ##
+if len(sys.argv) ==5:
+    r = float(sys.argv[1])
+    a = float(sys.argv[2])
+    z = float(sys.argv[3])
+    e = float(sys.argv[4])
+    K = 15
+
+else:
+    r = 1.
+    a = 0.1
+    z = 0.5
+    e = 0.7
+    K = 19
+
+## FUNCTIONS ##
+
+def discrete_r(R, C):
+    '''Calculate next step of the function'''
+    return R * (1 + r * (1 - R/K) - a * C) 
+
+def discrete_c(R, C):
+    return C * (1 - z + e * a * R)
+
+def main(argv):
+    '''Main function'''
+    t = sc.linspace(0,15,200) 
+    R = [10]
+    C = [5]
+    #Since the values for R, C depend on the previous value, using lambda 
+    #functions or list comprehensions will not imporve velocity, but only
+    #make the code less intuitive to read. Therefore, we use a for loop
+    i = 1 #The 0 position is set when we set initial parameter values
+    #Prealocate variables
+    R = R + (len(t)-1)*[0]
+    C = C + (len(t)-1)*[0]
+    while i < len(t):
+        R[i] = discrete_r(R[i-1], C[i-1])
+        C[i] = discrete_c(R[i-1], C[i-1])
+        i += 1
+
+    #Plot
+    f1 = p.figure()
+    f1.set_size_inches(8.27, 11.69)
+    p.subplot(2,1,1)
+    p.plot(t, R, 'g-', label='Resource density')
+    p.plot(t, C, 'b-', label='Consumer density')
+
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title('Consumer-Resource population dynamics'+
+            '\nr = %.1f, a = %.1f, z = %.1f, e = %.1f, K = %i'
+             %(r, a, z, e, K))
+    p.subplot(2,1,2)
+    p.plot(R, C,  'r-', label = 'Cycle') # Plot
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.title('Consumer-Resource population dynamics')
+    f1.savefig('../Results/LV3_model.pdf') #Save figure
+
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing LV3.py...
+
+LV3.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 94.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.71065s
+
+======================================================================
+Inspecting script file profileme2.py...
+
+File contents are:
+**********************************************************************
+##Look up p.stats!
+import scipy as sc
+
+
+def my_squares(iters):
+    out = [i ** 2 for i in range(iters)]
+    return out
+
+def my_sqares_2(iters):
+    out = sc.ones(iters)
+    for i in range(iters):
+        out[i] = i**2
+    return out
+
+def my_squares_3(iters):#the fastest
+    mat = sc.matrix(sc.arange(iters))
+    out = sc.multiply(mat, mat)
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += ", " + string
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    my_sqares_2(x)
+    my_squares_3(x)
+    return 0
+
+run_my_funcs(30000000,"My string")
+**********************************************************************
+
+Testing profileme2.py...
+
+profileme2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 89.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 10.01402s
+
+======================================================================
+Inspecting script file blackbirds.py...
+
+File contents are:
+**********************************************************************
+import re
+
+#Regex exercise
+
+# Read the file (using a different, more python 3 way, just for fun!)
+with open('../Data/blackbirds.txt', 'r') as f:
+    text = f.read()
+
+# replace \t's and \n's with a spaces:
+text = text.replace('\t',' ')
+text = text.replace('\n',' ')
+# You may want to make other changes to the text. 
+
+# In particular, note that there are "strange characters" (these are accents and
+# non-ascii symbols) because we don't care for them, first transform to ASCII:
+
+text = text.encode('ascii', 'ignore') # first encode into ascii bytes
+text = text.decode('ascii', 'ignore') # Now decode back to string
+
+# Now extend this script so that it captures the Kingdom, Phylum and Species
+# name for each species and prints it out to screen neatly.
+#First try to capture kingdom
+
+textf = re.findall(r'Kingdom\s\w+|Phylum\s\w+|Species\s\w+\s\w+', text)
+[print(i) for i in textf]
+
+# Hint: you may want to use re.findall(my_reg, text)... Keep in mind that there
+# are multiple ways to skin this cat! Your solution could involve multiple
+# regular expression calls (easier!), or a single one (harder!)
+**********************************************************************
+
+Testing blackbirds.py...
+
+blackbirds.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 87.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Kingdom Animalia
+Phylum Chordata
+Species Euphagus carolinus
+Kingdom Animalia
+Phylum Chordata
+Species Euphagus cyanocephalus
+Kingdom Animalia
+Phylum Chordata
+Species Turdus boulboul
+Kingdom Animalia
+Phylum Chordata
+Species Agelaius assimilis
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03206s
+
+======================================================================
+Inspecting script file regex.py...
+
+File contents are:
+**********************************************************************
+import re
+
+
+match = re.search(r'2', 'it takes 2 to tango')
+match.group()
+
+match = re.search(r'\d.*' , "it takes 2 to tango")
+match.group()
+
+match = re.search(r'\s\w{1,3}\s', 'once upon a time')
+match.group()
+
+re.search(r'\w*\s\d.*\d', 'take 2 grams of H2O').group()
+
+re.search(r'^\w*.*\s', 'once upon a time').group()
+**********************************************************************
+
+Testing regex.py...
+
+regex.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 85.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.03511s
+
+======================================================================
+Inspecting script file profileme.py...
+
+File contents are:
+**********************************************************************
+def my_squares(iters):
+    out = []
+    for i in range(iters):
+        out.append(i ** 2)
+    return out
+
+def my_join(iters, string):
+    out = ''
+    for i in range(iters):
+        out += string.join(", ")
+    return out
+
+def run_my_funcs(x,y):
+    print(x,y)
+    my_squares(x)
+    my_join(x,y)
+    return 0
+
+
+run_my_funcs(10000000,"My string")
+**********************************************************************
+
+Testing profileme.py...
+
+profileme.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 82.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+10000000 My string
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 6.44912s
+
+======================================================================
+Inspecting script file LV4.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''
+Discrete version of LV2.py with random gaussian fluctuation in the resource
+growth
+'''
+
+__appname__ = '[LV4.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import matplotlib.pylab as p
+import scipy as sc
+
+## CONSTANTS ##
+if len(sys.argv) ==5:
+    r = float(sys.argv[1])
+    a = float(sys.argv[2])
+    z = float(sys.argv[3])
+    e = float(sys.argv[4])
+    K = 15
+
+else:
+    r = 1.
+    a = 0.1
+    z = 1.5
+    e = 0.75
+    K = 35
+
+## FUNCTIONS ##
+
+def discrete_r(R, C, eps):
+    '''Calculate next step of the R function'''
+    return R * (1 + (r + eps) * (1 - R/K) - a * C) 
+
+def discrete_c(R, C):
+    '''Calculate next step of the C function'''
+    return C * (1 - z + e * a * R)
+
+def main(argv):
+    '''Main function'''
+    t = sc.linspace(0,15,200) 
+    R = [10]
+    C = [5]
+    #Since the values for R, C depend on the previous value, using lambda 
+    #functions or list comprehensions will not imporve velocity, but only
+    #make the code less intuitive to read. Therefore, we use a for loop
+    i = 1 #The 0 position is set when we set initial parameter values
+    #Prealocate variables
+    R = R + (len(t)-1)*[0]
+    C = C + (len(t)-1)*[0]
+    #Calculate values for the prealocated lists
+    while i < len(t):
+        eps = sc.random.normal(scale = 0.1)
+        R[i] = discrete_r(R[i-1], C[i-1], eps)
+        C[i] = discrete_c(R[i-1], C[i-1])
+        i += 1
+
+    #Plot
+    f1 = p.figure()
+    f1.set_size_inches(8.27, 11.69)
+    p.subplot(2,1,1)
+    p.plot(t, R, 'g-', label='Resource density')
+    p.plot(t, C, 'b-', label='Consumer density')
+
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title('Consumer-Resource population dynamics'+
+            '\nr = %.1f, a = %.1f, z = %.1f, e = %.1f, K = %i'
+             %(r, a, z, e, K))
+    p.subplot(2,1,2)
+    p.plot(R, C,  'r-', label = 'Cycle') # Plot
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.title('Consumer-Resource population dynamics')
+    f1.savefig('../Results/LV4_model.pdf') #Save figure
+
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing LV4.py...
+
+LV4.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 78.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.72453s
+
+======================================================================
+Inspecting script file networks.py...
+
+File contents are:
+**********************************************************************
+import networkx as nx
+import scipy as sc
+import matplotlib.pyplot as p
+
+def GenRdmAdjList(N = 2, C = 0.5):
+    """
+    Generating a random adjacent list of interactions between species with 
+    a connectance probability of 0.5
+    """
+    Ids = range(N)
+    ALst = []
+    for i in Ids:
+        #We don't have information from this foodweb, so we choose an unbiased
+        #connectance.
+        if sc.random.uniform(0,1,1) < C:
+            Lnk = sc.random.choice(Ids,2).tolist()
+            if Lnk[0] != Lnk[1]: #avoid self (e.g., cannibalistic) loops
+                ALst.append(Lnk)
+    return ALst
+
+
+**********************************************************************
+
+Testing networks.py...
+
+networks.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 78.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.48616s
+
+======================================================================
+Inspecting script file Test.R...
+
+File contents are:
+**********************************************************************
+print("Hello, this is R")
+**********************************************************************
+
+Testing Test.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "Hello, this is R"
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.09879s
+
+======================================================================
+Inspecting script file fmr.R...
+
+File contents are:
+**********************************************************************
+# Plots log(field metabolic rate) against log(body mass) for the Nagy et al 
+# 1999 dataset to a file fmr.pdf.
+# Writes the list of species names to species.csv
+
+cat("Reading CSV\n")
+
+nagy <- read.csv('../Data/NagyEtAl1999.csv', stringsAsFactors = FALSE)
+
+cat("Creating graph\n")
+pdf('../Results/fmr_plot.pdf', 11, 8.5)
+col <- c(Aves='purple3', Mammalia='red3', Reptilia='green3')
+plot(log10(nagy$M.g), log10(nagy$FMR.kJ.day.1), pch=19, col=col[nagy$Class], 
+     xlab=~log[10](M), ylab=~log[10](FMR))
+for(class in unique(nagy$Class)){
+    model <- lm(log10(FMR.kJ.day.1) ~ log10(M.g), data=nagy[nagy$Class==class,])
+    abline(model, col=col[class])
+}
+dev.off()
+
+cat("Finished in R!\n")
+**********************************************************************
+
+Testing fmr.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Reading CSV
+Creating graph
+null device 
+          1 
+Finished in R!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.17192s
+
+======================================================================
+Inspecting script file using_os.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''
+Find directories and files that satisfy certain conditions using subprocess
+'''
+
+import subprocess
+import numpy as np
+
+# Use the subprocess.os module to get a list of files and  directories 
+# in your ubuntu home directory 
+# Get the user's home directory.
+home = subprocess.os.path.expanduser("~")
+subprocess.os.listdir(path = home)
+
+# Hint: look in subprocess.os and/or subprocess.os.path and/or 
+# subprocess.os.walk for helpful functions
+
+#################################
+#~Get a list of files and 
+#~directories in your home/ that start with an uppercase 'C'
+
+# Type your code here:
+# Create a list to store the results.
+
+# Use a for loop to walk through the home directory.
+l_root = []
+l_subdir = []
+l_files = []
+for (root, subdir, files) in subprocess.os.walk(home):
+    l_subdir.append(subdir)
+    l_files.append(files)
+
+#Make flat list from list of lists
+l_directories = [j for i in l_subdir for j in i]
+l_files_ = [j for i in l_files for j in i]
+
+#Select only those that start with C
+dir_C = [i for i in l_directories if i.startswith('C')]
+files_C = [i for i in l_files_ if i.startswith('C')]
+
+#Join lists
+DirFiles_C = dir_C + files_C
+np.savetxt('../Results/listC.csv', DirFiles_C, fmt = '%s')
+#################################
+# Get files and directories in your home/ that start with either an 
+# upper or lower case 'C'
+
+# Type your code here:
+#Select only those that start with C or c
+
+dir_C_c = [i for i in l_directories if i.lower().startswith('c')]
+files_C_c = [i for i in l_files_ if i.lower().startswith('c')]
+
+#Join lists
+DirFiles_C_c = dir_C_c + files_C_c
+np.savetxt('../Results/listC_c.csv', DirFiles_C_c, fmt = '%s')
+#################################
+# Get only directories in your home/ that start with either an upper or 
+#~lower case 'C' 
+
+# Type your code here:
+Dir_C_c = dir_C_c
+np.savetxt('../Results/listdirC_c.csv', Dir_C_c, fmt = '%s')
+**********************************************************************
+
+Testing using_os.py...
+
+using_os.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 76.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Traceback (most recent call last):
+  File "using_os.py", line 44, in <module>
+    np.savetxt('../Results/listC.csv', DirFiles_C, fmt = '%s')
+  File "/usr/local/lib/python3.5/dist-packages/numpy/lib/npyio.py", line 1254, in savetxt
+    fh.write(asbytes(format % tuple(row) + newline))
+  File "/usr/local/lib/python3.5/dist-packages/numpy/compat/py3k.py", line 35, in asbytes
+    return str(s).encode('latin1')
+UnicodeEncodeError: 'latin-1' codec can't encode character '\u2013' in position 13: ordinal not in range(256)
+
+======================================================================
+Inspecting script file LV1.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''
+Integrates the Lotka-Volterra model and outputs a time series plot with the 
+evolution of both species, as long as a phase diagram
+'''
+
+__appname__ = '[LV1.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import scipy as sc
+import scipy.integrate as integrate
+import matplotlib.pylab as p
+
+## CONSTANTS ##
+
+r = 1.
+a = 0.1
+z = 1.5
+e = 0.75
+t = sc.linspace(0, 15, 1000)
+R0 = 10
+C0 = 5
+RC0 = sc.array([R0, C0])
+
+## FUNCTIONS ##
+
+def dCR_dt(pops, t=0):
+
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R - a * R * C
+    dCdt = -z * C + e * a * R * C
+
+    return sc.array([dRdt, dCdt])
+
+def main(argv):
+    '''Main function'''
+    pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
+    f1 = p.figure()
+    f1.set_size_inches(8.27, 11.69)#A4 paper
+    p.subplot(2,1,1)
+    p.plot(t, pops[:,0], 'g-', label='Resource density') # Plot
+    p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title('Consumer-Resource population dynamics'+
+            '\nr = %.1f, a = %.1f, z = %.1f, e = %.1f' %(r, a, z, e))
+
+    p.subplot(2,1,2)
+    p.plot(pops[:,0], pops[:,1], 'r-', label = 'Cycle') 
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.title('Consumer-Resource population dynamics')
+    f1.savefig('../Results/LV1_model.pdf') #Save figure
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing LV1.py...
+
+LV1.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 73.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.80350s
+
+======================================================================
+Inspecting script file DrawFW.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+#Draw network from class notes.
+
+__appname__ = '[DrawFW.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import networkx as nx
+import scipy as sc
+import matplotlib.pyplot as p
+
+## CONSTANTS ##
+
+
+## FUNCTIONS ##
+def GenRdmAdjList(N = 2, C = 0.5):
+    """
+    Generate a syntetic foodweb
+    """
+    Ids = range(N)
+    ALst = []
+    for i in Ids:
+        if sc.random.uniform(0,1,1) < C:
+            Lnk = sc.random.choice(Ids,2).tolist()
+            if Lnk[0] != Lnk[1]: #avoid self (e.g., cannibalistic) loops
+                ALst.append(Lnk)
+    return ALst
+
+def main(argv):
+    '''Main function'''
+    MaxN = 30
+    C = 0.75
+    import ipdb; ipdb.set_trace(context = 20t0)
+    AdjL = sc.array(GenRdmAdjList(MaxN, C))
+    Sps = sc.unique(AdjL)
+    pos = nx.circular_layout(Sps)
+    G = nx.Graph()
+    G.add_nodes_from(Sps)
+    G.add_edges_from(tuple(AdjL))
+    SizRan = ([-10,10]) #use log10 scale
+    Sizs = sc.random.uniform(SizRan[0],SizRan[1],MaxN)
+    NodSizs= 1000 * (Sizs-min(Sizs))/(max(Sizs)-min(Sizs))
+    nx.draw_networkx(G, pos, node_size = NodSizs)
+    #save file
+    p.savefig('../Results/network.pdf')
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing DrawFW.py...
+
+DrawFW.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more docstrings and functions
+
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 72.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+  File "DrawFW.py", line 37
+    import ipdb; ipdb.set_trace(context = 20t0)
+                                             ^
+SyntaxError: invalid syntax
+
+======================================================================
+Inspecting script file Nets.R...
+
+File contents are:
+**********************************************************************
+library(igraph) # Load the igraph package
+
+rm(list = ls())
+
+# 	ICL	UoR	CEH	ZSL	CEFAS	Nonacademic/CASE
+# ICL	0	0	10	9	5	70
+# UoR		0	12	0	2	76
+# CEH			0	0	0	6
+# ZSL				0# plot(net, edge.arrow.size=1, edge.curved=.1,
+#      vertex.color="orange", vertex.frame.color="#555555",
+#      vertex.label=V(net)$Type, vertex.label.color="black",
+#      vertex.label.cex=.7) 	0	28
+# CEFAS					0	0
+# Nonacademic/CASE						0
+
+links <- read.csv("../Data/QMEE_Net_Mat_edges.csv", header=T, as.is=T)
+nodes <- read.csv("../Data/QMEE_Net_Mat_nodes.csv", header=T, row.names = 1)
+
+#Create graph object
+net <- graph.adjacency(as.matrix(links), mode = "directed", weighted=TRUE, 
+		       diag=F)
+        
+#Test plot
+# plot(net, edge.arrow.size=1, edge.curved=.1,
+#      vertex.color="orange", vertex.frame.color="#555555",
+#      vertex.label=V(net)$Type, vertex.label.color="black",
+#      vertex.label.cex=.7) 
+
+# Generate colors based on partner type:
+colrs <- c("green", "red", "blue")
+V(net)$color <- colrs[nodes$Type]
+
+# Set node size based on Number of PIs:
+# V(net)$size <- V(net)$Pis*0.9
+
+V(net)$size <- 50
+
+# Set edge width based on weight (PhD Students):
+E(net)$width <- E(net)$weight
+
+#change arrow size and edge color:
+E(net)$arrow.size <- 1
+E(net)$edge.color <- "gray80"
+
+E(net)$width <- 1+E(net)$weight/10
+
+graphics.off()
+
+svg("../Results/QMEENet.svg",width=7,height=7)
+
+plot(net, edge.curved=0, vertex.label.color="black") 
+
+legend(x=-1.5, y=-0.1, c("University","Hosting Partner", "Non-hosting Partner")
+       , pch=21, col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
+
+dev.off()
+**********************************************************************
+
+Testing Nets.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+null device 
+          1 
+
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: methods
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+======================================================================
+Inspecting script file Nets_R.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+#Reproduction of the R network plot with python
+
+__appname__ = '[Nets_R.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import networkx as nx
+import scipy as sc
+import pandas as pd
+import matplotlib.pylab as p
+from matplotlib.patches import Patch
+from matplotlib.lines import Line2D
+
+## CONSTANTS ##
+
+
+## FUNCTIONS ##
+
+def main(argv):
+    '''Main function'''
+    #load data
+    link = pd.read_csv('../Data/QMEE_Net_Mat_edges.csv')
+    names_unis = link.columns
+    names_unis = sc.arange(0,len(names_unis))
+    link = sc.matrix(link)
+    nodes = pd.read_csv('../Data/QMEE_Net_Mat_nodes.csv')
+    col = []
+    for i in nodes['Type']:
+        if i == 'University':
+            col.append('b')
+        elif i == 'Hosting Partner':
+            col.append('g')
+        else:
+            col.append('r')
+    names_node_atrib = nodes.columns
+    #Geting indeces of interactions in matrix
+    ind = sc.nonzero(link)
+    ind_tup = sc.array([tuple(i) for i in sc.transpose(ind)])
+    weight = sc.array([link[i,j] for i,j in ind_tup])
+    ind_tup = ind_tup[weight!=0]
+    ind_tup = [tuple(i) for i in ind_tup]
+    weight = weight[weight!=0]
+    std_weight = 1 + weight/10
+    plot = p.figure()
+    G = nx.DiGraph()
+    pos = nx.spring_layout(sc.array(names_unis).tolist())
+    G.add_nodes_from(sc.array(names_unis).tolist())
+    G.add_edges_from(ind_tup)
+    M = G.number_of_edges()
+    edge_colors = sc.log(weight/max(weight))
+    nx.draw_networkx(G, pos, width = std_weight, node_color = col, 
+            node_size = 2000, with_labels = False, edge_color = edge_colors,
+            edge_cmap = p.cm.Blues, arrowstyle = 'fancy')
+    nx.draw_networkx_labels(G, pos, labels = nodes['id'])
+    legend_elements = [Patch(facecolor='b', 
+                         label='University'),
+                       Patch(facecolor='g',
+                         label='Hosting Partner'),
+                   Patch(facecolor='r', 
+                         label='Non-Hosting Partners')]
+    p.legend(handles=legend_elements, loc='best', framealpha = 0.4)
+    p.savefig('../Results/Net.pdf')
+
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing Nets_R.py...
+
+Nets_R.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 69.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/networkx/drawing/layout.py", line 283, in fruchterman_reingold_layout
+    raise ValueError
+ValueError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Nets_R.py", line 74, in <module>
+    status = main(sys.argv)
+  File "Nets_R.py", line 51, in main
+    pos = nx.spring_layout(sc.array(names_unis).tolist())
+  File "/usr/lib/python3/dist-packages/networkx/drawing/layout.py", line 287, in fruchterman_reingold_layout
+    A = nx.to_numpy_matrix(G, weight=weight)
+  File "/usr/lib/python3/dist-packages/networkx/convert_matrix.py", line 308, in to_numpy_matrix
+    nodelist = G.nodes()
+AttributeError: 'list' object has no attribute 'nodes'
+
+======================================================================
+Inspecting script file sympy.ipynb...
+
+File contents are:
+**********************************************************************
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "\n",
+    "from sympy import *\n",
+    "import scipy as sc\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%matplotlib inline\n",
+    "import matplotlib.pyplot as p\n",
+    "init_printing()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x = var('x', positive = True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a, b, c = var(\"a, b, c\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAEgAAAAaCAYAAAAUqxq7AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADVElEQVRYCe2YgW0bMQxFfUEGcNsJ6mxgtxskGzTdoM0GDjJB4W6QZoIi3cDdIE03SEdwvIH7nyAdJB3PkQPfAbmYAH0nihLFL4rUudpsNqPXTlVVjYXBlcdh4p9fhM36+LWD4/1fCIyLgIUAu9b7vfikOkTQaCRAOEZnwuI3IKlNFD2IZ0cIDjQiev5YOBwiyEBFEbSQ+JMi6qQRQT68jGEvV7SLT9KdAo54hscJQOqcS4bC0GjifdvqlweS6JkpetYo1wCpE9TeqeMXHUOiKPnio0kBHOmSrNdqT51MDQZwD7jnfciMj/ia+yjZRLwUc3oCU+rHLkkLKVf3NfCHhL2QbJ7K0KRnm19lk+NT33lwVmt51IMgSUh6ugAoalDQ803S23FDNgl3APresalkeg/Ge9l1OSbpNBpHGsBO/jP6hirC18+lzpGkz8XuBmkNEoBj8dzzrW+TwBaeWxOfNd8+ZH4tj3rqDLQyacMifD2zOiwZ32IfxG2TMab+TmFhat+I7xSil2ozjrLYW+WTTexBbCx546P4pxg/aLvN1vr+6t0iPiE4NUVEBDHpytLWYkhqYUFBhYgJgLw1+oPe3p9aDxXGbY4AAAiqz7UHw4HD+xZwWBO+oltMZPBTTdoo8ZJPY7nalMKdrgPSJ8rYtZyxC+dy2rex3bZ36S1DH2PEjRIe+sNTOoCsZtNfS8YRayUNyMOU0LxsHWB0aI6kpAYVRQOR+Owq5qNpHebTk82M21FX8krUl+i5QRwxsvqTIacFhXMbjhfXAxL4k2Odpf3/ADy5JxDHrYRYr5lSrMEAhHJjcu/8MgLGRYJ2Kb4SXBXummX72TK/KeTHpPpGa902NxEU+7BN132LcYyoBDkRMfDKLwgg69D0i7nLB/XUBhyScb0ev7aS8s1XOrm0iI6lhbJV5tkdPj3c0dJiLgQKEYUu3zQryerjpnafBBDfMoNJNGV9cRN/8soc96fvchIBlSOpWMi7ZNkjSc+7tJHPLXukkodcvq1NDoJA1Kw2rrebH45HfES6sZLOSgUujx7GBvT0ylGj7NayIb3jGz7u6lP9n7RPxFzQShKdbL0sIn9qxefyb6eorQHCXU0Cytyqe/tfCLtdk/xyVwL5VVzew5r+A4gy5DvaY0QmAAAAAElFTkSuQmCC\n",
+      "text/latex": [
+       "$\\displaystyle \\left(x + \\pi\\right)^{2}$"
+      ],
+      "text/plain": [
+       "       2\n",
+       "(x + π) "
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "MyFun = (pi + x)**2; MyFun"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'\\\\left(x + \\\\pi\\\\right)^{2}'"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "latex(MyFun)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAHUAAAAaCAYAAACJphMzAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFN0lEQVRoBe2ajVUUMRCAPZ4FnNrB0QFoBUIHChUoHeijBOwArUCxA+xAoQPsQLwO8PuWZM3uZe82x3Fyvp335naTTGYm85dsYHRzc/NogM2zwGg0GqP1cdB8Ep5v8Of08eYtZ9A4WOAEBx5Fa+DkU94vwO3RkKnRLJv1xImW2H38903NaZutV+Dulh0DbKQFzNIfOc2HTM1ZZQP7yNQT1H5F5m7PZGpI4w1c1v+jcqkPoN/RoeCuVmg4lcF39EkwwL+1wCT4YqEWIQDM0l2ydOqE2qkM6ulnDHx14CGDCwFPAp7yPAf3SnVmzg54Bfp5sBACvafMLJTwgzbqH591MiWHH33SCfCYMOgp2APTNMifPKLhJBd14ftDx6DraaonfW9BF+KeMncNYf4Zz/gJ4LzxonmOA54uz1Ja59oH9uIHnY6Qz17kw7vzr2I7PunzEyWrG/3yOQcNhojqMI5OtfE2MlvHE3lmVrFM5rhFNBxIW8PaVxSY0EdeWcOldgi0M07N0MwNEnUE20Gpc85TXr4DBmuDNtLQ/xuUqIGOx8uHAxr1hyyE6wAdIZbCJROmAau56G7pKeXTm96yFuQpd2mAj+VUXi9TJui/n7bjO/0fmfMbfO8aY79P2k/Sdvq+xQQz5mfa+ZDfWcw3F+Qz6hmMZdOKcx9wiLyPK2B8DI8pvBoOWsBX3xwsoGkMm6mvwdpAjVEaGGzMwzIgvADfgNbzQ1D4jpL/7HAVgtLT39GKDF8tKv7A3xK9qmAxSy/h6VP7/QK3QffpLh/Ybyb3Diqd+hycp3R9xxgW+Al6HfmetvM06NqdGgxjlTHQLMnZ2xX6lwZkGLxm1p0rGbxMjgjPtV9sMGaJ9TI+Z8fqUBVp+zy3IFLYdY4YQWaoTkvBfSEKf8p7ezylvbd3DHAJfgCtNJ/BC/Sd+wmwhDL3kf076NzOui/o9gn9U8dHdfVNrj+OzzzNVB0znRm57fiBAmmUWgY0ZtUXDNox9bYbRc1mM6oNyrW85w5oytBZvQDar/BxDWc83W+71tOLn0TwqU6evScsIFQneEqV2jPO8kSsPKtmuwxLb8XoDTq1E1DEspaCzqnLRjrQ9Q6PnNM0mlk1YfxD19xcP/Pcjzz9tXWz/KqfGCsJr+WADI3oZ07OAeUM/86Q37yAyzlvXtL95Zy86VQFjZO+7CsL1VhCbTD6qnksfp6it7NW8BvkGdUGxUoyskMtjfsCGV4KpGBAeZtl/0/WXRTgznE+2AW5INLG2e2xi4lOdcKMoGBAlfegZEmoMq4VvcdLLAxWywGyLGEGkJ817UCydAnt8nXbW/ALb3nM8EG2H/zK7r01tMR6/vCioQ1exHsgm5FJv5mac3abR93e4s0y5gmyDWameB0crPNrQ9Ln2Hdw3WB2NAyDLpZyI9qDTaWjOoM3YJXZK1JSGeJSEIMFnerDpXrCzO9QPxVzoMMb680RpX1mqhNynzRGjac0necedoQCXpxLq6Gu6atLsTTrAGR6y7IX9IgirTT1fwHYCZ1ZbYS71zaAfiuQxozZ7cnZ4PZTbWaPD7IirbK1mdd6FW0JP+bsQ+8lfrS5mfiSfuXnQPvXQZAjaPdVfyRHgN9Cr+cwbs+7cxuZZlfxQenOgjeIATYyWA0eLyh6g+VXMBKyp9Rq9H5+prAVB+i2gFtNUZbKqv53FqLCkuKeVLQpy2SA1VsgZKl/ofFuoAhSp7rHeAdZzKRI4kDcywIhydwSi6tZ7VQlhejwj7fta6xeigxEq7EAfvB2yU+nparmH4DR2okpB2jTAAAAAElFTkSuQmCC\n",
+      "text/latex": [
+       "$\\displaystyle \\left(x + 3.1416\\right)^{2}$"
+      ],
+      "text/plain": [
+       "            2\n",
+       "(x + 3.1416) "
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "N(MyFun, 5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/latex": [
+       "$\\displaystyle 21.5443823618587$"
+      ],
+      "text/plain": [
+       "21.5443823618587"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "MyFun.subs(x, 1.5)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/latex": [
+       "$\\displaystyle 21.5443823618587$"
+      ],
+      "text/plain": [
+       "21.5443823618587"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "N(MyFun.subs(x, 1.5))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAFEAAAAaCAYAAADPELCZAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD+ElEQVRoBe2ZgVEbMRBFYyYFMEkHdgcQOiAdhHSQ0AFMSiAdQAcZ0gF0QKADKCG4A+c9Id3ozrqzDDYDxDuzSFqttNqvlVZnRrPZ7N2GFiMwGo220foRNcex/AZ+0/eLh280IgInAHaY0ADUU+rX8GS0icQEy3AJaB7Zz+B1qSZto/EW3t1SsKEqBIzCPyXNTSSWUKmQEYknqH0hMidzkRjDtGKat6WyjN/o7gggvCsKLRDpPEKmwv9I4+j/oO8RbKNwlyicqtyASKfIfqTjtx0vlXQCPo18TXkBP3njs4QhDkXCzpgOs7QJZqrdIKPhAN9A19ZfMrNGnTjP10jbqNCJ/Vz+2Drz+GzZ7o5Hpu0L2A1L7DNnO4BGxcb37sB1tbG1/xh7jDmHSw7eI79fxXpdF3zancv5YTerxeolEFeygK7hvjYL8cgc9fX3yRmTHGkBiVxwdW7cN3YZebTTsjE0foszbVTcwa+BfOje4VC40AsL9lpaBYnH19qJTCwHcHiF9w3y8oS9zE/go9g2kz8rAd4BPCkYDYmFvpvUF9d5TzkbYK+xEonH51JHSea38ye4bzI/b4xUj4spPUQsMi/YfcozZH1Rgcr6iTUIoJf+cbKGzGQjGSBG5x78C9ZX2yFoctCR5eTnnH5XkSA66d+SNouxTwCPE4BRTzCHjlVUe5bC9bmZP7UWQb2iHZ5qtD0xJoo76gJzSb2JWMcUSDz0vZq8rIvPA+RGqBd265Kl7U75Xhp8EqHjeHW7HLJpQa5e6wkzZANd55/LpPkY+i9S27nhli+pLy/RMboRDfuX+o3EIfJydeemSSlGZ3ozJXGxZFzz01GuwBxmZzNpiJ68r7bOHD5F9LRowz50BKNZO/Wd3Bd1eugD8nxcj9qD2MTi0ZwL3QiW8m7oh6zFYgaT0cP06/kbN2GSA4jM5Ofm5iTA3oWJuv1J3i31u3jFdRVtC6LKQ5NfqZiRl3UAVmcKC89UV1/FntG1B4BNIolWjO7GcfQEwmhtbTbymoRhJIYkSrmQPM4CYvZqkWGPQfsagGm7KNtpYTrzbN/a2Ne299ol9fxFodMe1fx6cK03+kGZyLpPl7T+JO+W/jrjC6Sa3JlbjM0lCeTupos2w/lsMAqSI8pc+Ny4RTLGGTWP+WLxu7b12ZW1W9/+yAXB3/ua9dHWl5qEaIKr/voJP8qyqw7yIRuOKfW1EvaenFjWtcAY7Wb00qO+aHYrSo2y3ixXHPk0occqP2ZPm221o71rxaOamn8PsAOG/yE7UH2hVlt5JYoxCn13Vn/y6VoOYrj/lp3gleBTtcwYSF5rS52SBsSA6EP28+vlrMrqG1ICwPAcwvelT+I/8nTee5NZ5ysAAAAASUVORK5CYII=\n",
+      "text/latex": [
+       "$\\displaystyle \\left(a + 2 \\pi\\right)^{2}$"
+      ],
+      "text/plain": [
+       "         2\n",
+       "(a + 2⋅π) "
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "MyFun.subs(x, a+pi)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "iVBORw0KGgoAAAANSUhEUgAAAFEAAAAaCAYAAADPELCZAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD+ElEQVRoBe2ZgVEbMRBFYyYFMEkHdgcQOiAdhHSQ0AFMSiAdQAcZ0gF0QKADKCG4A+c9Id3ozrqzDDYDxDuzSFqttNqvlVZnRrPZ7N2GFiMwGo220foRNcex/AZ+0/eLh280IgInAHaY0ADUU+rX8GS0icQEy3AJaB7Zz+B1qSZto/EW3t1SsKEqBIzCPyXNTSSWUKmQEYknqH0hMidzkRjDtGKat6WyjN/o7gggvCsKLRDpPEKmwv9I4+j/oO8RbKNwlyicqtyASKfIfqTjtx0vlXQCPo18TXkBP3njs4QhDkXCzpgOs7QJZqrdIKPhAN9A19ZfMrNGnTjP10jbqNCJ/Vz+2Drz+GzZ7o5Hpu0L2A1L7DNnO4BGxcb37sB1tbG1/xh7jDmHSw7eI79fxXpdF3zancv5YTerxeolEFeygK7hvjYL8cgc9fX3yRmTHGkBiVxwdW7cN3YZebTTsjE0foszbVTcwa+BfOje4VC40AsL9lpaBYnH19qJTCwHcHiF9w3y8oS9zE/go9g2kz8rAd4BPCkYDYmFvpvUF9d5TzkbYK+xEonH51JHSea38ye4bzI/b4xUj4spPUQsMi/YfcozZH1Rgcr6iTUIoJf+cbKGzGQjGSBG5x78C9ZX2yFoctCR5eTnnH5XkSA66d+SNouxTwCPE4BRTzCHjlVUe5bC9bmZP7UWQb2iHZ5qtD0xJoo76gJzSb2JWMcUSDz0vZq8rIvPA+RGqBd265Kl7U75Xhp8EqHjeHW7HLJpQa5e6wkzZANd55/LpPkY+i9S27nhli+pLy/RMboRDfuX+o3EIfJydeemSSlGZ3ozJXGxZFzz01GuwBxmZzNpiJ68r7bOHD5F9LRowz50BKNZO/Wd3Bd1eugD8nxcj9qD2MTi0ZwL3QiW8m7oh6zFYgaT0cP06/kbN2GSA4jM5Ofm5iTA3oWJuv1J3i31u3jFdRVtC6LKQ5NfqZiRl3UAVmcKC89UV1/FntG1B4BNIolWjO7GcfQEwmhtbTbymoRhJIYkSrmQPM4CYvZqkWGPQfsagGm7KNtpYTrzbN/a2Ne299ol9fxFodMe1fx6cK03+kGZyLpPl7T+JO+W/jrjC6Sa3JlbjM0lCeTupos2w/lsMAqSI8pc+Ny4RTLGGTWP+WLxu7b12ZW1W9/+yAXB3/ua9dHWl5qEaIKr/voJP8qyqw7yIRuOKfW1EvaenFjWtcAY7Wb00qO+aHYrSo2y3ixXHPk0occqP2ZPm221o71rxaOamn8PsAOG/yE7UH2hVlt5JYoxCn13Vn/y6VoOYrj/lp3gleBTtcwYSF5rS52SBsSA6EP28+vlrMrqG1ICwPAcwvelT+I/8nTee5NZ5ysAAAAASUVORK5CYII=\n",
+      "text/latex": [
+       "$\\displaystyle \\left(a + 2 \\pi\\right)^{2}$"
+      ],
+      "text/plain": [
+       "         2\n",
+       "(a + 2⋅π) "
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "MyFun_new = MyFun.subs(x, a+pi); MyFun_new"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x_vec = sc.arange(0, 10, 0.1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "MyFun_vec = sc.array([N(MyFun.subs(x, xx)) for xx in x_vec]) #Note: using a list comprehension!"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "MyFun_new_vec = sc.array([N((MyFun_new).subs(a, xx)) for xx in x_vec])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[<matplotlib.lines.Line2D at 0x1210c3ad0>]"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "fig, ax = p.subplots()\n",
+    "ax.plot(x_vec, MyFun_vec)\n",
+    "ax.plot(x_vec, MyFun_new_vec)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "x, y, z = var(\"x,y,z\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "f = sin(x*y) + cos(y*z)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/latex": [
+       "$\\displaystyle - x \\left(x y \\cos{\\left(x y \\right)} + 2 \\sin{\\left(x y \\right)}\\right)$"
+      ],
+      "text/plain": [
+       "-x⋅(x⋅y⋅cos(x⋅y) + 2⋅sin(x⋅y))"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "diff(f, x, 1, y, 2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
+**********************************************************************
+
+Testing sympy.ipynb...
+
+======================================================================
+Inspecting script file LV2.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''
+Integrates the Lotka-Volterra model with a modified prey-density dependence
+and outputs a time series plot with the evolution of both species, as long as 
+a phase diagram
+'''
+
+__appname__ = '[LV2.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import scipy as sc
+import scipy.integrate as integrate
+import matplotlib.pylab as p
+
+## CONSTANTS ##
+    
+if len(sys.argv) == 5:
+    r = float(sys.argv[1])
+    a = float(sys.argv[2])
+    z = float(sys.argv[3])
+    e = float(sys.argv[4])
+    K = 50
+else:
+    r = 1.
+    a = 0.1
+    z = 0.5
+    e = 0.7
+    K = 50
+
+R0 = 10
+C0 = 5
+RC0 = sc.array([R0, C0])    ## FUNCTIONS ##
+t = sc.linspace(0, 80, 1000)
+
+def dCR_dt(pops, t=0):
+    R = pops[0]
+    C = pops[1]
+    dRdt = r * R*(1-R/K) - a * R * C
+    dCdt = -z * C + e * a * R * C
+
+    return sc.array([dRdt, dCdt])
+
+
+def main(argv):
+    '''Main function'''
+    pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
+    print('Final population values:\nResource:', int(pops[-1,0]), 
+            '\nConsumer:', int(pops[-1,1]))
+    f1 = p.figure()
+    f1.set_size_inches(8.27, 11.69)#A4 paper
+    p.subplot(2,1,1)
+    p.plot(t, pops[:,0], 'g-', label='Resource density') # Plot
+    p.plot(t, pops[:,1]  , 'b-', label='Consumer density')
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Time')
+    p.ylabel('Population density')
+    p.title('Consumer-Resource population dynamics'+
+            '\nr = %.1f,a = %.1f,z = %.1f,e = %.1f,K = %i' %(r, a, z, e, K))
+    p.subplot(2,1,2)
+    p.plot(pops[:,0], pops[:,1], 'r-', label = 'Cycle') 
+    p.grid()
+    p.legend(loc='best')
+    p.xlabel('Resource density')
+    p.ylabel('Consumer density')
+    p.title('Consumer-Resource population dynamics')
+    f1.savefig('../Results/LV2_model.pdf') #Save figure
+
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing LV2.py...
+
+LV2.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 66.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Final population values:
+Resource: 7 
+Consumer: 8
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.76858s
+
+======================================================================
+Inspecting script file run_fm_r.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''Run an .R file from python and print in screen the R console output, as well
+as wether the run was succesful or not'''
+
+__appname__ = '[run_fm_r.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import subprocess
+
+## CONSTANTS ##
+
+
+## FUNCTIONS ##
+
+def main(argv):
+    '''Main function'''
+    subprocess.Popen("Rscript --verbose fmr.R > ../Results/TestR.Rout 2> \
+                 ../Results/TestR_errFile.Rout", shell=True).wait()
+    f = open('../Results/TestR.Rout').readlines()    
+    if f[0].startswith('Reading') and f[-1].startswith('Finished'):
+        print('Succesful run!:')
+        print(open('../Results/TestR.Rout').read())
+    else:
+        print('Unsuccesful run:')
+        print(open('../Results/TestR.Rout').read())
+
+
+
+    return 0
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+     
+
+**********************************************************************
+
+Testing run_fm_r.py...
+
+run_fm_r.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 64.0
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Succesful run!:
+Reading CSV
+Creating graph
+null device 
+          1 
+Finished in R!
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.20869s
+
+======================================================================
+Inspecting script file run_LV.sh...
+
+File contents are:
+**********************************************************************
+u!/bin/bash 
+
+#Runs both LV1.py and LV2.py
+echo 'Profiling for LV1.py :' > ../Results/profiling.txt
+python3 -m cProfile LV1.py | head -1 >> ../Results/profiling.txt
+echo 'Profiling for LV2.py :' >> ../Results/profiling.txt
+python3 -m cProfile LV2.py | head -1 >> ../Results/profiling.txt
+
+#Print results to screen
+cat ../Results/profiling.txt
+
+#We can select a more discrete time vector so that there are less integration
+#steps. The answer will be qualitatively equal, except for it will be a bit
+#less precise.
+
+**********************************************************************
+
+Testing run_LV.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Profiling for LV1.py :
+         541528 function calls (531027 primitive calls) in 0.787 seconds
+Profiling for LV2.py :
+Final population values:
+
+**********************************************************************
+
+Encountered error (or warning):
+run_LV.sh: line 1: u!/bin/bash: No such file or directory
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 68, in runctx
+    self._show(prof, filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 74, in _show
+    prof.print_stats(sort)
+  File "/usr/lib/python3.5/cProfile.py", line 42, in print_stats
+    pstats.Stats(self).strip_dirs().sort_stats(sort).print_stats()
+  File "/usr/lib/python3.5/pstats.py", line 345, in print_stats
+    self.print_line(func)
+  File "/usr/lib/python3.5/pstats.py", line 433, in print_line
+    print(func_std_string(func), file=self.stream)
+BrokenPipeError: [Errno 32] Broken pipe
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/usr/lib/python3.5/cProfile.py", line 160, in <module>
+    main()
+  File "/usr/lib/python3.5/cProfile.py", line 153, in main
+    runctx(code, globs, None, options.outfile, options.sort)
+  File "/usr/lib/python3.5/cProfile.py", line 20, in runctx
+    filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 68, in runctx
+    self._show(prof, filename, sort)
+  File "/usr/lib/python3.5/profile.py", line 74, in _show
+    prof.print_stats(sort)
+  File "/usr/lib/python3.5/cProfile.py", line 42, in print_stats
+    pstats.Stats(self).strip_dirs().sort_stats(sort).print_stats()
+  File "/usr/lib/python3.5/pstats.py", line 345, in print_stats
+    self.print_line(func)
+  File "/usr/lib/python3.5/pstats.py", line 427, in print_line
+    print(f8(tt/nc), end=' ', file=self.stream)
+BrokenPipeError: [Errno 32] Broken pipe
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 5 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 64.0
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
