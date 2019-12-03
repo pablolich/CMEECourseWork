@@ -1,5 +1,10 @@
 #!/bin/bash 
 
+if [ -z $1 ]
+then echo "Provide a document to compile!"
+     exit
+fi
+
 pdflatex $1.tex
 bibtex $1
 pdflatex $1.tex

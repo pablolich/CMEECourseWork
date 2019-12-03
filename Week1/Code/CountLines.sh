@@ -6,5 +6,12 @@
 # Arguments: 1-> txt file
 # Date: Oct 2019
 
+if [ -z $1 ]
+then echo "Provide an argument. Bye"
+     exit
+fi
+
 NumLines=`wc -l <  $1`
-echo -e "\nThe file $1 has \b$NumLines lines\n"
+NumLines=`echo ${NumLines}`
+A=`basename $1`
+echo -e "\nThe file ${A} has $NumLines lines\n"

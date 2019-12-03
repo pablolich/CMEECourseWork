@@ -5,7 +5,13 @@
 #Arguments: csv file
 #Date: Oct 2019
 
-echo -e "\nConverting $1 from csv to space separated file ($2)"
+if [ -z $1 ]
+then echo "Provide an argument"
+     exit
+fi
+name=`basename $1`
+name2=`basename $2`
+echo -e "\nConverting $name from csv to space separated file ($name2)"
 cat $1 | tr -s "," " " > $2 
 echo -e '\nDone!\n'
 head $2

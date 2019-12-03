@@ -4,6 +4,11 @@
 #Convert them into jpg files
 #Move them to the sandbox directory.
 
+if [ -z $1 ]
+then echo "Provide an argument"
+     exit
+fi
+
 for f in $1*.tiff 
     do
 	echo "Converting $f";
