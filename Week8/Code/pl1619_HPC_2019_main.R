@@ -559,6 +559,7 @@ draw_fern <- function()  {
 fern2 <- function(start_position, direction, length, dir = 1)  {
   end = turtle(start_position, direction, length)
   if (length>0.02){
+    browser()
     fern2(start_position = end, direction + dir*pi/6, length= 0.38*length, dir)
     fern2(start_position = end, direction , length= 0.87*length, dir*-1)
   }
