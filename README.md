@@ -13,8 +13,6 @@
 	- Biological computing in Python I
 
 
-Author
-
 *Pablo Lechon (plechon@ucm.es)*
 
 
