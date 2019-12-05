@@ -1,14 +1,14 @@
 # Computational Methods in Ecology and Evolution (CMEE) MSc
 
 
-## WEEK 1
+## Week 1
 
 	- Unix
 	- Shell scripting
 	- Version control with Git
 	- Scientific documents with LaTeX
 
-## WEEK 2 
+## Week 2 
 
 	- Biological computing in Python I
 
