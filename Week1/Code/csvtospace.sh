@@ -6,7 +6,7 @@
 #Date: Oct 2019
 
 if [ -z $1 ]
-then echo "Provide an argument"
+then echo "Provide 2 arguments"
      exit
 fi
 name=`basename $1`

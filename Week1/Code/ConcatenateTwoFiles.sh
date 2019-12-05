@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z $1 ]
-then echo "Provide argumens"
+then echo "Provide 3 arguments"
      exit
 fi
 

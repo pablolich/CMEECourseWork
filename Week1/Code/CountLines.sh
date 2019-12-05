@@ -7,7 +7,7 @@
 # Date: Oct 2019
 
 if [ -z $1 ]
-then echo "Provide an argument. Bye"
+then echo "Provide an argument."
      exit
 fi
 

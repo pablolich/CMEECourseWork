@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 # Author: Pablo Lechon pl1619@ic.ac.uk
 # Script: variables.sh
 # Desc: trying variables in bash
