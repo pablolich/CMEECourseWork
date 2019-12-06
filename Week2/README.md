@@ -1,8 +1,8 @@
-WEEK 2 README
+# WEEK 2 README
 
 This folder contains three subfolders: Data, were we store the data used in our code; Code, were we have the writen code; and Sandbox, were we store everything that is not Data or Code.
 
-FILES INSIDE CODE
+## FILES INSIDE CODE
 
 
 1. align_seqs.py: Calculates the best alignment between 2 genomes
