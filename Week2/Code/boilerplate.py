@@ -3,10 +3,10 @@
 '''Description of this program or aplication. 
 You can use several lines'''
 
-__appname__ = '[application name here]'
-__author__ = 'Your Name (your@email.address)'
+__appname__ = '[boilerplate.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
-__license__ = 'License for theis code/program'
+__license__ = 'None'
 
 ## imports ##
 import sys #module to interface our program with the operating system
@@ -23,5 +23,5 @@ def main(argv):
 if __name__ == '__main__':
    'Makes sure the main function is called from command line'
    status = main(sys.argv)
-   sys.exit('I am exiting right now!')
+   sys.exit(status)
     

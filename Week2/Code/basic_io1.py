@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
+'''Open a file for reading'''
+
 #############################
 # FILE INPUT
 #############################
-# Open a file for reading
-f = open('../sandbox/test.txt', 'r')
+f = open('../Sandbox/test.txt', 'r')
 # use "implicit" for loop:
 # if the object is a file, python will cycle over lines
 for line in f:
@@ -12,7 +15,7 @@ for line in f:
 f.close()
 
 # Same example, skip blank lines
-f = open('../sandbox/test.txt', 'r')
+f = open('../Sandbox/test.txt', 'r')
 if len(line.strip()) > 0:
     for line in f:
         print(line)

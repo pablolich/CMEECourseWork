@@ -123,8 +123,9 @@ def auto_corretor(actual, attempt, tol):
 
 def main(argv): 
     '''Main function'''
-    f = open('../data/TestOaksData.csv','r')
-    g = open('../data/JustOaksData.csv','w')
+
+    f = open('../Data/TestOaksData.csv','r')
+    g = open('../Data/JustOaksData.csv','w')
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
     next(taxa, None) #Skip the headers

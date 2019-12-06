@@ -86,7 +86,7 @@ def main(argv):
         if not all(seq): 
             mask = [bool(i) for i in seq]
             seq = mask_list(seq, mask)
-            warnings.warn('Empty elements of the array have been removed') 
+            print('Empty elements of the array have been removed') 
 
         seq1 = seq[0]
         seq2 = seq[1]

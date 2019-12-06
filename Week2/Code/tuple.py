@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''In this script we print the information of each species contained in the
 tuple in one output block per species'''
 

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 '''Some functions exemplifying the use of control statements'''
+
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your docstirngs at the run time. 
 
-__author__ = 'Your Name (your@email.address)'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
 ## imports ##

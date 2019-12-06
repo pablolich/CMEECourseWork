@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+
+'''Comparing list comprehension with normal loops'''
+
 taxa = ['Quercus robur' ,
         'Fraxinus excelsior' ,
         'Pinus sylvestris' ,

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+
+'''Learning how to use __name__ = "_main__"'''
+
 #Filename: using_name.py
 
 if __name__ == '__main__':

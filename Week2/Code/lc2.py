@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 '''This script extends on the work of lc1.py, but this time, working with 
 tuples
 '''

@@ -21,7 +21,6 @@ from align_seqs import calculate_score, mask_list, sort_seq, save_out
 ## FUNCTIONS ##
 
 def non_valid_character_detector(genome):
-    import ipdb; ipdb.set_trace(context = 20)
     '''Delete empty lines and lines that are not part of the genome'''
     #Delete empty list elements if they exist
     if not all(genome):

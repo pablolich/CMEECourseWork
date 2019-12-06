@@ -18,7 +18,10 @@
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args) == 0){
-	stop("One argument must be supplied (input file)")
+	name = '../Data/trees.csv'
+} else {
+  #load dataT
+  name = args[1]
 }
 
 #Functions
@@ -30,15 +33,8 @@ TreeHeight <- function(degrees, distance){
   return(height)
 }
 
-loaddata = function(name){
-  return(read.csv(paste('../Data/', name, sep = '')))
-}
-
 #Code
-
-#load dataT
-name = args[1]
-trees = loaddata(name)
+trees = read.csv(name)
 
 #Vectorized version
 height <- TreeHeight(trees$Distance.m, trees$Angle.degrees)
@@ -51,7 +47,7 @@ TreeHts <- data.frame('Species' = trees$Species,
 
 #Save to csv
 #strsplit is getting rid of the .csv extension
+namesplit = sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(name))
 write.csv(TreeHts, 
-          paste('../Results/', strsplit(name, '.csv')[[1]], 
-		'_treeheights.csv', sep = ''),
-          row.names = F, quote = F) #To write strings without quotes
+          paste('../Results/', namesplit, '_treeheights.csv', sep = ''),
+          row.names = F, quote = F)#To write strings without quotes

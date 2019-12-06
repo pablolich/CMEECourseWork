@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 '''This script has two parts, the first part writes three separate lists
 containing each subelement of the elements in the list birds using list 
 comprehensions. The second part does the same thing using normal for loops'''
