@@ -7,7 +7,7 @@
     1. FASTA exercise (`UnixPrac1.txt`)
 2. Shell scripting (`boilerplate.sh`, `tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`
 3. Version control with Git
-4. Scientific documents with LaTeX
+4. Scientific documents with LaTeX (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
 
 ## Week 2 
 
