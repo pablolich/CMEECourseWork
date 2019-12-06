@@ -1,4 +1,4 @@
-# WEEK 3 README
+# WEEK 7 README
 
 This folder contains four subfolders: Data, were we store the data used in our code;
 Code, were we have the writen code; Sandbox, were we store everything that is not
