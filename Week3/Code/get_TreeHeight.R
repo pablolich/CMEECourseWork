@@ -20,7 +20,6 @@ args = commandArgs(trailingOnly=TRUE)
 if (length(args) == 0){
 	name = '../Data/trees.csv'
 } else {
-  #load dataT
   name = args[1]
 }
 

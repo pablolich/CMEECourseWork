@@ -4,8 +4,9 @@
 #made to all the possible convinations of lifestage-feeding type
 
 rm(list = ls())
+options(warn = -1)
 
-MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
+MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
 attach(MyDF)
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')

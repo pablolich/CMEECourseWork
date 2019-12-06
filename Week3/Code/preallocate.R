@@ -13,11 +13,11 @@ nonpre<- function(){
 
 #Preallocating the memory
 
-a <- rep(NA, 10)
+b <- rep(NA, 10)
 	pre <- function(){
 	for (i in 1:10) {
-		a[i] <- i
-		print(a)
+		b[i] <- i
+		print(b)
 		print(object.size(a))
 	}
 }

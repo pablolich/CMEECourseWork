@@ -8,7 +8,7 @@
 ########################################################################################
 
 rm(list = ls())
-setwd(paste("~/Desktop/Imperial/CMEECourseWork/Week3/Code/", sep = ''))
+options(warn = -1)
 load('../Data/KeyWestAnnualMeanTemperature.RData', envir = globalenv())
 set.seed(44434862)
 

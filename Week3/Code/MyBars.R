@@ -1,13 +1,14 @@
 #!/usr/bin/env R 
 
 #Commands for anotating in plots with ggplot
+options(warn = -1)
 
 a <- read.table("../Data/Results.txt", header = TRUE)
 head(a)
 
 a$ymin <- rep(0, dim(a)[1]) # append a column of zeros
 
-require(ggplot2)
+library(ggplot2)
 
 # Print the first linerange
 p <- ggplot(a)

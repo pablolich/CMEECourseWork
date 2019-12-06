@@ -3,7 +3,7 @@
 '''Calculate height of trees from an csv input file with the name of the tree, 
 its degrees of inclination, and the distance to it'''
 
-__appname__ = '[App_name_here]'
+__appname__ = '[get_TreeHeight.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
@@ -17,6 +17,14 @@ from math import pi, tan
 
 
 ## FUNCTIONS ##
+def default_args():
+    if len(sys.argv) == 1:
+        #No arguments provided
+        name = '../Data/trees.csv' 
+    else:
+        #Argument provided
+        name = sys.argv[1]
+    return name
 
 def tree_height(degrees, distance):
     '''Calculate tree height based on the degrees and the distance to tree
@@ -65,8 +73,11 @@ def str2float(_list, column):
 
 def main(argv):
     '''Main function'''
+
+    #set name based on user's input
+    name = default_args()
     #load data and massage it a little
-    with open('../Data/' + sys.argv[1]) as trees_csv:
+    with open(name) as trees_csv:
         trees = trees_csv.readlines()
         #delete '\n' at the end of lines
         trees_rm = [i.replace('\n', '').replace('"', '') for i in trees]
@@ -89,9 +100,9 @@ def main(argv):
         save_trees_rmh_sp_float = [header + ['Height']] + trees_rmh_sp_float
         #Save to a csv file
         #Get the name of the input file without the csv extension
-        name = sys.argv[1].split('/')[-1].split('.')[0]
+        namesplit = name.split('/')[-1].split('.')[0]
         #create a file with the desired name and save our file to there
-        with open('../Results/' + name + '_treeheights.csv', 'w') as csvfile:
+        with open('../Results/' + namesplit + '_treeheights_py.csv', 'w')  as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(save_trees_rmh_sp_float)
 

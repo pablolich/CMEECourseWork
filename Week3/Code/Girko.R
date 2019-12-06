@@ -2,7 +2,7 @@
 
 #A demonstration of Girkos's law
 
-require(ggplot2)
+library(ggplot2)
 
 build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
   npoints = 250

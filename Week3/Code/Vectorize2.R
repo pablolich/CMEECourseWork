@@ -49,12 +49,13 @@ stochrickvect<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100) 
 
 stochrickvectlapply<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100 ){ 
   #Assign the first population to the first row of the matrix.
+  N[1,]<-p0
+  N<-matrix(NA, numyears, length(p0))
   return(N[yr-1,]*exp(r*(1-N[yr-1,]/K)+rnorm(length(p0),0,sigma)))
 }
 
-N[1,]<-p0
-N<-matrix(NA,numyears,length(p0))
-lapply(N, 1, stochrickvectapply())
+
+
 
 
 #Check times

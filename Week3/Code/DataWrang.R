@@ -3,14 +3,15 @@
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################
-require(reshape2)
+library(reshape2)
+options(warn = -1)
 
 ############# Load the dataset ###############
 # header = FALSE because the raw data don't have real headers
-MyData <- as.matrix(read.csv("../data/PoundHillData.csv",header = F), stringsAsFactors = F) 
+MyData <- as.matrix(read.csv("../Data/PoundHillData.csv",header = F), stringsAsFactors = F) 
 
 # header = true because we do have metadata headers
-MyMetaData <- read.csv("../data/PoundHillMetaData.csv",header = T, sep=";", stringsAsFactors = F)
+MyMetaData <- read.csv("../Data/PoundHillMetaData.csv",header = T, sep=";", stringsAsFactors = F)
 
 MyData[MyData == ""] = 0
 MyData <- t(MyData) 

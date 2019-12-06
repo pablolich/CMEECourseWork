@@ -2,8 +2,9 @@
 
 #Extention of PP_Regress.R. This time, the groups are made attending also to the location of the
 #species.
+options(warn = -1)
 
-MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
+MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')
 MyDF$Prey.mass[ind] = MyDF$Prey.mass[ind]/1000
@@ -16,8 +17,8 @@ new_df = data.frame('lifestage.feeding.location' = paste(MyDF$Predator.lifestage
                     'prey.mass' = MyDF$Prey.mass, 
                     'predator.mass' = MyDF$Predator.mass)
 
-require(plyr)
-require(broom)
+library(plyr)
+library(broom)
 table = ddply(new_df, .(lifestage.feeding.location), summarize,
               intercept = lm(log10(predator.mass)~log10(prey.mass))$coef[1],
               slope = lm(log10(predator.mass)~log10(prey.mass))$coef[2], 

@@ -39,4 +39,3 @@ TreeHts <- data.frame('Species' = trees$Species, 'Distance.m' = trees$Distance.m
 #Save to csv
 write.csv(TreeHts, '../Results/TreeHts.csv', row.names = F)
 
-

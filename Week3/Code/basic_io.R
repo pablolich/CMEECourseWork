@@ -5,6 +5,8 @@
 
 # Run line by line and check inputs outputs to understand what is happening  
 
+options(warn = -1)
+
 MyData <- read.csv("../Data/trees.csv", header = TRUE) # import with headers
 
 write.csv(MyData, "../Results/MyData.csv") #write it out as a new file

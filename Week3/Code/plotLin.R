@@ -2,7 +2,7 @@
 
 #Annotating in plots with ggplot2
 
-require(ggplot2)
+library(ggplot2)
 
 x <- seq(0, 100, by = 0.1)
 y <- -4. + 0.25 * x +
