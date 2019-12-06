@@ -10,7 +10,7 @@
 2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
 ### Version control with Git
 ### Scientific documents with LaTeX 
-`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
 
 ## Week 2 
 
