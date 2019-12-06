@@ -55,7 +55,7 @@
 ### High Performance Computing (HPC)
 ## Week 9
 ### Biological Data Structures and C
-##mini_project
+## mini_project
     
 
 
