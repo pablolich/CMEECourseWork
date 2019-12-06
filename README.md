@@ -46,10 +46,15 @@
 ## Week 6
 ### Genomics and Bioinformatics
 ## Week 7
-###Biological Computing in Python II
+### Biological Computing in Python II
 1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
 2. Networks in Python (`DrawFW.py`)
 3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
 
+    
 
 *Pablo Lechon (plechon@ucm.es)*
