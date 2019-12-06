@@ -1,4 +1,4 @@
-library(igraph) # Load the igraph package
+library(igraph,warn.conflicts = F, quietly = F) # Load the igraph package
 
 rm(list = ls())
 

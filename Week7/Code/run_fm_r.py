@@ -29,8 +29,6 @@ def main(argv):
         print('Unsuccesful run:')
         print(open('../Results/TestR.Rout').read())
 
-
-
     return 0
 
 ## CODE ##

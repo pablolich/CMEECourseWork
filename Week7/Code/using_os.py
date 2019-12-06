@@ -41,7 +41,8 @@ files_C = [i for i in l_files_ if i.startswith('C')]
 
 #Join lists
 DirFiles_C = dir_C + files_C
-np.savetxt('../Results/listC.csv', DirFiles_C, fmt = '%s')
+print('Directories and Files that start with C\n')
+print(DirFiles_C, '\n')
 #################################
 # Get files and directories in your home/ that start with either an 
 # upper or lower case 'C'
@@ -54,11 +55,13 @@ files_C_c = [i for i in l_files_ if i.lower().startswith('c')]
 
 #Join lists
 DirFiles_C_c = dir_C_c + files_C_c
-np.savetxt('../Results/listC_c.csv', DirFiles_C_c, fmt = '%s')
+print('Directories and Files that start with C or c\n')
+print(DirFiles_C_c, '\n')
 #################################
 # Get only directories in your home/ that start with either an upper or 
 #~lower case 'C' 
 
 # Type your code here:
 Dir_C_c = dir_C_c
-np.savetxt('../Results/listdirC_c.csv', Dir_C_c, fmt = '%s')
+print('Directories that start with C or c\n')
+print(Dir_C_c, '\n')

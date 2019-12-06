@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#Draw network from class notes.
+'''Draw network from class notes.'''
 
 __appname__ = '[DrawFW.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
@@ -12,9 +12,10 @@ import sys
 import networkx as nx
 import scipy as sc
 import matplotlib.pyplot as p
+import warnings
+warnings.filterwarnings("ignore")
 
 ## CONSTANTS ##
-
 
 ## FUNCTIONS ##
 def GenRdmAdjList(N = 2, C = 0.5):
@@ -34,7 +35,6 @@ def main(argv):
     '''Main function'''
     MaxN = 30
     C = 0.75
-    import ipdb; ipdb.set_trace(context = 20t0)
     AdjL = sc.array(GenRdmAdjList(MaxN, C))
     Sps = sc.unique(AdjL)
     pos = nx.circular_layout(Sps)

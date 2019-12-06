@@ -34,6 +34,7 @@ def discrete_r(R, C):
     return R * (1 + r * (1 - R/K) - a * C) 
 
 def discrete_c(R, C):
+    '''Calculates next step of the function'''
     return C * (1 - z + e * a * R)
 
 def main(argv):

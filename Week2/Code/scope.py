@@ -12,6 +12,7 @@ if  _a_global >=5:
     _b_global = _a_global + 5 #also a global variable
 
 def a_function():
+    '''Testing scope of variables'''
     _a_global = 5 #a local variable
 
     if _a_global >= 5:
@@ -36,6 +37,7 @@ print("Outside the function, the value of _b_global is ", _b_global,'\n')
 _a_global = 10
 
 def a_function():
+    '''Testing scope of variables'''
     _a_local = 4
 
     print("Example 2:")
@@ -56,6 +58,7 @@ print('Example 3:')
 print("Outside the function, the value of _a_global is ", _a_global)
 
 def a_function():
+    '''Testing scope of variables'''
     global _a_global
     _a_global = 5
     _a_local = 4
@@ -75,9 +78,11 @@ _a_function2 results in changing the value of _a_global in the main workspace
 / namespace to 20, but within the scope of _a_function it remained 10'''
 
 def a_function():
+    '''Testing scope of variables'''
     _a_global = 10
 
     def _a_function2():
+        '''Testing scope of variables'''
         global _a_global
         _a_global = 20
 
@@ -100,8 +105,10 @@ locsl within the scope of _a_function, but is inherited from the main scope
 
 
 def a_function():
+    '''Testing scope of variables'''
 
     def _a_function2():
+        '''Testing scope of variables'''
         global _a_global
         _a_global = 20
 

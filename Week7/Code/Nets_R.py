@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#Reproduction of the R network plot with python
+'''Reproduction of the R network plot with python'''
 
 __appname__ = '[Nets_R.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
@@ -15,6 +15,8 @@ import pandas as pd
 import matplotlib.pylab as p
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
+import warnings
+warnings.filterwarnings("ignore")
 
 ## CONSTANTS ##
 

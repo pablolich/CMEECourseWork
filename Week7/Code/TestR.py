@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 
 
-#Calling R from python
+'''Calling R from python'''
 
 import subprocess
 

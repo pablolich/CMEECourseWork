@@ -38,6 +38,7 @@ RC0 = sc.array([R0, C0])    ## FUNCTIONS ##
 t = sc.linspace(0, 80, 1000)
 
 def dCR_dt(pops, t=0):
+    '''Model'''
     R = pops[0]
     C = pops[1]
     dRdt = r * R*(1-R/K) - a * R * C
@@ -49,6 +50,8 @@ def dCR_dt(pops, t=0):
 def main(argv):
     '''Main function'''
     pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
+    print('Final population values:\nResource:', int(pops[-1,0]),
+            '\nConsumer:', int(pops[-1,1]))
     f1 = p.figure()
     f1.set_size_inches(8.27, 11.69)#A4 paper
     p.subplot(2,1,1)

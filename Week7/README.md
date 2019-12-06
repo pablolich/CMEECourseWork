@@ -16,14 +16,12 @@ Data or Code; and Results, where all the results of our code go to.
 9. `TestR.py` - Calling R files from python9 
 10. `blackbirds.py` - Regex exercise
 11. `fmr.R` - Auxiliary R file to be called from python
-12. `networks.py` - Function to generate an adjacent list
-13. `profileme.py` - Auxiliary function that will be profiled
-14. `profileme2.py` - Auxiliary function to be profiled
-15. `regex.py` - Regex practice
-16. `run_LV.sh` - Runing LV1 and LV2 with the profiling option on, Save results to profiling.txt
-17. `run_fm_r.py` - Run an .R file from python and print in screen the R console output, as well as wether the run was succesful or not
-18. `sympy.ipynb` - Python notebook on symbolic calculus
-19. `using_os.py` - Find directories and files that satisfy certain conditions using subprocess
+12. `profileme.py` - Auxiliary function that will be profiled
+13. `profileme2.py` - Auxiliary function to be profiled
+14. `regex.py` - Regex practice
+15. `run_LV.sh` - Runing LV1 and LV2 with the profiling option on, Save results to profiling.txt
+16. `run_fm_r.py` - Run an .R file from python and print in screen the R console output, as well as wether the run was succesful or not
+17. `using_os.py` - Find directories and files that satisfy certain conditions using subprocess
 
 ## Data
 1. `NagyEtAl1999.csv` - Data containing information of metabolic rate and body mass
@@ -31,4 +29,6 @@ Data or Code; and Results, where all the results of our code go to.
 3. `QMEE_Net_Mat_edges.csv` - Information on the edges of ICL colaborations with other entities
 4. `blackbirds.txt` - Data containing information on species, kingdom, phylum of birds.
 
+## Sandbox
+1. `sympy.ipynb` - Python notebook on symbolic calculus
 
