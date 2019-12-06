@@ -19,7 +19,7 @@ python3 -m cProfile LV4.py >> file4.txt &&
 rm file1.txt file2.txt file3.txt file4.txt
 
 #Print results to screen
-cat ../Results/profiling.txt
+sed 's/^[ \t]*//;s/[ \t]*$/ /' < ../results/profiling.txt | sed '$!N;s/\n//'
 
 #We can select a more discrete time vector so that there are less integration
 #steps. The answer will be qualitatively equal, except for it will be a bit

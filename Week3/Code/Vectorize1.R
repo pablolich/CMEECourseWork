@@ -15,8 +15,10 @@ SumAllElements <- function(M){
   return (Tot)
 }
  
-print("Using loops, the time taken is:")
-print(system.time(SumAllElements(M)))
+time1 = as.numeric(system.time(res2<-SumAllElements(M))[3])
+time1_f = format(round(time1, 4), nsmall = 4)
+time2 = as.numeric(system.time(res2<-sum(M))[3])
+time2_f = format(round(time2, 4), nsmall = 4)
+cat(' -------------  -----------|------------', '\n')
+cat(" Vectorize1.R  |", time1, '\t\t', time2, ' |\n')
 
-print("Using the in-built vectorized function, the time taken is:")
-print(system.time(sum(M)))

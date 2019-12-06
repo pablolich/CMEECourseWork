@@ -1,7 +1,5 @@
-#!/bin/bash 
-
 #Author: Pablo Lechon Alonso (plechon@ucm.es)
-#Script: UnixPrac1.sh
+#Script: UnixPrac1.txt
 #Desc: Fasta exercise
 #Arguments: None
 #Date: Oct 2019

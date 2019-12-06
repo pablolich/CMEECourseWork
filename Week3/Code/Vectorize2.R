@@ -47,19 +47,11 @@ stochrickvect<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100) 
 }
 
 
-stochrickvectlapply<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100 ){ 
-  #Assign the first population to the first row of the matrix.
-  N[1,]<-p0
-  N<-matrix(NA, numyears, length(p0))
-  return(N[yr-1,]*exp(r*(1-N[yr-1,]/K)+rnorm(length(p0),0,sigma)))
-}
-
-
-
-
-
 #Check times
-print("Vectorized Stochastic Ricker takes:")
-print(system.time(res2<-stochrick()))
-print("Vectorized Stochastic Ricker takes:")
-print(system.time(res2<-stochrickvect()))
+
+time1 = as.numeric(system.time(res2<-stochrick())[3])
+time1_f = format(round(time1, 4), nsmall = 4)
+time2 = as.numeric(system.time(res2<-stochrickvect())[3])
+time2_f = format(round(time2, 4), nsmall = 4)
+cat(" Vectorize2.R  |", time1, '\t\t', time2, ' |\n')
+cat('                -----------|------------', '\n')

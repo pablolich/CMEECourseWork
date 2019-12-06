@@ -17,6 +17,7 @@ pdflatex $1.tex
 #otherwise we will also get the hidden directories. Once we have them
 #we delete with -delete
 
+rm -f textput.log
 mkdir -p compiled && mv $1.* compiled/ 
 find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
 mv ./compiled/* . && rmdir compiled
