@@ -4,7 +4,7 @@ This folder contains three subfolders: Data, were we store the data used in our 
 Code, were we have the writen code; and Sandbox, were we store everything that is not
 Data or Code.
 
-## Files inside Code
+## Code
 
 1. `CompileLaTeX.sh`: Compiles the tex file given as an input
 2. `ConcatenateTwoFiles.sh`: Merges two input files togehter into a third file

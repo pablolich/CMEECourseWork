@@ -4,7 +4,7 @@ This folder contains three subfolders: Data, were we store the data used in our 
 Code, were we have the writen code; Sandbox, were we store everything that is not
 Data or Code; and Results, where all the results of our code go to.
 
-## Files inside Code folder
+## Code
 
 1. `DataWrang.R`: Wranlging Data in R
 2. `DataWrangTidi.R`: Wrangling Data with the packages dplyr and tidyr
