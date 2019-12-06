@@ -4,9 +4,10 @@
 ## Week 1
 
 ### Unix
-1. FASTA exercise (`UnixPrac1.txt`)
+1. Practicals (`UnixPrac1.txt`)
 ### Shell scripting 
-`boilerplate.sh`, `tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
 ### Version control with Git
 ### Scientific documents with LaTeX 
 `FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`
