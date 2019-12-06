@@ -49,12 +49,16 @@ void tree_read_anc_table(int *anctable, tree_t* t)
     //Loop over all elements of anctable
     //at each postioion link that node to its ancestor
     for (i = 0; i < t->num_nodes; ++i) {
-	t->nodes[i].anc = &t->nodes[anctable[i]];
-	if (t->nodes[anctable[i]].left == NULL) {
-	    t->nodes[anctable[i]].left = &t->nodes[i];
+	j = anctable[i]; // this is index of the ancestor of ith node
+	
+	t->nodes[i].anc = &t->nodes[anctable[j]]; //Setting the ancestor
+	//Check if the position on theleft of the ancestor is NULL
+	if (t->nodes[anctable[i]].left == NULL) { 
+	    t->nodes[anctable[i]].left = &t->nodes[i];//The adress on that elemetn
 	}
 	else {
-	    t->nodes[anctable[i]].right = &t->nodes[i];
+	    t->nodes[anctable[i]].right = &t->nodes[i];//Otherwise, to the right
+
 	}
     }
 }

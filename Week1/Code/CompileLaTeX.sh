@@ -1,8 +1,14 @@
 #!/bin/bash 
 
+
 if [ -z $1 ]
 then echo "Provide a document to compile!"
      exit
+fi
+
+if [[ $1 == *".tex"* ]];
+then echo "Provide the name of the file without the extension"
+    exit
 fi
 
 pdflatex $1.tex
@@ -17,7 +23,7 @@ pdflatex $1.tex
 #otherwise we will also get the hidden directories. Once we have them
 #we delete with -delete
 
-rm -f textput.log
+rm -f texput.log
 mkdir -p compiled && mv $1.* compiled/ 
 find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
 mv ./compiled/* . && rmdir compiled

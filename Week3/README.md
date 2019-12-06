@@ -35,5 +35,8 @@ FILES INSIDE CODE FOLDER
 	27. run_get_TreeHeight.sh: Runs get_TreeHeight.R and get_TreeHeight.py with trees.csv as an example. Shows the results in the screen
 	28. sample.R: Showing how vectorized ways and tapply functions are faster than loops
 	29. try.R: Demonstrates how the try command works
+	30. Vectorize1.py: python version of Vectorize1.R
+	31. Vectorize2.py: python version of Vectorize2.R
+	32. run_vectorize.sh: bash script that compares the velocities of all the vectorize files.
 
 

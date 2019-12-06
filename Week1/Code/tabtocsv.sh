@@ -12,8 +12,8 @@ then echo "Provide an argument"
      exit
 fi
 
-if [[ $1 == *".txt"* ]];
-then echo "Provide the name of the file without the extension"
+if [[ $1 == *".txt"* ]] || [[ $1 == *".csv"* ]];
+then echo -e "\nProvide the name of the file without the extension"
     exit
 fi
 

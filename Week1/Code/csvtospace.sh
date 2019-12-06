@@ -5,7 +5,7 @@
 #Arguments: csv file
 #Date: Oct 2019
 
-if [ -z $1 ]
+if [ -z $1 ] || [ -z $2 ]
 then echo "Provide 2 arguments"
      exit
 fi

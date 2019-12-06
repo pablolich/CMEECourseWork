@@ -4,18 +4,30 @@
 # Desc: trying variables in bash
 # Date: Oct 2019
 
-#Shows the use of varables
-MyVar='some string'
-echo -e '\nthe current value of the variable is' $MyVar
-echo 'Please enter a new string'
+# Shows the use of variables
+MyVar="some string"
+echo "the current value of the variable is:" $MyVar
+echo "Please enter a new string"
 read MyVar
-echo 'the current value of the variable is' $MyVar
-echo
+
+if [ -z $MyVar ]
+then
+    echo -e "No input string provided...\n"
+else
+    echo "the current value of the variable is:" $MyVar
+fi
 
 ## Reading multiple values
-echo 'Enter two numbers separated by space(s)'
+echo -e "\nEnter two numbers separated by space(s)"
 read a b
-echo -e 'You entered' $a 'and' $b 
-echo -e 'Their sum is:' `expr $a + $b`
-echo
 
+if [ -z $a ] || [ -z $b ]
+then
+    echo "There were no input numbers provided..." 
+    echo "No calculation occured."
+    exit
+else
+    echo "you entered" $a "and" $b ". Their sum is:"
+    mysum=`expr $a + $b`
+    echo $mysum
+fi

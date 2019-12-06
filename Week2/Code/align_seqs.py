@@ -15,6 +15,7 @@ __version__ = '0.0.1'
 
 import warnings
 import sys
+import os
 
 ## CONSTANTS ##
 
@@ -86,7 +87,7 @@ def main(argv):
         if not all(seq): 
             mask = [bool(i) for i in seq]
             seq = mask_list(seq, mask)
-            print('Empty elements of the array have been removed') 
+            #print('Empty elements of the array have been removed') 
 
         seq1 = seq[0]
         seq2 = seq[1]
@@ -103,6 +104,12 @@ def main(argv):
             if z > my_best_score:
                 my_best_align = "." * i + s2 # think about what this is doing!
                 my_best_score = z 
+
+    #Delete out_*.txt files before creating new ones
+    try:
+        os.system('rm ../Results/out_*.txt')
+    except:
+        pass
 
     #Save output to txt files
     save_out(0,[my_best_align, s1, my_best_score])

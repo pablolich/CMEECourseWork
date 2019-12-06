@@ -69,6 +69,11 @@ def main(argv):
                 my_best_align = "." * i + s2 # think about what this is doing!
                 my_best_score = z 
 
+    #Delete out_*.txt files before creating new ones
+    try:
+        os.system('rm ../Results/out_*.txt')
+    except:
+        pass
     #Save the output to a txt file
     save_out(0, [my_best_align, s1, my_best_score])
 
