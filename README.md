@@ -14,19 +14,22 @@
 ## Week 2 
 
 ### Biological computing in Python I
-    1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
-    2. Running python scripts (`basic_csv.py`)
-    3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
-    4. Comprehensions (`oaks.py`)
-    5. Variable Scope (`scope.py`)
-    6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
-    8. Errors in your Python code (`control_flow.py`, `debugme.py`)
-    7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
 
 ## Week 3
 ### Biological Computing in R
-    1. Writing R code (`basic_io.R`)
-    2. 
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+5. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+6. Practicals ('TreeHight `Ricker.R, Vectorize1.py, `Vectorize2.py`, `run_Vectorize.sh`)
 
 
 
