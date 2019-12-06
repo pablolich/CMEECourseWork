@@ -18,24 +18,21 @@ import scipy.integrate as integrate
 import matplotlib.pylab as p
 
 ## CONSTANTS ##
-    
-if len(sys.argv) == 5:
+if len(sys.argv) ==5:
     r = float(sys.argv[1])
     a = float(sys.argv[2])
     z = float(sys.argv[3])
     e = float(sys.argv[4])
-    K = 50
+    K = 19
+
 else:
     r = 1.
     a = 0.1
     z = 0.5
     e = 0.7
-    K = 50
-
-R0 = 10
-C0 = 5
-RC0 = sc.array([R0, C0])    ## FUNCTIONS ##
-t = sc.linspace(0, 80, 1000)
+    K = 19
+    
+## FUNCTIONS ##
 
 def dCR_dt(pops, t=0):
     '''Model'''
@@ -46,9 +43,13 @@ def dCR_dt(pops, t=0):
 
     return sc.array([dRdt, dCdt])
 
-
 def main(argv):
     '''Main function'''
+    K = 50
+    R0 = 10
+    C0 = 5
+    RC0 = sc.array([R0, C0])    
+    t = sc.linspace(0, 80, 1000)
     pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
     print('Final population values:\nResource:', int(pops[-1,0]),
             '\nConsumer:', int(pops[-1,1]))
