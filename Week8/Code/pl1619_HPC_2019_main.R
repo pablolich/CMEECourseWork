@@ -58,10 +58,10 @@ neutral_time_series <- function(community,duration){
   #Performs a neutral theory simulation and return a time series of species richness in the system.
   
   #to account for the initial community richness:
-  richness = c(length(unique(community)),rep(NA, duration))
+  richness = c(species_richness(community),rep(NA, duration))
   for (i in seq(2,duration + 1)){
     community = neutral_generation(community)
-    richness[i] = length(unique(community))
+    richness[i] = species_richness(community)
   }
   return(richness)
 }
@@ -137,10 +137,10 @@ neutral_time_series_speciation <- function(community,speciation_rate,duration)  
   #with speciation rate non-zero.
   
   #to account for the initial community richness:
-  richness = c(length(unique(community)),rep(NA, duration))
+  richness = c(species_richness(community),rep(NA, duration))
   for (i in seq(2,duration + 1)){
     community = neutral_generation_speciation(community, speciation_rate)
-    richness[i] = length(unique(community))
+    richness[i] = species_richness(community)
   }
   return(richness)
 }
@@ -579,15 +579,150 @@ draw_fern2 <- function()  {
 # Challenge questions - these are optional, substantially harder, and a maximum of 16% is available for doing them.  
 
 # Challenge question A
-Challenge_A <- function() {
+Challenge_A <- function(speciation_rate = 0.1, size = 100, n_sim = 100, 
+                        duration = 36, rec = 3, conf = 0.972){
   # clear any existing graphs and plot your graph within the R window
-}
+  graphics.off()
+  richness_max = matrix(data = 0,  ncol = 1 + floor(duration/rec), nrow = n_sim)
+  richness_min = matrix(data = 0,  ncol = 1 + floor(duration/rec), nrow = n_sim)
+  sim = 1
+  while (sim <= n_sim){
+    #Calculate initial values for each simulation
+    community_max= init_community_max(size)
+    community_min= init_community_min(size)
+    richness_max[sim,1] = richness_max[sim,1] + species_richness(community_max)
+    richness_min[sim,1] = richness_min[sim,1] + species_richness(community_min)
+    for (i in seq(duration)){
+      community_max = neutral_generation_speciation(community_max, speciation_rate)
+      community_min = neutral_generation_speciation(community_min, speciation_rate)
+      if (i %% rec == 0) {
+        richness_max[sim, i/rec+1] = richness_max[sim, i/rec+1] + 
+          species_richness(community_max)
+        richness_min[sim, i/rec+1] = richness_min[sim, i/rec+1] + 
+          species_richness(community_min)
+      }
+    }
+    sim = sim + 1
+  }
+  z = qnorm(conf, mean = 0, sd = 1)
+  mean_richness_max = colMeans(richness_max)
+  err_max = apply(richness_max, 2, sd)*z/sqrt(nrow(richness_max))
+  mean_richness_min = colMeans(richness_min)
+  err_min = apply(richness_min, 2, sd)*z/sqrt(nrow(richness_min))
+  mean_richness = cbind(t(mean_richness_max), t(mean_richness_min))
+  err = cbind(t(err_max), t(err_min))
+  init = c(rep('max',floor(duration/rec)+1), 
+           rep('min',floor(duration/rec)+1))
+  
+  df = data.frame(gen = c(0,seq(rec,duration, rec)), 
+                  mean_richness = t(mean_richness),
+                  err = t(err), r_0 = init)
 
+  plt = ggplot(data=df, aes(x = gen, y = mean_richness, fill = r_0)) +
+    geom_bar(position = "identity", stat="identity") +
+    geom_errorbar(aes(ymin=mean_richness-err, ymax=mean_richness+err), 
+                  width = 0.5) +
+    theme(axis.title.x = element_text(size = 16, face = 'bold'),
+          axis.title.y = element_text(size = 16, face = 'bold'),
+          axis.text=element_text(size=14),
+          axis.text.y = element_text(margin = margin(r = 0)),
+          panel.grid.major = element_line(color = 'grey', size = 0.1), 
+          panel.grid.minor = element_blank(), 
+          panel.background = element_rect(fill = 'white'), 
+          legend.position = c(0.2, 0.8), 
+          legend.background = element_rect(fill=alpha('white', 0.4)), 
+          legend.title=element_text(size=16),
+          legend.text=element_text(size=16)) +
+    scale_y_continuous(expand = c(0,0)) +
+    scale_x_continuous(breaks = seq(0,36,6)) +
+    labs( x="t (generations)", y = "mean species richness")
+  
+  return(plt)
+}
+Challenge_A()
 # Challenge question B
-Challenge_B <- function() {
+Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim = 20) {
   # clear any existing graphs and plot your graph within the R window
-}
+  graphics.off()
+  init_richness =seq(from = 10, to = size, by = 10)
+  tot_lines = matrix(data = 0, nrow = duration + 1 , ncol = length(init_richness))
+  for (i in init_richness){
+    sim = 1
+    #Initialite the matrix of richness
+    richness = matrix(data = 0, nrow = duration + 1 , ncol = n_sim)
+    community = c(seq(i), sample(i, size-i, replace = T))
+    while (sim <= n_sim){
+      richness[,sim] = neutral_time_series_speciation(community = community, 
+                                                    speciation_rate = speciation_rate, 
+                                                    duration = duration)
+      sim = sim + 1
+    }
+    mean_richness = rowMeans(richness)
+    tot_lines[,i/10] = mean_richness
 
+  }
+  dat = melt(tot_lines)
+  p = ggplot(data = dat, aes(x = Var1, y = value, group = Var2)) +
+    geom_line(aes(color = Var2)) +
+    theme(axis.title.x = element_text(size = 16),
+          axis.title.y = element_text(size = 16),
+          axis.text=element_text(size=14),
+          axis.text.y = element_text(margin = margin(r = 0)),
+          panel.grid.major = element_line(color = 'grey', size = 0.1), 
+          panel.grid.minor = element_blank(), 
+          panel.background = element_rect(fill = 'white'), 
+          legend.position="none",
+          plot.title = element_text(size = 20, face = 'bold')) +
+    scale_y_continuous(breaks=seq(10,100,20)) +
+    scale_x_continuous(expand = c(0.05, 0.01)) +
+    scale_color_gradientn(colours = rainbow(11)) +
+    labs(title = 'Averaged species richness\nfor different initial conditions', 
+         x="t (generations)", y = "mean species richness")
+  
+  return(p)
+}
+Challenge_B()
+
+Challenge_B_alternative <- function(size = 100, speciation_rate = 0.1, duration = 36) {
+  # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  init_richness = seq(size)
+  #Initialite the matrix of richness
+  richness = matrix(data = 0, nrow = duration + 1, ncol = size)
+  for (i in init_richness){
+    #Select what species will be in my community
+    #species_identities = sample(size, i, replace = T)
+    #From those species, create a community with that richness
+    community = c(seq(i), sample(i, size-i, replace = T))
+    #Apply time series for each initial richness
+    richness[,i] = neutral_time_series_speciation(community = community, 
+                                                  speciation_rate = speciation_rate, 
+                                                  duration = duration)
+  }
+  mean_richness = rowMeans(richness)
+  x = rep(seq(dim(richness)[1]), dim(richness)[2] + 1)
+  lines = c(as.numeric(matrix(richness)), mean_richness)
+  group = rep((1:(dim(richness)[2]+1)), each = dim(richness)[1])
+  color = c(rep('grey', length(richness)),rep('green', length(mean_richness)))
+  size = c(rep(0.1, length(richness)),rep(0.7, length(mean_richness)))  
+  df = data.frame(x = x, y = lines, color = color, size = size, group = group)
+  
+  p = ggplot(data = df, aes( x = x, y = y, group = group)) +
+    geom_line(aes(color = color), size = size) +
+    scale_color_manual(values=c("black", "grey"))+
+    theme(axis.title.x = element_text(size = 16, face = 'bold'),
+          axis.title.y = element_text(size = 16, face = 'bold'),
+          axis.text=element_text(size=14),
+          axis.text.y = element_text(margin = margin(r = 0)),
+          panel.grid.major = element_line(color = 'grey', size = 0.1), 
+          panel.grid.minor = element_blank(), 
+          panel.background = element_rect(fill = 'white'), 
+          legend.position="none") +
+    scale_fill_discrete(name = "New Legend Title") +
+    labs( x="t (generations)", y = "species richness")
+  
+  return(p)
+}
 # Challenge question C
 Challenge_C <- function() {
   # clear any existing graphs and plot your graph within the R window
