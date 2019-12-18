@@ -2,6 +2,7 @@
 # you don't HAVE to use this but it will be very helpful.  If you opt to write everything yourself from scratch please ensure you use EXACTLY the same function and parameter names and beware that you may loose marks if it doesn't work properly because of not using the proforma.
 library(ggplot2)
 library(ggpubr)
+library(ggrepel)
 name <- "Pablo Lechon"
 preferred_name <- "Pablo"
 email <- "plechon@ucm.es"
@@ -309,6 +310,7 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interva
 # Question 20 
 process_cluster_results <- function()  {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
   list_files = list.files('.', pattern = 'result_')
   octaves_500 = rep(0,1); octaves_1000 = rep(0,1); octaves_2500 = rep(0,1); octaves_5000 = rep(0,1)
   #Counters for each size
@@ -366,7 +368,7 @@ process_cluster_results <- function()  {
   o_500  <- ggplot(data=df_500, aes(x, y=av_oct)) +
     geom_bar(stat="identity", fill = 'steelblue1')+
     theme_minimal()+
-    theme(#panel.grid.major = element_blank(), 
+    theme(panel.grid.major = element_blank(), 
       panel.grid.minor = element_blank(),
       axis.text=element_text(size=12)) + 
     labs(x = 'n', y = 'Richness') +
@@ -378,7 +380,7 @@ process_cluster_results <- function()  {
   o_1000  <- ggplot(data=df_1000, aes(x, y=av_oct)) +
     geom_bar(stat="identity", fill = 'steelblue2')+
     theme_minimal()+
-    theme(#panel.grid.major = element_blank(), 
+    theme(panel.grid.major = element_blank(), 
       panel.grid.minor = element_blank(),
       axis.text=element_text(size=12)) + 
     labs(x = 'n', y = 'Richness') +
@@ -390,7 +392,7 @@ process_cluster_results <- function()  {
   o_2500  <- ggplot(data=df_2500, aes(x, y=av_oct)) +
     geom_bar(stat="identity", fill = 'steelblue3')+
     theme_minimal()+
-    theme(#panel.grid.major = element_blank(), 
+    theme(panel.grid.major = element_blank(), 
       panel.grid.minor = element_blank(),
       axis.text=element_text(size=12)) + 
     labs(x = 'n', y = 'Richness') +
@@ -402,7 +404,7 @@ process_cluster_results <- function()  {
   o_5000  <- ggplot(data=df_5000, aes(x, y=av_oct)) +
     geom_bar(stat="identity", fill = 'steelblue4')+
     theme_minimal()+
-    theme(#panel.grid.major = element_blank(), 
+    theme(panel.grid.major = element_blank(), 
       panel.grid.minor = element_blank(),
       axis.text=element_text(size=12)) + 
     labs(x = 'n', y = 'Richness') +
@@ -447,7 +449,7 @@ question_22 <- function()  {
 }
 
 # Question 23
-chaos_game <- function()  {
+chaos_game <- function(it = 100000) {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   #Points
@@ -455,7 +457,7 @@ chaos_game <- function()  {
   init_points = matrix(x, nrow = length(x)/2, ncol = 2)
  
 #Generate dataframe with half movements towards randomly chosen principal points.
-  it = 100000
+  
   points = matrix(rep(0,2*it), nrow = it, ncol = 2)
   for (i in seq(it-1)){
     #Choose a point
@@ -559,7 +561,6 @@ draw_fern <- function()  {
 fern2 <- function(start_position, direction, length, dir = 1)  {
   end = turtle(start_position, direction, length)
   if (length>0.02){
-    browser()
     fern2(start_position = end, direction + dir*pi/6, length= 0.38*length, dir)
     fern2(start_position = end, direction , length= 0.87*length, dir*-1)
   }
@@ -639,7 +640,6 @@ Challenge_A <- function(speciation_rate = 0.1, size = 100, n_sim = 100,
   
   return(plt)
 }
-Challenge_A()
 # Challenge question B
 Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim = 20) {
   # clear any existing graphs and plot your graph within the R window
@@ -673,7 +673,7 @@ Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim 
           panel.background = element_rect(fill = 'white'), 
           legend.position="none",
           plot.title = element_text(size = 20, face = 'bold')) +
-    scale_y_continuous(breaks=seq(10,100,20)) +
+    scale_y_continuous(breaks=seq(10,100,30)) +
     scale_x_continuous(expand = c(0.05, 0.01)) +
     scale_color_gradientn(colours = rainbow(11)) +
     labs(title = 'Averaged species richness\nfor different initial conditions', 
@@ -681,7 +681,6 @@ Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim 
   
   return(p)
 }
-Challenge_B()
 
 Challenge_B_alternative <- function(size = 100, speciation_rate = 0.1, duration = 36) {
   # clear any existing graphs and plot your graph within the R window
@@ -723,12 +722,194 @@ Challenge_B_alternative <- function(size = 100, speciation_rate = 0.1, duration 
   
   return(p)
 }
+
+#Auxiliary functions for Challenge_C
+
+load_Challenge_C  = function(cut = 3000){
+  #Load rda files
+  list_files = list.files('.', pattern = 'result_')
+  #Preallocate richnes matrices
+  richness_500 = matrix(data = 0, nrow = length(list_files)/4, ncol = 4001)
+  richness_1000 = matrix(data = 0, nrow = length(list_files)/4, ncol = 8001)
+  richness_2500 = matrix(data = 0, nrow = length(list_files)/4, ncol = 20001)
+  richness_5000 = matrix(data = 0, nrow = length(list_files)/4, ncol = 40001)
+  #Create the 
+  j = 1; k = 1; l = 1; m = 1
+  for (i in list_files){ #iterates over the simulations
+    load(i)
+    if (length(community[[1]]) == 500){
+      richness_500[j,] = richness[[1]]
+      j = j + 1
+    } else if (length(community[[1]]) == 1000){
+      richness_1000[k,] = richness[[1]]
+      k = k + 1
+    } else if (length(community[[1]]) == 2500){
+      richness_2500[l,] = richness[[1]]
+      l = l + 1
+    } else {
+      richness_5000[m,] = richness[[1]]
+      m = m + 1
+    }
+  }
+  #Average and only get first 'cut' elements for plotting clarity
+  
+  richness_500_av = colMeans(richness_500)[1:cut]
+  richness_1000_av = colMeans(richness_1000)[1:cut]
+  richness_2500_av = colMeans(richness_2500)[1:cut]
+  richness_5000_av = colMeans(richness_5000)[1:cut]
+  #Load fitted models
+  curves = c(richness_500_av, richness_1000_av, 
+             richness_2500_av, richness_5000_av)
+  group = c(rep(0, length(richness_500_av)), rep(1, length(richness_1000_av)), 
+            rep(2, length(richness_2500_av)), rep(3, length(richness_5000_av)))
+  x = c(seq(length(richness_500_av)), seq(length(richness_1000_av)), 
+        seq(length(richness_2500_av)), seq(length(richness_5000_av)))
+  df = data.frame(x = x, curves = curves, group = group) 
+  
+  return(df)
+}
+
+fitting_Challenge_C = function(){
+  
+  df = load_Challenge_C()
+  
+  df_500 = subset(df, group == 0)
+  df_1000 = subset(df, group == 1)
+  df_2500 = subset(df, group == 2)
+  df_5000 = subset(df, group == 3)
+  
+  #Perform fitting
+  fitmodel_500 <- nls(curves ~ a * (1 - 1/(x^b)) ,
+                      data = df_500,
+                      start=list(a=11, b = 0.5),      
+                      trace=T)
+  
+  fitmodel_1000 = nls(curves ~ a * (1 - 1/(x^b)) ,
+                      data = df_1000,
+                      start=list(a=20, b=0.5),      
+                      trace=T)
+  
+  fitmodel_2500 = nls(curves ~ a * (1 - 1/(x^b)) ,
+                      data = df_2500,
+                      start=list(a=41, b=0.5),      
+                      trace=T)
+  
+  fitmodel_5000 = nls(curves ~ a * (1 - 1/(x^b)) ,
+                      data = df_5000,
+                      start=list(a=110, b=0.5),      
+                      trace=T)
+  
+  #Group models in one list for return
+  models = list(fitmodel_500, fitmodel_1000, 
+                fitmodel_2500, fitmodel_5000)
+  
+  return(models)
+}
+
+predictions = function(){
+  
+  models = fitting_Challenge_C()
+  #Get prediction for curves
+  curve_500 = predict(models[[1]])
+  curve_1000 = predict(models[[2]])
+  curve_2500 = predict(models[[3]])
+  curve_5000 = predict(models[[4]])
+  
+  #Create dataframe
+  curves_pred = c(curve_500, curve_1000, curve_2500, curve_5000)
+  x = c(seq(length(curve_500)), seq(length(curve_1000)), 
+        seq(length(curve_2500)), seq(length(curve_5000)))
+  group = c(rep(0, length(curve_500)), rep(1, length(curve_1000)), 
+            rep(2, length(curve_2500)), rep(3, length(curve_5000)))
+  
+  df_pred = data.frame(x = x, y = curves_pred, group = group)
+  
+  return(df_pred)
+}
+
+stable_state = function(b, p = 0.7){
+  return(1/(1-p)^(1/b))
+}
+
 # Challenge question C
 Challenge_C <- function() {
   # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  df = load_Challenge_C()
+  
+  #Load model predictions
+  df_pred = predictions()
+  
+  # #To determine where do they reach stable state, we impose that the y value must be
+  # #0.99*a, with a being the value of the asymptote of the function 
+  # #f(x) = a * (1 - 1/(x)^b)
+  # 
+  models = fitting_Challenge_C()
+  b = c()
+  for (i in seq(length(models))){
+    b = c(b,as.numeric(coef(models[[i]]))[2])
+  }
+  
+  vlines = stable_state(b)
+  df_lines = data.frame(vlines = vlines, 
+                        color = c("#FF0000FF", "#80FF00FF", 
+                                  "#8000FFFF", "#00FFFFFF"))
+  
+  p = ggplot(data = df, aes(x = x, y = curves, group = group, 
+                            color = as.factor(group) )) +
+    geom_line() +
+    
+    geom_line(data = df_pred, aes(x = x, y = y, group = group), color= 'black',
+              show.legend = F) +
+    
+    geom_vline(aes(xintercept = vlines),
+               color = c("#FF0000FF", "#80FF00FF", "#8000FFFF", "#00FFFFFF"),
+               linetype = "dashed",
+               size = 0.7,
+               data = df_lines,
+               show.legend = F) +
+    
+    theme(
+      plot.title = element_text(size = 20, face = 'bold'), 
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16),
+      axis.text=element_text(size=14),
+      axis.text.y = element_text(margin = margin(r = 0)),
+      panel.grid.major = element_line(color = 'grey', size = 0.1),
+      panel.grid.minor = element_blank(),
+      panel.background = element_rect(fill = 'white'),
+      legend.position = c(0.25, 0.7), 
+      legend.title = element_text(size = 18), 
+      legend.key = element_rect(colour = NA, fill = NA),
+      legend.text=element_text(size=12),
+      legend.key.size = unit(2,"line"),
+      legend.background = element_rect(fill = "transparent")) +
+      
+    scale_color_manual(name = "",
+                       values = c(rainbow(4)[1], rainbow(4)[2], 
+                                  rainbow(4)[3], rainbow(4)[4]),
+                       labels = c("L = 500", "L = 1000", 
+                                  "L = 2500", "L = 5000")) +
+    labs(title = 'Averaged species richness\nfor different sizes',
+         x="t (generations)", y = "mean species richness") +
+    
+    annotate('text', x=600, y=15, label = "paste(italic(t) [stable], \" = 121\")", 
+             parse = TRUE, color = rainbow(4)[1], fontface="bold", size = 5) +
+    
+    annotate('text', x=600, y=26, label = "paste(italic(t) [stable], \" = 306\")",
+             parse = TRUE, color = rainbow(4)[2], fontface="bold", size = 5) +
+    
+    annotate('text', x=1980, y=62, label ="paste(italic(t) [stable], \" = 1664\")",
+             parse = TRUE, color = rainbow(4)[3], fontface="bold", size = 5) +
+    
+    annotate('text', x=1980, y=120, label = "paste(italic(t) [stable], \" = 2208\")",
+             parse = TRUE, color = rainbow(4)[4], fontface="bold", size = 5)
+  
+ 
+  return(p)
 }
-
-# Challenge question D
+Challenge_C()
+#Challenge question D
 Challenge_D <- function() {
   # clear any existing graphs and plot your graph within the R window
   return("type your written answer here")
