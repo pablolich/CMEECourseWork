@@ -512,7 +512,7 @@ draw_spiral <- function()  {
   graphics.off()
   plot.new()
   plot.new()
-  plot.window(xlim=c(0,16), ylim=c(-5,10))
+  plot.window(xlim = c(0,16), ylim = c(-5,10))
   axis(1)
   axis(2)
   text = spiral(start_position = c(0,15), direction = 0, length = 10)
@@ -523,8 +523,8 @@ draw_spiral <- function()  {
 tree <- function(start_position, direction, length)  {
   end = turtle(start_position, direction, length)
   if (length>0.01){
-    tree(start_position = end, direction - pi/4 , length= 0.65*length)
-    tree(start_position = end, direction + pi/4 , length= 0.65*length)
+    tree(start_position = end, direction - pi/4 , length = 0.65*length)
+    tree(start_position = end, direction + pi/4 , length = 0.65*length)
     }
 }
 draw_tree <- function()  {
@@ -532,7 +532,7 @@ draw_tree <- function()  {
   graphics.off()
   plot.new()
   plot.new()
-  plot.window(xlim=c(0,10), ylim=c(0,10))
+  plot.window(xlim = c(0,10), ylim = c(0,10))
   axis(1)
   axis(2)
   tree(start_position = c(5,0), direction = pi/2, length = 3.5)
@@ -542,8 +542,8 @@ draw_tree <- function()  {
 fern <- function(start_position, direction, length)  {
   end = turtle(start_position, direction, length)
   if (length>0.02){
-    fern(start_position = end, direction + pi/4 , length= 0.38*length)
-    fern(start_position = end, direction , length= 0.87*length)
+    fern(start_position = end, direction + pi/4 , length = 0.38*length)
+    fern(start_position = end, direction , length = 0.87*length)
   }
 }
 draw_fern <- function()  {
@@ -551,18 +551,18 @@ draw_fern <- function()  {
   graphics.off()
   plot.new()
   plot.new()
-  plot.window(xlim=c(-5,5), ylim=c(0,18))
+  plot.window(xlim = c(-5,5), ylim = c(0,18))
   axis(1)
   axis(2)
   fern(start_position = c(0,0), direction = pi/2, length = 2)
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length, dir = 1)  {
+fern2 <- function(start_position, direction, length, e, dir = 1)  {
   end = turtle(start_position, direction, length)
-  if (length>0.02){
-    fern2(start_position = end, direction + dir*pi/6, length= 0.38*length, dir)
-    fern2(start_position = end, direction , length= 0.87*length, dir*-1)
+  if (length>e){
+    fern2(start_position = end, direction + dir*pi/6, length = 0.38*length, e, dir)
+    fern2(start_position = end, direction , length = 0.87*length, e, dir*-1)
   }
 }
 draw_fern2 <- function()  {
@@ -570,10 +570,10 @@ draw_fern2 <- function()  {
   graphics.off()
   plot.new()
   plot.new()
-  plot.window(xlim=c(-5,5), ylim=c(0,18))
+  plot.window(xlim = c(-5,5), ylim = c(0,18))
   axis(1)
   axis(2)
-  fern2(start_position = c(0,0), direction = pi/2, length = 2)
+  fern2(start_position = c(0,0), direction = pi/2, length = 2, e = 0.02)
 }
 
 
@@ -884,7 +884,7 @@ Challenge_C <- function() {
       legend.text=element_text(size=12),
       legend.key.size = unit(2,"line"),
       legend.background = element_rect(fill = "transparent")) +
-      
+    
     scale_color_manual(name = "",
                        values = c(rainbow(4)[1], rainbow(4)[2], 
                                   rainbow(4)[3], rainbow(4)[4]),
@@ -905,10 +905,10 @@ Challenge_C <- function() {
     annotate('text', x=1980, y=120, label = "paste(italic(t) [stable], \" = 2208\")",
              parse = TRUE, color = rainbow(4)[4], fontface="bold", size = 5)
   
- 
+  
   return(p)
 }
-Challenge_C()
+
 #Challenge question D
 Challenge_D <- function() {
   # clear any existing graphs and plot your graph within the R window
@@ -917,16 +917,87 @@ Challenge_D <- function() {
 
 # Challenge question E
 Challenge_E <- function() {
-  # clear any existing graphs and plot your graph within the R window
+ 
   return("type your written answer here")
 }
-
 # Challenge question F
+
+# Auxiliary functions for question F
+fern2_col <- function(start_position, direction, length, e, dir = 1)  {
+  #browser()
+  if (length > 5*e){
+    end = turtle_col(start_position, direction, length, col = '#D2691E')
+  }
+  else{
+    end = turtle_col(start_position, direction, length, col = terrain.colors(5)[sample(5,1)])
+  }
+  if (length > e){
+    fern2_col(start_position = end, direction + dir*pi/6, length = 0.38*length, e, dir)
+    fern2_col(start_position = end, direction , length = 0.87*length, e, dir*-1)
+  }
+}
+
+turtle_col <- function(start_position, direction, length, col)  {
+  #Calculate endpoint coordinates
+  Bx = length*cos(direction) + start_position[1]
+  By = length*sin(direction) + start_position[2]
+  segments(x0 = start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col = col)
+  
+  return(c(Bx,By)) # you should return your endpoint here.
+}
 Challenge_F <- function() {
   # clear any existing graphs and plot your graph within the R window
-  return("type your written answer here")
+  graphics.off()
+  
+  #Get plots for several lengths
+  it = seq(0.1, 0.02, length.out = 10)
+  nsim = 10
+  time.vec = matrix(data = 0, nrow = nsim, ncol = length(it) )
+  for (i in seq(nrow(time.vec))){
+    for (j in seq(ncol(time.vec))){
+      plot.new()
+      plot.window(xlim=c(-5,5), ylim=c(0,18))
+      axis(1)
+      axis(2)
+      start = Sys.time()
+      fern2(start_position = c(0,0), direction = pi/2, length = 2, e  = it[j])
+      end = Sys.time()
+      time.vec[i,j] = as.numeric(end-start)
+    }
+  }
+  
+  layout(matrix(c(1,1,2,3,4,5), 2, 3, byrow = TRUE), 
+         widths=c(1,1,1), heights=c(1,1))
+  #Draw the evolution of time with varying threshold length
+  median.time = apply(time.vec, 2, median)
+  #plot everything
+  x = rep(it, each = nrow(time.vec))
+  plot(x, as.vector(time.vec), 
+       col = rgb(red = .16, green = 0.160, blue = 0.160, alpha = 0.5), 
+       cex = 0.7, pch = 19,
+       xlab = 'Line size threshold', ylab = 'time (s)', 
+       ylim = c(0, 0.45), xlim = rev(range(x)))
+  points(it, median.time, pch = 19, col = 'red')
+  legend('topright', legend=c("Simulations", "Median"),
+         col=c("grey", "red"), pch = 19, cex = 1)
+  plot.new()
+  plot.window(xlim = c(-5,5), ylim = c(0,18))
+  axis(1)
+  axis(2)
+  fern2_col(start_position = c(0,0), direction = pi/2, length = 2, e = 0.003
+            )
+  plot_lengths = c(it[1], it[round(length(it)/2)], it[length(it)])
+  for (i in plot_lengths){
+    plot.new()
+    plot.window(xlim = c(-5,5), ylim = c(0,18))
+    axis(1)
+    axis(2)
+    title(main = paste('e = ', round(i, digits = 2)), cex = 1.5)
+    fern2(start_position = c(0,0), direction = pi/2, length = 2, e = i)
+  }
+  
+  return("The image produced is more ramified the smaller the line size threshold is. However, the time also increases as seen in the first graph.")
 }
-
 # Challenge question G should be written in a separate file that has no dependencies on any functions here.
 
 
