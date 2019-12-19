@@ -64,6 +64,7 @@ neutral_time_series <- function(community,duration){
     community = neutral_generation(community)
     richness[i] = species_richness(community)
   }
+  #Note that richness is a vector with length duration + 1 (initial richness)
   return(richness)
 }
 
@@ -84,15 +85,16 @@ question_8 <- function() {
           panel.grid.minor = element_blank(),
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
           axis.text=element_text(size=12),
-          axis.title=element_text(size=16)) + 
+          axis.title=element_text(size=16)) +
     labs(title = 'Time series of Neutral Model', x = 'Generations', y = 'Richness')
   print(p)
   
   return(cat('
-  In this graph we can see how the richness decreases with generations because 
-  after every generation some species go extinct, and others reproduce to occupy their positions.
-  The species that reproduce have more chances to reproduce in the next generation, so the stable
-  state of this system is that of one dominant species.
+  The system always converges to a stable state of 1 species.
+  After every generation, some species go extinct, and others reproduce to occupy their positions, 
+  decreasing the species richness decreases because the community vector now has repeated species labels.
+  Therefore, the stable state with one species is always reached because the function choose_two is more 
+  likely to chose a position occupied with a repeated species id.
              '))
 }
 
@@ -173,19 +175,20 @@ question_12 <- function() {
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
           axis.text=element_text(size=12),
           axis.title=element_text(size=16), 
-          legend.position = c(0.2,0.8),
-          legend.background = element_rect(linetype = 1, color = 'white', size = 0.2),
-          ) + 
+          legend.position = c(0.3,0.85),
+          legend.background = element_rect(linetype = 1, color = 'white', size = 0.2,),
+          legend.text=element_text(size=12),
+          legend.title=element_text(size=14)) + 
     labs(title = 'Time series of Neutral Model with speciation', x = 'Generations', y = 'Richness', 
          col = 'Initial Diversity') 
   print(p)
   
   return(cat('
-  In this graph we can see how the richness evolves with generations for two initial conditions; maximum
-  diversity (blue), and minimum diversity (red). Due to the existance ofa weak speciation, the satble state
-  is not a static, but a dynamic equilibrium state where the richness oscilates of both initial states
-  converges to a non-one average value. It is expected that if we increase the speciation rate, the 
-  average value will increase.
+  The stable state of this system is independent of the initial conditions. Due to the existence of 
+  weak speciation, the stable state is not static, but a dynamic equilibrium state where the richness of 
+  both initial states converges to a non-one average value. By adding a speciation rate term we are 
+  forcing the richness to be different than 1 in the stable state. It is expected that if we increase the 
+  speciation rate, the average value will increase.
              '))
 }
 
@@ -259,17 +262,21 @@ question_16 <- function()  {
           plot.title = element_text(hjust = 0.5, face = 'bold', size = 16),
           axis.text=element_text(size=12),
           axis.title=element_text(size=16), 
-          legend.position = c(0.73 ,0.825),
+          legend.position = c(0.73 ,0.9),
           legend.background = element_rect(color = NA, fill = alpha('white', 0)),
-          legend.spacing.y = unit(0.05, 'cm')) + 
+          legend.spacing.y = unit(0.05, 'cm'), 
+          legend.title = element_text(size = 14),
+          legend.text = element_text(size = 12)) + 
     labs(title = 'Species abundance octave vector', x = 'n', y = 'Richness', fill = 'Initial\nDiversity') +
     scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5), labels = c(0,1,2,3,4,5,6))
   print(p)
     
   
   return(cat("
-  When running our neutral model from both minimal and maximal initial diversities, we arrive in both cases
-  to an equilibrium in which one species dominates and the other ones are minoritary, but still exist.
+  Different initial conditions of the system lead to the same final octave vectors. This is due to the stable
+  state of the system being independent of the initial conditions, so the species distribution in the stable
+  state will inherit that property. This won't change for the octave vector of the stable state won't 
+  contradict this, since it is merely a rescaling on the x-axis.
              "))
   
 }
@@ -308,7 +315,7 @@ cluster_run <- function(speciation_rate, size, wall_time, interval_rich, interva
 # Questions 18 and 19 involve writing code elsewhere to run your simulations on the cluster
 
 # Question 20 
-process_cluster_results <- function()  {
+process_cluster_results <- function(print = T)  {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   list_files = list.files('.', pattern = 'result_')
@@ -364,7 +371,6 @@ process_cluster_results <- function()  {
   df_2500 = data.frame(x = seq(length(av_octave_2500)), av_oct = av_octave_2500)
   df_5000 = data.frame(x = seq(length(av_octave_5000)), av_oct = av_octave_5000)
   
-  
   o_500  <- ggplot(data=df_500, aes(x, y=av_oct)) +
     geom_bar(stat="identity", fill = 'steelblue1')+
     theme_minimal()+
@@ -412,16 +418,17 @@ process_cluster_results <- function()  {
                        labels = c(0,1,2,3,4,5,6,7,8,9, 10, 11,12))+
     annotate("text",x=Inf, y = Inf, vjust=1, hjust=1,
              label = "L = 5000", size = 5)
-  ggsave(filename = 'hpc_octave_vectors.pdf', plot = last_plot(), path = '.',
-         scale = 3, width = 8, height = 6, units = 'cm')
   
   figure <- ggarrange(o_500, o_1000, o_2500, o_5000, 
                       labels = c("A", "B", "C", 'D'),
                       ncol = 2, nrow = 2)
-  annotate_figure(figure,
+  figure <- annotate_figure(figure,
                   top = text_grob("Averaged abundance octaves",
                                   face = "bold", size = 18))
-  print(figure)
+  if (print == T){
+    print(figure)
+  }
+  save(combined_results, file = 'pl1619_cluster_results.rda')
   
   return(combined_results)
 }
@@ -430,10 +437,10 @@ process_cluster_results <- function()  {
 question_21 <- function()  {
   n = 3
   t = 8
-  D = log(n)/log(t)
-  answer = list(D, 'The answer is the solution to the equation n^D = t, where n is the ratio by 
-  which we are increasing the fundamental element, and t is the number of 
-  fundamental elements we have when we increas it by n amount, and D is the dimension')
+  D = log(t)/log(n)
+  answer = list(D, 'The answer is the solution to the equation n^D = t, where n (3 in this case) 
+  is the ratio by which we are increasing the fundamental element, and t (8 in our case) is the 
+  number of fundamental elements we have when we increase it by n amount, and D is the dimension')
   return(answer)
 }
 
@@ -441,10 +448,10 @@ question_21 <- function()  {
 question_22 <- function()  {
   n = 3
   t = 20
-  D = log(n)/log(t)
-  answer = list(D, 'The answer is the solution to the equation n^D = t, where n is the ratio by 
-  which we are increasing the fundamental element, and t is the number of 
-  fundamental elements we have when we increas it by n amount')
+  D = log(t)/log(n)
+  answer = list(D, 'The answer is the solution to the equation n^D = t, where n (3 in this case)
+  is the ratio by which we are increasing the fundamental element, and t (20 in our case) is the 
+  number of fundamental elements we have when we increase it by n amount')
   return(answer)
 }
 
@@ -452,7 +459,7 @@ question_22 <- function()  {
 chaos_game <- function(it = 100000) {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
-  #Points
+  #Initial Points
   x = c(0,3,4,0,4,1)
   init_points = matrix(x, nrow = length(x)/2, ncol = 2)
  
@@ -464,34 +471,41 @@ chaos_game <- function(it = 100000) {
     ind = sample(seq(dim(init_points)[1]),1)
     points[i+1,] = 0.5 * (points[i,] + init_points[ind,])
   }
-  #Plot the first poin
+  #Plot fractal
   df_init = data.frame(init_points, color = rep('blue', dim(init_points)[1]), 
                   sizes = rep(1.5,dim(init_points)[1]))
   df_points = data.frame(points, color = rep('magenta', dim(points)[1]), 
                   sizes = rep(1, dim(points)[1]))     
   df = rbind(df_init, df_points)
-  p = ggplot(df, aes(X1, X2, color = color, size = sizes)) + 
+  p = ggplot(df, aes(X1, X2, color = color, 
+                     size = as.factor(sizes), 
+                     shape = as.factor(sizes), 
+                     fill =  as.factor(sizes))) + 
     geom_point() +
-    theme_minimal()+
+    theme_bw()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
-          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
-          axis.text.x = element_blank(), axis.text.y = element_blank())+
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank())+
+    scale_size_manual(values=c(0.01,3)) +
+    scale_shape_manual(values = c(20, 25)) +
+    scale_fill_manual(values = c('blue', 'red')) +
     labs(title = 'Chaos Game')
   print(p)
   
-  
-return(df)
+return(cat('
+A fractal is generated which fundamental unit is a triangle with an inverted inscribed triangle stripped
+from it.
+           '))
 }
 
 # Question 24
-turtle <- function(start_position, direction, length)  {
+turtle <- function(start_position, direction, length, col = 'green')  {
   #Calculate endpoint coordinates
   Bx = length*cos(direction) + start_position[1]
   By = length*sin(direction) + start_position[2]
-  segments(x0=start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col = 'green')
+  segments(x0=start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col)
   
-  return(c(Bx,By)) # you should return your endpoint here.
+  return(c(Bx,By))
 }
 
 # Question 25
@@ -501,35 +515,35 @@ elbow <- function(start_position, direction, length)  {
 }
 
 # Question 26
-spiral <- function(start_position, direction, length)  {
-  end = turtle(start_position, direction, length)
-  if (length>1e-10){spiral(start_position = end, direction - pi/4 , length= 0.9*length )}
-  else{return("The spiral function calls itself undefinetly until the line is too small compared to the precision
-         of the computer to be drawn.")}
-}
+spiral <- function(start_position, direction, length, col)  {
+  end = turtle(start_position, direction, length, col)
+  if (length>1e-10){spiral(start_position = end, direction - pi/4 , length= 0.9*length, col)}
+  else{return("The spiral function calls itself indefinitely until the line is too small compared to the precision
+         of the computer to be drawn.")}}
 
 # Question 27
-draw_spiral <- function()  {
+draw_spiral <- function(col = 'burlywood4')  {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   plot.new()
   plot.new()
-  plot.window(xlim = c(0,16), ylim = c(-5,10))
+  plot.window(xlim = c(0,18), ylim = c(-5,15))
   axis(1)
   axis(2)
-  text = spiral(start_position = c(0,15), direction = 0, length = 10)
+  title(main = 'Spiral')
+  text = spiral(start_position = c(0,15), direction = 0, length = 10, col)
   return(text)
 }
 
 # Question 28
-tree <- function(start_position, direction, length)  {
-  end = turtle(start_position, direction, length)
+tree <- function(start_position, direction, length, col)  {
+  end = turtle(start_position, direction, length, col)
   if (length>0.01){
-    tree(start_position = end, direction - pi/4 , length = 0.65*length)
-    tree(start_position = end, direction + pi/4 , length = 0.65*length)
+    tree(start_position = end, direction - pi/4 , length = 0.65*length, col)
+    tree(start_position = end, direction + pi/4 , length = 0.65*length, col)
     }
 }
-draw_tree <- function()  {
+draw_tree <- function(col = 'aquamarine')  {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   plot.new()
@@ -537,18 +551,19 @@ draw_tree <- function()  {
   plot.window(xlim = c(0,10), ylim = c(0,10))
   axis(1)
   axis(2)
-  tree(start_position = c(5,0), direction = pi/2, length = 3.5)
+  title(main = 'Tree')
+  tree(start_position = c(5,0), direction = pi/2, length = 3.5, col)
 }
 
 # Question 29
-fern <- function(start_position, direction, length)  {
-  end = turtle(start_position, direction, length)
+fern <- function(start_position, direction, length, col)  {
+  end = turtle(start_position, direction, length, col)
   if (length>0.02){
-    fern(start_position = end, direction + pi/4 , length = 0.38*length)
-    fern(start_position = end, direction , length = 0.87*length)
+    fern(start_position = end, direction + pi/4 , length = 0.38*length, col)
+    fern(start_position = end, direction , length = 0.87*length, col)
   }
 }
-draw_fern <- function()  {
+draw_fern <- function(col = 'chocolate')  {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   plot.new()
@@ -556,26 +571,24 @@ draw_fern <- function()  {
   plot.window(xlim = c(-5,5), ylim = c(0,18))
   axis(1)
   axis(2)
-  fern(start_position = c(0,0), direction = pi/2, length = 2)
+  title(main = 'Fern')
+  fern(start_position = c(0,0), direction = pi/2, length = 2, col)
 }
 
 # Question 30
-fern2 <- function(start_position, direction, length, e, dir = 1)  {
-  end = turtle(start_position, direction, length)
+fern2 <- function(start_position, direction, length, e, col, dir = 1)  {
+  end = turtle(start_position, direction, length, col)
   if (length>e){
-    fern2(start_position = end, direction + dir*pi/6, length = 0.38*length, e, dir)
-    fern2(start_position = end, direction , length = 0.87*length, e, dir*-1)
+    fern2(start_position = end, direction + dir*pi/6, length = 0.38*length, e, col, dir )
+    fern2(start_position = end, direction , length = 0.87*length, e, col, dir*-1)
   }
 }
-draw_fern2 <- function()  {
+draw_fern2 <- function(col = 'darkolivegreen')  {
   # clear any existing graphs and plot your graph within the R window
   graphics.off()
   plot.new()
-  plot.new()
   plot.window(xlim = c(-5,5), ylim = c(0,18))
-  axis(1)
-  axis(2)
-  fern2(start_position = c(0,0), direction = pi/2, length = 2, e = 0.02)
+  fern2(start_position = c(0,0), direction = pi/2, length = 2, col = col, e = 0.02)
 }
 
 
@@ -632,16 +645,22 @@ Challenge_A <- function(speciation_rate = 0.1, size = 100, n_sim = 100,
           panel.grid.major = element_line(color = 'grey', size = 0.1), 
           panel.grid.minor = element_blank(), 
           panel.background = element_rect(fill = 'white'), 
-          legend.position = c(0.2, 0.8), 
+          legend.position = c(0.3, 0.9), 
           legend.background = element_rect(fill=alpha('white', 0.4)), 
           legend.title=element_text(size=16),
           legend.text=element_text(size=16)) +
     scale_y_continuous(expand = c(0,0)) +
     scale_x_continuous(breaks = seq(0,36,6)) +
     labs( x="t (generations)", y = "mean species richness")
+  print(plt)
   
-  return(plt)
+  return(cat('
+             The stable state is reached when the richness from both initial conditions are the same
+             This happens approximately at generation 33-36. Where the 97.2
+             confidence intervals for each initial condition overlap.
+             '))
 }
+
 # Challenge question B
 Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim = 20) {
   # clear any existing graphs and plot your graph within the R window
@@ -663,20 +682,24 @@ Challenge_B <- function(size = 100, speciation_rate = 0.1, duration = 36, n_sim 
     tot_lines[,i/10] = mean_richness
 
   }
+  #Plot results.
+  #In order to use the melt function we need the package reshape
+  library(reshape)
   dat = melt(tot_lines)
-  p = ggplot(data = dat, aes(x = Var1, y = value, group = Var2)) +
-    geom_line(aes(color = Var2)) +
+  p = ggplot(data = dat, aes(x = X1, y = value, group = X2)) +
+    geom_line(aes(color = X2)) +
+    theme_bw() +
     theme(axis.title.x = element_text(size = 16),
           axis.title.y = element_text(size = 16),
           axis.text=element_text(size=14),
           axis.text.y = element_text(margin = margin(r = 0)),
-          panel.grid.major = element_line(color = 'grey', size = 0.1), 
+          panel.grid.major = element_blank(), 
           panel.grid.minor = element_blank(), 
           panel.background = element_rect(fill = 'white'), 
           legend.position="none",
           plot.title = element_text(size = 20, face = 'bold')) +
-    scale_y_continuous(breaks=seq(10,100,30)) +
-    scale_x_continuous(expand = c(0.05, 0.01)) +
+    scale_y_continuous(breaks=seq(10,100,10)) +
+    scale_x_continuous(expand = c(0, 0.01)) +
     scale_color_gradientn(colours = rainbow(11)) +
     labs(title = 'Averaged species richness\nfor different initial conditions', 
          x="t (generations)", y = "mean species richness")
@@ -711,18 +734,25 @@ Challenge_B_alternative <- function(size = 100, speciation_rate = 0.1, duration 
   p = ggplot(data = df, aes( x = x, y = y, group = group)) +
     geom_line(aes(color = color), size = size) +
     scale_color_manual(values=c("black", "grey"))+
+    theme_bw() +
     theme(axis.title.x = element_text(size = 16, face = 'bold'),
           axis.title.y = element_text(size = 16, face = 'bold'),
           axis.text=element_text(size=14),
           axis.text.y = element_text(margin = margin(r = 0)),
-          panel.grid.major = element_line(color = 'grey', size = 0.1), 
+          panel.grid.major = element_blank(), 
           panel.grid.minor = element_blank(), 
           panel.background = element_rect(fill = 'white'), 
-          legend.position="none") +
-    scale_fill_discrete(name = "New Legend Title") +
-    labs( x="t (generations)", y = "species richness")
+          legend.position="none", 
+          plot.title = element_text(size = 20, face = 'bold')) +
+    scale_x_continuous(expand = c(0, 0.01)) +
+    labs( title = 'Averaged species richness\nfor different initial conditions', 
+          x="t (generations)", y = "species richness")
   
-  return(p)
+  print(p)
+  return(cat('
+             An alternative understanding of the question yields this plot, in which many initial 
+             conditions (grey lines) have been averaged to plot the black line
+             '))
 }
 
 #Auxiliary functions for Challenge_C
@@ -895,16 +925,16 @@ Challenge_C <- function() {
     labs(title = 'Averaged species richness\nfor different sizes',
          x="t (generations)", y = "mean species richness") +
     
-    annotate('text', x=600, y=15, label = "paste(italic(t) [stable], \" = 121\")", 
+    annotate('text', x=700, y=15, label = "paste(italic(t) [stable], \" = 121\")", 
              parse = TRUE, color = rainbow(4)[1], fontface="bold", size = 5) +
     
-    annotate('text', x=600, y=26, label = "paste(italic(t) [stable], \" = 306\")",
+    annotate('text', x=700, y=26, label = "paste(italic(t) [stable], \" = 306\")",
              parse = TRUE, color = rainbow(4)[2], fontface="bold", size = 5) +
     
-    annotate('text', x=1980, y=62, label ="paste(italic(t) [stable], \" = 1664\")",
+    annotate('text', x=2000, y=62, label ="paste(italic(t) [stable], \" = 1664\")",
              parse = TRUE, color = rainbow(4)[3], fontface="bold", size = 5) +
     
-    annotate('text', x=1980, y=120, label = "paste(italic(t) [stable], \" = 2208\")",
+    annotate('text', x=2000, y=120, label = "paste(italic(t) [stable], \" = 2208\")",
              parse = TRUE, color = rainbow(4)[4], fontface="bold", size = 5)
   
   
@@ -914,9 +944,167 @@ Challenge_C <- function() {
 #Challenge question D
 Challenge_D <- function() {
   # clear any existing graphs and plot your graph within the R window
-  return("type your written answer here")
-}
+  graphics.off() 
+  browser()
+  
+  means = process_cluster_results(print = F)
+  
+  speciation_rate = 0.1
+  
+  community = list(500, lineages_500 = init_community_min(500), abundances_500 = vector(),
+                   1000, lineages_1000 = init_community_min(1000), abundances_1000 = vector(),
+                   2500, lineages_2500 = init_community_min(2500), abundances_2500 = vector(),
+                   5000, lineages_5000 = init_community_min(5000), abundances_5000 = vector())
+  
+  intervals = seq(1, 12, by = 3)
+  
+  for(n in intervals){
+    N = community[[n]]
+    theta = speciation_rate * ((N - 1) / (1 - speciation_rate))
+    
+    while(N > 1) {
+      j = sample(N, size = 1, replace = FALSE, prob = NULL)
+      randnum = runif(n = 1, min = 0, max = 1)
+      
+      if(randnum < (theta)/(theta+N-1)) {
+        community[[n+2]] = c(community[[n+2]], community[[n+1]][j])
+      } else {
+        i = sample(N, size = 1, replace = FALSE, prob = NULL)
+        
+        while(i == j )
+          i = sample(N, size = 1, replace = FALSE, prob = NULL)
+        
+        community[[n+1]][i] = community[[n+1]][i] + community[[n+1]][j]
+      }
+      
+      community[[n+1]] = community[[n+1]][-j]
+      N = N - 1
+    }
+    
+    community[[n+2]] = c(community[[n+2]], community[[n+1]])
+  }
+  
+  o_500 = octaves(sort(community$abundances_500, decreasing = TRUE))
+  o_1000 = octaves(sort(community$abundances_1000, decreasing = TRUE))
+  o_2500 = octaves(sort(community$abundances_2500, decreasing = TRUE))
+  o_5000 = octaves(sort(community$abundances_5000, decreasing = TRUE))
+  df_500 = data.frame(x = seq(length(o_500)), av_oct = o_500)
+  df_1000 = data.frame(x = seq(length(o_1000)), av_oct = o_1000)
+  df_2500 = data.frame(x = seq(length(o_2500)), av_oct = o_2500)
+  df_5000 = data.frame(x = seq(length(o_5000)), av_oct = o_5000)
+  
+  o_500  <- ggplot(data=df_500, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue1')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9)) +
+    annotate("text", x=3, y = Inf, vjust=1, hjust='center', 
+             label = "L = 500", size = 5)
+  
+  o_1000  <- ggplot(data=df_1000, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue2')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10))+
+    annotate("text", x=3, y = Inf, vjust=1, hjust='center',
+             label = "L = 1000", size = 5)
+  
+  o_2500  <- ggplot(data=df_2500, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue3')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10,11))+
+    annotate("text", x=3, y = Inf, vjust=1, hjust='center',
+             label = "L = 2500", size = 5)
+  
+  o_5000  <- ggplot(data=df_5000, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue4')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9, 10, 11,12))+
+    annotate("text",x=3, y = Inf, vjust=1, hjust='center',
+             label = "L = 5000", size = 5)
+  
+  #Now from coalescence
+  df_500_means = data.frame(x = seq(length(means[[1]])), av_oct = means[[1]])
+  df_1000_means = data.frame(x = seq(length(means[[2]])), av_oct = means[[2]])
+  df_2500_means = data.frame(x = seq(length(means[[3]])), av_oct = means[[3]])
+  df_5000_means = data.frame(x = seq(length(means[[4]])), av_oct = means[[4]])
+  
+  o_500_mean  <- ggplot(data=df_500_means, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue1')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9)) +
+    annotate("text", x=4.5, y = Inf, vjust=1, hjust='center', 
+             label = "L = 500", size = 5)
+  
+  o_1000_mean  <- ggplot(data=df_1000_means, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue2')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10))+
+    annotate("text", x=5, y = Inf, vjust=1, hjust='center',
+             label = "L = 1000", size = 5)
+  
+  o_2500_mean  <- ggplot(data=df_2500_means, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue3')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9,10,11))+
+    annotate("text", x=5.5, y = Inf, vjust=1, hjust='center',
+             label = "L = 2500", size = 5)
+  
+  o_5000_mean  <- ggplot(data=df_5000_means, aes(x, y=av_oct)) +
+    geom_bar(stat="identity", fill = 'steelblue4')+
+    theme_minimal()+
+    theme(panel.grid.major = element_blank(), 
+          panel.grid.minor = element_blank(),
+          axis.text=element_text(size=12)) + 
+    labs(x = 'n', y = 'Richness') +
+    scale_x_continuous(breaks = c(0.5,1.5,2.5,3.5,4.5,5.5,6.5,7.5,8.5,9.5,10.5,11.5,12.5 ), 
+                       labels = c(0,1,2,3,4,5,6,7,8,9, 10, 11,12))+
+    annotate("text",x=6, y = Inf, vjust=1, hjust='center',
+             label = "L = 5000", size = 5)
+  figure <- ggarrange(o_500, o_500_mean, o_1000, o_1000_mean,
+                      o_2500, o_2500_mean,o_5000, o_5000_mean,
+                      labels = c("A", "B", "C", 'D', 
+                                 'E', 'F', 'G', 'H'),
+                      ncol = 2, nrow = 4)
+  figure <- annotate_figure(figure, top = text_grob("Coalescence                                   Cluster Simulations", 
+                                                    color = "black", face = "bold", size = 14))
 
+  return(figure)
+}
+Challenge_D()
 # Challenge question E
 #Auxiliary functions for challenge E
 
@@ -1048,9 +1236,9 @@ Challenge_E <- function(it = 300000, init) {
                       ncol = 3, nrow = 2)
   print(figure)
 
-  return("At the beginning, points lay in forbidden areas, but after a number of iterations iterations, they travel back to their normal domain. The points end up being constrained between the original points because we are imposing that in the rules of the game, every iteration you get a set fraction closer to one of the initial points.")
+  return("In the beginning, points lay in forbidden areas, but after a number of iterations, they travel back to their normal domain. The points end up being constrained between the original points because we are imposing that every iteration you get a set fraction closer to one of the initial points.")
 }
-Challenge_E()
+
 # Challenge question F
 
 # Auxiliary functions for question F
@@ -1072,7 +1260,7 @@ turtle_col <- function(start_position, direction, length, col)  {
   #Calculate endpoint coordinates
   Bx = length*cos(direction) + start_position[1]
   By = length*sin(direction) + start_position[2]
-  segments(x0 = start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col = col)
+  segments(x0 = start_position[1], y0 = start_position[2], x1 = Bx, y1 = By, col)
   
   return(c(Bx,By)) # you should return your endpoint here.
 }
@@ -1091,7 +1279,8 @@ Challenge_F <- function() {
       axis(1)
       axis(2)
       start = Sys.time()
-      fern2(start_position = c(0,0), direction = pi/2, length = 2, e  = it[j])
+      fern2(start_position = c(0,0), direction = pi/2, length = 2, e  = it[j],
+            col = 'darkolivegreen')
       end = Sys.time()
       time.vec[i,j] = as.numeric(end-start)
     }
@@ -1115,8 +1304,8 @@ Challenge_F <- function() {
   plot.window(xlim = c(-5,5), ylim = c(0,18))
   axis(1)
   axis(2)
-  fern2_col(start_position = c(0,0), direction = pi/2, length = 2, e = 0.003
-            )
+  title(main = 'e = 0.003')
+  fern2_col(start_position = c(0,0), direction = pi/2, length = 2, e = 0.003)
   plot_lengths = c(it[1], it[round(length(it)/2)], it[length(it)])
   for (i in plot_lengths){
     plot.new()
@@ -1124,10 +1313,10 @@ Challenge_F <- function() {
     axis(1)
     axis(2)
     title(main = paste('e = ', round(i, digits = 2)), cex = 1.5)
-    fern2(start_position = c(0,0), direction = pi/2, length = 2, e = i)
+    fern2(start_position = c(0,0), direction = pi/2, length = 2, e = i, col = 'darkolivegreen')
   }
   
-  return("The image produced is more ramified the smaller the line size threshold is. However, the time also increases as seen in the first graph.")
+  return("The image produced is more ramified the smaller the line size threshold is. However, computational time also increases as seen in the first graph.")
 }
 # Challenge question G should be written in a separate file that has no dependencies on any functions here.
 
