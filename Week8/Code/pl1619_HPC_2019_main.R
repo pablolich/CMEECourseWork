@@ -470,11 +470,13 @@ chaos_game <- function(it = 100000) {
   df_points = data.frame(points, color = rep('magenta', dim(points)[1]), 
                   sizes = rep(1, dim(points)[1]))     
   df = rbind(df_init, df_points)
-  p = ggplot(df, aes(X1, X2)) + 
-    geom_point(aes(color = color, size = sizes)) +
-    theme_classic()+
+  p = ggplot(df, aes(X1, X2, color = color, size = sizes)) + 
+    geom_point() +
+    theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
-          axis.title.x = element_blank(), axis.title.y = element_blank() )+
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())+
     labs(title = 'Chaos Game')
   print(p)
   
@@ -856,7 +858,7 @@ Challenge_C <- function() {
                                   "#8000FFFF", "#00FFFFFF"))
   
   p = ggplot(data = df, aes(x = x, y = curves, group = group, 
-                            color = as.factor(group) )) +
+                            color = as.factor(group))) +
     geom_line() +
     
     geom_line(data = df_pred, aes(x = x, y = y, group = group), color= 'black',
@@ -916,20 +918,149 @@ Challenge_D <- function() {
 }
 
 # Challenge question E
-Challenge_E <- function() {
- 
-  return("type your written answer here")
+#Auxiliary functions for challenge E
+
+calc = function(init_points, it = 10000, zero = init_points[1,], scale = 0.5){
+  points = matrix(c(zero, rep(0,2*it-2)), nrow = it, ncol = 2, byrow = T)
+  for (i in seq(it-1)){
+    #Choose a point
+    ind = sample(seq(dim(init_points)[1]),1)
+    points[i+1,] = scale * (points[i,] + init_points[ind,])
+  }
+  return(points)
 }
+Challenge_E <- function(it = 300000, init) {
+  # clear any existing graphs and plot your graph within the R window
+  graphics.off()
+  
+  #################################################################################
+
+  #Away from the triangle
+  ini = c(0,3,4,0,4,1)
+  init_points = matrix(ini, nrow = length(ini)/2, ncol = 2)
+  points = calc(init_points, zero = c(-3,-3), it = 5000)
+
+  df_init = data.frame(init_points)
+  df_points = data.frame(points, color = c(rep(0, 5), rep(1, dim(points)[1]-5))) 
+  p = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2, color = as.factor(color), 
+                                     size = as.factor(color)))+
+    scale_size_manual(values=c(3,1))+
+    scale_color_manual(values=c('black',rainbow(6)[1]))+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+
+  #################################################################################
+  
+  #Equilateral triangle
+  init_points = matrix(c(0,0,1,0,0.5,sqrt(3)/2), byrow = T, ncol = 2)
+  points = calc(init_points, it = 5000)
+  #Plot the first poin
+  df_init = data.frame(init_points)
+  df_points = data.frame(points) 
+  q = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[2])+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+  
+  #################################################################################
+  
+  #Different scale
+  init_points = matrix(c(0,0,1,0,0.5,sqrt(3)/2), byrow = T, ncol = 2)
+  points = calc(init_points, scale = 0.4, it = 3000)
+  #Plot the first poin
+  df_init = data.frame(init_points)
+  df_points = data.frame(points) 
+  r = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[3])+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+  
+  #################################################################################
+  
+  #Square
+  init_points = matrix(c(0,0,1,0,0,1, 1,1), byrow = T, ncol = 2)
+  points = calc(init_points, it = 20000)
+  #Plot the first point
+  df_init = data.frame(init_points)
+  df_points = data.frame(points) 
+  s = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[4])+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+
+  #################################################################################
+  
+  #Pentagone
+  init_points = matrix(c(0,650,95,581,59,469,-59,469,-95,581), byrow = T, ncol = 2)
+  points = calc(init_points, it = 200000)
+  #Plot the first point
+  df_init = data.frame(init_points)
+  df_points = data.frame(points) 
+  t = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[5])+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+  
+  #################################################################################
+  
+  
+  #Hexagone
+  ini= c(0,650,87,600,87,500,0,450,-87,500,-87,600)
+  init_points = matrix(ini, byrow = T, ncol = 2)
+  points = calc(init_points, it = 60000)
+  df_init = data.frame(init_points)
+  df_points = data.frame(points) 
+  u = ggplot(df_init, aes(X1, X2)) + 
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.05, color =rainbow(6)[6])+
+    theme_minimal()+
+    theme(legend.position = 'none', plot.title = element_text(size = 18),
+          axis.title.x = element_blank(), axis.title.y = element_blank() , 
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          axis.text.x = element_blank(), axis.text.y = element_blank())
+  
+  ##################################################################################
+  
+  #Together
+  figure <- ggarrange(p, q, r, s, t, u, 
+                      labels = c("A", "B", "C", 'D', 'E', 'F'),
+                      ncol = 3, nrow = 2)
+  print(figure)
+
+  return("At the beginning, points lay in forbidden areas, but after a number of iterations iterations, they travel back to their normal domain. The points end up being constrained between the original points because we are imposing that in the rules of the game, every iteration you get a set fraction closer to one of the initial points.")
+}
+Challenge_E()
 # Challenge question F
 
 # Auxiliary functions for question F
 fern2_col <- function(start_position, direction, length, e, dir = 1)  {
   #browser()
   if (length > 5*e){
-    end = turtle_col(start_position, direction, length, col = '#D2691E')
+    end = turtle_col(start_position, direction, length, col = 'olivedrab4')
   }
   else{
-    end = turtle_col(start_position, direction, length, col = terrain.colors(5)[sample(5,1)])
+    end = turtle_col(start_position, direction, length, col = '#D2691E')
   }
   if (length > e){
     fern2_col(start_position = end, direction + dir*pi/6, length = 0.38*length, e, dir)
@@ -978,7 +1109,7 @@ Challenge_F <- function() {
        xlab = 'Line size threshold', ylab = 'time (s)', 
        ylim = c(0, 0.45), xlim = rev(range(x)))
   points(it, median.time, pch = 19, col = 'red')
-  legend('topright', legend=c("Simulations", "Median"),
+  legend('topleft', legend=c("Simulations", "Median"),
          col=c("grey", "red"), pch = 19, cex = 1)
   plot.new()
   plot.window(xlim = c(-5,5), ylim = c(0,18))
