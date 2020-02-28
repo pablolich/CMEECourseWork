@@ -1354,11 +1354,11 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   p = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
     geom_point(data = df_points, aes(X1, X2, color = as.factor(color), 
                                      size = as.factor(color)))+
     scale_size_manual(values=c(3,1))+
-    scale_color_manual(values=c('black',rainbow(6)[1]))+
+    scale_color_manual(values=c('black','#003cb4'))+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1379,8 +1379,8 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   q = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
-    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[2])+
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color ='mediumspringgreen')+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1401,8 +1401,8 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   r = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
-    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[3])+
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color ='lightseagreen')+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1423,8 +1423,8 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   s = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
-    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[4])+
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color ='#351223')+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1445,8 +1445,8 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   t = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
-    geom_point(data = df_points, aes(X1, X2), size = 0.2, color =rainbow(6)[5])+
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.2, color ='#123524')+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1468,8 +1468,8 @@ Challenge_E <- function(it = 300000, init) {
   
   #Plot
   u = ggplot(df_init, aes(X1, X2)) + 
-    geom_point(color = 'red', size = 4, shape = 25, fill = 'red') +
-    geom_point(data = df_points, aes(X1, X2), size = 0.05, color =rainbow(6)[6])+
+    geom_point(color = 'red', size = 4, shape = 25, fill = 'darkolivegreen') +
+    geom_point(data = df_points, aes(X1, X2), size = 0.05, color ='#b47800')+
     theme_minimal()+
     theme(legend.position = 'none', plot.title = element_text(size = 18),
           axis.title.x = element_blank(), axis.title.y = element_blank() , 
@@ -1505,7 +1505,7 @@ fern2_col <- function(start_position, direction, length, e, dir = 1)  {
     end = turtle(start_position, direction, length, col = 'olivedrab4')
   }
   else{
-    end = turtle(start_position, direction, length, col = '#D2691E')
+    end = turtle(start_position, direction, length, col = '#b47800')
   }
   #The complete fern is drown by adding a parameter that changes direction by a factor of -1
   #every time the function reaches a point were the segement is too small to be drown

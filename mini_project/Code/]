@@ -1,0 +1,45 @@
+
+# Questions
+
+	Difference between exp and nonexp?
+
+    Mon Feb  3 23:56:53 GMT 2020
+    	
+    	Where can I find a modified gompertz model paper?
+
+    
+    Tue Feb  4 17:08:40 GMT 2020
+    	
+    	Is the treatement of Tetraselmis tetrahele correct? (Averaging over time and repetitions)
+
+    Thu Feb  6 23:13:36 GMT 2020
+    	
+    	Why can I fit my logged data with the same model I fit my linear data in the logistic model? How can I see what is the new meaning of my parameters? Show him jmy calculations to see that it is actually that. If correct, I should apply this transformation in the parameters to only those models which are thought to be fitted in linear space: a.k.a. Logistic, gompertz, buchannan, exponential. The only ones that have been built in log space are baranyi and exponential lag. 
+
+
+    Fri Feb  7 16:35:21 GMT 2020
+
+    	When I log data, some of it is of the form 0.6..., which gives me negative logarithm values. To calculate mu_max from there is a pain
+# Things to do 
+
+## Priority 1
+	0. Fix calling models to t_eval them, so that it is an iterative process. Also change the way we give the parameters to them. Now they are lists.
+	1. Fix the logistic model to also fit negative numbers.
+	9. Clean up code
+		0. Get rid of fits[][]
+		1. unpack value of params automatically with v = params.valuesdict()
+    		2. Comment
+	4. Write mathematical introduction to the models.
+	5. DOCSTRINGS!
+	7. Modularize code. Organize flow and move functions together if they are similar etc.
+	8. Change color of columns in my success report based on the model. Eliminate sides of tiles so it looks cleaner.
+	8. Modify init_vals code so that if lam_init turns out to be negative, the fit repeats until it is by eliminating the last and first (simetrically?) points from the data we use to fit.
+	8. Modify init_vals to adress the fact that the slope is too vertical!
+	8. Identify the threshold for mu_max over which baranyi yields nans, and limitate it. So far I know that mu_max = 44 and t = 22, doesnt work for a certain time.
+
+	
+
+## Priority 2
+	1. Fit the model that accounts for death of bacteria (Peleg, 2009; Baranyi, 1996)
+    
+

@@ -1,5 +1,5 @@
 # CMEE 2019 HPC excercises R code HPC run code proforma
-setwd("~/Desktop/Imperial/CMEECourseWork/Week8/Code")
+setwd("~/Desktop/Imperial/CMEECourseWork/Week8/Code/hand_in_files/")
 rm(list=ls()) # good practice 
 source("pl1619_HPC_2019_main.R")
 community = seq(10)
