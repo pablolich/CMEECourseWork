@@ -133,7 +133,8 @@ for (i in list_species){
   graphics.off()
 }
 
-keeps <- c('Time',  'y_t', 'Species', 'Temp', 'Medium', 'unique_id', 'PopBio_units')
+keeps <- c('Time', 'y_t', 'Species', 'Temp', 'Medium', 'unique_id', 
+           'PopBio_units')
 d = d[keeps]
 #Save new dataframe
 write.csv(d, file = '../Data/LogisticGrowthData_mod.csv', row.names = F)

@@ -32,20 +32,19 @@ def cubic(params, t, data):
     model = a + b*t + c*t**2 + d*t**3
     return(model - data)
 
-def exponential(params, t, data):
+def linear(params, t, data):
     mu_max = params['mu_max']
     y_0 = params['y_0']
     #Change base from e to 10
-    model = sc.real(sc.log10(y_0*sc.exp(mu_max*t)))
+    model = y_0 + mu_max*t
     return(model-data)
 
 def logistic(params, t, data):
     mu_max = params['mu_max'] 
     y_max = params['y_max']
     y_0 = params['y_0']
-    lam = params['lam']
-    model = sc.real(sc.log10(y_0*y_max/(y_0 + (y_max-y_0)*sc.exp(-mu_max*t))))
-    #model = y_0 + (y_max-y_0)/(1 + sc.exp(mu_max*(lam-t)))
+    model = sc.real(sc.log10(y_0*y_max/(y_0 + (y_max-y_0)*\
+            sc.exp(-mu_max*t))))
     return(model - data) 
 
 def gompertz(params, t, data):

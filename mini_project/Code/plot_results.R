@@ -9,7 +9,6 @@
 options(warn=-1) #Supress warnings from overwriting packages
 require(ggplot2)
 require(dplyr)
-require(viridis)
 library(RColorBrewer)
 
 #LOAD DATA#
@@ -111,19 +110,19 @@ for (i in seq(length(models))){
 
 #Plot it
 ggplot(succes_df, aes(x, y)) +  
-  geom_tile(aes(fill = factor(z)), color = 'grey0')+ #Bar code type of plot
-  scale_fill_manual(values= c('#25CED1', '#9DA3A4', '#0C0F0A', '#FFFFFF'),
-                    labels = c('best', 'doubious', 'fail', 'success'))+
+  geom_tile(aes(fill = factor(z)), color = 'gray90')+ #Bar code type of plot
+  scale_fill_manual(values= c('springgreen', 'yellow3', 'black', 'white'),
+                    labels = c('best', 'poor', 'fail', 'success'))+
   theme_bw()+
   theme(axis.title.y=element_blank(),
         axis.title.x=element_blank(),
-        axis.text.x = element_text(size=15, 
-                                   angle=0,
+        axis.text.x = element_text(size=15,
                                    vjust = 0.6),
         panel.grid.major = element_blank(), #Get rid of grids
         panel.grid.minor = element_blank(),
         legend.title = element_blank(), 
         legend.position = 'bottom',
+        legend.text = element_text(size = 15),
         plot.title = element_text(hjust = 0.5, size = 20)) + #No legend
   scale_x_discrete(labels = labels,
                    limits = seq(from = min(succes_df$x), 
@@ -131,11 +130,4 @@ ggplot(succes_df, aes(x, y)) +
                    expand = c(0,0))+ #Eliminate white margins
   scale_y_discrete(expand = c(0,0))+
   labs(title = 'Fitting performance')
-ggsave(filename = '../Results/success_report.pdf', height = 14, width = 10, 
-       units = 'cm')
-#Histograming goodnes results
-hist(fit_evals$bic)
-hist(fit_evals$aic)
-#plot only those greater than 0
-hist(fit_evals$r_square[which(fit_evals$r_square>-0)])
-
+ggsave(filename = '../Results/success_report.pdf', height = 9.46, width = 8)

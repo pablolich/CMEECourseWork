@@ -14,7 +14,7 @@ __version__ = '0.0.1'
 import sys
 import pandas as pd
 import numpy as np
-from models import quadratic, cubic, exponential, logistic, gompertz, baranyi,\
+from models import quadratic, cubic, linear, logistic, gompertz, baranyi,\
                    buchanan
 from progressbar import ProgressBar 
 from lmfit import Minimizer, Parameters
@@ -465,7 +465,7 @@ def main(argv):
     #########################
     #Create a list with models to fit
     models = [#Linear models
-              exponential, quadratic, cubic, 
+              linear, quadratic, cubic, 
               #Rest of non-linear models
               logistic, gompertz, buchanan, baranyi]
     #Get model names from the functions
@@ -492,7 +492,7 @@ def main(argv):
     #LOOP THROUGH EACH DATA GROUP#
     ##############################
     pbar = ProgressBar() # Implement progress bar
-    print('Fitting and evaluating models...')
+    print('Fitting and evaluating primary models...')
     for i in pbar(range(ngroups)):
 
 
@@ -520,14 +520,14 @@ def main(argv):
         #####################################
         #Assign parameters names and create 2 parameter objects; one for the 
         #linear models and one for non-linear models.
-        all_comb = {'exponential':    [['y_0', 'mu_max'],
+        all_comb = {'linear':    [['y_0', 'mu_max'],
                                        [all_init_vals[4],all_init_vals[6]]],
                     'quadratic':      [['a', 'b', 'c'],
                                        [all_init_vals[i] for i in range(3)]],
                     'cubic':          [['a', 'b', 'c', 'd'],
                                        [all_init_vals[i] for i in range(4)]], 
-                    'logistic':       [['y_0', 'y_max', 'mu_max', 'lam'],
-                                       [all_init_vals[i] for i in range(4,8)]],
+                    'logistic':       [['y_0', 'y_max', 'mu_max'],
+                                       [all_init_vals[i] for i in range(4,7)]],
                     'gompertz':       [['y_0', 'y_max', 'mu_max', 'lam'], 
                                        [all_init_vals[i] for i in range(4,8)]],
                     'buchanan':       [['y_0', 'y_max', 'mu_max', 'lam'], 
