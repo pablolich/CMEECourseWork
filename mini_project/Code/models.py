@@ -78,7 +78,7 @@ def baranyi(params, t, data):
             10**(y_max-y_0))))
     return(model - data)
 
-#Secondary models
+#Secondary model
 
 def lactin2(params, T, data):
     rho = params['rho']
@@ -86,21 +86,4 @@ def lactin2(params, T, data):
     delta = params['delta']
     lam = params['lam']
     model = sc.exp(rho*T) - sc.exp(rho*Tmax - (Tmax-T)/delta)+lam
-    return(model-data)
-
-def ratkowsky(params, T, data):
-    b = params['b']
-    Tmin = params['Tmin']
-    Tmax = params['Tmax']
-    c = params['c']
-    model = (b*(T-Tmin)*(1-sc.exp(c*(T-Tmax))))**2
-    return(model-data)
-
-def hinshelwood(params, T, data):
-    R = 8.314
-    k1 = params['k1']
-    E1 = params['E1']
-    k2 = params['k2']
-    E2 = params['E2']
-    model = k1*sc.exp(-E1/(R*T)) - k2*sc.exp(-E2/(R*T))
     return(model-data)

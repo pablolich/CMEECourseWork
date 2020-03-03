@@ -1,4 +1,4 @@
-binning_function = function(x, precision){
+binning = function(x, precision){
   #Initialize output
   means = c()
   sets = list()
@@ -44,4 +44,23 @@ binning_function = function(x, precision){
     }
   }
   return(ind_sets)
+}
+
+best_model = function(d){
+  #Determines the best model based on its AIC scores
+  #Get score for al models for each id
+  models = unique(d$model)
+  #Preallocation
+  score = rep(0,length(models))
+  j = 1
+  for (i in models){
+    #Get data from the ith model
+    d_mod = d[which(d$model == i),]
+    #Calculate score
+    score[j] = sum(d_mod[which(d_mod$best == 1),]$best)
+    j = j + 1
+  }
+  #Select best model
+  best_model = models[which(score == max(score))]
+  return(best_model)
 }

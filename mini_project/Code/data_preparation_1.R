@@ -37,7 +37,7 @@ d_Tetra = d_Tetra[which(d_Tetra$Time>0),]
 #Get a vector of temperatures
 temp = d_Tetra$Temp
 #Into the data fixing
-source('grouping.R')
+source('data_preparation_functions.R')
 #Prepare initial variables to store results
 temp_factors = unique(temp)
 graphics.off()
@@ -48,7 +48,7 @@ for (j in temp_factors){
   #Get t indices of equivalent measurements
   t = d_Tetra$Time[which(d_Tetra$Temp == j)]
   pop = d_Tetra$PopBio[which(d_Tetra$Temp == j)]
-  ind_sets = binning_function(t, 0.25)
+  ind_sets = binning(t, 0.25)
   t_av_t = rep(0, length(ind_sets))
   pop_av_t = rep(0, length(ind_sets))
   for (i in seq(length(ind_sets))){

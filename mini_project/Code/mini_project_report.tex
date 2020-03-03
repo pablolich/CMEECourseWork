@@ -31,20 +31,44 @@
 	The data comes from a colection of 10 papers written between 1962 and 2018 where the population of 45 bacteria species is measured at different times (h), temperatures (ºC) and mediums. Grouping datasets of population versus time for each temperature, species and medium yields 301 bacterial growth curves. The populations are expressed in different units depending on the paper, particularly,  optical density measured at 535 nm (OD$_{535} $), number of bacteria (N), colony-forming unit (CFU) and dry weight (DryWeight).\\
 	Seven models are fit to the growth curves; exponential, quadratic, cubic, logistic \cite{Pearl1920, Verhulst1838}, Gompertz \cite{Zwietering1990}, Baranyi \cite{Baranyi1994} and Buchanan \cite{Buchanan1997}. (Figure \ref{all_models}). Refer to table \ref{tab:model_eqs} to see the mathematical form of each model.\\
 	
-	The general workflow of this project has two main parts: analysis of primary models, and analysis of secondary models.  Each module has 3 subdivisions: data preparation, fitting and storing results, and plotting. 
-	
 	\begin{figure}[h]
 		\includegraphics[width= \linewidth]{all_models.pdf}
 		\centering
 		\caption{Overview of fit of each model to a growth curve where they perfrorm best (they have the lowest AIC value of all models for that curve)}
 		\label{all_models}
 	\end{figure}
+
+	The general workflow of this project has two modules: model selection, and analysis the biological question.  Each module has 3 subdivisions: data preparation, fitting and storing results, and plotting. These modules, along with the \LaTeX code that produces the present document are glued together in a bash script that coordinates all the tasks to run the mini-project smoothly
+	\subsection{Module 1}
+	This module concerns the fitting of all growth curves to all models.\\
+	The first step in this module is the data preparation (\verb|data_preparation_1|), in which we deal with bad quality data and repeated measurements. First, we eliminate the outliers in the population data (only one value of -682) that don't have any biological meaning. To deal with negative values closer to 0 we find the minimum of those values, and add that to all populations measured. This assures that all elements are now positive without loosing any data points, very valuable for the fits. Adding a constant to our population values will modify some of the fit parameter estimations, specifically all the the values from the second and third order degree polinomials, but more importantly, y$_0 $ and y$ _{max} $ from the linear, logistic, Gompertz, Baranyi and Buchanan models. However that does not affect our model selection, or our biological question, because neither of these analysis depends on the value of the affected parameters. After dealing with bad quality data, we treat the repeated measurements, which are only present in the growth curves of the species  \textit{Tetraselmis tetrahele}. This data consists of repeated measures of the population at different times. However, the times at which the population is measured are differ slightly  in each repetition. To deal with this we create a the function \verb|binning| (stored in \verb|data_preparation_functions.R|)that groups the slightly different (whithin a threshold of 0.25) times in an averaged time, $  \overline{t}$. We use the binning for the time vector to bin our population accordingly into a vector of averaged population, {$\overline{y}$}. This procedure yields a unique averaged dataset $ \left(\overline{t}, \overline{y}\right) $ that substitutes the repeated measurementes of growth curves.\\
+	The second step of module 1 is the model fitting and storing of results (\verb|fit_store_models_1.py|). This process consists of: (a) loading the data, (b) looping through each growth curve, (c) calculating initial values for all the models and (d) fit each model to the i$ ^{th} $ curve, and (d) storing results (parameter estimates, fit evaluations and goodness of fit parameters) in dictionary for later analysis. All steps, except for the calculation of initial values, are trivial to put together with some time and python knowledge. For a detailed explanation on the calculation of initial values for each model, refer to section \ref{sec:initial_values}.\\
+	The third step is the plotting phase (\verb|plotting_1.R|). Using the results previously obtained we plot every growth curve in a different figure and overlay the top four fits to it, according to the AIC. The intensity of the color of each fitting curve is based on its AIC value. All this plots are saved to the results directory. A fitting performance heat map is also generated in with this algorithm.
+	\subsection{Module 2}
+	This module deals with the biological question stated in the introduction. \\
+	In the data preparation step (\verb|data_preparation_2.R|), we select all the species of the genus \textit{Arthrobacter} along with the temperature and maximum growth rate predicted by the best model. To determine the best model, we compute the score of each model in this subset of the data. In this case, the Gompertz model was top 1 in the mayority of the data sets, so we used it to get our $ \mu_{max} $ estimations. In the end, we have a dataframe with seven species, and five datapoints ($ T $, $ \mu_{max} $) each. \\
+	Secondly, we fit a thermal performance curve to each dataset and save the results for plotting (\verb|fit_store_models_2.py|). In this case, the initial values were taken from the literature  \cite{Lactin1995}.\\
+	Third, we plot the results (\verb|plotting_2.R|).
+	\subsection{Computing tools}
+	Both modules are written using a Python and R. The latter one is used to perform the fitting using the lmfit python package \cite{Newville2014}. NumPy, Pandas \cite{Virtanen2020} and ProgressBar packages are also used for creating the models, saving the results, and implementing a progress bar, respectively. R is used to prepare data for analysis and plotting using ggplot \cite{Wickham2016}. RColorBrewer packages are loaded to enable the \verb|YlOrRd| color pallette used in the fit plots, and  grid, and gridExtra packages are loaded to arange multiple plots in one panel (see Figure \ref{all_models})\\
+	We choose to divide our work like this because Python is a faster language than R in general, so we use it to do the heavy lifting (fitting algorithms). However, R's flexibility and intuitive behavior when it comes to work with dataframes are much better than Python's. Moreover, ggplot is the most powerful tool to generate publishable plots to our knowledge, which justifies using R for plotting instead of something else.\\
+	The bash script \verb|run_MiniProject.sh| was used to glue the all the scripts. We kept our work under version control with GitHub.
+	
+	\section{Results}
+	When I talk about Arthrobacter, mention that the parameters were not very well constrained.
+	Make sure you go back to module1 and reference the figures of overlayed fitting and fitperformance once I put them here.
 	
 	\section{Discussion}
 	We discarded BIC because the assumptions that are made to obtain its expresion are not met in our case of study. This assumptions are: a) existence of a true model, b) the true model is in the model pool and c) each of the  models has the same probability of being the true one 
 	
+	\section{Future work}
+	Do model averaging when deciding what parameters to use in our biological question. Implement C code to do the heavy lifting work
+	
+	\section{Aknowledgements}
+	
 	\newpage
 	\section{Appendix}
+	\subsection{Models}
 	\begin{table}[h]
 		\centering
 		\begin{tabular}{ c c c }
@@ -52,8 +76,9 @@
 			cell4 & cell5 & cell6 \\  
 			cell7 & cell8 & cell9    
 		\end{tabular}
-		\caption{\label{tab:model_eqs}Explicit form of each model}
+		\caption{\label{tab:model_eqs}Explicit form of each model. Meaning of the parameters. The population is logged}
 	\end{table}
+	\subsection{Initial values calculation}\label{sec:initial_values}
 	
 \end{linenumbers}
 \newpage
