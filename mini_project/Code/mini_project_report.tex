@@ -1,7 +1,11 @@
 \documentclass[titlepage,11pt]{article}
-\usepackage{graphicx}
+\usepackage{graphicx} %To include figures
+\graphicspath{{../Results/}}
 \usepackage{lineno} % To count lines
 \usepackage{setspace} %To change line spacing
+\usepackage{cite} % To cite
+\usepackage{appendix}
+
 \doublespacing
 
 \begin{document}
@@ -13,26 +17,46 @@
 
 \maketitle
 \begin{linenumbers}
-	\section{Introduction}
-		The aim of this work is to determine wether or not is there a 
-	\begin{equation}
-	\label{simple_equation}
-	\alpha = \sqrt{ \beta }
-	\end{equation}
+    \section{Introduction}
+	This work has two goals. First, to fit seven models to a dataset of 285 bacterial growth curves from the literature \cite{Bae2014, Bernhardt2018, Galarz2016, Gill1991, Phillips1987, ROTH1962, DaSilva2018, Sivonen1990, Stannard1985, Zwietering1994} followed by model selection to determine the best model for each curve. Using the results from the first step, the second goal of this work is to study the continuity of psychrophilic and mesophilic growth characteristics in the genus Arthobacter.\\
 	
-	\subsection{Subsection Heading Here}
-	Write your subsection text here.
+	To determine which is the best model we use likelihood-based model selection. This is an alternative approach to the traditional null/alternative hypothesis testing. When confronted with each other, we believe that model selection is a better procedure to test competing hypotheses/models for several reasons. First, it allows for a comparison between more than two models (seven are being analyzed in this work). Second, since model selection is likelihood-based (as opposed to frequentist statistics based), we can explicitly weigh the support for each model. This is something that cannot be done when using p-values to evaluate hypotheses, since a p-value is not the probability that the null hypothesis is true, but instead, the degree of compatibility between a dataset and the null hypothesis \cite{RonaldL.Wasserstein}. This implies that the winning hypothesis is only implicitly accepted, by explicitly rejecting the null hypothesis. Moreover, the rejection of the null hypothesis is based on an arbitrary threshold of the p-value (0.05, 0.01). Overall, the model selection approach offers a more robust, objective, and meaningful way to test several competing models, than the conventional frequentist statistics method of calculating p-values. \\
+	There are several approaches to model selection \cite{Johnson2004}, namely,  maximizing the quality of the fit, null hypothesis tests, and model selection criteria. The first one lacks a way of accounting for the complexity of the model, and the second one does not quantify the relative support among competing models, nor does it allow for comparison between more than 2 models. These limitations are overcome in model selection criteria. Hence, it is the approach followed in this work.
+	To weigh the validity of each model under the model selection criteria procedure, one can calculate several quantities, namely, the Akaike information criterion (AIC), its second derivative AIC$_c$ which corrects for biases caused by small sample sizes, and the Bayesian information criterion (BIC). AIC is used in this work. To make this decision we filter our three choices based on the assumptions made to obtain their respective expressions. The ones made for AIC matched our data the most. Refer to section \ref{methods} \\
 	
-	%\begin{figure}
-	% \centering
-	%\includegraphics[width=3.0in]{myfigure}
-	%\caption{Simulation Results}
-	%\label{simulationfigure}
-	%\end{figure}
+	After the determination of the best model for each bacterial growth curve, we address the continuity of psychrophilic and mesophilic growth characteristics in the genus Arthrobacter. Particularly, we look at the effect of temperature (T) on the growth rate ($\mu_{max}$) of seven \textit{Arthrobacter} species. Previous work on this topic \cite{ROTH1962} reported: "[...] no sharp cutoff point between growth-temperature requirements of psychrophilic and mesophilic bacteria". In this part of the mini-project, we confirm such experimental observation by fitting a thermal performance curve (TPC) \cite{Lactin1995} to seven (T, $ \mu_{max} $) data sets, one for each species. By inspecting the optimal growth temperature ($ T_{opt} $) for each species, i.e., the one at which maximum growth rate is reached, we rigorously show the experimental observation previously stated.
+	\section{Methods}\label{methods}
+	In this section we explain the deteails of the data, present the tested models, summarize the work flow of the mini-project code as a whole, and motivate the use of each computing tool we employed.\\
 	
-	\section{Conclusion}
-	Write your conclusion here.
+	The data comes from a colection of 10 papers written between 1962 and 2018 where the population of 45 bacteria species is measured at different times (h), temperatures (ºC) and mediums. Grouping datasets of population versus time for each temperature, species and medium yields 301 bacterial growth curves. The populations are expressed in different units depending on the paper, particularly,  optical density measured at 535 nm (OD$_{535} $), number of bacteria (N), colony-forming unit (CFU) and dry weight (DryWeight).\\
+	Seven models are fit to the growth curves; exponential, quadratic, cubic, logistic \cite{Pearl1920, Verhulst1838}, Gompertz \cite{Zwietering1990}, Baranyi \cite{Baranyi1994} and Buchanan \cite{Buchanan1997}. (Figure \ref{all_models}). Refer to table \ref{tab:model_eqs} to see the mathematical form of each model.\\
+	
+	The general workflow of this project has two main parts: analysis of primary models, and analysis of secondary models.  Each module has 3 subdivisions: data preparation, fitting and storing results, and plotting. 
+	
+	\begin{figure}[h]
+		\includegraphics[width= \linewidth]{all_models.pdf}
+		\centering
+		\caption{Overview of fit of each model to a growth curve where they perfrorm best (they have the lowest AIC value of all models for that curve)}
+		\label{all_models}
+	\end{figure}
+	
+	\section{Discussion}
+	We discarded BIC because the assumptions that are made to obtain its expresion are not met in our case of study. This assumptions are: a) existence of a true model, b) the true model is in the model pool and c) each of the  models has the same probability of being the true one 
+	
+	\newpage
+	\section{Appendix}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{ c c c }
+			cell1 & cell2 & cell3 \\ 
+			cell4 & cell5 & cell6 \\  
+			cell7 & cell8 & cell9    
+		\end{tabular}
+		\caption{\label{tab:model_eqs}Explicit form of each model}
+	\end{table}
 	
 \end{linenumbers}
-
+\newpage
+\bibliographystyle{unsrt}
+\bibliography{/Users/pablolechon/library}
 \end{document}

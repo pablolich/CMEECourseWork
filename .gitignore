@@ -1,3 +1,20 @@
+#Ignore auxiliary latex files
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.bbl
+*.blg
+*.synctex.gz
+
 *~ 
 *.tmp
 *.log

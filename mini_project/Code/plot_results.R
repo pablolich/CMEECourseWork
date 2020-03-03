@@ -84,7 +84,7 @@ for (i in id){
   setTxtProgressBar(pb, j)
   j = j+1
 }
-dev.off()
+garbage <- dev.off()
 
 #ANALIZE SUCCESS OF THE FITTING FOR EACH MODEL#
 ###############################################

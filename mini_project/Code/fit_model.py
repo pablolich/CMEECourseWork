@@ -318,8 +318,7 @@ def fit_mod(t, t_eval, pop, model, par_name, par_vals, i, k_model):
     #If r_max is not properly constrained (<2 points in the growing phase)
     #the fit is flagged with a warning (-1)
     nm = model.__name__
-    if (nm == 'logistic' or
-           nm == 'gompertz' or
+    if (nm == 'gompertz' or
            nm == 'baranyi' or
            nm == 'buchanan'):
         y_0 = min(pop) #Sometimes the fitted y_0 is too low
@@ -492,7 +491,6 @@ def main(argv):
     #LOOP THROUGH EACH DATA GROUP#
     ##############################
     pbar = ProgressBar() # Implement progress bar
-    print('Fitting and evaluating primary models...')
     for i in pbar(range(ngroups)):
 
 

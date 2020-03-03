@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#Fitting and evaluating primary models..i!/usr/bin/env python3
 
 __appname__ = '[analysis.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
@@ -115,7 +115,6 @@ def main(argv):
     fit_results = {'Species':names_out, 'Temp':[0]*ntot, 
                    'mu_max':[0]*ntot, 'Topt':[0]*ntot}
     pbar = ProgressBar() # Implement progress bar
-    print('Fitting and evaluating secondary models...')
     for i in pbar(species):
         fit_dat = dat[dat.Species == i]
         T = fit_dat.Temp
@@ -148,11 +147,6 @@ def main(argv):
         synthetic = np.ones(nevals)
         pred = lactin2(fit_.params, T_eval, synthetic)
         evaluation = synthetic + pred
-        plt.close()
-        plt.scatter(T, mu_max)
-        plt.plot(T_eval, evaluation)
-        plt.title(i)
-        plt.show()
         names = list(fit_results.keys())#Get rid of names key
         names.pop(0)
         #Flag unsuccesful fits if topt is unreal (due to lack of t range)

@@ -1,5 +1,5 @@
-require(ggplot2)
-require(dplyr)
+library(ggplot2)
+library(dplyr)
 library(viridis)
 
 #Load growth data and results

@@ -5,8 +5,8 @@ rm(list = ls())
 setwd('~/Desktop/Imperial/CMEECourseWork/mini_project/Code/')
 
 #Require packages
-require('plyr')
-require('RColorBrewer')
+library('plyr')
+library('RColorBrewer')
 library('wesanderson')
 
 #Turn warnings off
