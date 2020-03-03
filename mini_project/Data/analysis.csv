@@ -1,6 +1,0 @@
-"Species","Temp","mu_max","model","Medium"
-"Arthrobacter aurescens",0,0.01661598992757,"gompertz","TGE agar"
-"Arthrobacter aurescens",20,0.127019283031662,"gompertz","TGE agar"
-"Arthrobacter aurescens",30,0.158648701904787,"gompertz","TGE agar"
-"Arthrobacter aurescens",37,0.0451494447228167,"gompertz","TGE agar"
-"Arthrobacter aurescens",7,0.0654925507834831,"gompertz","TGE agar"
