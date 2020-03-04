@@ -2,7 +2,7 @@
 
 
 
-__appname__ = '[fit_model.py]'
+__appname__ = '[fit_store_model_1.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
@@ -205,10 +205,11 @@ def goodness(population, residual, par_name):
     #Mean of data
     y_mean = np.mean(population)
     #Calculate parameters
-    chi_square = (r*r).sum()
-    r_square = 1-chi_square/sum((10**(population-y_mean))**2)
-    aic = ndata*np.log(chi_square/ndata) + 2*nparams
-    bic = ndata*np.log(chi_square/ndata) + np.log(ndata)*nparams
+    rss = (r*r).sum()
+    r_square = 1-rss/sum((10**(population-y_mean))**2)
+    aic = ndata + 2 +  ndata*np.log(2*np.pi/ndata) + ndata*np.log(rss) + \
+          2*nparams
+    bic = ndata*np.log(rss/ndata) + np.log(ndata)*nparams
     
     return(r_square, aic, bic)
 

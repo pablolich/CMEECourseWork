@@ -108,26 +108,33 @@ for (i in seq(length(models))){
 
 #Plot it
 ggplot(succes_df, aes(x, y)) +  
-  geom_tile(aes(fill = factor(z)), color = 'gray90')+ #Bar code type of plot
-  scale_fill_manual(values= c('springgreen', 'yellow3', 'black', 'white'),
-                    labels = c('best', 'poor', 'fail', 'success'))+
+  geom_tile(aes(fill = factor(z)), color = NA)+ #Bar code type of plot
   theme_bw()+
-  theme(axis.title.y=element_blank(),
-        axis.title.x=element_blank(),
+  theme(axis.title.x=element_blank(),
         axis.text.x = element_text(size=15,
-                                   vjust = 0.6),
+                                   vjust = 0.5, 
+                                   colour = rev(brewer.pal(n = 4, name = 'RdBu'))[1]),
+        axis.text.y = element_text(size = 10),
+        axis.title.y = element_text(size = 16),
         panel.grid.major = element_blank(), #Get rid of grids
         panel.grid.minor = element_blank(),
         legend.title = element_blank(), 
         legend.position = 'bottom',
-        legend.text = element_text(size = 15),
+        legend.text = element_text(size = 15, color = 'black'),
         plot.title = element_text(hjust = 0.5, size = 20)) + #No legend
   scale_x_discrete(labels = labels,
                    limits = seq(from = min(succes_df$x), 
                                 to = max(succes_df$x)),
                    expand = c(0,0))+ #Eliminate white margins
-  scale_y_discrete(expand = c(0,0))+
-  labs(title = 'Fitting performance')
+  scale_y_continuous(name='Growth curve',
+                    limits=c(1, 285),
+                    breaks = seq(1, 285, by = 284/4),
+                    expand = c(0,0))+
+  scale_fill_manual(name = "", 
+                    limits=c("-2", "1", "-1", "0"),
+                    labels = c("best", "success", "poor", "fail"),
+                    values = rev(brewer.pal(n = 4, name = 'RdBu')))+
+  
 ggsave(filename = '../Results/success_report.pdf', height = 9.46, width = 8)
 
 
@@ -287,7 +294,7 @@ gompertz = ggplot(data = dat_exp_gompertz, aes(x = Time, y = y_t))+
         axis.ticks = element_blank()) +
   geom_line(data = dat_fit_gompertz, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
-  geom_text(x = 35, y = 0.5, label = 'gompertz', size = size_text)
+  geom_text(x = 35, y = 0.5, label = 'Gompertz', size = size_text)
 
 
 #Buchanan
@@ -313,7 +320,7 @@ Buchanan = ggplot(data = dat_exp_Buchanan, aes(x = Time, y = y_t))+
         axis.ticks = element_blank()) +
   geom_line(data = dat_fit_Buchanan, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
-  geom_text(x = 225, y = 0.5, label = 'buchanan', size = size_text)
+  geom_text(x = 225, y = 0.5, label = 'Buchanan', size = size_text)
 
 #baranyi
 dat_exp_baranyi = subset(d, d$Species == 'Arthrobacter simplex' &
@@ -339,7 +346,7 @@ baranyi = ggplot(data = dat_exp_baranyi, aes(x = Time, y = y_t))+
   
   geom_line(data = dat_fit_baranyi, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
-  geom_text(x = 350, y = 0.75, label = 'baranyi', size = size_text)
+  geom_text(x = 350, y = 0.75, label = 'Baranyi', size = size_text)
 
 #pdf('../Results/all_models.pdf')
 lay <- rbind(c(NA, 1,1, 2,2, 3,3, NA),

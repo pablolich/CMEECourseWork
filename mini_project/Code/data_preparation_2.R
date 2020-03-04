@@ -41,5 +41,6 @@ dat_filt = subset(d, d$model == bestmodel)
 keeps = c('Species', 'Temp', 'mu_max')
 dat_filt_T = dat_filt[keeps]
 
+
 #Save this data to fit
 write.csv(dat_filt_T, '../Data/cfu_analysis.csv', row.names = F)

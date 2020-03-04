@@ -23,6 +23,13 @@
 # Things to do 
 
 ## Priority 1
+	0. If, for one fit_evals, all evaluations are 0, declare that as fail.
+	1. Get rid of the dyplyr package in plotting_1 and co.
+	1. A model is only best if its AIC is 2/3 times lower than the competing ones.
+	1. Copy the compile latex sh file so that the call is more elegant.
+	1. Test wether my calculated AIC match the AIC of the computer, this would mean that my errors are normally distributet, in the case that they match. if not, scream and cry
+	1. I need to talk about the growing curves in the introduction.
  	1. Where is that Rplots.pdf plot coming from?
 	2. Change names of output files so that they are more meaningful.
+
 
