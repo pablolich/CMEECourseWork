@@ -52,7 +52,7 @@ p = ggplot(d, aes(x = Temp, y = mu_max,
         legend.text=element_text(size=8), #Increase size of legend
         legend.position = 'bottom',
         legend.title = element_blank(),
-        legend.box.margin=margin(-10,10,10,10)) +
+        legend.box.margin=margin(-10,10,-10,10)) +
   
   labs(x = 'T (°C)',
        y = expression(paste(mu[max]," (CFU ", h^-1, ")")))+
