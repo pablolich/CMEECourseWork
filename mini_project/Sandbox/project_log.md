@@ -23,11 +23,6 @@
 # Things to do 
 
 ## Priority 1
-	1. Get rid of fits with unconstrained parameters.
-	2. Get rid of really bad models: using R^2?
-	2. Different type of success (all 0's?, unconstrained parameters?)
-        3. Fit TPC and normal curves.	
-	1. Write mathematical introduction to the models.
-	2. Modularize code. Organize flow and move functions together if they are similar etc.
-
+ 	1. Where is that Rplots.pdf plot coming from?
+	2. Change names of output files so that they are more meaningful.
 
