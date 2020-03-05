@@ -23,7 +23,7 @@
 \end{abstract}
 
 \begin{linenumbers}
-    \section{Introduction}
+    \section{Introduction}\label{sec:introduction}
     Importance of bacterial growth curves, history of them. Introduce the tipical bacterial growth curve, determine the phases of it. Say that different models are used, phenomenological, mechanistic... We use model selection to adress which is better, and use it to answer our biological question. Talk about the importance of the temperature in the growth of bacteria, talk about the Artrhobacter genus,  talk about thermal performance curves.\\
     
    	Terminar la introduccion diciendo que el objetivo es usando model selection analizar mi biological question.
@@ -41,7 +41,6 @@
 	
 	The data comes from a collection of 10 papers written between 1962 and 2018 where the population of 45 species of bacteria is measured at different times (h), temperatures (ºC) and mediums.  The populations are expressed in different units depending on the paper, particularly,  optical density measured at 535 nm (OD$_{535} $), number of bacteria (N), colony-forming unit (CFU) and dry weight (DryWeight). Grouping datasets of population versus time for each temperature, species and medium yields 301 bacterial growth curves to which we can fit our models.\\
 	After taking the $ \log_{10} $ of the population values, seven models are fit to the growth curves; exponential (which turns into linear after logging the population), quadratic , cubic, logistic \cite{Pearl1920, Verhulst1838}, Gompertz \cite{Zwietering1990}, Baranyi \cite{Baranyi1994} and Buchanan \cite{Buchanan1997} (figure \ref{all_models}). Refer to table \ref{tab:model_eqs} to see the mathematical form of each model. As seen in figure \ref{all_models}, we are fittng four linear models (linear, quadratic, cubic, Buchanan) and three non-linear models (logistic, Gompertz, Baranyi). \\
-	
 	\begin{figure}[h]
 		\includegraphics[width= \linewidth]{all_models.pdf}
 		\centering
@@ -50,12 +49,12 @@
 	\end{figure}
 	
 	The general workflow of this project has two modules: Module 1 (fitting of all bacterial growth curves and model selection), and Module 2 (analysis of the biological question).  Each module has 3 subdivisions: data preparation, fitting and storing results, and plotting. These modules, along with the \LaTeX \ code that produces the present document are glued together in a script that coordinates all the tasks to run the mini-project smoothly
-	\subsection{Module 1}\label{sec:introduction}
+	\subsection{Module 1}\label{subsec:module1}
 	This module concerns the fitting of all growth curves to all models and the model selection.\\
 	The first step in this module is the data preparation (\verb|data_preparation_1.R|), in which we log the data, deal with bad quality data, and repeated measurements. First, we decide to log our data ($N(t) $ $\rightarrow$ $y(t)$) because the fitting performance and speed are enhanced.  This is because taking $ \log_{10} $ decreases the scale of poulation values, particularly those measured in N units, which can be $ \sim $ 10$^{10} $. The mathematical form of the models also changes when logging the populations. Second, we eliminate the outliers in the population data (only one value of -682) that don't have any biological meaning. Next, we deal with negative values closer to 0 by finding the minimum of those values, and add that to all population values. This assures that all elements are now positive without losing any data points, very valuable for the fits. Adding a constant to our population values will modify some of the fit parameter estimations, specifically all the coefficients from the second and third-order degree polynomials, but more importantly, y$_0 $ and y$ _{max} $ from the exponential, logistic, Gompertz, Baranyi and Buchanan models. However, that does not affect our model selection, or our biological question, because neither of these analysis depend on the value of the affected parameters. Third, we address the repeated measurements, which are only present in the growth curves of the species  \textit{Tetraselmis tetrahele}. This data consists of repeated measures of the population at different times. However, the times at which the population is measured slightly  differ among each repetition. To deal with this we create the function \verb|binning| (stored in \verb|data_preparation_functions.R|) that groups the slightly different times (within a threshold of 0.25) into averaged time groups, $  \overline{t_i}$. We use the binning for the time vector to bin our population accordingly into a vector of averaged populations, {$\overline{y_i}$}. This procedure yields a unique averaged dataset $ \left(\overline{t_i}, \overline{y_i}\right) $ that substitutes the repeated measurements of growth curves.\\
 	
 	The second step of module 1 is the model fitting and storing of results (\verb|fit_store_models_1.py|). This process consists of (a) loading the data, (b) looping through each growth curve, (c) calculating initial values for all the models, (d) fit each model to the i$ ^{th} $ curve, and (e) storing results (parameter estimates, fit evaluations, AIC values and performance information) in a dictionary for later use in the analysis. \\
-	Steps a) and b) are trivial to perform. The initial values (step c) are set to 1 for the linear models. The convergence of the fits to non-linear models depends on the initial parameter values being reasonably close to the actual best-fit parameter values. Thus, we determine them by isolating the growth phase, and fitting a line to it. For a detailed explanation of how do we isolate the growth phase, and why fitting a line to it provides us with good initial parameter estimations, refer to section \ref{subsec:initial_values}. Step d) is implemented using the non-linear least squares (NLLS) fitting method. For a brief discussion on the theory behind this method, refer to section \ref{subsec:non-linear least squares fitting}. The AIC is calculated in step e. The expression for the AIC is
+	Steps a) and b) are trivial to perform. The initial values (step c) are set to 1 for the linear models. The convergence of the fits to non-linear models depends on the initial parameter values being reasonably close to the actual best-fit parameter values. Thus, the initial estimation for $ y_{0} $ and $ y_{max} $ are the maximum and the minimum of the population data being fitted. We determine $ \mu_{max} $ and $ t_{lag} $ by isolating the growth phase, and fitting a line to it. For a detailed explanation of how do we isolate the growth phase, and why fitting a line to it provides us with good initial parameter estimations, refer to section \ref{subsec:initial_values}. Step d) is implemented using the non-linear least squares (NLLS) fitting method. For a brief discussion on the theory behind this method, refer to section \ref{subsec:non-linear least squares fitting}. The AIC is calculated in step e. The expression for the AIC is
 	\begin{equation}
 		AIC = -2\log\left(\mathcal{L}(\boldsymbol{\beta}|x)\right) + 2p
 		\label{AIC_general}
@@ -68,14 +67,15 @@
  	\begin{equation}
  	AIC = n + 2 + n \log\left(\frac{2\pi}{n}\right) + n\log S + 2 p
  	\end{equation}
- 	The performance information (step e) provides the clasification \textit{best, succesful, poor, fail} in figure \ref{success_report}.  Classifying a fit as \textit{best, success, or fail} is trivial. To understand how can a fit be classified as \textit{poor}, refer to section \ref{subsec:poor}.\\
+ 	The performance information (step e) provides the clasification \textit{best, succesful, poor, fail} in figure \ref{fig:success_report}.  Classifying a fit as \textit{best, success, or fail} is trivial. To understand how can a fit be classified as \textit{poor}, refer to section \ref{subsec:poor}.\\
  	
-	The third step of the first module is the plotting phase (\verb|plotting_1.R|). Using the results previously obtained we plot every growth curve in a different figure and overlay the top four fits to it, according to the AIC. The intensity of the color of each fitting curve is also based on its AIC value. All these plots are saved to the results directory. A fitting performance map (figure \ref{success_report}) is also generated here.
+	The third step of the first module is the plotting phase (\verb|plotting_1.R|). Using the results previously obtained we plot every growth curve in a different figure and overlay the top four fits to it, according to the AIC. The intensity of the color of each fitting curve is also based on its AIC value (see figure \ref{fig:non_constrained}). All these plots are saved to the results directory. A fitting performance map (figure \ref{fig:success_report}) is also generated here.
 	\subsection{Module 2}
 	This module deals with the biological question stated in section \ref{sec:introduction}. \\
 	In the data preparation step (\verb|data_preparation_2.R|), we select all the species of the genus \textit{Arthrobacter} along with the temperature and maximum growth rate predicted by the best model. To determine the best model, we compute the score of each model in this subset of the data. In this case, the Gompertz model was top 1 in the majority of the data sets, so we used it to get our $ \mu_{max} $ estimations. In the end, we have a data frame with seven species, and five data points ($ T $, $ \mu_{max} $) each. \\
-	Secondly, we perform NLLS fitting (\verb|fit_store_models_2.py|) to each dataset the thermal performance curve proposed by Lactin et al. in 1995 \cite{Lactin1995}, which is a modification of the 1976 Logan-6 model \cite{Logan1976}. For a brief discussion on the Lactin-2 model refer to section \ref{subsec:Lactin-2}. In this case, the initial values for the fitting were taken from the literature \cite{Lactin1995}.\\
-	Third, we plot the results (\verb|plotting_2.R|).
+	Secondly, we perform NLLS fitting (\verb|fit_store_models_2.py|) to each dataset the thermal performance curve proposed by Lactin et al. in 1995 \cite{Lactin1995}, which is a modification of the 1976 Logan-6 model \cite{Logan1976}. For a brief discussion on the Lactin-2 model refer to section \ref{subsec:Lactin-2}. In this case, the initial values for the fitting were taken from the literature \cite{Lactin1995}. $ T_{opt} $ is calculated for each species according to equation \ref{eq:Topt} (see section \ref{subsec:Lactin-2}). 
+
+	Third, we plot the results (\verb|plotting_2.R|) to generate figure \ref{fig:TCP}.
 	\subsection{Computing tools}
 	Both modules are written using a Python and R. The latter one is used to perform the fitting using the LMFIT python package \cite{Newville2014}. NumPy, Pandas \cite{Virtanen2020} and ProgressBar packages are also used for creating the models, saving the results, and implementing a progress bar, respectively. R is used to prepare data for analysis and plotting using ggplot2 \cite{Wickham2016}. RColorBrewer package is loaded to enable the \verb|YlOrRd| color palette used in the fit plots. The packages grid, and gridExtra are loaded to arrange multiple plots in one panel (figure \ref{all_models}).\\
 	We choose to divide our work like this because Python is a faster language than R in general, so we use it to do the heavy lifting (fitting algorithms). However, R's flexibility and intuitive behavior when it comes to working with data frames are much better than Python's. Moreover, ggplot2 is the most powerful tool to generate publishable plots to our knowledge, which justifies using R for plotting instead of something else.\\
@@ -83,37 +83,34 @@
 	
 	\section{Results}
 	Two categories of results are reported in this section: model selection and biological question results. \\
-	Figure \ref{success_report} summarizes the fitting performance and model selection results.
+	Figure \ref{fig:success_report} summarizes the fitting performance and model selection results.
 	\begin{figure}[h!]
 		\includegraphics[width= \linewidth]{success_report.pdf}
 		\centering
-		\caption{Tile map summarizing the fitting performance and model selection results. Best fits are determined by selecting the model with lowest AIC value for each growth curve. The amount of times (\%) that a model is the best candidate is specified. Success fits are convergent ones. Poor fits deal with data where the growth phase has $ \leq $2 data points. Fail fits converge to a local minima instead of the global one, or don't converge at all.}
-		\label{success_report}
+		\caption{Tile map summarizing the fitting performance and model selection results. Best fits are determined by selecting the model with lowest AIC value for each growth curve. The amount of times (\%) that a model is the best candidate is specified. Success fits are convergent ones. Poor fits deal with data where the growth phase has $ \leq $1 data points. Fail fits converge to a local minima instead of the global one, or don't converge at all.}
+		\label{fig:success_report}
 	\end{figure}
-	The proportion of convergent fits decreases as the complexity of the model increases. Thus, all fits to the linear models converge. On the contrary, all the non-linear model fail once (logistic, Gompertz) or more times (Baranyi). However the quality of the fit is better in the non-linear models than in the linear ones. Particularly, the Gompertz model is the best model among the compared ones (32\%), followed the Baranyi model (24\%). The cubic model had a surprisingly high best model percent (19\%) compared to the Buchanan (16\%) and logistic (4\%) models. The linear (exponential) model was best the least amount of times (1\%) and the quadratic model was it 6\% of the times.\\
-	
-	The $ \mu_{max} $  Gompertz's estimations are plotted against $ T $ and fitted for the seven \textit{Arthrobacter} species (see figure)
-	\begin{figure}[h!]
+	The proportion of convergent fits decreases as the complexity of the model increases. Thus, all fits to the linear models converge. On the contrary, all the non-linear model fail once (logistic, Gompertz) or more times (Baranyi). Note that every time a non-linear fit fails, the best fit for that curve is one of the linear fits. However, the fits are generally better in the non-linear models than in the linear ones. Particularly, the Gompertz model is best model most of the times (32\%), followed the Baranyi model (24\%). The cubic model had a higher best model percent (19\%) compared to the Buchanan (16\%) and logistic (4\%) models. The linear (exponential) model was best the least amount of times (1\%) and the quadratic model was it 6\% of the times. Finally, a small proportion of the logistic, Gompertz, Buchanan and Baranyi fits are poor fits. Refer to section \ref{subsec:poor} to know how is this determined.\\
+	\begin{figure}[h]
 		\includegraphics[width= \linewidth]{TCP.pdf}
 		\centering
-		\caption{}
+		\caption{Fits of the Lactin-2 model to data from seven species of the genus \textit{Arthrobacter}}
 		\label{fig:TCP}
 	\end{figure}
-	When I talk about Arthrobacter, mention that the parameters were not very well constrained.
-	Make sure you go back to module1 and reference the figures of overlayed fitting and fitperformance once I put them here.
-	
+	The $ \mu_{max} $  Gompertz's estimations are plotted against $ T $. The Lactin-2 model is fitted for the data of each species (see figure \ref{fig:TCP}). Calculating $ T_{opt} $ for each species gives 19.8ºC for \textit{Sp 62}, 23.5ºC for \textit{Sp 77}, 26.6 ºC for \textit{Sp 88}, 27.5ºC for \textit{Arthrobacter Aurescens}, 35.6ºC for \textit{Arthrobacter Citreus}, 39.5ºC for \textit{Arthrobacter Simplex}, and 49.46ºC for \textit{Arthrobacter Globiformis}
 	\section{Discussion}
+	If there were no phenomena which were (mostly) independent of all but a manageably small set of conditions, modelling in biology would be impossible \cite{Wigner1995}. Many models, each one considering a different set of relevant conditions, can successfully explain a given phenomena.  To obtain best estimates for the parameters of interest one can test competing models using model selection. There are many ways to do this, but the most commonly used method is to calculate AIC or BIC. In this work, model selection was adressed using AIC. We chose to do so, because the calculation of BIC assumes (a) the existence of at true model, (b) that the true model is within the examined pool of models, and (c) that each of the modes has the same probability of being the true one \cite{Johnson2004}. We deny assumption a), the existence of a true model, and consequently also assumptions b) and c), because we argue that  \textit{"all models are wrong, but some are useful"} \cite{Box1976, Box1979}. A true model, if attainable, would have to account for all the physical and biological processes that take place in the studied phenomena. This would make the model intractable due to its complexity. A good model should be simple enough to capture the behaviour of the modeled process in an intuitive way, but not so simple to disregard essential mechanisms \cite{Chatfield1995}. \\
+	When we calculate AIC values for each fit and model, we surprisingly find that the cubic model performs better than the logistic and Buchanan models. One would expect that population growth models such as the latter two, would better fit population growth curves. The problem is that logistic and Buchanan only model the first three phases of SEE FIGURE 1!!!!!!!!!!!!!! a growth curve, and don't focus on a posible death phase. On the contrary, a third degree polinomial can model decreasing populations after $ y_{max} $ has been reached. Fitting a growth model that accounts for a death phase \cite{Peleg2009, Baranyi1996} would change this result. However those models are scarce in the food microbiology literature because most foods become inedible even before the mortality phase is reached \cite{Micha2011}, so there is no scientific incentive to come up with models that account for this.\\
+	The logistic model has an unexpected very low \textit{best fit} percent. This result is caused by logging the logistic model. When we do so, the exponential growth that could reproduce the $ t_{lag} $ shape transforms to a straight line, which is unable to capture this pattern. From this point of view, it can be argued that fitting the logistic model in linear scale is conceptually wrong, since we are modeling a process of zero growth (lag phase), with a slow exponential growth. In fact, taking the logarithm of the data reveals this incongruence. To avoid it, some authors \cite{Micha2011, Zwietering1990} fit logged data with the linear logistic model. This  is, in principle, a mistake, because when the data is rescaled the model must be rescaled too. However, the parameters of the logistic model can be recast to introduce a $ t_{lag} $ with no mechanistic interpretation \cite{Zwietering1990}. The validity of this resides in how important it really is to be able to mechanistically interpret the parameters of a model. This question is an ongoing debate. Some authors even question if any mechanistic insights can be  grasped from the value of parameters obtained by curve fitting alone \cite{Micha2011}. Being able to mechanistically interpret the parameters of a model depends on the purpose of your fitting. If it is merely for prediction, the simplest best  model, (the Gompertz model in this work), should be the candidate of your choice. A  novel more robust method of obtaining parameter values for this purpose is model averaging. This method is discussed next, along with the biological quesiton. \\
 	
-	The explanation for this (logistic and buchanan less thatn cubic??) is that the cubic model is able to fit the mortality phase better than any of the models (figure \ref{all_models}). In conclusion, the higher success percentage of the cubic model compared to the logistic and the buchanan model doesn't mean imply that it is a better model. It tells us that the former two do not account for the death phase. 
+	Mention problems with fit for simplex and globiformis, but that they are clearly mesophiles.
 	
-	We discarded BIC because the assumptions that are made to obtain its expresion are not met in our case of study. This assumptions are: a) existence of a true model, b) the true model is in the model pool and c) each of the  models has the same probability of being the true one 
-	
-	There is no right model, the future is model averaging!
-	
+	When I talk about Arthrobacter, mention that the parameters were not very well constrained.
 	\section{Future work}
 	Do model averaging when deciding what parameters to use in our biological question. Implement C code to do the heavy lifting work
 	Do model selection for the thermal performance curves as well. Cite papers were more TCP models can be found.
 	
+	Tertiary models
 	\section{Aknowledgements}
 	Sam Turner helped me.
 	\newpage
@@ -129,6 +126,16 @@
 		\caption{\label{tab:model_eqs}Explicit form of each model. Meaning of the parameters. The population is logged}
 	\end{table}
 	\subsection{Initial values calculation}\label{subsec:initial_values}
+	Given $ m $ data points $ D =  \left\{(x_1, y_1), (x_2, y_2), ... , (x_m, y_m)\right\} $ from a bacterial growth curve, and a tolerance $ \epsilon $ we perform the following steps to calculate initial estimations for the parameters $ \mu_{max} $, $ t_{lag} $. First, we calculate the $ m - 1 $ dimensional vector gradient between consecutive points as $ g_i = y_{i+1} - y_i $. Second, we find the maximum of that vector, $ g_{max} $. Third, we isloate the growing phase, $ D_{grow} = \left\{(\tilde{x}_1, \tilde{y}_1), (\tilde{x}_2, \tilde{y}_2), ... , (\tilde{x}_n, \tilde{y}_n)\right\} $ by selecting the datapoints in $ D $ whith $g_i \in [g_{max}(1-\epsilon), \ g_{max}(1+\epsilon)]$, with $ \epsilon = 0.3 $ by default.\\
+	Fitting a line to $ D_{grow} $ yields the intercept and slope $ b $, $ m $ that can be used to calculate the initial parameters. The growth rate can be expressed as the slope of the growing phase scaled by a constant due to having logged the data, 
+	\begin{equation}
+		\mu_{max}  = p\log_{10}
+	\end{equation}
+	The time lag has been traditionaly defined as the intersection of the tangents to the growth curve at the lag and exponential growth phases \cite{Micha2011}. This can be expressed mathematically, as 
+	\begin{equation}
+		t_{lag} = \frac{1}{m}(y_0 - b)
+	\end{equation}
+	where $ y_0  $ is determined as described in section \ref{subsec:module1}
 	\subsection{Non-linear least sqares fitting}\label{subsec:non-linear least squares fitting}
 	Consider $ m $ data points $ \left\{(x_1, y_1), (x_2, y_2), ... , (x_m, y_m)\right\} $, and a model
 	\begin{equation}
@@ -148,9 +155,27 @@
 	\end{equation}
 	This yields a non-linear systems of equations that, in general, does not have a closed solution. Consequently, initial values must be chosen for the parameters, so that they can be iteratively minimized. 
 	\subsection{Classifying a fit as \textit{poor}}\label{subsec:poor}
+	A fit to a bacterial growth curve with only 1 data point in the growing phase will yield poorly constrained values $ \mu_{max} $ and $t_{lag}$, because significantly different values of  these parameters for different models will all define a good fit. To ilustrate this, see figure \ref{fig:non_constrained}
+	\begin{figure}[h]
+		\includegraphics[width= \linewidth]{non_constrained.pdf}
+		\centering
+		\caption{Example fit in which there is only 1 point in the growing phase, according to our method. The fit quality is very high ($ R^2 \ge 0.999 $). However, the values of $ \mu_{max} $ and $ t_{lag} $ for Gompertz, Buchanan and Baranyi models are, respectively, [0.045, 0.022, 0.061] (CFU h$^{-1}$) and [80.3, 45.1, 87.8] (h).}
+		\label{fig:non_constrained}
+	\end{figure}
+	
+	Given $ m $ data points $ D =  \left\{(x_1, y_1), (x_2, y_2), ... , (x_m, y_m)\right\} $ from a bacterial growth curve, a tolerance $ \epsilon $ and a bacterial growth model fit to that data, we flag it as \textit{poor} if there are 1 or none data points in the growth phase. To do this, we firts isolate the growth phase, and then count the elements in it. The isolation of the growth phase is perform differently depending on the model . 
+	If the model is one of Gompertz, Buchanan, or Baranyi we check how. Given the estimated parameters $ y_{0} $ and $ y_{max} $ from the fits, the growth phase $D_{grow} $ contains points of the form $ (x_i, y_i) / y_i \in [y_0 + \epsilon\ |y_0| , y_{max} - \epsilon \ |y_{max}]$. On the other hand, if the model is logistic, $ D_{grow} $ contains points where $ y_i \in [y_0, y_{max}-\epsilon \ |y_{max}|] $
+	
 	\subsection{Lactin-2 model}\label{subsec:Lactin-2}
-	
-	
+	The expression for the Lactin-2 model is 
+	\begin{equation}\label{eq:Lactin-2}
+		\mu(T) = \exp(\rho T) - \exp\left(\rho T_{max} - \frac{T_{max}-T}{\Delta T}\right) + \lambda	
+	\end{equation}
+	The modifications respect to the Logan-6 model are; first, they omitted the paremeter $ \Psi $ which was originally defined as a physiological rate parameter at a given base temperature. Second, they incorporated the intercept parameter $ \lambda $, which forces the curve to intersect the abcissa at low temperatures and allows the estimation of $ T_{min} $.\\
+	To find $ T_{opt} $ one finds the maximum of equation \ref{eq:Lactin-2}. Solving $ \frac{d\mu}{dT}  = 0$ yields the expression
+	\begin{equation}\label{eq:Topt}
+		T_{opt} = \frac{1}{\rho\Delta T  -1}\left[\rho T_{max} \Delta T - T_{max} + \Delta T \log\left(\frac{1}{\rho\Delta T }\right) \right]
+	\end{equation}\\
 \end{linenumbers}
 \newpage
 \bibliographystyle{unsrt}

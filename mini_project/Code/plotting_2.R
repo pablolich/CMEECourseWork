@@ -43,16 +43,15 @@ p = ggplot(d, aes(x = Temp, y = mu_max,
    scale_fill_manual(values = color_points)+
    theme_bw()+
    theme(plot.title = element_text(size=110,face="bold"), #Title
-        plot.subtitle = element_text(size = 9), #Increase size of subtitle
         panel.grid.major = element_blank(), #Get rid of grids
         panel.grid.minor = element_blank(),
         axis.title=element_text(size=9),#Increase size of axis title
         axis.text.x = element_text(size=8), #Increase size of ticks
         axis.text.y = element_text(size=8),
-        legend.text=element_text(size=8), #Increase size of legend
+        legend.text=element_text(size=9), #Increase size of legend
         legend.position = 'bottom',
         legend.title = element_blank(),
-        legend.box.margin=margin(-10,10,-10,10)) +
+        legend.box.margin=margin(0,0,-10,0)) +
   
   labs(x = 'T (°C)',
        y = expression(paste(mu[max]," (CFU ", h^-1, ")")))+
