@@ -316,8 +316,13 @@ def fit_mod(t, t_eval, pop, model, par_name, par_vals, i, k_model):
     ##############################
     #Success/fail
     suc = int(fit_.success)
-    #If r_max is not properly constrained (<2 points in the growing phase)
-    #the fit is flagged with a warning (-1)
+
+    #Paramteters and residuals 
+    fit_par = [fit_.params.valuesdict()[k] for k in tuple(par_name)]
+    residual = fit_.residual
+
+    #Calculating r_square, aic, bic 
+    r_square, aic, bic = goodness(pop, residual, par_name)
     nm = model.__name__
     if (nm == 'gompertz' or
            nm == 'baranyi' or
@@ -337,13 +342,29 @@ def fit_mod(t, t_eval, pop, model, par_name, par_vals, i, k_model):
         mask = (pop_array>ints[0]) & (pop_array<ints[1]) |\
                (pop_array>ints[2]) & (pop_array<ints[3])
         g_phase = pop_array[np.invert(mask)]
-        if len(g_phase) <= 1:
+        #If r_max is not properly constrained (<2 points in the growing phase
+        #or nparams = ndata (r_square = 1),the fit is flagged with a warning 
+        #(-1)
+        if (len(g_phase) <= 1) | (r_square == 1):
             suc = -1
 
-    #Paramteters and residuals 
-    fit_par = [fit_.params.valuesdict()[k] for k in tuple(par_name)]
-    residual = fit_.residual
-
+    #The logistic model is treated differently because it has a different shape
+    #in the log space.
+    if (nm == 'logistic'):
+        y_max = max(pop)
+        #Get rid of points outside the growing phase (in the asymptotes)
+        #y_0 region
+        #Throw away points outside the desired interval
+        tol = 0.1
+        ints = [y_max - tol*abs(y_max), np.inf]
+        pop_array = np.array(pop)
+        mask = (pop_array>ints[0]) & (pop_array<ints[1])
+        g_phase = pop_array[np.invert(mask)]
+        #If r_max is not properly constrained (<2 points in the growing phase
+        #or nparams = ndata (r_square = 1),the fit is flagged with a warning 
+        #(-1)
+        if (len(g_phase) <= 1) | (r_square == 1):
+            suc = -1
 
     #EVALUATING MODEL#
     ##################
@@ -353,8 +374,6 @@ def fit_mod(t, t_eval, pop, model, par_name, par_vals, i, k_model):
     #Since the function provides the residual, we have to add our synthetic
     #data to recover the predicted values
     evaluation = list(synth_res + synth_pop)
-    #Calculating r_square, aic, bic 
-    r_square, aic, bic = goodness(pop, residual, par_name)
     
 
     #STORING#

@@ -47,7 +47,10 @@ for (i in id){
   #Get number of evaluations and models
   #Create values for scale color manual
   colors = rev(brewer.pal(n = 5, name = "YlOrRd")[2:5])
-  models = unique(fit_dat$model)[unique(fit_dat$best)+1]
+  models = rev(unique(fit_dat$model)[unique(fit_dat$best)+1]) #The lower AIC the better.
+  thickness = c(1, 0.8, 0.6, 0.4)
+  names(thickness) = models
+
   labels = rep(NA, length(unique(fit_dat$model)))
   names(labels) = models
   for (k in seq(length(labels))){
@@ -78,6 +81,33 @@ for (i in id){
     scale_color_manual('', values=labels, breaks=models)
   #Save plots
   print(p)
+  #Save one for later!
+  if (i == "Arthrobacter aurescens 37 TGE agar"){
+    p = ggplot(exp_dat, aes(x = exp_dat$Time, y = exp_dat$y_t)) + 
+      geom_point()+ 
+      theme_bw()+
+      theme(aspect.ratio=1, #Square plot frame
+            plot.title = element_text(size=10,face="bold"), #Title
+            plot.subtitle = element_text(size = 9), #Increase size of subtitle
+            panel.grid.major = element_blank(), #Get rid of grids
+            panel.grid.minor = element_blank(),
+            axis.title=element_text(size=9),#Increase size of axis title
+            axis.text.x = element_text(size=8), #Increase size of ticks
+            axis.text.y = element_text(size=8),
+            legend.text=element_text(size=9), #Increase size of legend
+            legend.position = 'right') +
+      labs(title = unique(exp_dat$Species),#Title of plot and axis
+           subtitle = paste("T: ", unique(exp_dat$Temp), "°C",
+                            ", Medium: ",unique(exp_dat$Medium), sep = ""),
+           x = 'Time (h)',
+           y = expression(paste(log[10],"[N(t)]")))+
+      geom_line(data = fit_dat, aes(x = t, y = fit_eval,
+                                    color = model,
+                                    size = model))+ #Add fitted lines
+      scale_color_manual('', values=labels, breaks = models)+
+      scale_size_manual('', values = thickness, breaks = models)
+    ggsave('../Results/non_constrained.pdf', height = 3, width = 4, units = 'in')
+  }
   #Print progress...
   setTxtProgressBar(pb, j)
   j = j+1
