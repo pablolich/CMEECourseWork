@@ -206,7 +206,7 @@ def goodness(population, residual, par_name):
     y_mean = np.mean(population)
     #Calculate parameters
     rss = (r*r).sum()
-    r_square = 1-rss/sum((10**(population-y_mean))**2)
+    r_square = 1-rss/sum((population-y_mean)**2)
     aic = ndata + 2 +  ndata*np.log(2*np.pi/ndata) + ndata*np.log(rss) + \
           2*nparams
     bic = ndata*np.log(rss/ndata) + np.log(ndata)*nparams

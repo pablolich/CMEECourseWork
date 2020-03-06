@@ -14,9 +14,13 @@ fit_evals = fit_evals[order(fit_evals$Topt),]
 d = d[order(d$Topt),]
 fit_evals = fit_evals[order(fit_evals$Topt),]
 
+#Remove extra lines for clarity in the plot
+d<-d[!(d$Species=="Arthrobacter sp. 62" | d$Species=='Arthrobacter sp. 77'),]
+fit_evals<-fit_evals[!(fit_evals$Species=="Arthrobacter sp. 62" | 
+                       fit_evals$Species=='Arthrobacter sp. 77'),]
+
 #Delete all arthrobacter form d
-labels = c('Sp. 62', 'Sp. 77', 'Sp. 88','Aurescens',
-           'Citreus', 'Simplex', 'Globiformis')
+labels = c('Sp. 88','Aurescens', 'Citreus', 'Simplex', 'Globiformis')
 speciesd = rep(labels, each = 5)
 rep = length(subset(fit_evals, fit_evals$Topt == unique(fit_evals$Topt)[1])$Topt)
 speciesevals = rep(labels, each = rep)
@@ -30,15 +34,12 @@ fit_evals = fit_evals[-zero,]
 #plot
 
 breaks = unique(d$Species)
-color_points = rainbow(length(labels))[c(6, 7, 5, 4, 2, 1, 3)]
+color_points = rainbow(length(labels))[c(5,1,2,3,4)]
 p = ggplot(d, aes(x = Temp, y = mu_max,
-                  color = Species,
                   shape = Species,
-                  fill = Species
-                  )
-           ) + 
-   geom_point()+
-   scale_shape_manual(values = c(21, 22, 23, 24, 3, 8, 25))+
+                  fill = Species) ) + 
+   geom_point(size = 2, color = 'black')+
+   scale_shape_manual(values = c(21, 22, 24, 23, 25))+
    scale_color_manual(values = color_points)+
    scale_fill_manual(values = color_points)+
    theme_bw()+
@@ -58,5 +59,6 @@ p = ggplot(d, aes(x = Temp, y = mu_max,
 
   geom_line(data = fit_evals, aes(x = Temp, y = mu_max,
                                   color = Species,
-                                  linetype = Species))+ #Add fitted lines
-  ggsave('../Results/TCP.pdf', width = 12, height = 8, units = 'cm')
+                                  linetype = Species), size = 1) +#Add fitted lines
+
+  ggsave('../Results/TCP.pdf', width = 12.5, height = 8, units = 'cm')

@@ -15,28 +15,9 @@ model_averaging = function(d, mu_max_averaged){
     mu_max_vec = d_av$mu_max
     w_i_vec = d_av$w_i
     mu_max_averaged[j] = sum(mu_max_vec*w_i_vec)
-    print(mu_max_averaged)
     j = j+1
   }
   return(mu_max_averaged)
-}
-
-best_model = function(d){
-  #Get score for al models for each id
-  models = unique(d$model)
-  #Preallocation
-  score = rep(0,length(models))
-  j = 1
-  for (i in models){
-    #Get data from the ith model
-    d_mod = d[which(d$model == i),]
-    #Calculate score
-    score[j] = sum(d_mod[which(d_mod$best == 1),]$best)
-    j = j + 1
-  }
-  #Select best model
-  best_model = models[which(score == max(score))]
-  return(best_model)
 }
 
 dat_analisis = fit_results[grep("Arthrobacter", fit_results$unique_id_T), ]
@@ -54,11 +35,6 @@ mu_max_averaged = model_averaging(d, mu_max_averaged)
 #Add mu_max_averaged to d
 d_av = subset(d, d$model == 'gompertz')
 d_av$mu_max = mu_max_averaged
-#Now lets plot all the mu_max when units are CFU
-bestmodel = best_model(d)
-#Filter data by best model
-#dat_filt = subset(d, d$model == bestmodel)
-
 
 #Get rid of unused information
 keeps = c('Species', 'Temp', 'mu_max')
