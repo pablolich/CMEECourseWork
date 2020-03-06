@@ -14,9 +14,9 @@
 
 \begin{document}
 
-	\title{Continuity of the thermal optimum in mesophilic and psichrophilic \textit{Arthrobacter} species.\\
-		 A multimodel inference approach }
-	\author{Pablo Lechón Alonso \\ 
+	\title{\textbf{Continuity of the thermal optimum in mesophilic and psichrophilic \textit{Arthrobacter} species.\\
+		 A multimodel inference approach} }
+	\author{Pablo Lechón Alonso \\ [30pt]
 				Imperial College London}
 	\date{Word count: \wordcount}%We don't want to show the date
 	\maketitle
@@ -32,7 +32,7 @@
 	
 	\begin{linenumbers}
 		\section{Introduction}\label{sec:introduction}
-		Bacterial growth modelling dates back to the 1950's \cite{Schaechter2015}. Thus, many models have been conceived that try to capture the different growth/inactivation phases (figure \ref{fig:growthcurve}. These models are refered to as primary models. Some of them are more phenomenological (Gompertz, polynomials) than others, which are widely consider as more 'mechanistic' (Logistic, Baranyi). In this work seven models are being fitted (see table \ref{tab:model_eqs}). Moreover, the models can be confronted with each other in different waysn (null hypothesis testing, model selection) to determine which one fits the data best. In this work we adress this task via model selection and model averaging \cite{Anderson2002, Johnson2004}. \\
+		Bacterial growth modelling dates back to the 1950's \cite{Schaechter2015}. Thus, many models have been conceived that try to capture the different growth/inactivation phases (figure \ref{fig:growthcurve}. These models are refered to as primary models. Some of them are more phenomenological (Gompertz, polynomials) than others, which are widely consider as more 'mechanistic' (Logistic, Baranyi). In this work seven models are being fitted (see table \ref{}). Moreover, the models can be confronted with each other in different waysn (null hypothesis testing, model selection) to determine which one fits the data best. In this work we adress this task via model selection and model averaging \cite{Anderson2002, Johnson2004}. \\
 		
 		\begin{figure}[h]
 			\centering
@@ -122,7 +122,7 @@
 		\subsection{Computing tools}
 		Both modules are written using a Python and R. The latter one is used to perform the fitting using the LMFIT python package \cite{Newville2014}. NumPy, Pandas \cite{Virtanen2020} and ProgressBar packages are also used for creating the models, saving the results, and implementing a progress bar, respectively. R is used to prepare data for analysis and plotting using ggplot2 \cite{Wickham2016}. RColorBrewer package is loaded to enable the \verb|YlOrRd| color palette used in the fit plots. The packages grid, and gridExtra are loaded to arrange multiple plots in one panel (figure \ref{all_models}).\\
 		We choose to divide our work like this because Python is a faster language than R in general, so we use it to do the heavy lifting (fitting algorithms). However, R's flexibility and intuitive behavior when it comes to working with data frames are much better than Python's. Moreover, ggplot2 is the most powerful tool to generate publishable plots to our knowledge, which justifies using R for plotting instead of something else.\\
-		The bash script \verb|run_MiniProject.sh| was used to glue the all the scripts. We kept our work under version control with GitHub.
+		The bash script \verb|run_MiniProject.sh| is used to glue the all the scripts together in a working full version of the miniproject that runs in less than 90 seconds. We kept our work under version control with GitHub.
 		
 		\section{Results}
 		Two categories of results are reported in this section: model selection and biological question results. \\
@@ -154,18 +154,44 @@
 		We would like to thank Sam Turner for fruitful discussions regarding how to summarize the fitting performance and how to define poor fits. We also thank Hovig Artinian for his thoughtful thoughts on model averaging. 
 		\newpage
 		\section{Appendix}
-		\subsection{Models}
+		\subsection{Models}\label{subsec:modelequations}
+		In this section we provide all the explicit forms of the fitted models.\\
+		The linear, quadratic, and cubic model have the form
 		\begin{linenomath*}
-			\begin{table}[h]
-				\centering
-				\begin{tabular}{ c c c }
-					cell1 & cell2 & cell3 \\ 
-					cell4 & cell5 & cell6 \\  
-					cell7 & cell8 & cell9    
-				\end{tabular}
-				\caption{\label{tab:model_eqs}Explicit form of each model. Meaning of the parameters. The population is logged}
-			\end{table}
+			\begin{equation}
+					y = y_0 + \mu_{max}t \quad , \quad 	y = a + bt + ct^2 \quad, \quad y = \hat{a}+ \hat{b}t + \hat{c}t^2 + \hat{d}t^3
+			\end{equation}
 		\end{linenomath*}
+	The logistic model reads
+		\begin{linenomath*}
+		\begin{equation}
+		y = 	\log_{10}\left(\dfrac{y_0y_{max}}{y_0 + (y_{max}-y_0)e^{-\mu_{max}t}}\right)
+		\end{equation}
+	\end{linenomath*}
+	For the Gompertz model, we have
+		\begin{linenomath*}
+			\begin{equation}
+				y = y_0 + (y_{max}-y_0)\exp\left(-\exp\left(e\mu_{max}\ \dfrac{(t_{lag}-t)}{\log_{10}(y_{max}-y_0)}+1\right)\right)
+			\end{equation}
+		\end{linenomath*}
+
+The Buchanan model can be expressed as 
+			\[y = \left\{
+			\begin{array}{lr}
+			y_0 &  t < t_lag\\
+			y_{max}  + \mu_{max}(t-t_{lag})&  t_{lag} \le t \le t_{max}\\
+			y_{max} & t \geq t_{max}
+			\end{array}
+			\right.
+			\]
+Finally, the Baranyi model has the form
+
+		\begin{linenomath*}
+			\begin{equation}				
+				y_{max} + \log_{10}\left(\dfrac{-1 + e^{\mu_{max}t_{lag}} + e^{\mu_{max}t}}{e^{\mu_{max}t}-1+e^{\mu_{max}t_{lag}}10^{y_{max}-y_0}}\right)
+			\end{equation}
+		\end{linenomath*}
+	
 		
 		\subsection{Initial values calculation}\label{subsec:initial_values}
 		Given $ m $ data points $ D =  \left\{(x_1, y_1), (x_2, y_2), ... , (x_m, y_m)\right\} $ from a bacterial growth curve, and a tolerance $ \epsilon $ we perform the following steps to calculate initial estimations for the parameters $ \mu_{max} $, $ t_{lag} $. First, we calculate the $ m - 1 $ dimensional vector gradient between consecutive points as $ g_i = y_{i+1} - y_i $. Second, we find the maximum of that vector, $ g_{max} $. Third, we isloate the growing phase, $ D_{grow} = \left\{(\tilde{x}_1, \tilde{y}_1), (\tilde{x}_2, \tilde{y}_2), ... , (\tilde{x}_n, \tilde{y}_n)\right\} $ by selecting the datapoints in $ D $ whith $g_i \in [g_{max}(1-\epsilon), \ g_{max}(1+\epsilon)]$, with $ \epsilon = 0.3 $ by default.\\
@@ -216,8 +242,8 @@
 		This yields a non-linear systems of equations that, in general, does not have a closed solution. Consequently, initial values must be chosen for the parameters, so that they can be iteratively minimized. 
 		\subsection{Classifying a fit as \textit{poor}}\label{subsec:poor}
 		A fit to a bacterial growth curve with only 1 data point in the growing phase will yield poorly constrained values $ \mu_{max} $ and $t_{lag}$, because significantly different values of  these parameters for different models will all define a good fit. To ilustrate this, see figure \ref{fig:non_constrained}
-		\begin{figure}[h]
-			\includegraphics[width= \linewidth]{non_constrained.pdf}
+		\begin{figure}[h!]
+			\includegraphics[width= 0.8\linewidth]{non_constrained.pdf}
 			\centering
 			\caption{Example fit in which there is only 1 point in the growing phase, according to our method. The fit quality is very high ($ R^2 \ge 0.999 $). However, the values of $ \mu_{max} $ and $ t_{lag} $ for Gompertz, Buchanan and Baranyi models are, respectively, [0.045, 0.022, 0.061] (CFU h$^{-1}$) and [80.3, 45.1, 87.8] (h).}
 			\label{fig:non_constrained}

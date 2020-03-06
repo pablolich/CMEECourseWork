@@ -25,5 +25,7 @@
 ## Priority 1
 	3. Describe parameters in caption of the table? 
 	4. Copy library.bib when I am done to my directory!
+	5. Grammarly
+	6. Read it!
 
 
