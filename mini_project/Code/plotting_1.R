@@ -44,10 +44,13 @@ for (i in id){
   exp_dat = d[which(d$unique_id == i),]
   #Get data for all the models
   fit_dat = fit_evals[which(fit_evals$unique_id == i),]
+  models_unsorted = unique(fit_dat$model)
+  sort_ind = unique(fit_dat$best)
+  #Sort models acording to sort_ind
+  models = models_unsorted[order(sort_ind)]
   #Get number of evaluations and models
   #Create values for scale color manual
   colors = rev(brewer.pal(n = 5, name = "YlOrRd")[2:5])
-  models = rev(unique(fit_dat$model)[unique(fit_dat$best)+1]) #The lower AIC the better.
   thickness = c(1, 0.8, 0.6, 0.4)
   names(thickness) = models
 

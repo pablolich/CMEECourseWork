@@ -252,7 +252,7 @@ def initialize_output():
                     #Fit results and goodness parameters
                     'residuals':[0]*nres, 'fit_success': [0]*nres,
                     'r_square':[0]*nres, 'aic':[0]*nres, 'bic':[0]*nres, 
-                    'best':[0]*nres}
+                    'best':[0]*nres, 'w_i':[0]*nres}
 
 
     #fit_evals#
@@ -454,18 +454,38 @@ def fill_output(fit_data, t_eval, i, k_model):
     return()
 
 def best_model(i, k_model, nevals, nmodels, model_names):
-    '''Determine best model based on AIC'''
+    '''Rank models based on AIC and calculate akaike weights'''
 
 
+    #Ranking#
+    #########
     ntot = nevals*nmodels
-    v = list(np.argsort(dict_results['aic'][i*nmodels:i * nmodels + k_model-1]))
+    #Vector of aic corresponding to the current curve for the models that spit
+    #out mu_max
+    aic_vec = dict_results['aic'][i*nmodels:i * nmodels + k_model-1]
+    aic_vec_w = aic_vec[4:7]
+    min_aic = min(aic_vec_w)
+    #Get AIC differences
+    delta = np.array(aic_vec_w) - min_aic
+    #Calculate likelihood of model given the data
+    L = np.exp(-0.5*delta)
+    #Calculate model probabilties
+    w_i = list(L/(sum(L)))
+    #Vector with the index of the AIC that would sort that vector increasingly
+    v = list(np.argsort(aic_vec))
     #Rank elements by applying argsort once more
     rank = np.argsort(v)
     best = np.array([0]*len(v))
     best[v[0]] = 1
     dict_results['best'][i*nmodels:i * nmodels + k_model-1] = best
+    dict_results['w_i'][i*nmodels+4:i * nmodels + k_model-1] = w_i
     tot = list(np.repeat(rank, nevals))
     dict_evals['best'][i*ntot:(i+1)*ntot] = tot
+
+    #Akaike weights#
+    ################
+    #Calculate AIC differences with respect to the best model (lowest AIC)
+    
     return()
 
 
