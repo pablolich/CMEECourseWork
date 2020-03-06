@@ -1,5 +1,6 @@
 #Preliminars, move pdf figure from data to Results to be identified by latex
 cp ../Data/growthcurve.pdf ../Results/growthcurve.pdf
+cp ../Data/TCP_example.pdf ../Results/TCP_example.pdf
 #Glue all the components together
 #Run the dataWrangling algorithm to prepare data for fitting
 echo -e "\nMODULE 1"

@@ -26,7 +26,7 @@
 	
 	\begin{linenumbers}
 		\section{Introduction}\label{sec:introduction}
-		Bacterial growth modelling dates back to the 1950's \cite{Schaechter2015}. Thus, many models have been conceived that try to capture the different growth/inactivation phases (figure \ref{fig:growthcurve}. These models are refered to as primary models. Some of them are more phenomenological (Gompertz, polynomials) than others, which are widely consider as more 'mechanistic' (Logistic, Baranyi). In this work seven models are being fitted (see table \ref{tab:model_eqs}). Moreover, the models can be confronted with each other in different waysn (null hypothesis testing, model selection) to determine which one fits the data best. In this work we adress this task via model selection and model averaging. \\
+		Bacterial growth modelling dates back to the 1950's \cite{Schaechter2015}. Thus, many models have been conceived that try to capture the different growth/inactivation phases (figure \ref{fig:growthcurve}. These models are refered to as primary models. Some of them are more phenomenological (Gompertz, polynomials) than others, which are widely consider as more 'mechanistic' (Logistic, Baranyi). In this work seven models are being fitted (see table \ref{tab:model_eqs}). Moreover, the models can be confronted with each other in different waysn (null hypothesis testing, model selection) to determine which one fits the data best. In this work we adress this task via model selection and model averaging \cite{Anderson2002, Johnson2004}. \\
 		
 		\begin{figure}[h]
 			\centering
@@ -34,10 +34,13 @@
 			\caption{Tipical growth curve showing the four phases: lag phase, exponential growth phase, stationary phase, and death phase. The geometrical interpretation of the growth rate and lag time is also shown.}
 			\label{fig:growthcurve}
 		\end{figure}
-		Biological information can be extracted from the values of the parameters (see figure \ref{fig:growthcurve}) resulting from the model fits. 
-		  	Terminar la introduccion diciendo que el objetivo es usando model selection analizar mi biological question.
-		
-		State objectives from abstract and start talking about them deeply. (NLLS fitting, model selection, biological question.)\\
+		Biological information can be extracted from the values of the parameters resulting from the model fits. Furthermore, the dependance of these parameters on external factors such as themperature $ T $, water activity $ a_w $, or pH can also be studied by using secondary models \cite{Ratkowsky1982, Phillips1987, Stannard1985, DaSilva2018, Zwietering1991, Bernhardt2018, Lactin1995, Valik2013, Logan1976}. A well studied example of this are the thermal performance curves (TCP) (see figure \ref{fig:TCP_example}). In this work, the Lactin-2 model (see equation \ref{eq:Lactin-2}) is used to model the dependance of $ \mu_{max} $ on $ T $
+		\begin{figure}[h]
+			\centering
+			\includegraphics{TCP_example.pdf}
+			\caption{General shape of a thermal performance curve. The thermal optimum $ T_{opt} $ defines the temperature at maximum performance. The critical thermal minimum ($ CT_{min} $) and maximum ($ CT_{max} $) are temperatures with thermal performance zero; they define the limit of an organism's thermal niche. Figure taken from \cite{Krenek2011}.}
+			\label{fig:TCP_example}
+		\end{figure}
 		
 		To determine which is the best model we use likelihood-based model selection. This is an alternative approach to the traditional null hypothesis testing. When confronted with each other, we believe that model selection is a better procedure to test competing hypotheses/models for several reasons. First, it allows for a comparison between more than two models (seven are being analyzed in this work). Second, since model selection is likelihood-based (as opposed to frequentist statistics based), we can explicitly weigh the support for each model. This is something that cannot be done when using p-values to evaluate hypotheses, since a p-value is not the probability that the null hypothesis is true, but instead, the degree of compatibility between a dataset and the null hypothesis \cite{RonaldL.Wasserstein, Kim2016}. This implies that the winning hypothesis is only implicitly accepted, by explicitly rejecting the null hypothesis. Moreover, the rejection of the null hypothesis is based on an arbitrary threshold of the p-value (0.05, 0.01). Overall, the model selection approach offers a more robust, objective, and meaningful way to test several competing models, than the conventional frequentist statistics method of calculating p-values. \\
 		There are several approaches to model selection \cite{Johnson2004}, namely,  maximizing the quality of the fit, null hypothesis tests, and model selection criteria. The first one lacks a way of accounting for the complexity of the model, and the second one does not quantify the relative support among competing models, nor does it allow for comparison between more than 2 models. These limitations are overcome in model selection criteria. Hence, it is the approach followed in this work.
