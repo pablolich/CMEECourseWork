@@ -1,6 +1,6 @@
-#Continuity of the thermal optimum in mesophilic and psichrophilic Arthrobacter species. A multimodel inference approach
+# Continuity of the thermal optimum in mesophilic and psichrophilic Arthrobacter species. A multimodel inference approach
 
-##This folder contains the components necessary to smoothly run the mini-project. It contains 4 subfolders:
+## This folder contains the components necessary to smoothly run the mini-project. It contains 4 subfolders:
 
 ### Code
 
