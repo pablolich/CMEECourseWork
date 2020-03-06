@@ -5,7 +5,6 @@
 
 
 require(ggplot2)
-require(dplyr)
 library(RColorBrewer)
 library(grid)
 library(gridExtra)
@@ -16,12 +15,9 @@ library(gridExtra)
 #Housekeeping
 rm(list=ls())
 #Load growth data and results
-d = dplyr::tbl_df(read.csv('../Data/LogisticGrowthData_mod.csv',
-                           stringsAsFactors = F))
-fit_evals = dplyr::tbl_df(read.csv('../Results/fit_evals.csv', 
-                                   stringsAsFactors = F))
-fit_results = dplyr::tbl_df(read.csv('../Results/fit_results.csv',
-                                     stringsAsFactors = F))
+d = read.csv('../Data/LogisticGrowthData_mod.csv', stringsAsFactors = F)
+fit_evals = read.csv('../Results/fit_evals.csv', stringsAsFactors = F)
+fit_results = read.csv('../Results/fit_results.csv', stringsAsFactors = F)
 
 
 #MAKE FIT PLOTS#
@@ -124,12 +120,17 @@ ndat = length(id)
 nmodel = length(unique(fit_results$model))
 #Get succes per model
 success = fit_results$fit_success
+ncat = length(unique(success))
+
 #Create dataframe to plot
 succes_df = data.frame(x = rep(seq(nmodel), ndat), 
                        y = rep(seq(ndat), each = nmodel),
                        z = rep(success, nmodel))
 #Get a table with percent of best model for each model
-best = round(100*table(fit_results[which(fit_results$fit_success == -2),]$model)/ndat)
+n_bad = length(fit_results[which((fit_results$fit_success == -3) & 
+                                 (fit_results$model == 'linear')),]$model)
+n_tot_best = ndat - n_bad
+best = round(100*table(fit_results[which(fit_results$fit_success == -2),]$model)/n_tot_best)
 #Create labels for x-axis plot
 models = as.vector(unique(fit_results$model))
 labels = rep(NA, length(models))
@@ -146,7 +147,7 @@ ggplot(succes_df, aes(x, y)) +
   theme(axis.title.x=element_blank(),
         axis.text.x = element_text(size=15,
                                    vjust = 0.5, 
-                                   colour = rev(brewer.pal(n = 4, name = 'RdBu'))[1]),
+                                   colour = rev(brewer.pal(n = ncat, name = 'RdYlBu'))[1]),
         axis.text.y = element_text(size = 10),
         axis.title.y = element_text(size = 16),
         panel.grid.major = element_blank(), #Get rid of grids
@@ -164,9 +165,9 @@ ggplot(succes_df, aes(x, y)) +
                     breaks = seq(1, 285, by = 284/4),
                     expand = c(0,0))+
   scale_fill_manual(name = "", 
-                    limits=c("-2", "1", "-1", "0"),
-                    labels = c("best", "success", "poor", "fail"),
-                    values = rev(brewer.pal(n = 4, name = 'RdBu')))+
+                    limits=c("-2", "1", "-1", "-3","0"),
+                    labels = c("best", "success", "poor", "bad", "fail"),
+                    values = rev(brewer.pal(n = ncat, name = 'RdYlBu')))+
   
 ggsave(filename = '../Results/success_report.pdf', height = 9.46, width = 8)
 
@@ -185,8 +186,9 @@ fit_results = read.csv('../Results/fit_results.csv', stringsAsFactors = F)
 
 #Set parameters for sizes
 size_text = 13
-size_points = 1.5
-size_line = 1
+size_points = 2
+size_line = 1.5
+border_thicknes = 2.5
 
 
 
@@ -211,7 +213,8 @@ linear = ggplot(data = dat_exp_linear, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_linear, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 3.5, y = 1.7, label = 'linear', size = size_text)
@@ -238,7 +241,8 @@ quadratic = ggplot(data = dat_exp_quadratic, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_quadratic, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 2.6, y = 2.5, label = 'quadratic', size = size_text)
@@ -270,7 +274,8 @@ cubic = ggplot(data = dat_exp_cubic, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_cubic, aes(x = t, y = fit_eval), colour = 'red',
             size = size_line)+
   geom_text(x = 75, y = -1.5, label = 'cubic', size = size_text)
@@ -297,7 +302,8 @@ logistic = ggplot(data = dat_exp_logistic, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_logistic, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 75, y = 2.7, label = 'logistic', size = size_text)
@@ -324,7 +330,8 @@ gompertz = ggplot(data = dat_exp_gompertz, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_gompertz, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 35, y = 0.5, label = 'Gompertz', size = size_text)
@@ -350,7 +357,8 @@ Buchanan = ggplot(data = dat_exp_Buchanan, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   geom_line(data = dat_fit_Buchanan, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 225, y = 0.5, label = 'Buchanan', size = size_text)
@@ -375,13 +383,13 @@ baranyi = ggplot(data = dat_exp_baranyi, aes(x = Time, y = y_t))+
         axis.text.x = element_blank(), #Increase size of ticks
         axis.text.y = element_blank(),
         legend.text=element_blank(),
-        axis.ticks = element_blank()) +
+        axis.ticks = element_blank(),
+        panel.border = element_rect(size = border_thicknes)) +
   
   geom_line(data = dat_fit_baranyi, aes(x = t, y = fit_eval), colour = 'red', 
             size = size_line)+
   geom_text(x = 350, y = 0.75, label = 'Baranyi', size = size_text)
 
-#pdf('../Results/all_models.pdf')
 lay <- rbind(c(NA, 1,1, 2,2, 3,3, NA),
              c(4,4, 5,5, 6,6, 7,7))
 tot = grid.arrange(linear, quadratic, cubic, logistic, 

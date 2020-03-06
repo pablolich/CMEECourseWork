@@ -130,7 +130,7 @@
 		\begin{figure}[h!]
 			\includegraphics[width= \linewidth]{success_report.pdf}
 			\centering
-			\caption{Tile map summarizing the fitting performance and model selection results. Best fits are determined by selecting the model with lowest AIC value for each growth curve. The amount of times (\%) that a model is the best candidate is specified. Success fits are convergent ones. Poor fits deal with data where the growth phase has $ \leq $1 data points. Fail fits converge to a local minima instead of the global one, or don't converge at all.}
+			\caption{Tile map summarizing the fitting performance and model selection results. Best fits are determined by selecting the model with lowest AIC value for each growth curve. The amount of times (\%) that a model is the best candidate is specified. Success fits are convergent ones. Poor fits deal with data where the growth phase has $ \leq $1 data points. Bad fits were deemed as such when no recognizable growth patern was found by performing a visual inspection. Fail fits converge to a local minima instead of the global one, or don't converge at all.}
 			\label{fig:success_report}
 		\end{figure}
 		The proportion of convergent fits decreases as the complexity of the model increases. Thus, all fits to the linear models converge. On the contrary, all the non-linear model fail once (logistic, Gompertz) or more times (Baranyi). Note that every time a non-linear fit fails, the best fit for that curve is one of the linear fits. However, the fits are generally better in the non-linear models than in the linear ones. Particularly, the Gompertz model is best model most of the times (32\%), followed the Baranyi model (24\%). The cubic model had a higher best model percent (19\%) compared to the Buchanan (16\%) and logistic (4\%) models. The linear (exponential) model was best the least amount of times (1\%) and the quadratic model was it 6\% of the times. Finally, a small proportion of the logistic, Gompertz, Buchanan and Baranyi fits are poor fits. Refer to section \ref{subsec:poor} to know how is this determined.\\
@@ -224,7 +224,7 @@
 		\end{figure}
 		
 		Given $ m $ data points $ D =  \left\{(x_1, y_1), (x_2, y_2), ... , (x_m, y_m)\right\} $ from a bacterial growth curve, a tolerance $ \epsilon $ and a bacterial growth model fit to that data, we flag it as \textit{poor} if there are 1 or none data points in the growth phase. To do this, we firts isolate the growth phase, and then count the elements in it. The isolation of the growth phase is perform differently depending on the model . 
-		If the model is one of Gompertz, Buchanan, or Baranyi we check how. Given the estimated parameters $ y_{0} $ and $ y_{max} $ from the fits, the growth phase $D_{grow} $ contains points of the form $ (x_i, y_i) / y_i \in [y_0 + \epsilon\ |y_0| , y_{max} - \epsilon \ |y_{max}]$. On the other hand, if the model is logistic, $ D_{grow} $ contains points where $ y_i \in [y_0, y_{max}-\epsilon \ |y_{max}|] $
+		Given the estimated parameters $ y_{0} $ and $ y_{max} $ from the fits, the growth phase $D_{grow} $ contains points of the form $ (x_i, y_i) / y_i \in [y_0 + \epsilon\ |y_0| , y_{max} - \epsilon \ |y_{max}]$. 
 		
 		\subsection{Lactin-2 model}\label{subsec:Lactin-2}
 		The expression for the Lactin-2 model is 

@@ -2,14 +2,14 @@
 cp ../Data/growthcurve.pdf ../Results/growthcurve.pdf
 cp ../Data/TCP_example.pdf ../Results/TCP_example.pdf
 #Glue all the components together
-#Run the dataWrangling algorithm to prepare data for fitting
+#Run the data preparationalgorithm to prepare data for fitting
 echo -e "\nMODULE 1"
 echo "	1. Data preparation"
-#St3
+#Start timer
 start=$(date +%s)
 Rscript data_preparation_1.R
 #First run the nlls python fitting algorithm
-echo "	2. Fitting and evaluating primary models..."
+echo "	2. Fitting and evaluating primary models"
 python3 fit_store_models_1.py
 #Now run the plotting script to plot results and fittin performance
 echo "	3. Plotting results"
@@ -19,7 +19,7 @@ echo -e "\n\nMODULE 2"
 echo "	1. Data preparation"
 Rscript data_preparation_2.R 2>../Sandbox/warnings.txt
 #Run the python algorithm to fit the secondary models
-echo "	2. Fitting and evaluating secondary models..."
+echo "	2. Fitting and evaluating secondary models"
 python3 fit_store_models_2.py
 #Run the Rscript to plot analysis results
 echo "	3. Plotting results"
@@ -33,8 +33,10 @@ bash ~/Desktop/Imperial/CMEECourseWork/Week1/Code/CompileLaTeX.sh mini_project_r
 #Delete warnings and word count files
 rm ../Sandbox/warnings.txt
 rm *.sum
+rm *.pdf
+#End timer
 end=$(date +%s)
 runtime=$(($end-$start))
 runtime4=$(echo $runtime | bc -l | xargs printf "%.1f")
 echo "Done!"
-echo "Runtime: $runtime4 seconds"
+echo "Runtime: $runtime4 s"

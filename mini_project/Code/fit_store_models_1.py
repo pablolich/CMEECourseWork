@@ -453,7 +453,7 @@ def fill_output(fit_data, t_eval, i, k_model):
         dict_evals[known_values[j]][i*ntot:(i+1)*ntot] = tot[j]
     return()
 
-def best_model(i, k_model, nevals, nmodels, model_names):
+def best_model(i, k_model, nevals, nmodels, model_names, t, pop):
     '''Rank models based on AIC and calculate akaike weights'''
 
 
@@ -477,15 +477,36 @@ def best_model(i, k_model, nevals, nmodels, model_names):
     rank = np.argsort(v)
     best = np.array([0]*len(v))
     best[v[0]] = 1
+    #Assign best model based on AIC value
+    success = dict_results['fit_success'][i*nmodels:i * nmodels + k_model-1]
+    success[v[0]] = -2
+    dict_results['fit_success'][i*nmodels:i * nmodels + k_model-1] = success
     dict_results['best'][i*nmodels:i * nmodels + k_model-1] = best
     dict_results['w_i'][i*nmodels+4:i * nmodels + k_model-1] = w_i
     tot = list(np.repeat(rank, nevals))
     dict_evals['best'][i*ntot:(i+1)*ntot] = tot
 
-    #Akaike weights#
-    ################
-    #Calculate AIC differences with respect to the best model (lowest AIC)
-    
+    #R-squares#
+    ###########
+    r_square_vec = dict_results['r_square'][i*nmodels:i * nmodels + k_model-1]
+    #r_square from the best model
+    r_square_best = r_square_vec[v[0]]
+    #Inspect visually
+    #if r_square_best < 0.95:
+    #    import matplotlib.pylab as plt
+    #    print("the ", i, "value")
+    #    plt.scatter(t, pop)
+    #    plt.show()
+    #After inspection, the vector with bad data is:
+    bad = [58, 63, 70, 71, 76, 81, 86, 90, 106, 110, 133,153, 154, 166, 276, \
+           278]
+    #Flag the success value with -3 if the data is of this type
+    if i in bad:
+        mod_elem = np.array(dict_results['fit_success']\
+                            [i*nmodels:i*nmodels+k_model-1])
+        non_0 = np.nonzero(mod_elem)
+        mod_elem[non_0] = -3
+        dict_results['fit_success'][i*nmodels:i*nmodels+k_model-1] = mod_elem
     return()
 
 
@@ -598,16 +619,10 @@ def main(argv):
                 k_model += 1
                 pass
         #store the indices that would sort the array of aic for each model
-        best_model(i, k_model, nevals, nmodels, model_names)
+        best_model(i, k_model, nevals, nmodels, model_names, t, pop)
     #Save for analysis and plotting in R...
     fit_results_df = pd.DataFrame(dict_results)
     fit_evals_df = pd.DataFrame(dict_evals)
-    #Flag best fit for each data group
-    #Get the vector of bests fits
-    best = fit_results_df['best']
-    #Get indices of best fit for each data set
-    ind = np.where(best == 1)[0]
-    fit_results_df.loc[ind, 'fit_success'] = -2
     fit_evals_df.to_csv('../Results/fit_evals.csv')
     fit_results_df.to_csv('../Results/fit_results.csv')
     return 0

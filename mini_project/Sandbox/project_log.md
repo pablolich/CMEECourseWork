@@ -23,10 +23,6 @@
 # Things to do 
 
 ## Priority 1
-	1. Get rid of the dyplyr package in plotting_1 and co.
-	1. I need to talk about the growing curves in the introduction.
- 	1. Where is that Rplots.pdf plot coming from?
-	2. Change names of output files so that they are more meaningful.
 	3. Describe parameters in caption of the table? 
 	4. Copy library.bib when I am done to my directory!
 
