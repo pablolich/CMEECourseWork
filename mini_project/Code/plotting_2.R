@@ -2,7 +2,6 @@
 rm(list=ls())
 #Load packages
 library(ggplot2)
-library(dplyr)
 
 #Load growth data and results
 d = read.csv('../Results/dat_secondary.csv', stringsAsFactors = F)

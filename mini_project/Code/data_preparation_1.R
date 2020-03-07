@@ -1,9 +1,6 @@
 #Clean variables
 rm(list = ls())
 
-#Set working directory
-setwd('~/Desktop/Imperial/CMEECourseWork/mini_project/Code/')
-
 #Turn warnings off
 options(warn=-1)
 
