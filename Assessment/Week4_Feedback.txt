@@ -1,0 +1,750 @@
+Starting weekly assessment for Pablo, Week4
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 94.04 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week9, Week4, .git, Week3, mini_project
+
+Found the following files in parent directory: .gitignore, README.md
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+*.log
+__pycache__/
+
+questions.txt
+.DS_Store
+
+########Git ignore for r##########
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# Computational Methods in Ecology and Evolution (CMEE) MSc
+
+
+## Week 1
+
+### Unix
+1. Practicals (`UnixPrac1.txt`)
+### Shell scripting 
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
+### Version control with Git
+### Scientific documents with LaTeX 
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
+
+## Week 2 
+
+### Biological computing in Python I
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
+
+## Week 3
+### Biological Computing in R
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+4. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+5. Errors and Debugging (`browse.R`)
+6. Practicals ('TreeHight `Ricker.R`, `Vectorize1.py`, `Vectorize2.py`, `run_Vectorize.sh`, `TAutoCorr.R`, `TreeHeight.R`, `get_TreeHeight.R`, `run_get_TreeHeight.sh`, `get_TreeHeight.py`)
+### Data management, exploration and visualization
+1. Data Wrangling (`DataWrang.R`)
+2. Practicals (`PP_Lattice.R`, `Girko.R`, `MyBars.R`, `plotLin.R`,`PP_Regress.R`, `PP_Regress_loc.R` )
+## Week 4
+### Descriptive statistics
+2. t-test
+3. ANOVA
+4. Correlations
+5. Linear models
+6. Hypothesis testing
+## Week 5
+### Spatial Analyses and Geographic Information Systmens (GIS)
+## Week 6
+### Genomics and Bioinformatics
+## Week 7
+### Biological Computing in Python II
+1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
+2. Networks in Python (`DrawFW.py`)
+3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
+## mini_project
+    
+
+
+*Pablo Lechon (plechon@ucm.es)*
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 9 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8, Week9
+
+The Week4 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK4...
+
+Found the following directories: Code, Data, Sandbox
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# Week 4 README
+
+This folder contains three subfolders: Data, were we store the data used in our code; Code, were we have the writen code; and Sandbox, were we store everything that is not Data or Code.
+
+## Basic statistics for ecology and evolution, 
+1. Descriptive statistics
+1. t-test
+2. ANOVA
+3. correlations
+4. linear models
+5. hypothesis testing
+
+**********************************************************************
+
+Results directory missing!
+
+Creating Results directory...
+
+Found 10 code files: exercise1s2.R, exercisse1s4.R, exercise1.R, statwithsparrows4.R, statswsparrowss2.R, statswithsparrowss1.R, Untitled.R, exercisse1s3.R, statwithsparrows3.R, rboxplots..R
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file exercise1s2.R...
+
+File contents are:
+**********************************************************************
+#Load data
+
+rm(list = ls())
+setwd(paste("/Users/pablolechon/Desktop/Imperial/", 
+            "CMEECourseWork/Week4/Code", sep = ''))
+d_raw = read.table('../Data/SparrowSize.txt', header = T)
+#Eliminate NA from our dataset, so all variables have the
+#same data
+
+d = subset(d_raw, d_raw$Tarsus!='NA' & d_raw$Mass != 'NA' & d_raw$Bill != 'NA')
+d = d_raw[which(d_raw$Tarsus !='NA' & d_raw$Mass != 'NA' & d_raw$Bill != 'NA'),]
+
+#Calculate mean, variance and sdv of 
+
+#Bill length
+
+bill_mean = mean(d$Bill)
+bill_std = sd(d$Bill)
+bill_var = bill_std^2
+
+#Body mass
+
+mass_mean = mean(d$Bill)
+mass_std = sd(d$Bill)
+mass_var = bill_std^2
+
+#Wing lengt
+
+wlength_mean = mean(d$Bill)
+wlength_std = sd(d$Bill)
+wlength_var = bill_std^2
+
+#Multipanel plot
+
+par(mfrow = c(2,2))
+hist(d$Bill, col= 'grey')
+hist(d$Wing, col= 'grey')
+hist(d$Mass, col= 'grey')
+hist(d$Tarsus, col = 'grey')
+
+**********************************************************************
+
+Testing exercise1s2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd(paste("/Users/pablolechon/Desktop/Imperial/", "CMEECourseWork/Week4/Code",  : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file exercisse1s4.R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd(paste("/Users/pablolechon/Desktop/Imperial/", 
+            "CMEECourseWork/Week4/Code", sep = ''))
+d = read.table('../Data/SparrowSize.txt', header = T)
+
+#Complete population sample
+s_tarsus = sd(d$Tarsus, na.rm = T)/sqrt(length(d$Tarsus))
+s_mass = sd(d$Mass, na.rm = T)/sqrt(length(d$Tarsus))
+s_wing = sd(d$Wing, na.rm = T)/sqrt(length(d$Tarsus))
+CI_tarsus = 1.96*s_tarsus
+CI_tarsus = 1.96*s_mass
+CI_tarsus = 1.96*s_wing
+
+#Subset the dataset
+d1 = subset(d,d$Year==2001)
+s_tarsu_sub = sd(d1$Tarsus, na.rm = T)/sqrt(length(d1$Tarsus))
+s_mass_sub = sd(d1$Mass, na.rm = T)/sqrt(length(d1$Tarsus))
+s_wing_sub = sd(d1$Wing, na.rm = T)/sqrt(length(d1$Tarsus))
+CI_tarsus = 1.96*s_tarsu_sub
+CI_mass = 1.96*s_mass_sub
+CI_wing = 1.96*s_wing_sub
+
+#Hipothesis testing
+t.test(d1$Tarsus, mu = 18.5, na.rm = T)
+
+t.test(d1$Wing, mu = mean(d$Wing, na.rm = T), na.rm = T)
+#We can aslso use t to test for differences in meant
+boxplot(d$Wing~d$Sex.1, col = c("red", "blue"), ylab="Body mass (g)")
+t.test2 = t.test(d$Wing~d$Sex)
+
+#Lets test it for the subset of 2001
+boxplot(d1$Wing~d1$Sex.1, col = c("red", "blue"), ylab="Body mass (g)")
+t.test1 = t.test(d1$Wing~d1$Sex)
+
+#Even a smaller sample of the pop
+dsmal = as.data.frame(head(d,50))
+t.test2small <- t.test(d1$Mass~d1$Sex) 
+t.test2small
+
+#Power detection
+library(pwr)
+
+pwr.t.test(d = 5/sd(d$Wing, na.rm = T), power = .8,
+           sig.level = .05, type = 'one.sample', 
+           alternative = 'two.sided')
+
+
+**********************************************************************
+
+Testing exercisse1s4.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd(paste("/Users/pablolechon/Desktop/Imperial/", "CMEECourseWork/Week4/Code",  : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file exercise1.R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd('~/Desktop/Imperial/CMEECourseWork/Week4/Code/')
+
+d = read.table('../Data/SparrowSize.txt', header = T)
+d1 = subset(d, d$Wing != 'NA')
+summary(d1$Wing)
+hist(d1$Wing)
+model1 = lm(Wing~Sex.1, data = d1)
+summary(model1)
+boxplot(d1$Wing~d1$Sex.1, ylab = 'Wing length (mm)')
+anova(model1)
+
+t.test(d1$Wing~d1$Sex.1, vaar.equal = T)
+
+boxplot(d1$Wing~d1$BirdID, ylab = 'Wing lenght (mm)')
+
+require(dplyr)
+tbl_df(d1)
+
+#Piping with dplyr
+
+d$Mass %>% cor.test(d$Tarsus, na.rm = T)
+#same as cor.test(d$Mass, d$Tarsus, na.rm = T)
+
+d1 %>%
+  group_by(BirdID) %>%
+  summarise(count = length(BirdID)) %>%
+  count(count)
+
+model13 = lm(Wing~as.factor(BirdID), data = d1)
+anova(model13)
+
+boxplot(d$Mass~d$Year)
+m2 = lm(d$Mass~as.factor(d$Year))
+anova(m2)
+summary(m2)
+t(model.matrix(m2))
+**********************************************************************
+
+Testing exercise1.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd("~/Desktop/Imperial/CMEECourseWork/Week4/Code/") : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file statwithsparrows4.R...
+
+File contents are:
+**********************************************************************
+rm(list=ls())
+daphnia <- read.delim("../Data/daphnia.txt")
+summary(daphnia)
+par(mfrow = c(1, 2))
+plot(Growth.rate ~ Detergent, data = daphnia) 
+plot(Growth.rate ~ Daphnia, data = daphnia)
+require(dplyr)
+daphnia %>%
+  group_by(Detergent) %>%
+  summarise (variance=var(Growth.rate)) 
+graphics.off()
+hist(daphnia$Growth.rate)
+seFun <- function(x) {
+  sqrt(var(x)/length(x)) }
+detergentMean <- with(daphnia, tapply(Growth.rate, INDEX = Detergent, FUN = mean))
+detergentSEM <- with(daphnia, tapply(Growth.rate, INDEX = Detergent, FUN = seFun))
+cloneMean <- with(daphnia, tapply(Growth.rate, INDEX = Daphnia, FUN = mean)) 
+cloneSEM <- with(daphnia, tapply(Growth.rate, INDEX = Daphnia, FUN = seFun))
+par(mfrow=c(2,1),mar=c(4,4,1,1))
+barMids <- barplot(detergentMean, xlab = "Detergent type", ylab = "Population growth rate",
+                   ylim = c(0, 5))
+arrows(barMids, detergentMean - detergentSEM, barMids, detergentMean +
+         detergentSEM, code = 3, angle = 90)
+barMids <- barplot(cloneMean, xlab = "Daphnia clone", ylab = "Population growth rate",
+                   ylim = c(0, 5))
+arrows(barMids, cloneMean - cloneSEM, barMids, cloneMean + cloneSEM,
+       code = 3, angle = 90)
+
+daphniaMod <- lm(Growth.rate ~ Detergent + Daphnia, data = daphnia)
+anova(daphniaMod)
+summary(daphniaMod)
+detergentMean - detergentMean[1]
+
+daphniaANOVAMod <- aov(Growth.rate ~ Detergent + Daphnia, data = daphnia)
+summary(daphniaANOVAMod)
+daphniaModHSD <- TukeyHSD(daphniaANOVAMod)
+daphniaModHSD
+par(mfrow=c(2,1),mar=c(4,4,1,1))
+plot(daphniaModHSD)
+par(mfrow=c(2,2))
+plot(daphniaMod)
+
+
+#Multiple regression
+
+timber <- read.delim("../Data/timber.txt")
+summary(timber)
+
+par(mfrow = c(2, 2))
+boxplot(timber$volume) 
+boxplot(timber$girth)
+boxplot(timber$height)
+
+var(timber$volume)
+## [1] 1.416803 
+var(timber$girth) 
+## [1] 627.0461 
+var(timber$height) 
+## [1] 3.654
+
+t2<-as.data.frame(subset(timber, timber$volume!="NA"))
+t2$z.girth<-scale(timber$girth) 
+t2$z.height<-scale(timber$height) 
+var(t2$z.girth)
+var(t2$z.height)
+plot(t2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+**********************************************************************
+
+Testing statwithsparrows4.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+  Growth.rate     Water     Detergent    Daphnia  
+ Min.   :1.762   Tyne:36   BrandA:18   Clone1:24  
+ 1st Qu.:2.797   Wear:36   BrandB:18   Clone2:24  
+ Median :3.788             BrandC:18   Clone3:24  
+ Mean   :3.852             BrandD:18              
+ 3rd Qu.:4.807                                    
+ Max.   :6.918                                    
+# A tibble: 4 x 2
+  Detergent variance
+  <fct>        <dbl>
+1 BrandA        1.51
+2 BrandB        1.09
+3 BrandC        1.78
+4 BrandD        2.38
+
+**********************************************************************
+
+Encountered error (or warning):
+Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+======================================================================
+Inspecting script file statswsparrowss2.R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd(paste("/Users/pablolechon/Desktop/Imperial/", 
+            "CMEECourseWork/Week4/Code", sep = ''))
+d = read.table('../Data/SparrowSize.txt', header = T)
+str(d);names(d);head(d);length(d$Tarsus)
+hsit(d$Tarsus)
+mean(d$Tarsus, na.rm = T)
+median(d$Tarsus, na.rm = T)
+
+par(mfrow = c(2,2))
+hist(d$Tarsus, breaks = 3, col= 'grey')
+hist(d$Tarsus, breaks = 10, col= 'grey')
+hist(d$Tarsus, breaks = 30, col= 'grey')
+hist(d$Tarsus, breaks = 100, col= 'grey')
+
+install.packages('modeest')
+library(modeest)
+
+d2 = subset(d, d$Tarsus!='NA')
+length(d2$Tarsus)
+**********************************************************************
+
+Testing statswsparrowss2.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd(paste("/Users/pablolechon/Desktop/Imperial/", "CMEECourseWork/Week4/Code",  : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file statswithsparrowss1.R...
+
+File contents are:
+**********************************************************************
+#Clean workspace
+rm(list=ls())
+
+getwd()
+setwd(paste("/Users/pablolechon/Desktop/Imperial/", 
+            "CMEECourseWork/Week4/Code", sep = ''))
+getwd()
+
+myNumericVector <- c(1.3,2.5,1.9,3.4,5.6,1.4,3.1,2.9)
+myCharacterVector <- c("low","low","low","low","high",
+                       "high","high","high") 
+myLogicalVector <- c(TRUE,TRUE,FALSE,FALSE,TRUE,TRUE,
+                     FALSE,FALSE)
+myMixedVector <-c(1, TRUE, FALSE, 3, "help", 1.2, 
+                  TRUE, "notwhatIplanned")
+str(myMixedVector)
+
+install.packages("lme4")
+library(lme4) 
+require(lme4)
+
+sqrt(4); 4^0.5; log(0); log(1); log(10); log(Inf)
+
+d<-read.table("../Data/SparrowSize.txt", header=TRUE)
+str(d)
+**********************************************************************
+
+Testing statswithsparrowss1.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+[1] "/home/mhasoba/Documents/Teaching/IC_CMEE/2019-20/Coursework/StudentRepos/PabloLechonAlonso_PL1619/Week4/Code"
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd(paste("/Users/pablolechon/Desktop/Imperial/", "CMEECourseWork/Week4/Code",  : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file Untitled.R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd('~/Desktop/Imperial/CMEECourseWork/Week4/Code/')
+
+d = read.table('../Data/SparrowSize.txt', header = T)
+d1 = subset(d, d$Wing != 'NA')
+summary(d1$Wing)
+hist(d1$Wing)
+model1 = lm(Wing~Sex.1, data = d1)
+summary(model1)
+boxplot(d1$Wing~d1$Sex.1, ylab = 'Wing length (mm)')
+anova(model1)
+
+t.test(d1$Wing~d1$Sex.1, vaar.equal = T)
+
+boxplot(d1$Wing~d1$BirdID, ylab = 'Wing lenght (mm)')
+
+require(dplyr)
+tbl_df(d1)
+
+#Piping with dplyr
+
+d$Mass %>% cor.test(d$Tarsus, na.rm = T)
+#same as cor.test(d$Mass, d$Tarsus, na.rm = T)
+
+d1 %>%
+  group_by(BirdID) %>%
+  summarise(count = length(BirdID)) %>%
+  count(count)
+
+model13 = lm(Wing~as.factor(BirdID), data = d1)
+anova(model13)
+
+boxplot(d$Mass~d$Year)
+m2 = lm(d$Mass~as.factor(d$Year))
+anova(m2)
+summary(m2)
+t(model.matrix(m2))
+**********************************************************************
+
+Testing Untitled.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd("~/Desktop/Imperial/CMEECourseWork/Week4/Code/") : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file exercisse1s3.R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd(paste("/Users/pablolechon/Desktop/Imperial/", 
+            "CMEECourseWork/Week4/Code", sep = ''))
+d = read.table('../Data/SparrowSize.txt', header = T)**********************************************************************
+
+Testing exercisse1s3.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd(paste("/Users/pablolechon/Desktop/Imperial/", "CMEECourseWork/Week4/Code",  : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file statwithsparrows3.R...
+
+File contents are:
+**********************************************************************
+**********************************************************************
+
+Testing statwithsparrows3.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.12001s
+
+======================================================================
+Inspecting script file rboxplots..R...
+
+File contents are:
+**********************************************************************
+rm(list = ls())
+setwd('~/Desktop/Imperial/CMEECourseWork/Week4/Code/')
+
+d = read.table('../Data/SparrowSize.txt', header = T)
+d1 = subset(d, d$Wing != 'NA')
+summary(d1$Wing)
+hist(d1$Wing)
+model1 = lm(Wing~Sex.1, data = d1)
+summary(model1)
+boxplot(d1$Wing~d1$Sex.1, ylab = 'Wing length (mm)')
+anova(model1)
+
+t.test(d1$Wing~d1$Sex.1, vaar.equal = T)
+
+boxplot(d1$Wing~d1$BirdID, ylab = 'Wing lenght (mm)')
+
+require(dplyr)
+tbl_df(d1)
+
+#Piping with dplyr
+
+d$Mass %>% cor.test(d$Tarsus, na.rm = T)
+#same as cor.test(d$Mass, d$Tarsus, na.rm = T)
+
+d1 %>%
+  group_by(BirdID) %>%
+  summarise(count = length(BirdID)) %>%
+  count(count)
+
+model13 = lm(Wing~as.factor(BirdID), data = d1)
+anova(model13)
+
+boxplot(d$Mass~d$Year)
+m2 = lm(d$Mass~as.factor(d$Year))
+anova(m2)
+summary(m2)
+t(model.matrix(m2))
+**********************************************************************
+
+Testing rboxplots..R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd("~/Desktop/Imperial/CMEECourseWork/Week4/Code/") : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 9 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 100
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

@@ -1,0 +1,492 @@
+Starting weekly assessment for Pablo, Week6
+
+Current Points = 100
+
+Note that: 
+(1) Major sections begin with a double "====" line 
+(2) Subsections begin with a single "====" line 
+(3) Code output or text file content are printed within single "*****" lines 
+
+======================================================================
+======================================================================
+Your Git repo size this week is about 94.04 MiB on disk 
+
+PART 1: Checking project workflow...
+
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week9, Week4, .git, Week3, mini_project
+
+Found the following files in parent directory: .gitignore, README.md
+
+Checking for key files in parent directory...
+
+Found .gitignore in parent directory, great! 
+
+Printing contents of .gitignore:
+**********************************************************************
+*~ 
+*.tmp
+*.log
+__pycache__/
+
+questions.txt
+.DS_Store
+
+########Git ignore for r##########
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+**********************************************************************
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# Computational Methods in Ecology and Evolution (CMEE) MSc
+
+
+## Week 1
+
+### Unix
+1. Practicals (`UnixPrac1.txt`)
+### Shell scripting 
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
+### Version control with Git
+### Scientific documents with LaTeX 
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
+
+## Week 2 
+
+### Biological computing in Python I
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
+
+## Week 3
+### Biological Computing in R
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+4. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+5. Errors and Debugging (`browse.R`)
+6. Practicals ('TreeHight `Ricker.R`, `Vectorize1.py`, `Vectorize2.py`, `run_Vectorize.sh`, `TAutoCorr.R`, `TreeHeight.R`, `get_TreeHeight.R`, `run_get_TreeHeight.sh`, `get_TreeHeight.py`)
+### Data management, exploration and visualization
+1. Data Wrangling (`DataWrang.R`)
+2. Practicals (`PP_Lattice.R`, `Girko.R`, `MyBars.R`, `plotLin.R`,`PP_Regress.R`, `PP_Regress_loc.R` )
+## Week 4
+### Descriptive statistics
+2. t-test
+3. ANOVA
+4. Correlations
+5. Linear models
+6. Hypothesis testing
+## Week 5
+### Spatial Analyses and Geographic Information Systmens (GIS)
+## Week 6
+### Genomics and Bioinformatics
+## Week 7
+### Biological Computing in Python II
+1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
+2. Networks in Python (`DrawFW.py`)
+3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
+## mini_project
+    
+
+
+*Pablo Lechon (plechon@ucm.es)*
+**********************************************************************
+
+======================================================================
+Looking for the weekly directories...
+
+Found 9 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8, Week9
+
+The Week6 directory will be assessed 
+
+======================================================================
+======================================================================
+PART 2: Checking weekly code and workflow...
+
+======================================================================
+Assessing WEEK6...
+
+Found the following directories: Code, Data, Sandbox
+
+Found the following files: README.md
+
+Checking for readme file in weekly directory...
+
+Found README in parent directory, named: README.md
+
+Printing contents of README.md:
+**********************************************************************
+# Week 6 README
+
+This folder contains three subfolders: Data, were we store the data used in our code; Code, were we have the writen code; and Sandbox, were we store everything that is not Data or Code.
+
+## Genomics and Bioinformatics 
+1. An understanding of genomic data collection methods, and how to choose the data collection technique most appropriate to your question. 
+2. An understanding of the wealth of data available to biologists in public genomic databases.
+3. An understanding of how genetic structure develops within and between populations, how to characterise it, and how to interpret the results of common analyses such as STRUCTURE and PCA. 
+4. An understanding of how demographic history affects genomic variation, and how to infer past population expansions and contractions from genomic data.
+5. An understanding of how migration affects genomic variation, and how patterns of gene flow can be inferred from genomic data.
+6. An understanding of how natural selection affects genomic variation, and how selection can be identified from genomic data
+7. An understanding of how phylogenetic relationships among species can be inferred, and what this information can tell us about evolution and conservation efforts.
+
+**********************************************************************
+
+Results directory missing!
+
+Creating Results directory...
+
+Found 3 code files: genetic_divergence.R, pop_subdivision.R, coalescence.py
+
+Found the following extra files: .gitignore
+0.5 pt deducted per extra file
+
+Current Points = 99.5
+
+======================================================================
+Testing script/code files...
+
+======================================================================
+Inspecting script file genetic_divergence.R...
+
+File contents are:
+**********************************************************************
+setwd("/Users/pablolechon/Desktop/Imperial/CMEECourseWork/Week6/Code/")
+lep<-read.csv("../Data/leopard_gecko.csv", header=FALSE, stringsAsFactors=FALSE, colClasses=rep("character", 20000))
+ben<- read.csv("../Data/bent-toed_gecko.csv", header=FALSE, stringsAsFactors=FALSE, colClasses=rep("character", 20000))
+wes<- read.csv("../Data/western_banded_gecko.csv", header=FALSE, stringsAsFactors=FALSE, colClasses=rep("character", 20000))
+
+#So its easier to manage
+#small = lep[1:4, 1:20]
+#Wiggle it so it actually gives something back
+#small[4,4] = 'T'
+#small[2,5] = 'G'
+#lep = small
+#Compare pairs of rows to find which pairs are diferent 
+j = 1
+polymorphism_remover <- function(data) {
+  m = matrix(data = T, nrow = nrow(data), ncol = ncol(data))
+  for (i in seq(1, nrow(data)-1)){
+    m[j,]=data[i,]==data[i+1,]
+    j = j + 1
+  }
+  #If the element of one column is false, then the elements of 
+  new = !logical(length = ncol(m))
+  for (i in seq(nrow(m))){
+    new = new & m[i,]
+  }
+  
+  return(new)
+}
+
+
+  {#create a list of dataframes
+  tot = list(lep, ben, wes)
+  #prealocate the vectors of snips
+  news = matrix(NA, length(tot), ncol(lep))
+  #generate vector of snips
+  for (i in (seq(length(tot)))){
+    news[i,] = polymorphism_remover(tot[[i]])
+  }}
+
+conb_mat = combn(seq(dim(news)[1]), 2)
+div_vect
+for (i in seq(dim(conb_mat)[2])){
+  
+}
+#Calculate divergences
+
+#Calculate divergences between species (#FALSE/#TRUE)
+#Create pairs
+div1 = news[1,] & news[2,]
+div1_real = (length(div1)-sum(div1))/sum(div1)
+div2 = news[1,] & news[3,]
+div2_real = (length(div2)-sum(div2))/sum(div2)
+div3 = news[2,] & news[3,]
+div3_real = (length(div3)-sum(div3))/sum(div3)
+div_max = max(c(div1_real, div2_real, div3_real))
+
+#Pick the largest one to calculate the mutation rate
+t = 30e7
+mu = div_max/(2*t)
+#Pick the shortest one to calculate the divergence time.
+t1 = div1_real/(2*mu)
+t2 = div2_real/(2*mu)
+t3 = div3_real/(2*mu)**********************************************************************
+
+Testing genetic_divergence.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd("/Users/pablolechon/Desktop/Imperial/CMEECourseWork/Week6/Code/") : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file pop_subdivision.R...
+
+File contents are:
+**********************************************************************
+setwd('~/Desktop/Imperial/CMEECourseWork/Week6/Code/')
+#Load data
+alleles = read.csv('../Data/turtle.csv', header = F)
+genotypes = read.csv('../Data/turtle.genotypes.csv')
+#get the frequencies 
+freq_vec1 = c()
+for (i in seq(ncol(alleles))){
+  freq_vec1[i] = sum(alleles[1:20,i])/20
+}
+
+freq_vec2 = c()
+for (i in seq(ncol(alleles))){
+  freq_vec2[i] = sum(alleles[21:40,i])/20
+}
+
+freq_vec3 = c()
+for (i in seq(ncol(alleles))){
+  freq_vec3[i] = sum(alleles[41:60,i])/20
+}
+
+freq_vec4 = c()
+for (i in seq(ncol(alleles))){
+  freq_vec4[i] = sum(alleles[61:80,i])/20
+}
+
+#Do the pairwise comparison
+l = list(freq_vec1, freq_vec2, freq_vec3, freq_vec4)
+lhs = list()
+lht = list()
+lfst = list()
+k = 1
+for (i in seq(4)){
+  for (j in seq(4)){
+    if (i<j){
+      lhs[[k]] = mean((2*l[[i]]*(1-l[[i]]) + 2*l[[j]]*(1-l[[j]]))/2)
+      lht[[k]] = mean((l[[i]]+l[[j]])*(1-(l[[i]]+l[[j]])/2))
+      lfst[[k]] = (lht[[k]] - lhs[[k]])/lht[[k]] 
+      k = k + 1
+    }
+  }
+}
+
+
+**********************************************************************
+
+Testing pop_subdivision.R...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Encountered error (or warning):
+Error in setwd("~/Desktop/Imperial/CMEECourseWork/Week6/Code/") : 
+  cannot change working directory
+Execution halted
+
+======================================================================
+Inspecting script file coalescence.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+__appname__ = '[App_name_here]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
+__version__ = '0.0.1'
+
+## IMPORTS ##
+
+import sys
+import pandas as pd
+import numpy as np
+
+## CONSTANTS ##
+
+MU = 1e-8
+
+## FUNCTIONS ##
+
+def segregation_sites(data):
+    '''Identify columns with SNPs (segregating sites)'''
+    return [data.columns.get_loc(i) for i in range(len(data.columns))
+                                    if len(set(data[i]))==2]
+
+def snp_freq(data):
+    '''Calculate frequencies of snps'''
+    return [sum(data[i]) for i in range(len(data.columns))]
+
+def waterson_estimator(n, s):
+    '''Calculate Waterson's estimator'''
+    #no need for n-1 bc python indexes things from 0 to n-1
+    return s/sum([1/i for i in range(1,n)])         
+
+def compare_sequences(data):
+    '''Calculate the number of different bases in seq1 and seq2'''
+    #get i,j pairs with the condition i<j
+    ind = np.triu_indices(len(data))
+    pairwise_diff = []
+    for i in range(len(ind[1])):
+        #compare these indices to see how many pairwaise differences there are
+        comp = np.equal(data.iloc[ind[0][i]],data.iloc[ind[1][i]])
+        pairwise_diff.append(len(comp)-sum(comp))
+    return sum(pairwise_diff)
+
+def tajima_estimator(diff, n):
+    '''Calculate Tajima's estimator'''
+    return diff/(n*(n-1)/2)
+                        
+def main(argv):
+    '''Main function'''
+    '''Estimate the effective population size for each population, using both 
+    the Watterson's and Tajima's estimator of "theta" assuming a mutation rate 
+    of 1x10^{-8}. Discuss the difference between values of "theta" using 
+    different estimators.'''
+
+    #load data
+    #this is a dataframe of dimensions 10x50000 with 0 and 1
+    north = pd.read_csv('../Data/killer_whale_North.csv', header = None)
+    south = pd.read_csv('../Data/killer_whale_South.csv', header = None)
+
+    #Watterson's estimator
+    #calculate segregating sites for both populations
+    ind_north = segregation_sites(north)
+    ind_south = segregation_sites(south)
+    #calculate the estimator
+    theta_w_north = waterson_estimator(len(north), len(ind_north))
+    theta_w_south = waterson_estimator(len(south), len(ind_south))
+
+    #Effective population size
+    Ne_w_north = theta_w_north/(4*MU*len(north.columns))
+    Ne_w_south = theta_w_south/(4*MU*len(south.columns))
+    
+    #Tajima's estimator
+    #calculate pairwise differences
+    diff_north = compare_sequences(north)
+    diff_south = compare_sequences(south)
+    #calculate estimator
+    pi_north = tajima_estimator(diff_north, len(north))
+    pi_south = tajima_estimator(diff_south, len(south))
+    
+    #Effective population size
+    Ne_pi_north = pi_north/(4*MU*len(north.columns))
+    Ne_pi_south = pi_south/(4*MU*len(south.columns))
+
+    #Calculate the unfolded site frequency spectrum
+    #Por columnas! Primero calculaar el numero de snips en cada columna 
+    #(numero de unos!) Despues calcular la frecuencia de la frecuencia de snips
+    #calcula la absoluta! es decir, desde 0 hasta 10. 
+    #Cuantas veceas tengo 0 snips?, cuantas 1, cuantas 2...
+    snp_f_n = snp_freq(north)
+    freqsnp_f_n = np.bincount(snp_f_n)[1:]
+    snp_f_s = snp_freq(south)
+    freqsnp_f_s = np.bincount(snp_f_s)[1:]
+    
+    #Format output
+    d = {'North': [theta_w_north,Ne_w_north, pi_north, Ne_pi_north, 
+                   [freqsnp_f_n]], 
+         'South': [theta_w_north,Ne_w_north, pi_north, Ne_pi_north, 
+                   [freqsnp_f_s]]}
+
+    df = pd.DataFrame(d, index = ['Theta', 'Ne_theta', 'Pi','Ne_pi', 'Spec'])
+    df.to_csv('../Results/results_table.csv')
+
+    return 0
+          
+
+## CODE ##
+
+if (__name__ == '__main__'):
+    status = main(sys.argv)
+    sys.exit(status)
+      
+
+**********************************************************************
+
+Testing coalescence.py...
+
+coalescence.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 94.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 10.01080s
+
+======================================================================
+======================================================================
+Finished running scripts
+
+Ran into 2 errors
+
+======================================================================
+======================================================================
+
+FINISHED WEEKLY ASSESSMENT
+
+Current Points for the Week = 94.5
+
+NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

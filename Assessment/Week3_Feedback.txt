@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 54.17 MiB on disk 
+Your Git repo size this week is about 94.04 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, Week4, .git, Week3
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week9, Week4, .git, Week3, mini_project
 
 Found the following files in parent directory: .gitignore, README.md
 
@@ -25,6 +25,7 @@ Printing contents of .gitignore:
 **********************************************************************
 *~ 
 *.tmp
+*.log
 __pycache__/
 
 questions.txt
@@ -74,31 +75,74 @@ Found README in parent directory, named: README.md
 
 Printing contents of README.md:
 **********************************************************************
-Computational Methods in Ecology and Evolution (CMEE) MSc
+# Computational Methods in Ecology and Evolution (CMEE) MSc
 
 
-WEEK 1
+## Week 1
 
-	- Unix
-	- Shell scripting
-	- Version control with Git
-	- Scientific documents with LaTeX
+### Unix
+1. Practicals (`UnixPrac1.txt`)
+### Shell scripting 
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
+### Version control with Git
+### Scientific documents with LaTeX 
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
 
-WEEK 2 
+## Week 2 
 
-	- Biological computing in Python I
+### Biological computing in Python I
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
 
-Author
+## Week 3
+### Biological Computing in R
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+4. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+5. Errors and Debugging (`browse.R`)
+6. Practicals ('TreeHight `Ricker.R`, `Vectorize1.py`, `Vectorize2.py`, `run_Vectorize.sh`, `TAutoCorr.R`, `TreeHeight.R`, `get_TreeHeight.R`, `run_get_TreeHeight.sh`, `get_TreeHeight.py`)
+### Data management, exploration and visualization
+1. Data Wrangling (`DataWrang.R`)
+2. Practicals (`PP_Lattice.R`, `Girko.R`, `MyBars.R`, `plotLin.R`,`PP_Regress.R`, `PP_Regress_loc.R` )
+## Week 4
+### Descriptive statistics
+2. t-test
+3. ANOVA
+4. Correlations
+5. Linear models
+6. Hypothesis testing
+## Week 5
+### Spatial Analyses and Geographic Information Systmens (GIS)
+## Week 6
+### Genomics and Bioinformatics
+## Week 7
+### Biological Computing in Python II
+1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
+2. Networks in Python (`DrawFW.py`)
+3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
+## mini_project
+    
 
-Pablo Lechon (plechon@ucm.es)
 
-
+*Pablo Lechon (plechon@ucm.es)*
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 4 weekly directories: Week1, Week2, Week3, Week4
+Found 9 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8, Week9
 
 The Week3 directory will be assessed 
 
@@ -111,7 +155,7 @@ Assessing WEEK3...
 
 Found the following directories: Code, Data, Results
 
-Found the following files: README.md
+Found the following files: README.md, Sandbox
 
 Checking for readme file in weekly directory...
 
@@ -119,52 +163,56 @@ Found README in parent directory, named: README.md
 
 Printing contents of README.md:
 **********************************************************************
-WEEK 3 README
+# Week 3 README
 
 This folder contains three subfolders: Data, were we store the data used in our code;
 Code, were we have the writen code; Sandbox, were we store everything that is not
 Data or Code; and Results, where all the results of our code go to.
 
-FILES INSIDE CODE FOLDER
+## Code
 
-	1. DataWrang.R: Wranlging Data in R
-	2. DataWrangTidi.R: Wrangling Data with the packages dplyr and tidyr
-	3. GPDD_Data.R: Represents on a world map data from location in which we have species information.
-	4. Girko.R: Graphical demonstration of Girkos's law
-	5. MyBars.R: Anotating in ggplot2
-	6. PP_Lattice.R: Using Lattice to create panels with multiple plots. Also returns a table with several calculations performed in the different groups.
-	7. PP_Regress.R: A file that reproduces the plot in the notes and outputs it to results, as well as a table with fit data for every performed fit.
-	8. PP_Regress_loc.R: The same file, but the groups to fit are formed taking into account this time also the location of the species.  
-	9. Ricker.R: Deals with the Ricker model, and draws a plot of the population evolution based on this model
-	10. TAutoCorr.R: Are temperatures of one year significantly correlated with the next year (successive years), across years in a given location?
- 	11. TAutoCorr_Results.tex: Code file generator of the latex document
-	12. Treeheight.R: This script loads the treeheights file with the heights of trees g and calculates the height of each tree based on its distance and inclination degrees
-	13. Vectorize1.R: Example of vectorization
-	14. Vecotrize2.R: Runs the Ricker Stochastic model and performs a vectorization of it to compare the increase in speed. 
-	15. apply1.R: Learning how to use apply function.
-	16. apply2.R: This function multiplies the elements of a vector by 100 if their sum is greater than 0. Otherwise, it just returns the vector
-	17. basic_io.R: A simple script to ilustrate R input-output 
-	18. boilerplate.R: A boilerplate R script.
-	19. break.R: Ilustrate how the break command works
-	20. browse.R: Demonstrates how browser can be used to debug a function
-	21. control_flow.R: Demonstration of control flow statements such as if, for, while... 
-	22. get_TreeHeigt.R:  This script loads the a file with the heights of trees that the user inputs and calculates the height of each tree based on its distance and inclination degrees  using  the trigonometric formula 
-	23. get_TreeHeight.py: Python version of get_TreeHeight.R
-	24. next.R: Demonstrates the use of the command next.
-	25. plotLin.R: Annotating in plots with ggplot2
-	26. preallocate.R Demonstrates how prealocation increases speed.
-	27. run_get_TreeHeight.sh: Runs get_TreeHeight.R and get_TreeHeight.py with trees.csv as an example. Shows the results in the screen
-	28. sample.R: Showing how vectorized ways and tapply functions are faster than loops
-	29. try.R: Demonstrates how the try command works
+1. `DataWrang.R`: Wranlging Data in R
+2. `DataWrangTidi.R`: Wrangling Data with the packages dplyr and tidyr
+3. `GPDD_Data.R`:Represents on a world map data from location in which we have species information.
+4. `Girko.R`: Graphical demonstration of Girkos's law
+5.`MyBars.R`: Anotating in ggplot2
+6. `PP_Lattice.R`: Using Lattice to create panels with multiple plots. Also returns a table with several calculations performed in the different groups.
+7. `PP_Regress.R`: A file that reproduces the plot in the notes and outputs it to results, as well as a table with fit data for every performed fit.
+8. `PP_Regress_loc.R`: The same file, but the groups to fit are formed taking into account this time also the location of the species.  
+9. `Ricker.R`: Deals with the Ricker model, and draws a plot of the population evolution based on this model
+10. `TAutoCorr.R`: Are temperatures of one year significantly correlated with the next year (successive years), across years in a given location?
+11. `TAutoCorr_Results.tex`: Code file generator of the latex document
+12. `Treeheight.R`: This script loads the treeheights file with the heights of trees g and calculates the height of each tree based on its distance and inclination degrees
+13. `Vectorize1.R`: Example of vectorization
+14. `Vecotrize2.R`: Runs the Ricker Stochastic model and performs a vectorization of it to compare the increase in speed. 
+15. `apply1.R`: Learning how to use apply function.
+16. `apply2.R`: This function multiplies the elements of a vector by 100 if their sum is greater than 0. Otherwise, it just returns the vector
+17. `basic_io.R`: A simple script to ilustrate R input-output 
+18. `boilerplate.R`: A boilerplate R script.
+19. `break.R`: Ilustrate how the break command works
+20. `browse.R`: Demonstrates how browser can be used to debug a function
+21. `control_flow.R`: Demonstration of control flow statements such as if, for, while... 
+22. `get_TreeHeigt.R`:  This script loads the a file with the heights of trees that the user inputs and calculates the height of each tree based on its distance and inclination degrees  using  the trigonometric formula 
+23. `get_TreeHeight.py`: Python version of get_TreeHeight.R
+24. `next.R`: Demonstrates the use of the command next.
+25. `plotLin.R`: Annotating in plots with ggplot2
+26. `preallocate.R`: Demonstrates how prealocation increases speed.
+27. `run_get_TreeHeight.sh`: Runs get_TreeHeight.R and get_TreeHeight.py with trees.csv as an example. Shows the results in the screen
+28. `sample.R`: Showing how vectorized ways and tapply functions are faster than loops
+29. `try.R: Demonstrates how the try command works
+30. `Vectorize1.py`: python version of Vectorize1.R
+31. `Vectorize2.py`: python version of Vectorize2.R
+32. `run_vectorize.sh`: bash script that compares the velocities of all the vectorize files.
 
 
 **********************************************************************
 
-Found following files in results directory: .gitignore...
+Found following files in results directory: TreeHts.csv, Girko.pdf, PP_Results.csv, trees_treeheights.csv, Pred_Lattice.pdf, Prey_Lattice.pdf, MyLinReg.pdf, .gitignore, SizeRatio_Lattice.pdf, MyBars.pdf, MyData.csv...
+ideally, Results directory should be empty other than, perhaps, a readme. 
 
-Found 29 code files: browse.R, PP_Regress.R, apply1.R, sample.R, control_flow.R, run_get_TreeHeight.sh, get_TreeHeight.py, GPDD_Data.R, boilerplate.R, TreeHeight.R, TAutoCorr_Results.tex, PP_Lattice.R, next.R, Ricker.R, Girko.R, Vectorize1.R, break.R, plotLin.R, basic_io.R, try.R, apply2.R, get_TreeHeight.R, TAutoCorr.R, Vectorize2.R, DataWrangTidy.R, preallocate.R, PP_Regress_loc.R, DataWrang.R, MyBars.R
+Found 32 code files: browse.R, PP_Regress.R, Vectorize2.py, apply1.R, sample.R, control_flow.R, run_get_TreeHeight.sh, get_TreeHeight.py, GPDD_Data.R, boilerplate.R, TreeHeight.R, TAutoCorr_Results.tex, PP_Lattice.R, next.R, Ricker.R, Girko.R, Vectorize1.R, break.R, plotLin.R, basic_io.R, Vectorize1.py, try.R, apply2.R, get_TreeHeight.R, TAutoCorr.R, Vectorize2.R, DataWrangTidy.R, preallocate.R, PP_Regress_loc.R, DataWrang.R, run_Vectorize.sh, MyBars.R
 
-Found the following extra files: .gitignore
+Found the following extra files: Rplots.pdf
 0.5 pt deducted per extra file
 
 Current Points = 99.5
@@ -224,7 +272,7 @@ debug: return(N)
 
 Code ran without errors
 
-Time consumed = 0.13794s
+Time consumed = 0.14829s
 
 ======================================================================
 Inspecting script file PP_Regress.R...
@@ -237,8 +285,9 @@ File contents are:
 #made to all the possible convinations of lifestage-feeding type
 
 rm(list = ls())
+options(warn = -1)
 
-MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
+MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
 attach(MyDF)
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')
@@ -302,12 +351,106 @@ Output (only first 500 characters):
 **********************************************************************
 
 Encountered error (or warning):
-Error in file(file, "rt") : cannot open the connection
-Calls: read.csv -> read.table -> file
-In addition: Warning message:
-In file(file, "rt") :
-  cannot open file '../data/EcolArchives-E089-51-D1.csv': No such file or directory
-Execution halted
+Loading required package: ggplot2
+Loading required package: plyr
+Loading required package: broom
+
+======================================================================
+Inspecting script file Vectorize2.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''Python version of Vectorize2.R'''
+
+import numpy as np
+import time
+
+def stochrick(p0 = np.random.uniform(0.5,1.5,(1,1000))[0], r = 1.2, K = 1,
+    sigma = 0.2, numyears = 100):
+    '''Implementation with preallocation and witout vectorization'''
+    #Initialize
+    N = np.zeros([numyears, len(p0)])
+    N[1,:] = p0
+
+    for pop in np.arange(len(p0)): #Loop through the populations
+        for yr in np.arange(numyears - 1): #For each population loop years
+            N[yr, pop] = N [ yr - 1, pop] * np.exp(r * (1 - N[yr - 1, pop] / K)
+                    + np.random.normal(loc = 0, scale = sigma, size = 1))
+
+    return N
+
+# Now write another function called stochrickvect that vectorizes the above to
+# the extent possibl, with improved perrformance:
+
+def stochrickvect(p0 = np.random.uniform(0.5,1.5,(1,1000))[0], r = 1.2, K = 1,
+    sigma = 0.2, numyears = 100):
+    '''Implementation with preallocation and vectorization'''
+
+    #Initialize
+    #Empty matrix of 1000 by 1000 by default. Every row corresponds to a 
+    #population, and every column corresponds to one year.
+    N  = np.zeros([numyears, len(p0)])
+    N[1,:] = p0
+
+    for yr in np.arange(numyears):#for each population loop through years
+        N[yr,:] = N[yr-1,:] * np.exp(r * (1 - N[yr - 1,:] / K) + 
+                  np.random.normal(loc = 0, scale = sigma, size = len(p0)))
+
+    return N
+
+start = time.time()
+N = stochrick()
+end = time.time()
+tot1 = end - start
+start = time.time()
+N = stochrickvect()
+end = time.time()
+tot2 = end - start
+print(" Vectorize2.py | {:.{}f}\t\t".format(tot1,4), "{:.{}f}".format(tot2,4), 
+        '|') 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**********************************************************************
+
+Testing Vectorize2.py...
+
+Vectorize2.py is a Python script file;
+
+checking for docstrings...
+
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 97.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+ Vectorize2.py | 0.7176		 0.0081 |
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.86162s
 
 ======================================================================
 Inspecting script file apply1.R...
@@ -322,14 +465,17 @@ File contents are:
 M <- matrix(rnorm(100), 10, 10)
 
 ## Take the mean of each row
+cat('Row means\n')
 RowMeans <- apply(M,1,mean) #The 1 indicates that we are applying it to Rows (MARGIN)
 print(RowMeans)
 
 ##Now the variance
+cat('Row variances\n')
 RowVars <- apply(M,1,var)
 print(RowVars)
 
 ## By column
+cat('Column Means\n')
 ColMeans <- apply(M, 2, mean)
 print (ColMeans)
 **********************************************************************
@@ -339,18 +485,21 @@ Testing apply1.R...
 Output (only first 500 characters): 
 
 **********************************************************************
- [1]  0.37227525 -0.07517716 -0.04860945 -0.12193571  0.01926095  0.15623548
- [7]  0.04755254 -0.17101436  0.07025948 -0.12680754
- [1] 1.3110225 1.0570340 0.6047794 1.0359638 1.1332148 2.6345463 1.1910857
- [8] 0.6132780 1.5746078 0.8387274
- [1] -0.33416399 -0.12058043  0.22065184  0.47202904 -0.26807946  0.02784338
- [7] -0.26511849  0.52886666  0.01120392 -0.15061300
+Row means
+ [1]  0.25297956 -0.43652932  0.11067889 -0.23659284 -0.19759456  0.11719112
+ [7]  0.12563799 -0.33167342 -0.04464252 -0.28881261
+Row variances
+ [1] 0.5244933 0.5384867 0.4510412 0.4860027 0.9147173 0.7223731 1.4073311
+ [8] 1.9701133 0.5408398 1.3924220
+Column Means
+ [1] -0.14433664 -0.10199446 -0.38172359 -0.22774539 -0.21194849 -0.16342740
+ [7] -0.12309169  0.06621156  0.59517988 -0.23648148
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.09673s
+Time consumed = 0.09823s
 
 ======================================================================
 Inspecting script file sample.R...
@@ -440,25 +589,25 @@ Output (only first 500 characters):
 **********************************************************************
 [1] "The loopy, non-preallocation approach takes:"
    user  system elapsed 
-  0.064   0.000   0.062 
+  0.032   0.000   0.033 
 [1] "The loopy, but with preallocation approach takes:"
    user  system elapsed 
-  0.016   0.000   0.016 
+  0.012   0.000   0.014 
 [1] "The loopy, non-preallocation approach takes:"
    user  system elapsed 
-  0.016   0.000   0.017 
+  0.008   0.004   0.013 
 [1] "The vectorized sapply approach takes:"
    user  system elapsed 
-  0.016   0.000   0.018 
+  0.012   0.000   0.010 
 [1] "The vectorized lapply approach takes:"
    user  system elapsed 
-  0.012   0.000   0.013 
+  0.012   0.000   0.010 
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.40395s
+Time consumed = 0.29706s
 
 ======================================================================
 Inspecting script file control_flow.R...
@@ -514,6 +663,7 @@ Output (only first 500 characters):
 
 **********************************************************************
 [1] "a is TRUE"
+[1] "Less than half"
 [1] "1  squared is 1"
 [1] "2  squared is 4"
 [1] "3  squared is 9"
@@ -545,7 +695,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.11184s
+Time consumed = 0.13227s
 
 ======================================================================
 Inspecting script file run_get_TreeHeight.sh...
@@ -558,13 +708,13 @@ File contents are:
 #Shows the results in the screen
 
 echo -e '\nRunning get_TreeHeight.R  with trees.csv as an example...'
-Rscript get_TreeHeight.R trees.csv
+Rscript get_TreeHeight.R ../Data/trees.csv
 echo -e 'The results are:\n' && 
-	cat ../Results/trees_treeheights.csv | head
+	cat ../Results/trees_treeheights.csv | head -3
 echo -e '\nRunning get_TreeHeight.py with trees.csv as an example...'
-python3 get_TreeHeight.py trees.csv 
+python3 get_TreeHeight.py ../Data/trees.csv 
 echo -e 'The results are:\n' &&
-       	cat ../Results/trees_treeheights.csv | head
+       	cat ../Results/trees_treeheights_py.csv | head -3
 **********************************************************************
 
 Testing run_get_TreeHeight.sh...
@@ -579,15 +729,18 @@ The results are:
 Species,Distance.m,Angle.degrees,Tree.Height.m
 Populus tremula,31.6658337740228,41.2826361937914,25.462680727681
 Quercus robur,45.984992608428,44.5359166583512,46.094124200205
-Ginkgo biloba,31.2417666241527,25.1462585572153,15.2541806244397
-Fraxinus excelsior,34.6166691975668,23.336126555223,16.1085376231346
-Betula pendula,45.4661654261872,38.3491299510933,38.9782891142089
-Betula pendula,48.7955017434433,33.5923089866992
+
+Running get_TreeHeight.py with trees.csv as an example...
+The results are:
+
+Species,Distance.m,Angle.degrees,Height
+Populus tremula,31.6658337740228,41.2826361937914,25.462680727681022
+Quercus robur,45.984992608428,44.5359166583512,46.0941242002
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.15269s
+Time consumed = 0.14827s
 
 ======================================================================
 Inspecting script file get_TreeHeight.py...
@@ -599,7 +752,7 @@ File contents are:
 '''Calculate height of trees from an csv input file with the name of the tree, 
 its degrees of inclination, and the distance to it'''
 
-__appname__ = '[App_name_here]'
+__appname__ = '[get_TreeHeight.py]'
 __author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
@@ -613,6 +766,14 @@ from math import pi, tan
 
 
 ## FUNCTIONS ##
+def default_args():
+    if len(sys.argv) == 1:
+        #No arguments provided
+        name = '../Data/trees.csv' 
+    else:
+        #Argument provided
+        name = sys.argv[1]
+    return name
 
 def tree_height(degrees, distance):
     '''Calculate tree height based on the degrees and the distance to tree
@@ -661,8 +822,11 @@ def str2float(_list, column):
 
 def main(argv):
     '''Main function'''
+
+    #set name based on user's input
+    name = default_args()
     #load data and massage it a little
-    with open('../Data/' + sys.argv[1]) as trees_csv:
+    with open(name) as trees_csv:
         trees = trees_csv.readlines()
         #delete '\n' at the end of lines
         trees_rm = [i.replace('\n', '').replace('"', '') for i in trees]
@@ -685,9 +849,9 @@ def main(argv):
         save_trees_rmh_sp_float = [header + ['Height']] + trees_rmh_sp_float
         #Save to a csv file
         #Get the name of the input file without the csv extension
-        name = sys.argv[1].split('/')[-1].split('.')[0]
+        namesplit = name.split('/')[-1].split('.')[0]
         #create a file with the desired name and save our file to there
-        with open('../Results/' + name + '_treeheights.csv', 'w') as csvfile:
+        with open('../Results/' + namesplit + '_treeheights_py.csv', 'w')  as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(save_trees_rmh_sp_float)
 
@@ -703,12 +867,13 @@ if (__name__ == '__main__'):
 Testing get_TreeHeight.py...
 
 get_TreeHeight.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 98.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 93.0
 
 Output (only first 500 characters): 
 
@@ -716,13 +881,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "get_TreeHeight.py", line 103, in <module>
-    status = main(sys.argv)
-  File "get_TreeHeight.py", line 69, in main
-    with open('../Data/' + sys.argv[1]) as trees_csv:
-IndexError: list index out of range
+Code ran without errors
+
+Time consumed = 0.03324s
 
 ======================================================================
 Inspecting script file GPDD_Data.R...
@@ -734,7 +895,8 @@ File contents are:
 #Represents on a world map data from location in which we have species information.
 
 #Load the maps package
-require(maps)
+library(maps)
+
 
 #Loads the GPDD data
 load(file = '../Data/GPDDFiltered.RData', env = globalenv())
@@ -745,7 +907,8 @@ map.axes()
 points(x = as.numeric(gpdd$long), y  = as.numeric(gpdd$lat),
        pch = 20, cex = 0.1, col ='red')
 
-#A bias coming from the non-uniform distribution of the data points location will probably be present
+#A bias coming from the non-uniform distribution of the data points location
+#will probably be present
 **********************************************************************
 
 Testing GPDD_Data.R...
@@ -756,8 +919,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Loading required package: maps
+Code ran without errors
+
+Time consumed = 0.20643s
 
 ======================================================================
 Inspecting script file boilerplate.R...
@@ -798,7 +962,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.10512s
+Time consumed = 0.12533s
 
 ======================================================================
 Inspecting script file TreeHeight.R...
@@ -846,7 +1010,6 @@ TreeHts <- data.frame('Species' = trees$Species, 'Distance.m' = trees$Distance.m
 #Save to csv
 write.csv(TreeHts, '../Results/TreeHts.csv', row.names = F)
 
-
 **********************************************************************
 
 Testing TreeHeight.R...
@@ -859,7 +1022,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.09284s
+Time consumed = 0.11658s
 
 ======================================================================
 Inspecting script file TAutoCorr_Results.tex...
@@ -972,7 +1135,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 4.95867s
+Time consumed = 3.36603s
 
 ======================================================================
 Inspecting script file next.R...
@@ -1005,7 +1168,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.14085s
+Time consumed = 0.12220s
 
 ======================================================================
 Inspecting script file Ricker.R...
@@ -1030,7 +1193,7 @@ Ricker <- function(N0=1, r=1, K=10, generations=50)
   }
   return (N)
 }
-
+pdf('../Results/Rplots.pdf')
 plot(Ricker(generations=10), type="l")
 **********************************************************************
 
@@ -1044,7 +1207,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.17617s
+Time consumed = 0.16804s
 
 ======================================================================
 Inspecting script file Girko.R...
@@ -1055,7 +1218,7 @@ File contents are:
 
 #A demonstration of Girkos's law
 
-require(ggplot2)
+library(ggplot2)
 
 build_ellipse <- function(hradius, vradius){ # function that returns an ellipse
   npoints = 250
@@ -1107,8 +1270,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Loading required package: ggplot2
+Code ran without errors
+
+Time consumed = 1.40585s
 
 ======================================================================
 Inspecting script file Vectorize1.R...
@@ -1132,11 +1296,13 @@ SumAllElements <- function(M){
   return (Tot)
 }
  
-print("Using loops, the time taken is:")
-print(system.time(SumAllElements(M)))
+time1 = as.numeric(system.time(res2<-SumAllElements(M))[3])
+time1_f = format(round(time1, 4), nsmall = 4)
+time2 = as.numeric(system.time(res2<-sum(M))[3])
+time2_f = format(round(time2, 4), nsmall = 4)
+cat(' -------------  -----------|------------', '\n')
+cat(" Vectorize1.R  |", time1, '\t\t', time2, ' |\n')
 
-print("Using the in-built vectorized function, the time taken is:")
-print(system.time(sum(M)))
 **********************************************************************
 
 Testing Vectorize1.R...
@@ -1144,18 +1310,14 @@ Testing Vectorize1.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-[1] "Using loops, the time taken is:"
-   user  system elapsed 
-  0.080   0.000   0.079 
-[1] "Using the in-built vectorized function, the time taken is:"
-   user  system elapsed 
-  0.000   0.000   0.001 
+ -------------  -----------|------------ 
+ Vectorize1.R  | 0.079 		 0.001  |
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.22481s
+Time consumed = 0.25637s
 
 ======================================================================
 Inspecting script file break.R...
@@ -1198,7 +1360,7 @@ i equals  9
 
 Code ran without errors
 
-Time consumed = 0.08710s
+Time consumed = 0.12426s
 
 ======================================================================
 Inspecting script file plotLin.R...
@@ -1209,7 +1371,7 @@ File contents are:
 
 #Annotating in plots with ggplot2
 
-require(ggplot2)
+library(ggplot2)
 
 x <- seq(0, 100, by = 0.1)
 y <- -4. + 0.25 * x +
@@ -1255,8 +1417,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Loading required package: ggplot2
+Code ran without errors
+
+Time consumed = 1.37367s
 
 ======================================================================
 Inspecting script file basic_io.R...
@@ -1269,6 +1432,8 @@ File contents are:
 # A simple script to illustrate R input-output.  
 
 # Run line by line and check inputs outputs to understand what is happening  
+
+options(warn = -1)
 
 MyData <- read.csv("../Data/trees.csv", header = TRUE) # import with headers
 
@@ -1289,10 +1454,72 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Warning message:
-In write.table(MyData[1, ], file = "../Results/MyData.csv", append = TRUE) :
-  appending column names to file
+Code ran without errors
+
+Time consumed = 0.11471s
+
+======================================================================
+Inspecting script file Vectorize1.py...
+
+File contents are:
+**********************************************************************
+#!/usr/bin/env python3
+
+'''Python version of Vectorize1.R'''
+
+import numpy as np
+import time
+
+M = np.random.uniform(0,1,(1000,1000))
+
+def SumAllElements(M):
+    Dimensions = M.shape
+    Tot = 0
+    for i in np.arange(Dimensions[0]):
+        for j in np.arange(Dimensions[1]):
+            Tot = Tot + M[i,j]
+
+    return Tot
+
+print("                  Non-vect   Vectorized")
+start = time.time()
+SumAllElements(M)
+end = time.time()
+tot1 = end - start
+start = time.time()
+np.sum(M)
+end = time.time()
+tot2 = end - start
+print('                -----------|------------')
+print(" Vectorize1.py | {:.{}f}\t\t".format(tot1,4), "{:.{}f}".format(tot2,4),
+        '|')
+
+
+**********************************************************************
+
+Testing Vectorize1.py...
+
+Vectorize1.py is a Python script file;
+
+checking for docstrings...
+
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 90.5
+
+Output (only first 500 characters): 
+
+**********************************************************************
+                  Non-vect   Vectorized
+                -----------|------------
+ Vectorize1.py | 0.2524		 0.0006 |
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.40687s
 
 ======================================================================
 Inspecting script file try.R...
@@ -1302,10 +1529,11 @@ File contents are:
 #!/usr/bin/env R 
 
 
-#
+#Demonstrates how the try command works
 
 
 doit <- function(x){
+    #Function to calculate mean depending on conditions
 	temp_x <- sample(x, replace = TRUE)
 	if(length(unique(temp_x)) > 30) {#only take mean if sample was sufficient
 		 print(paste("Mean of this sample was:", as.character(mean(popn))))
@@ -1337,23 +1565,20 @@ Testing try.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[1] "Mean of this sample was: -0.213828858880614"
-[
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean of this sample was: -0.18361060105773"
+[1] "Mean o
 **********************************************************************
 
 Encountered error (or warning):
-Error in doit(popn) : Couldn't calculate mean: too few unique values!
-Error in doit(popn) : Couldn't calculate mean: too few unique values!
-Error in doit(popn) : Couldn't calculate mean: too few unique values!
 Error in doit(popn) : Couldn't calculate mean: too few unique values!
 Error in doit(popn) : Couldn't calculate mean: too few unique values!
 Error in doit(popn) : Couldn't calculate mean: too few unique values!
@@ -1393,18 +1618,18 @@ Testing apply2.R...
 Output (only first 500 characters): 
 
 **********************************************************************
-            [,1]        [,2]       [,3]        [,4]        [,5]       [,6]
- [1,]  1.5759509 -0.56499636  0.2892397 -1.23174320  0.26990440 -0.3461007
- [2,]  0.3734383 -1.14156474  0.1937220  0.22484987 -1.50932541 -1.3651027
- [3,]  0.7797639  0.46572240  1.4449780 -0.72635975  0.09842825  0.7928400
- [4,]  0.3923707 -0.65877486  0.1266861 -0.21125739  0.05127599 -1.9174105
- [5,]  0.2283876 -0.09564108  0.4157001  0.05283623  0.46698892 -0.3305341
- [6,]  1.2239790  0.38612203 -1.4040765  0.89968332
+            [,1]       [,2]        [,3]       [,4]        [,5]       [,6]
+ [1,] -0.2008424  0.1309948 -0.07110470  0.2347709 -0.17856442  0.6699681
+ [2,] -0.2014844  1.2755128 -0.11197510 -0.6921163  1.65637454  0.8226714
+ [3,] -1.0205823  0.2018233 -0.69366101 -0.7409624  0.24305825  0.2148870
+ [4,] -0.5206193 -0.4179274  0.17459011  0.3359058  0.54076846  0.5703980
+ [5,] -2.1531009  1.4364935  0.70312421  1.2494837 -0.02924682 -1.7087305
+ [6,]  1.2330482  1.2056661 -0.65543706 -1.2924228 -0.522
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.10993s
+Time consumed = 0.12868s
 
 ======================================================================
 Inspecting script file get_TreeHeight.R...
@@ -1431,7 +1656,9 @@ File contents are:
 args = commandArgs(trailingOnly=TRUE)
 
 if (length(args) == 0){
-	stop("One argument must be supplied (input file)")
+	name = '../Data/trees.csv'
+} else {
+  name = args[1]
 }
 
 #Functions
@@ -1443,15 +1670,8 @@ TreeHeight <- function(degrees, distance){
   return(height)
 }
 
-loaddata = function(name){
-  return(read.csv(paste('../Data/', name, sep = '')))
-}
-
 #Code
-
-#load dataT
-name = args[1]
-trees = loaddata(name)
+trees = read.csv(name)
 
 #Vectorized version
 height <- TreeHeight(trees$Distance.m, trees$Angle.degrees)
@@ -1464,10 +1684,10 @@ TreeHts <- data.frame('Species' = trees$Species,
 
 #Save to csv
 #strsplit is getting rid of the .csv extension
+namesplit = sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(name))
 write.csv(TreeHts, 
-          paste('../Results/', strsplit(name, '.csv')[[1]], 
-		'_treeheights.csv', sep = ''),
-          row.names = F, quote = F) #To write strings without quotes
+          paste('../Results/', namesplit, '_treeheights.csv', sep = ''),
+          row.names = F, quote = F)#To write strings without quotes
 **********************************************************************
 
 Testing get_TreeHeight.R...
@@ -1478,9 +1698,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Error: One argument must be supplied (input file)
-Execution halted
+Code ran without errors
+
+Time consumed = 0.11718s
 
 ======================================================================
 Inspecting script file TAutoCorr.R...
@@ -1497,7 +1717,7 @@ File contents are:
 ########################################################################################
 
 rm(list = ls())
-setwd(paste("~/Desktop/Imperial/CMEECourseWork/Week3/Code/", sep = ''))
+options(warn = -1)
 load('../Data/KeyWestAnnualMeanTemperature.RData', envir = globalenv())
 set.seed(44434862)
 
@@ -1598,10 +1818,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Error in setwd(paste("~/Desktop/Imperial/CMEECourseWork/Week3/Code/",  : 
-  cannot change working directory
-Execution halted
+Code ran without errors
+
+Time consumed = 10.03553s
 
 ======================================================================
 Inspecting script file Vectorize2.R...
@@ -1657,21 +1876,14 @@ stochrickvect<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100) 
 }
 
 
-stochrickvectlapply<-function(p0=runif(1000,.5,1.5),r=1.2,K=1,sigma=0.2,numyears=100 ){ 
-  #Assign the first population to the first row of the matrix.
-  return(N[yr-1,]*exp(r*(1-N[yr-1,]/K)+rnorm(length(p0),0,sigma)))
-}
-
-N[1,]<-p0
-N<-matrix(NA,numyears,length(p0))
-lapply(N, 1, stochrickvectapply())
-
-
 #Check times
-print("Vectorized Stochastic Ricker takes:")
-print(system.time(res2<-stochrick()))
-print("Vectorized Stochastic Ricker takes:")
-print(system.time(res2<-stochrickvect()))
+
+time1 = as.numeric(system.time(res2<-stochrick())[3])
+time1_f = format(round(time1, 4), nsmall = 4)
+time2 = as.numeric(system.time(res2<-stochrickvect())[3])
+time2_f = format(round(time2, 4), nsmall = 4)
+cat(" Vectorize2.R  |", time1, '\t\t', time2, ' |\n')
+cat('                -----------|------------', '\n')
 **********************************************************************
 
 Testing Vectorize2.R...
@@ -1679,12 +1891,14 @@ Testing Vectorize2.R...
 Output (only first 500 characters): 
 
 **********************************************************************
+ Vectorize2.R  | 0.231 		 0.019  |
+                -----------|------------ 
 
 **********************************************************************
 
-Encountered error (or warning):
-Error: object 'p0' not found
-Execution halted
+Code ran without errors
+
+Time consumed = 0.37523s
 
 ======================================================================
 Inspecting script file DataWrangTidy.R...
@@ -1784,11 +1998,11 @@ nonpre<- function(){
 
 #Preallocating the memory
 
-a <- rep(NA, 10)
+b <- rep(NA, 10)
 	pre <- function(){
 	for (i in 1:10) {
-		a[i] <- i
-		print(a)
+		b[i] <- i
+		print(b)
 		print(object.size(a))
 	}
 }
@@ -1803,28 +2017,39 @@ Testing preallocate.R...
 Output (only first 500 characters): 
 
 **********************************************************************
- [1] NA NA NA NA NA NA NA NA NA NA  1
+[1] NA  1
+48 bytes
+[1] NA  1  2
+56 bytes
+[1] NA  1  2  3
+56 bytes
+[1] NA  1  2  3  4
+72 bytes
+[1] NA  1  2  3  4  5
+72 bytes
+[1] NA  1  2  3  4  5  6
+72 bytes
+[1] NA  1  2  3  4  5  6  7
+72 bytes
+[1] NA  1  2  3  4  5  6  7  8
 88 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2
+ [1] NA  1  2  3  4  5  6  7  8  9
 88 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3
-104 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3  4
-104 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3  4  5
-104 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3  4  5  6
-104 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3  4  5  6  7
-168 bytes
- [1] NA NA NA NA NA NA NA NA NA NA  1  2  3  4  5  6  7  8
-168 bytes
- [1] NA NA NA NA NA NA NA NA NA NA 
+ [1] NA  1  2  3  4  5  6  7  8  9 10
+88 bytes
+   user  system elapsed 
+  0.040   0.024   0.034 
+ [1]  1 NA NA NA NA NA NA NA NA NA
+48 bytes
+ [1]  1  2 NA NA NA NA NA NA NA NA
+48 bytes
+ [1]  1  2  3 NA NA NA NA NA NA NA
+4
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.19299s
+Time consumed = 0.15118s
 
 ======================================================================
 Inspecting script file PP_Regress_loc.R...
@@ -1835,8 +2060,9 @@ File contents are:
 
 #Extention of PP_Regress.R. This time, the groups are made attending also to the location of the
 #species.
+options(warn = -1)
 
-MyDF <- read.csv("../data/EcolArchives-E089-51-D1.csv")
+MyDF <- read.csv("../Data/EcolArchives-E089-51-D1.csv")
 #Get indexes of positions where units are in mg
 ind = which(MyDF$Prey.mass.unit == 'mg')
 MyDF$Prey.mass[ind] = MyDF$Prey.mass[ind]/1000
@@ -1849,8 +2075,8 @@ new_df = data.frame('lifestage.feeding.location' = paste(MyDF$Predator.lifestage
                     'prey.mass' = MyDF$Prey.mass, 
                     'predator.mass' = MyDF$Predator.mass)
 
-require(plyr)
-require(broom)
+library(plyr)
+library(broom)
 table = ddply(new_df, .(lifestage.feeding.location), summarize,
               intercept = lm(log10(predator.mass)~log10(prey.mass))$coef[1],
               slope = lm(log10(predator.mass)~log10(prey.mass))$coef[2], 
@@ -1872,13 +2098,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Error in file(file, "rt") : cannot open the connection
-Calls: read.csv -> read.table -> file
-In addition: Warning message:
-In file(file, "rt") :
-  cannot open file '../data/EcolArchives-E089-51-D1.csv': No such file or directory
-Execution halted
+Code ran without errors
+
+Time consumed = 1.76801s
 
 ======================================================================
 Inspecting script file DataWrang.R...
@@ -1890,14 +2112,15 @@ File contents are:
 ################################################################
 ################## Wrangling the Pound Hill Dataset ############
 ################################################################
-require(reshape2)
+library(reshape2)
+options(warn = -1)
 
 ############# Load the dataset ###############
 # header = FALSE because the raw data don't have real headers
-MyData <- as.matrix(read.csv("../data/PoundHillData.csv",header = F), stringsAsFactors = F) 
+MyData <- as.matrix(read.csv("../Data/PoundHillData.csv",header = F), stringsAsFactors = F) 
 
 # header = true because we do have metadata headers
-MyMetaData <- read.csv("../data/PoundHillMetaData.csv",header = T, sep=";", stringsAsFactors = F)
+MyMetaData <- read.csv("../Data/PoundHillMetaData.csv",header = T, sep=";", stringsAsFactors = F)
 
 MyData[MyData == ""] = 0
 MyData <- t(MyData) 
@@ -1931,17 +2154,75 @@ Testing DataWrang.R...
 Output (only first 500 characters): 
 
 **********************************************************************
+   [,1]          [,2]    [,3]   [,4]      [,5]                  
+V1 "Cultivation" "Block" "Plot" "Quadrat" "Achillea millefolium"
+V2 "october"     "a"     "1"    "Q1"      "4"                   
+V3 "october"     "a"     "1"    "Q2"      "8"                   
+V4 "october"     "a"     "1"    "Q3"      "3"                   
+V5 "october"     "a"     "1"    "Q4"      "20"                  
+V6 "october"     "a"     "1"    "Q5"      "6"                   
+   [,6]                [,7]                 [,
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.33729s
+
+======================================================================
+Inspecting script file run_Vectorize.sh...
+
+File contents are:
+**********************************************************************
+touch ../Results/vectorize_comp.txt
+touch ../Results/temp.txt
+
+echo -e '\n' > ../Results/vectorize_comp.txt
+python3 Vectorize1.py >> ../Results/vectorize_comp.txt
+python3 Vectorize2.py >> ../Results/vectorize_comp.txt
+Rscript Vectorize1.R >> ../Results/vectorize_comp.txt
+Rscript Vectorize2.R >> ../Results/vectorize_comp.txt
+echo -e '\n' >> ../Results/vectorize_comp.txt
+
+echo -e "Comparison between the scripts\n"
+cat ../Results/vectorize_comp.txt
+
+touch ../Results/comments.txt
+echo "Python scripts are faster than R scripts" > ../Results/comments.txt
+echo "when vectorized. However, they are slower" >> ../Results/comments.txt
+echo "than R scripts when non-vectorized" >> ../Results/comments.txt 
+
+cat ../Results/comments.txt 
 
 **********************************************************************
 
-Encountered error (or warning):
-Loading required package: reshape2
-Error in file(file, "rt") : cannot open the connection
-Calls: as.matrix -> read.csv -> read.table -> file
-In addition: Warning message:
-In file(file, "rt") :
-  cannot open file '../data/PoundHillData.csv': No such file or directory
-Execution halted
+Testing run_Vectorize.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Comparison between the scripts
+
+
+
+                  Non-vect   Vectorized
+                -----------|------------
+ Vectorize1.py | 0.2585		 0.0006 |
+ Vectorize2.py | 0.7517		 0.0078 |
+ -------------  -----------|------------ 
+ Vectorize1.R  | 0.085 		 0.001  |
+ Vectorize2.R  | 0.266 		 0.018  |
+                -----------|------------ 
+
+
+Python scripts are faster than R scripts
+when vectorized. However, they are slower
+than R scripts when non-vectorized
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 1.96564s
 
 ======================================================================
 Inspecting script file MyBars.R...
@@ -1951,13 +2232,14 @@ File contents are:
 #!/usr/bin/env R 
 
 #Commands for anotating in plots with ggplot
+options(warn = -1)
 
 a <- read.table("../Data/Results.txt", header = TRUE)
 head(a)
 
 a$ymin <- rep(0, dim(a)[1]) # append a column of zeros
 
-require(ggplot2)
+library(ggplot2)
 
 # Print the first linerange
 p <- ggplot(a)
@@ -2019,22 +2301,21 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Loading required package: ggplot2
-Warning message:
-Removed 91 rows containing missing values (geom_text). 
+Code ran without errors
+
+Time consumed = 1.30982s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 14 errors
+Ran into 3 errors
 
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 98.5
+Current Points for the Week = 90.5
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

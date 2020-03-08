@@ -9,13 +9,13 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 16.08 MiB on disk 
+Your Git repo size this week is about 94.04 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git, Week3
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week9, Week4, .git, Week3, mini_project
 
-Found the following files in parent directory: .gitignore, README.md, questions.txt
+Found the following files in parent directory: .gitignore, README.md
 
 Checking for key files in parent directory...
 
@@ -25,38 +25,124 @@ Printing contents of .gitignore:
 **********************************************************************
 *~ 
 *.tmp
+*.log
 __pycache__/
+
+questions.txt
+.DS_Store
+
+########Git ignore for r##########
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
 **********************************************************************
 
 Found README in parent directory, named: README.md
 
 Printing contents of README.md:
 **********************************************************************
-Computational Methods in Ecology and Evolution (CMEE) MSc
+# Computational Methods in Ecology and Evolution (CMEE) MSc
 
 
-WEEK 1
+## Week 1
 
-	- Unix
-	- Shell scripting
-	- Version control with Git
-	- Scientific documents with LaTeX
+### Unix
+1. Practicals (`UnixPrac1.txt`)
+### Shell scripting 
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
+### Version control with Git
+### Scientific documents with LaTeX 
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
 
-WEEK 2 
+## Week 2 
 
-	- Biological computing in Python I
+### Biological computing in Python I
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
 
-Author
+## Week 3
+### Biological Computing in R
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+4. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+5. Errors and Debugging (`browse.R`)
+6. Practicals ('TreeHight `Ricker.R`, `Vectorize1.py`, `Vectorize2.py`, `run_Vectorize.sh`, `TAutoCorr.R`, `TreeHeight.R`, `get_TreeHeight.R`, `run_get_TreeHeight.sh`, `get_TreeHeight.py`)
+### Data management, exploration and visualization
+1. Data Wrangling (`DataWrang.R`)
+2. Practicals (`PP_Lattice.R`, `Girko.R`, `MyBars.R`, `plotLin.R`,`PP_Regress.R`, `PP_Regress_loc.R` )
+## Week 4
+### Descriptive statistics
+2. t-test
+3. ANOVA
+4. Correlations
+5. Linear models
+6. Hypothesis testing
+## Week 5
+### Spatial Analyses and Geographic Information Systmens (GIS)
+## Week 6
+### Genomics and Bioinformatics
+## Week 7
+### Biological Computing in Python II
+1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
+2. Networks in Python (`DrawFW.py`)
+3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
+## mini_project
+    
 
-Pablo Lechon (plechon@ucm.es)
 
-
+*Pablo Lechon (plechon@ucm.es)*
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 3 weekly directories: Week1, Week2, Week3
+Found 9 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8, Week9
 
 The Week2 directory will be assessed 
 
@@ -69,7 +155,7 @@ Assessing WEEK2...
 
 Found the following directories: Code, Data, Sandbox, Results
 
-Found the following files: basic_csv.py, README.md
+Found the following files: README.md
 
 Checking for readme file in weekly directory...
 
@@ -77,43 +163,43 @@ Found README in parent directory, named: README.md
 
 Printing contents of README.md:
 **********************************************************************
-WEEK 1 README
+# Week 2 README
 
 This folder contains three subfolders: Data, were we store the data used in our code; Code, were we have the writen code; and Sandbox, were we store everything that is not Data or Code.
 
-FILES INSIDE CODE
+## Code
 
 
-1. align_seqs.py: Calculates the best alignment between 2 genomes
-2. align_seqs_fasta.py: Applies align_seqs.py to two fasta input files. If no 
+1. `align_seqs.py`: Calculates the best alignment between 2 genomes
+2. `align_seqs_fasta.py`: Applies align_seqs.py to two fasta input files. If no 
 			files are given, takes default ones.
-3. align_seqs_better.py: Adds to align_seqs_fasta.py the ability to save all 
-			the best alignmets to different output files
-4. basic_csv.py: running and saving csv files in python
-5. basic_io1.py, 6. basic_io2.py, 7. basic_io3.py: Dealing with different 
-			options to save content to files
-8. boilerplate.py: ilustrates the concept of if (__name__ == '__main__'): and 
+3. `align_seqs_better.py`: Adds to align_seqs_fasta.py the ability to save all the best alignmets to different output files
+4. `basic_csv.py`: running and saving csv files in python
+5. `basic_io1.py`, 
+6. `basic_io2.py`, 
+7. `basic_io3.py`: Dealing with different options to save content to files
+8. `boilerplate.py`: ilustrates the concept of if `(__name__ == '__main__'):` and 
 			the conveniences of having a def(main) function.
-9. cfexercises1.py: first program in python.
-10. cfexercises2.py: control flow and division exercises
-11. control_flow.py: more control flow exercises
-12. debugme.py: learning how to use import ipdb; ipdb.set_trace(context = 20)
-13. dictionary.py: exercise dealing with populating dictionaries
-14. lc1.py, 15. lc2.py: exercises dealing with list comprehensions
-16. loops.py: learning what loops in python are
-17. oaks.py: Finds just those taxa that are oak trees from a list of species
-18. oaks_debugme.py: Finds just those taxa that are oak trees from a list of 
-			species and accepts typos
-19. scope.py: dealing with global and local variables
-20. sysargv.py: understanding what the deal is with sys.argv
-21. test_control_flow.py: learning what doctest() does
-22. tuple.py: learning how to print information in tuples
-23. using_name.py: learning what if (__name__ == '__main__'): does
+9. `cfexercises1.py`: first program in python.
+10. `cfexercises2.py`: control flow and division exercises
+11. `control_flow.py`: more control flow exercises
+12. `debugme.py`: learning how to use import ipdb; ipdb.set_trace(context = 20)
+13. `dictionary.py`: exercise dealing with populating dictionaries
+14. `lc1.py`, 
+15. `lc2.py`: exercises dealing with list comprehensions
+16. `loops.py`: learning what loops in python are
+17. `oaks.py`: Finds just those taxa that are oak trees from a list of species
+18. `oaks_debugme.py`: Finds just those taxa that are oak trees from a list of species and accepts typos
+19. `scope.py`: dealing with global and local variables
+20. `sysargv.py`: understanding what the deal is with sys.argv
+21. `test_control_flow.py`: learning what doctest() does
+22. `tuple.py`: learning how to print information in tuples
+23. `using_name.py`: learning what `if (__name__ == '__main__'):` does
 
 
 **********************************************************************
 
-Found following files in results directory: out_0.txt, out.txt...
+Found following files in results directory: out_0.txt, .gitignore...
 ideally, Results directory should be empty other than, perhaps, a readme. 
 
 Found 23 code files: lc2.py, boilerplate.py, basic_csv.py, cfexercises2.py, align_seqs_better.py, dictionary.py, debugme.py, scope.py, basic_io3.py, cfexercises1.py, tuple.py, lc1.py, oaks_debugme.py, oaks.py, loops.py, using_name.py, align_seqs.py, basic_io2.py, sysargv.py, align_seqs_fasta.py, control_flow.py, test_control_flow.py, basic_io1.py
@@ -126,6 +212,9 @@ Inspecting script file lc2.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
+
 '''This script extends on the work of lc1.py, but this time, working with 
 tuples
 '''
@@ -183,12 +272,13 @@ for i in rainfall:
 Testing lc2.py...
 
 lc2.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 99
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 98
 
 Output (only first 500 characters): 
 
@@ -198,7 +288,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.04621s
+Time consumed = 0.02559s
 
 ======================================================================
 Inspecting script file boilerplate.py...
@@ -210,10 +300,10 @@ File contents are:
 '''Description of this program or aplication. 
 You can use several lines'''
 
-__appname__ = '[application name here]'
-__author__ = 'Your Name (your@email.address)'
+__appname__ = '[boilerplate.py]'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
-__license__ = 'License for theis code/program'
+__license__ = 'None'
 
 ## imports ##
 import sys #module to interface our program with the operating system
@@ -230,19 +320,20 @@ def main(argv):
 if __name__ == '__main__':
    'Makes sure the main function is called from command line'
    status = main(sys.argv)
-   sys.exit('I am exiting right now!')
+   sys.exit(status)
     
 **********************************************************************
 
 Testing boilerplate.py...
 
 boilerplate.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 98
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 95.5
 
 Output (only first 500 characters): 
 
@@ -251,8 +342,9 @@ This is a boilerplate
 
 **********************************************************************
 
-Encountered error (or warning):
-I am exiting right now!
+Code ran without errors
+
+Time consumed = 0.02637s
 
 ======================================================================
 Inspecting script file basic_csv.py...
@@ -295,12 +387,13 @@ g.close()
 Testing basic_csv.py...
 
 basic_csv.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 97
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 93.5
 
 Output (only first 500 characters): 
 
@@ -318,7 +411,7 @@ The species is Avahi_laniger
 
 Code ran without errors
 
-Time consumed = 0.03680s
+Time consumed = 0.02807s
 
 ======================================================================
 Inspecting script file cfexercises2.py...
@@ -358,12 +451,13 @@ while z < 100:
 Testing cfexercises2.py...
 
 cfexercises2.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 96
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 91.5
 
 Output (only first 500 characters): 
 
@@ -395,7 +489,7 @@ hello
 
 Code ran without errors
 
-Time consumed = 0.03117s
+Time consumed = 0.03134s
 
 ======================================================================
 Inspecting script file align_seqs_better.py...
@@ -490,26 +584,23 @@ if (__name__ == '__main__'):
 Testing align_seqs_better.py...
 
 align_seqs_better.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 95
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 89.0
 
 Output (only first 500 characters): 
 
 **********************************************************************
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m~/Documents/Teaching/IC_CMEE/2019-20/Coursework/StudentRepos/PabloLechonAlonso_PL1619/Week2/Code/align_seqs_better.py[0m in [0;36m<module>[0;34m()[0m
-[1;32m     80[0m [0;31m## CODE ##[0m[0;34m[0m[0;34m[0m[0m
-[1;32m     81[0m [0;32mif[0m [0;34m([0m[0m__name__[0m [0;34m==[0m [0;34m'__main__'[0m[
+
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.52425s
+Time consumed = 0.02998s
 
 ======================================================================
 Inspecting script file dictionary.py...
@@ -556,34 +647,41 @@ print(dict_names)
 Testing dictionary.py...
 
 dictionary.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 94
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 87.0
 
 Output (only first 500 characters): 
 
 **********************************************************************
-{'Rodentia': ['Gerbillus henleyi', 'Peromyscus crinitus', 'Mus domesticus', 'Cleithrionomys rutilus'], 'Carnivora': ['Lyacon pictus', 'Arctocephalus gazella', 'Canis lupus'], 'Chiroptera': ['Myotis lucifugus'], 'Afrosoricida': ['Microgale dobsoni', 'Microgale talazaci']}
+{'Afrosoricida': ['Microgale dobsoni', 'Microgale talazaci'], 'Carnivora': ['Lyacon pictus', 'Arctocephalus gazella', 'Canis lupus'], 'Chiroptera': ['Myotis lucifugus'], 'Rodentia': ['Gerbillus henleyi', 'Peromyscus crinitus', 'Mus domesticus', 'Cleithrionomys rutilus']}
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.03068s
+Time consumed = 0.02522s
 
 ======================================================================
 Inspecting script file debugme.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3 
+
+'''Learning how to debug a code'''
+
 def makeabug(x):
     y = x**4
-    z = 0.
-    y = y/z
-    import ipdb; ipdb.set_trace(context = 20)
+    z = 0
+    try:
+        y = y/z
+    except ZeroDivisionError as e:
+        print(e)
     return y
 
 makeabug(25)
@@ -592,26 +690,24 @@ makeabug(25)
 Testing debugme.py...
 
 debugme.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 93
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 84.5
 
 Output (only first 500 characters): 
 
 **********************************************************************
+division by zero
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "debugme.py", line 8, in <module>
-    makeabug(25)
-  File "debugme.py", line 4, in makeabug
-    y = y/z
-ZeroDivisionError: float division by zero
+Code ran without errors
+
+Time consumed = 0.02539s
 
 ======================================================================
 Inspecting script file scope.py...
@@ -632,6 +728,7 @@ if  _a_global >=5:
     _b_global = _a_global + 5 #also a global variable
 
 def a_function():
+    '''Testing scope of variables'''
     _a_global = 5 #a local variable
 
     if _a_global >= 5:
@@ -656,6 +753,7 @@ print("Outside the function, the value of _b_global is ", _b_global,'\n')
 _a_global = 10
 
 def a_function():
+    '''Testing scope of variables'''
     _a_local = 4
 
     print("Example 2:")
@@ -676,6 +774,7 @@ print('Example 3:')
 print("Outside the function, the value of _a_global is ", _a_global)
 
 def a_function():
+    '''Testing scope of variables'''
     global _a_global
     _a_global = 5
     _a_local = 4
@@ -695,9 +794,11 @@ _a_function2 results in changing the value of _a_global in the main workspace
 / namespace to 20, but within the scope of _a_function it remained 10'''
 
 def a_function():
+    '''Testing scope of variables'''
     _a_global = 10
 
     def _a_function2():
+        '''Testing scope of variables'''
         global _a_global
         _a_global = 20
 
@@ -720,8 +821,10 @@ locsl within the scope of _a_function, but is inherited from the main scope
 
 
 def a_function():
+    '''Testing scope of variables'''
 
     def _a_function2():
+        '''Testing scope of variables'''
         global _a_global
         _a_global = 20
 
@@ -741,12 +844,13 @@ print("The value of a_global in main workspace / namespace is ", _a_global)
 Testing scope.py...
 
 scope.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 92
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 79.0
 
 Output (only first 500 characters): 
 
@@ -771,28 +875,31 @@ Inside th
 
 Code ran without errors
 
-Time consumed = 0.03216s
+Time consumed = 0.02695s
 
 ======================================================================
 Inspecting script file basic_io3.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
 #############################
 # STORING OBJECTS
 # #############################
 # To save an object (even complex) for a later use
+
 my_dictionary = {"a key" : 10, "another key" : 11}
 
 import pickle
 
-f = open('../sandbox/testp.p' , 'wb')
+f = open('../Sandbox/testp.p' , 'wb')
 pickle.dump(my_dictionary, f)
 f.close()
 
 ## Load the data again
 
-f = open('../sandbox/testp.p', 'rb')
+f = open('../Sandbox/testp.p', 'rb')
 another_dictionary = pickle.load(f)
 f.close()
 
@@ -802,24 +909,24 @@ print(another_dictionary)
 Testing basic_io3.py...
 
 basic_io3.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 91
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 77.0
 
 Output (only first 500 characters): 
 
 **********************************************************************
+{'another key': 11, 'a key': 10}
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "basic_io3.py", line 9, in <module>
-    f = open('../sandbox/testp.p' , 'wb')
-FileNotFoundError: [Errno 2] No such file or directory: '../sandbox/testp.p'
+Code ran without errors
+
+Time consumed = 0.03322s
 
 ======================================================================
 Inspecting script file cfexercises1.py...
@@ -906,12 +1013,13 @@ if (__name__ == '__main__'):
 Testing cfexercises1.py...
 
 cfexercises1.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 90
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 71.5
 
 Output (only first 500 characters): 
 
@@ -933,13 +1041,15 @@ foo_6: The factorial of 6 is 720
 
 Code ran without errors
 
-Time consumed = 0.02521s
+Time consumed = 0.02647s
 
 ======================================================================
 Inspecting script file tuple.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
 '''In this script we print the information of each species contained in the
 tuple in one output block per species'''
 
@@ -962,12 +1072,13 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 Testing tuple.py...
 
 tuple.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 89
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 69.5
 
 Output (only first 500 characters): 
 
@@ -1002,13 +1113,15 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.02846s
+Time consumed = 0.02467s
 
 ======================================================================
 Inspecting script file lc1.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
 '''This script has two parts, the first part writes three separate lists
 containing each subelement of the elements in the list birds using list 
 comprehensions. The second part does the same thing using normal for loops'''
@@ -1072,12 +1185,13 @@ for i in range(len(birds)):
 Testing lc1.py...
 
 lc1.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 88
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 67.5
 
 Output (only first 500 characters): 
 
@@ -1087,7 +1201,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.02931s
+Time consumed = 0.03180s
 
 ======================================================================
 Inspecting script file oaks_debugme.py...
@@ -1219,8 +1333,9 @@ def auto_corretor(actual, attempt, tol):
 
 def main(argv): 
     '''Main function'''
-    f = open('../data/TestOaksData.csv','r')
-    g = open('../data/JustOaksData.csv','w')
+
+    f = open('../Data/TestOaksData.csv','r')
+    g = open('../Data/JustOaksData.csv','w')
     taxa = csv.reader(f)
     csvwrite = csv.writer(g)
     next(taxa, None) #Skip the headers
@@ -1247,34 +1362,60 @@ if (__name__ == "__main__"):
 Testing oaks_debugme.py...
 
 oaks_debugme.py is a Python script file;
- checking for docstrings...
 
-Found one or more doctrings!
+checking for docstrings...
 
-Missing docstrings in one more functions!
-.5 pt deducted per missing docstring
+Found one or more docstrings and functions
 
-Current Points = 83.5
+Missing docstring, either in one or functions and/or at the script level
+
+Current Points = 65.5
 
 Output (only first 500 characters): 
 
 **********************************************************************
+['Quercus', ' robur']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
+['Fraxinus', ' excelsior']
+The genus is: 
+Fraxinus
+
+['Pinus', ' sylvestris']
+The genus is: 
+Pinus
+
+['Quercus', ' cerris']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
+['Quercus', ' petraea']
+The genus is: 
+Quercus
+
+FOUND AN OAK!
+
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "oaks_debugme.py", line 148, in <module>
-    status = main(sys.argv)
-  File "oaks_debugme.py", line 126, in main
-    f = open('../data/TestOaksData.csv','r')
-FileNotFoundError: [Errno 2] No such file or directory: '../data/TestOaksData.csv'
+Code ran without errors
+
+Time consumed = 0.06236s
 
 ======================================================================
 Inspecting script file oaks.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
+'''Comparing list comprehension with normal loops'''
+
 taxa = ['Quercus robur' ,
         'Fraxinus excelsior' ,
         'Pinus sylvestris' ,
@@ -1311,12 +1452,13 @@ print(oaks_lc)
 Testing oaks.py...
 
 oaks.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 82.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 63.0
 
 Output (only first 500 characters): 
 
@@ -1330,7 +1472,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.04584s
+Time consumed = 0.02874s
 
 ======================================================================
 Inspecting script file loops.py...
@@ -1370,12 +1512,13 @@ while b:
 Testing loops.py...
 
 loops.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 81.5
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 61.0
 
 Output (only first 500 characters): 
 
@@ -1504,7 +1647,7 @@ GERONIMO! infinite loop! ctrl+c
 
 Code ran without errors
 
-Time consumed = 10.29782s
+Time consumed = 10.33135s
 
 ======================================================================
 Inspecting script file using_name.py...
@@ -1512,6 +1655,9 @@ Inspecting script file using_name.py...
 File contents are:
 **********************************************************************
 #!/usr/bin/env python3
+
+'''Learning how to use __name__ = "_main__"'''
+
 #Filename: using_name.py
 
 if __name__ == '__main__':
@@ -1524,12 +1670,13 @@ else:
 Testing using_name.py...
 
 using_name.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 80.5
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 59.0
 
 Output (only first 500 characters): 
 
@@ -1540,7 +1687,7 @@ This program is being run by itself
 
 Code ran without errors
 
-Time consumed = 0.05585s
+Time consumed = 0.06221s
 
 ======================================================================
 Inspecting script file align_seqs.py...
@@ -1564,6 +1711,7 @@ __version__ = '0.0.1'
 
 import warnings
 import sys
+import os
 
 ## CONSTANTS ##
 
@@ -1635,7 +1783,7 @@ def main(argv):
         if not all(seq): 
             mask = [bool(i) for i in seq]
             seq = mask_list(seq, mask)
-            warnings.warn('Empty elements of the array have been removed') 
+            #print('Empty elements of the array have been removed') 
 
         seq1 = seq[0]
         seq2 = seq[1]
@@ -1653,6 +1801,12 @@ def main(argv):
                 my_best_align = "." * i + s2 # think about what this is doing!
                 my_best_score = z 
 
+    #Delete out_*.txt files before creating new ones
+    try:
+        os.system('rm ../Results/out_*.txt')
+    except:
+        pass
+
     #Save output to txt files
     save_out(0,[my_best_align, s1, my_best_score])
        
@@ -1667,12 +1821,13 @@ if (__name__ == '__main__'):
 Testing align_seqs.py...
 
 align_seqs.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 79.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 54.5
 
 Output (only first 500 characters): 
 
@@ -1680,22 +1835,25 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-align_seqs.py:89: UserWarning: Empty elements of the array have been removed
-  warnings.warn('Empty elements of the array have been removed')
+Code ran without errors
+
+Time consumed = 0.05275s
 
 ======================================================================
 Inspecting script file basic_io2.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
+'''Save the elements of a list to a file'''
+
 #############################
 # FILE OUTPUT 
 #############################
-# Save the elements of a list to a file 
 list_to_save = range(100)
 
-f = open('../sandbox/testout.txt', 'w')
+f = open('../Sandbox/testout.txt', 'w')
 for i in list_to_save:
     f.write(str(i) + '\n') ## Add a new line at the end
 
@@ -1707,12 +1865,13 @@ f.close()
 Testing basic_io2.py...
 
 basic_io2.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 78.5
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 52.5
 
 Output (only first 500 characters): 
 
@@ -1720,11 +1879,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "basic_io2.py", line 7, in <module>
-    f = open('../sandbox/testout.txt', 'w')
-FileNotFoundError: [Errno 2] No such file or directory: '../sandbox/testout.txt'
+Code ran without errors
+
+Time consumed = 0.06112s
 
 ======================================================================
 Inspecting script file sysargv.py...
@@ -1732,6 +1889,8 @@ Inspecting script file sysargv.py...
 File contents are:
 **********************************************************************
 #!/usr/bin/env python3
+
+'''Understanding the concept of sys.argv'''
 
 import sys
 print('This is the name of the script: ', sys.argv[0])
@@ -1742,12 +1901,13 @@ print('The arguments are: ', str(sys.argv))
 Testing sysargv.py...
 
 sysargv.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 77.5
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 50.5
 
 Output (only first 500 characters): 
 
@@ -1760,7 +1920,7 @@ The arguments are:  ['sysargv.py']
 
 Code ran without errors
 
-Time consumed = 0.02813s
+Time consumed = 0.02826s
 
 ======================================================================
 Inspecting script file align_seqs_fasta.py...
@@ -1790,7 +1950,6 @@ from align_seqs import calculate_score, mask_list, sort_seq, save_out
 ## FUNCTIONS ##
 
 def non_valid_character_detector(genome):
-    import ipdb; ipdb.set_trace(context = 20)
     '''Delete empty lines and lines that are not part of the genome'''
     #Delete empty list elements if they exist
     if not all(genome):
@@ -1839,6 +1998,11 @@ def main(argv):
                 my_best_align = "." * i + s2 # think about what this is doing!
                 my_best_score = z 
 
+    #Delete out_*.txt files before creating new ones
+    try:
+        os.system('rm ../Results/out_*.txt')
+    except:
+        pass
     #Save the output to a txt file
     save_out(0, [my_best_align, s1, my_best_score])
 
@@ -1853,26 +2017,23 @@ if (__name__ == '__main__'):
 Testing align_seqs_fasta.py...
 
 align_seqs_fasta.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 76.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 47.5
 
 Output (only first 500 characters): 
 
 **********************************************************************
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mTypeError[0m                                 Traceback (most recent call last)
-[0;32m~/Documents/Teaching/IC_CMEE/2019-20/Coursework/StudentRepos/PabloLechonAlonso_PL1619/Week2/Code/align_seqs_fasta.py[0m in [0;36m<module>[0;34m()[0m
-[1;32m     77[0m [0;34m[0m[0m
-[1;32m     78[0m [0;32mif[0m [0;34m([0m[0m__name__[0m [0;34m==[0m [0;34m'__main__'[0m[0;34m)[0m[0;34m:[0m[0;34m[0m
+
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.58038s
+Time consumed = 0.02733s
 
 ======================================================================
 Inspecting script file control_flow.py...
@@ -1882,10 +2043,11 @@ File contents are:
 #!/usr/bin/env python3
 
 '''Some functions exemplifying the use of control statements'''
+
 #docstrings are considered part of the running code (normal comments are
 #stripped). Hence, you can access your docstirngs at the run time. 
 
-__author__ = 'Your Name (your@email.address)'
+__author__ = 'Pablo Lechon (plechon@ucm.es)'
 __version__ = '0.0.1'
 
 ## imports ##
@@ -1962,12 +2124,13 @@ if (__name__ == '__main__'):
 Testing control_flow.py...
 
 control_flow.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 75.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 43.0
 
 Output (only first 500 characters): 
 
@@ -1999,7 +2162,7 @@ True
 
 Code ran without errors
 
-Time consumed = 0.04534s
+Time consumed = 0.02537s
 
 ======================================================================
 Inspecting script file test_control_flow.py...
@@ -2063,12 +2226,13 @@ def even_or_odd(x=0):
 Testing test_control_flow.py...
 
 test_control_flow.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 74.5
+Found one or more functions, but completely missing docstrings
+2 pts deducted for missing docstring for script, and .5 pt deducted per missing docstring for function
+
+Current Points = 40.0
 
 Output (only first 500 characters): 
 
@@ -2078,18 +2242,21 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.09614s
+Time consumed = 0.06262s
 
 ======================================================================
 Inspecting script file basic_io1.py...
 
 File contents are:
 **********************************************************************
+#!/usr/bin/env python3
+
+'''Open a file for reading'''
+
 #############################
 # FILE INPUT
 #############################
-# Open a file for reading
-f = open('../sandbox/test.txt', 'r')
+f = open('../Sandbox/test.txt', 'r')
 # use "implicit" for loop:
 # if the object is a file, python will cycle over lines
 for line in f:
@@ -2099,7 +2266,7 @@ for line in f:
 f.close()
 
 # Same example, skip blank lines
-f = open('../sandbox/test.txt', 'r')
+f = open('../Sandbox/test.txt', 'r')
 if len(line.strip()) > 0:
     for line in f:
         print(line)
@@ -2109,36 +2276,63 @@ f.close()
 Testing basic_io1.py...
 
 basic_io1.py is a Python script file;
- checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
+checking for docstrings...
 
-Current Points = 73.5
+No functions, but no script-level docstring either
+2 pts deducted
+
+Current Points = 38.0
 
 Output (only first 500 characters): 
 
 **********************************************************************
+First Line
+
+Second Line
+
+
+
+
+
+Third Line
+
+
+
+Fourth Line
+
+First Line
+
+Second Line
+
+
+
+
+
+Third Line
+
+
+
+Fourth Line
+
 
 **********************************************************************
 
-Encountered error (or warning):
-Traceback (most recent call last):
-  File "basic_io1.py", line 5, in <module>
-    f = open('../sandbox/test.txt', 'r')
-FileNotFoundError: [Errno 2] No such file or directory: '../sandbox/test.txt'
+Code ran without errors
+
+Time consumed = 0.02747s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 7 errors
+Ran into 0 errors
 
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 73.5
+Current Points for the Week = 38.0
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!

@@ -9,13 +9,13 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 3.57 MiB on disk 
+Your Git repo size this week is about 94.04 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git
+Found the following directories in parent directory: Week6, Week1, Week7, Assessment, Week8, Week5, Week2, Week9, Week4, .git, Week3, mini_project
 
-Found the following files in parent directory: .gitignore, README.md, questions.txt
+Found the following files in parent directory: .gitignore, README.md
 
 Checking for key files in parent directory...
 
@@ -25,22 +25,124 @@ Printing contents of .gitignore:
 **********************************************************************
 *~ 
 *.tmp
+*.log
+__pycache__/
+
+questions.txt
+.DS_Store
+
+########Git ignore for r##########
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+
+# produced vignettes
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
 **********************************************************************
 
 Found README in parent directory, named: README.md
 
 Printing contents of README.md:
 **********************************************************************
-My CMEE Cousework Repository
-Do you like this better?
-Third experiment
-4th
+# Computational Methods in Ecology and Evolution (CMEE) MSc
+
+
+## Week 1
+
+### Unix
+1. Practicals (`UnixPrac1.txt`)
+### Shell scripting 
+1. Your first shell script (`boilerplate.sh`)
+2. Variables in shell scripts (`tabtocsv.sh`, `variables.sh`, `MyExampleScript.sh`, `CountLines.sh`, `ConcatenateTwoFiles.sh`, `tiff2png.sh`, `csvtospace.sh`)
+### Version control with Git
+### Scientific documents with LaTeX 
+1. A first LaTeX example (`FirstExample.tex`, `FirstBiblio.bib`, `CompileLatex.sh`)
+
+## Week 2 
+
+### Biological computing in Python I
+1. Writting python code (`basic_io1.py`, `basic_io2.py`, `basic_io3.py`)
+2. Running python scripts (`basic_csv.py`)
+3. Control flow tools (`cfexercises1.py`, `cfexercises2.py`, `control_flow.py`, `loops.py`)
+4. Comprehensions (`oaks.py`)
+5. Variable Scope (`scope.py`)
+6. Writing Python programs (`boilerplate.py`, `using_name.py`, `sysargv.py`)
+8. Errors in your Python code (`control_flow.py`, `debugme.py`)
+7. Practicals (`lc1.py`, `lc2.py`, `dictionary.py`, `tuple.py`, `cfexercises1.py`, `cfexercises2.py`, `align_seqs.py`, `align_fasta.py`, `align_better.py`, `oaks_debugme.py`)
+
+## Week 3
+### Biological Computing in R
+1. Writing R code (`basic_io.R`)
+2. Control flow tools (`control_flow.R`, `break.R`)
+3. Writing R functions (`boilerplate.r`)
+4. Vectorization (`Vectorize1.R`, `Vectorize2.R`, `preallocate.R`, `sample.R`)
+5. Errors and Debugging (`browse.R`)
+6. Practicals ('TreeHight `Ricker.R`, `Vectorize1.py`, `Vectorize2.py`, `run_Vectorize.sh`, `TAutoCorr.R`, `TreeHeight.R`, `get_TreeHeight.R`, `run_get_TreeHeight.sh`, `get_TreeHeight.py`)
+### Data management, exploration and visualization
+1. Data Wrangling (`DataWrang.R`)
+2. Practicals (`PP_Lattice.R`, `Girko.R`, `MyBars.R`, `plotLin.R`,`PP_Regress.R`, `PP_Regress_loc.R` )
+## Week 4
+### Descriptive statistics
+2. t-test
+3. ANOVA
+4. Correlations
+5. Linear models
+6. Hypothesis testing
+## Week 5
+### Spatial Analyses and Geographic Information Systmens (GIS)
+## Week 6
+### Genomics and Bioinformatics
+## Week 7
+### Biological Computing in Python II
+1. Profiling in Python (`profileme.py`, `profileme2.py`, `timetime.py`)
+2. Networks in Python (`DrawFW.py`)
+3. Practicals (`LV1.py`, `LV2.py`, `LV3.py`, `LV4.py`, `Nets.R`, `regex.py`, `blackbirds.py`, `TestR.R`, `TestR.py`, `using_os.py`, `run_fmr_R.py`, `fmr.R` )
+## Week 8
+### High Performance Computing (HPC)
+## Week 9
+### Biological Data Structures and C
+## mini_project
+    
+
+
+*Pablo Lechon (plechon@ucm.es)*
 **********************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 2 weekly directories: Week1, Week2
+Found 9 weekly directories: Week1, Week2, Week3, Week4, Week5, Week6, Week7, Week8, Week9
 
 The Week1 directory will be assessed 
 
@@ -53,17 +155,41 @@ Assessing WEEK1...
 
 Found the following directories: Code, Data, Sandbox, Results
 
-Found the following files: 
+Found the following files: README.md
 
 Checking for readme file in weekly directory...
 
-README file missing, 1 pt deducted
+Found README in parent directory, named: README.md
 
-Current Points = 99
+Printing contents of README.md:
+**********************************************************************
+# Week 1 README
 
-Found following files in results directory: README.md...
+This folder contains three subfolders: Data, were we store the data used in our code;
+Code, were we have the writen code; and Sandbox, were we store everything that is not
+Data or Code.
 
-Found 12 code files: ConcatenateTwoFiles.sh, UnixPrac1.sh, CountLines.sh, variables.sh, CompileLaTeX.sh, tiff2png.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, tabtocsv.sh, boilerplate.sh
+## Code
+
+1. `CompileLaTeX.sh`: Compiles the tex file given as an input
+2. `ConcatenateTwoFiles.sh`: Merges two input files togehter into a third file
+3. `CountLines.sh`: Counts the words in the input file 
+4. `FirstBiblio.bib`: Bibliografic key of the created tex file.
+5. `FirstExample.tex`: Code that generates the LaTeX postscript
+6. `MyExampleScript.sh`: First script in Bash!
+7. `UnixPrac1.sh`: Answer to one of the FASTA practicals in the Unix section
+8. `boilerplate.sh`: A unix boilerplate!
+9. `csvtospace.sh`: Creates a space separated txt file by transforming the csv input file 
+10. `tabtocsv.sh`: Transforms the tab separated file into a csv file with the same name
+11. `tiff1png.sh`: Creates jpg files from all the tiff files contained in the input
+		 directory, and saves them in the Sandbox directory
+12. `variables.sh`: Playing around with variables in shell scripting!
+
+**********************************************************************
+
+Found following files in results directory: FirstExample.pdf...
+
+Found 12 code files: ConcatenateTwoFiles.sh, CountLines.sh, variables.sh, CompileLaTeX.sh, tiff2png.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, boilerplate.sh
 
 ======================================================================
 Testing script/code files...
@@ -73,13 +199,21 @@ Inspecting script file ConcatenateTwoFiles.sh...
 
 File contents are:
 **********************************************************************
-!/bin/bash
+#!/bin/bash
+
+if [ -z $1 ] || [ -z $2 ] || [ -z $3 ] 
+then echo "Provide 3 arguments"
+     exit
+fi
+
+A=`basename $1`
+B=`basename $2`
+echo -e "\nMerging ${A} with ${B}...\n"
 
 cat $1 > $3
 cat $2 >> $3
 echo "Merged File is:\n"
 cat $3
-exit
 **********************************************************************
 
 Testing ConcatenateTwoFiles.sh...
@@ -87,24 +221,344 @@ Testing ConcatenateTwoFiles.sh...
 Output (only first 500 characters): 
 
 **********************************************************************
-Merged File is:\n
+Provide 3 arguments
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00329s
+
+======================================================================
+Inspecting script file CountLines.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+
+# Author: Pablo Lechon, pl1619@ic.ac.uk
+# Script: CountLines.sh
+# Description: Counts the lines of input
+# Arguments: 1-> txt file
+# Date: Oct 2019
+
+if [ -z $1 ]
+then echo "Provide an argument."
+     exit
+fi
+
+NumLines=`wc -l <  $1`
+NumLines=`echo ${NumLines}`
+A=`basename $1`
+echo -e "\nThe file ${A} has $NumLines lines\n"
+**********************************************************************
+
+Testing CountLines.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Provide an argument.
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00409s
+
+======================================================================
+Inspecting script file variables.sh...
+
+File contents are:
+**********************************************************************
+!/bin/bash
+# Author: Pablo Lechon pl1619@ic.ac.uk
+# Script: variables.sh
+# Desc: trying variables in bash
+# Date: Oct 2019
+
+# Shows the use of variables
+MyVar="some string"
+echo "the current value of the variable is:" $MyVar
+echo "Please enter a new string"
+read MyVar
+
+if [ -z $MyVar ]
+then
+    echo -e "No input string provided...\n"
+else
+    echo "the current value of the variable is:" $MyVar
+fi
+
+## Reading multiple values
+echo -e "\nEnter two numbers separated by space(s)"
+read a b
+
+if [ -z $a ] || [ -z $b ]
+then
+    echo "There were no input numbers provided..." 
+    echo "No calculation occured."
+    exit
+else
+    echo "you entered" $a "and" $b ". Their sum is:"
+    mysum=`expr $a + $b`
+    echo $mysum
+fi
+**********************************************************************
+
+Testing variables.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+the current value of the variable is: some string
+Please enter a new string
+No input string provided...
+
+
+Enter two numbers separated by space(s)
+There were no input numbers provided...
+No calculation occured.
 
 **********************************************************************
 
 Encountered error (or warning):
-ConcatenateTwoFiles.sh: line 1: !/bin/bash: No such file or directory
-ConcatenateTwoFiles.sh: line 3: $3: ambiguous redirect
-ConcatenateTwoFiles.sh: line 4: $3: ambiguous redirect
+variables.sh: line 1: !/bin/bash: No such file or directory
 
 ======================================================================
-Inspecting script file UnixPrac1.sh...
+Inspecting script file CompileLaTeX.sh...
 
 File contents are:
 **********************************************************************
 #!/bin/bash 
 
+
+if [ -z $1 ]
+then echo "Provide a document to compile!"
+     exit
+fi
+
+if [[ $1 == *".tex"* ]];
+then echo "Provide the name of the file without the extension"
+    exit
+fi
+
+pdflatex $1.tex
+bibtex $1
+pdflatex $1.tex
+pdflatex $1.tex
+
+## Cleanup
+#First,we send all the new created files to the folder compile. Then we find
+#all the files in our current directory that don't have the 
+#extension .tex and .pdf. We have to specify that we want to find only files
+#otherwise we will also get the hidden directories. Once we have them
+#we delete with -delete
+
+rm -f texput.log
+mkdir -p compiled && mv $1.* compiled/ 
+find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
+mv ./compiled/* . && rmdir compiled
+mv $1.pdf ../Results/
+
+**********************************************************************
+
+Testing CompileLaTeX.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Provide a document to compile!
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00455s
+
+======================================================================
+Inspecting script file tiff2png.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+
+#In this bash script we run through all the tiff files specified in the directory ($1). 
+#Convert them into jpg files
+#Move them to the sandbox directory.
+
+if [ -z $1 ]
+then echo "Provide an argument"
+     exit
+fi
+
+if [[ $1 == *".tif"* ]];
+then echo "Provide the name of the file without the extension"
+    exit
+fi
+
+for f in $1*.tiff 
+    do
+	echo "Converting $f";
+	convert "$f" "$(basename "$f" .tiff).jpg";
+    done
+mv *.jpg ../Sandbox/
+echo "Done!"
+
+**********************************************************************
+
+Testing tiff2png.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Provide an argument
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00271s
+
+======================================================================
+Inspecting script file csvtospace.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+#Author: Pablo Lechon Alonso: plechon@ucm.es
+#Script: csvtospace.sh
+#Desc: transform csv files to space separated files
+#Arguments: csv file
+#Date: Oct 2019
+
+if [ -z $1 ] || [ -z $2 ]
+then echo "Provide 2 arguments"
+     exit
+fi
+name=`basename $1`
+name2=`basename $2`
+echo -e "\nConverting $name from csv to space separated file ($name2)"
+cat $1 | tr -s "," " " > $2 
+echo -e '\nDone!\n'
+head $2
+echo	
+
+#We use print the input file and pipe the output to a tr command, that
+#erases and shrinks all the comas, and substitutes them for spaces. 
+#The output is sent to a second file which name needs to be specified 
+#when calling the bash script
+**********************************************************************
+
+Testing csvtospace.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Provide 2 arguments
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00245s
+
+======================================================================
+Inspecting script file FirstExample.tex...
+
+File contents are:
+**********************************************************************
+\documentclass[12pt]{article}
+
+\title{A Simple Document}
+
+\author{Pablo Lechon Alonso}
+
+\date{}
+
+\begin{document}
+  \maketitle
+  
+  \begin{abstract}
+    This paper must be cool!
+  \end{abstract}
+  
+  \section{Introduction}
+    Blah Blah!
+  
+  \section{Materials \& Methods}
+  One of the most famous equations is:
+  \begin{equation}
+    E = mc^2
+  \end{equation}
+  This equation was first proposed by Einstein in 1905 
+  \cite{einstein1905does}.
+  
+  \bibliographystyle{plain}
+  \bibliography{FirstBiblio}
+\end{document}
+**********************************************************************
+
+Testing FirstExample.tex...
+
+======================================================================
+Inspecting script file MyExampleScript.sh...
+
+File contents are:
+**********************************************************************
+#!/bin/bash
+
+# Author: Your name pl1619@ic.ac.uk
+# Script: MyExampleScript.sh
+# Desc: Example
+# Date: Oct 2019
+
+msg1="Hello"
+msg2=$USER
+echo "$msg1 $msg2"
+echo "Hello $USER"
+echo
+**********************************************************************
+
+Testing MyExampleScript.sh...
+
+Output (only first 500 characters): 
+
+**********************************************************************
+Hello mhasoba
+Hello mhasoba
+
+
+**********************************************************************
+
+Code ran without errors
+
+Time consumed = 0.00326s
+
+======================================================================
+Inspecting script file FirstBiblio.bib...
+
+File contents are:
+**********************************************************************
+@article{einstein1905does,
+  title={Does the inertia of a body depend upon its energy-content?},
+  author={Einstein, A.},
+  journal={Annalen der Physik},
+  volume={18},
+  pages={639--641},
+  year={1905}
+}
+**********************************************************************
+
+Testing FirstBiblio.bib...
+
+======================================================================
+Inspecting script file UnixPrac1.txt...
+
+File contents are:
+**********************************************************************
 #Author: Pablo Lechon Alonso (plechon@ucm.es)
-#Script: UnixPrac1.sh
+#Script: UnixPrac1.txt
 #Desc: Fasta exercise
 #Arguments: None
 #Date: Oct 2019
@@ -201,330 +655,7 @@ echo -e "\n\nThe ratio AT/GC is: 0$ratio\n"
 
 **********************************************************************
 
-Testing UnixPrac1.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-
-Number of lines of each file:
-
-     28 ../Data/407228326.fasta
-    127 ../Data/407228412.fasta
-  78104 ../Data/E.coli.fasta
-  78259 total
-
-
- Printing the whole genome:
-
-AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTC
-TGATAGCAGCTTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGG
-TCACTAAATACTTTAACCAATATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTAC
-ACAACATCCATGAAACGCATTAGCACCACCATTACCACCACCATCACCATTACCACAGGT
-AACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAGCCCGCACCTGACAGTGCGGG
-CTTTTTTTTTCGACCAAAGGTAACGA
-**********************************************************************
-
-Code ran without errors
-
-Time consumed = 1.26224s
-
-======================================================================
-Inspecting script file CountLines.sh...
-
-File contents are:
-**********************************************************************
-!/bin/bash
-
-# Author: Pablo Lechon, pl1619@ic.ac.uk
-# Script: CountLines.sh
-# Description: Counts the lines of input
-# Arguments: 1-> txt file
-# Date: Oct 2019
-
-NumLines=`wc -l <  $1`
-echo -e "\nThe file $1 has \b$NumLines lines\n"
-**********************************************************************
-
-Testing CountLines.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-
-The file  has  lines
-
-
-**********************************************************************
-
-Encountered error (or warning):
-CountLines.sh: line 1: !/bin/bash: No such file or directory
-CountLines.sh: line 9: $1: ambiguous redirect
-
-======================================================================
-Inspecting script file variables.sh...
-
-File contents are:
-**********************************************************************
-#!/bin/bash
-# Author: Pablo Lechon pl1619@ic.ac.uk
-# Script: variables.sh
-# Desc: trying variables in bash
-# Date: Oct 2019
-
-#Shows the use of varables
-MyVar='some string'
-echo -e '\nthe current value of the variable is' $MyVar
-echo 'Please enter a new string'
-read MyVar
-echo 'the current value of the variable is' $MyVar
-echo
-
-## Reading multiple values
-echo 'Enter two numbers separated by space(s)'
-read a b
-echo -e 'You entered' $a 'and' $b 
-echo -e 'Their sum is:' `expr $a + $b`
-echo
-
-**********************************************************************
-
-Testing variables.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-
-the current value of the variable is some string
-Please enter a new string
-the current value of the variable is
-
-Enter two numbers separated by space(s)
-You entered and
-Their sum is:
-
-
-**********************************************************************
-
-Encountered error (or warning):
-expr: syntax error
-
-======================================================================
-Inspecting script file CompileLaTeX.sh...
-
-File contents are:
-**********************************************************************
-#!/bin/bash 
-pdflatex $1.tex
-bibtex $1
-pdflatex $1.tex
-pdflatex $1.tex
-
-## Cleanup
-#First,we send all the new created files to the folder compile. Then we find
-#all the files in our current directory that don't have the 
-#extension .tex and .pdf. We have to specify that we want to find only files
-#otherwise we will also get the hidden directories. Once we have them
-#we delete with -delete
-
-mkdir -p compiled && mv $1.* compiled/ 
-find ./compiled -not -name $1.tex -not -name $1.pdf -type f -delete
-mv ./compiled/* . && rmdir compiled
-mv $1.pdf ../Sandbox/
-
-**********************************************************************
-
-Testing CompileLaTeX.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)
- restricted \write18 enabled.
-entering extended mode
-(/usr/share/texlive/texmf-dist/tex/latex/tools/.tex
-LaTeX2e <2016/02/01>
-Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
-File ignored)
-*
-! Emergency stop.
-<*> .tex
-        
-!  ==> Fatal error occurred, no output PDF file produced!
-Transcript written on .log.
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (pre
-**********************************************************************
-
-Encountered error (or warning):
-bibtex: Need exactly one file argument.
-Try `bibtex --help' for more information.
-mv: cannot move '.' to 'compiled/.': Device or resource busy
-mv: cannot move '..' to 'compiled/..': Device or resource busy
-mv: cannot stat './compiled/*': No such file or directory
-mv: cannot stat '.pdf': No such file or directory
-
-======================================================================
-Inspecting script file tiff2png.sh...
-
-File contents are:
-**********************************************************************
-#!/bin/bash
-
-#In this bash script we run through all the tiff files specified in the directory ($1). 
-#Convert them into jpg files
-#Move them to the sandbox directory.
-
-for f in $1*.tiff 
-    do
-	echo "Converting $f";
-	convert "$f" "$(basename "$f" .tiff).jpg";
-    done
-mv *.jpg ../Sandbox/
-**********************************************************************
-
-Testing tiff2png.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-Converting *.tiff
-
-**********************************************************************
-
-Encountered error (or warning):
-convert: unable to open image `*.tiff': No such file or directory @ error/blob.c/OpenBlob/2712.
-convert: no images defined `*.jpg' @ error/convert.c/ConvertImageCommand/3210.
-mv: cannot stat '*.jpg': No such file or directory
-
-======================================================================
-Inspecting script file csvtospace.sh...
-
-File contents are:
-**********************************************************************
-#!/bin/bash
-#Author: Pablo Lechon Alonso: plechon@ucm.es
-#Script: csvtospace.sh
-#Desc: transform csv files to space separated files
-#Arguments: csv file
-#Date: Oct 2019
-
-echo -e "\nConverting $1 from csv to space separated file ($2)"
-cat $1 | tr -s "," " " > $2 
-echo -e '\nDone!\n'
-head $2
-echo	
-
-#We use print the input file and pipe the output to a tr command, that
-#erases and shrinks all the comas, and substitutes them for spaces. 
-#The output is sent to a second file which name needs to be specified 
-#when calling the bash script
-**********************************************************************
-
-Testing csvtospace.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-
-Converting  from csv to space separated file ()
-
-Done!
-
-
-
-**********************************************************************
-
-Encountered error (or warning):
-csvtospace.sh: line 9: $2: ambiguous redirect
-
-======================================================================
-Inspecting script file FirstExample.tex...
-
-File contents are:
-**********************************************************************
-\documentclass[12pt]{article}
-
-\title{A Simple Document}
-
-\author{Your Name}
-
-\date{}
-
-\begin{document}
-  \maketitle
-  
-  \begin{abstract}
-    This paper must be cool!
-  \end{abstract}
-  
-  \section{Introduction}
-    Blah Blah!
-  
-  \section{Materials \& Methods}
-  One of the most famous equations is:
-  \begin{equation}
-    E = mc^2
-  \end{equation}
-  This equation was first proposed by Einstein in 1905 
-  \cite{einstein1905does}.
-  
-  \bibliographystyle{plain}
-  \bibliography{FirstBiblio}
-\end{document}
-**********************************************************************
-
-Testing FirstExample.tex...
-
-======================================================================
-Inspecting script file MyExampleScript.sh...
-
-File contents are:
-**********************************************************************
-#!/bin/bash
-
-# Author: Your name pl1619@ic.ac.uk
-# Script: MyExampleScript.sh
-# Desc: Example
-# Date: Oct 2019
-
-msg1="Hello"
-msg2=$USER
-echo "$msg1 $msg2"
-echo "Hello $USER"
-echo
-**********************************************************************
-
-Testing MyExampleScript.sh...
-
-Output (only first 500 characters): 
-
-**********************************************************************
-Hello mhasoba
-Hello mhasoba
-
-
-**********************************************************************
-
-Code ran without errors
-
-Time consumed = 0.00353s
-
-======================================================================
-Inspecting script file FirstBiblio.bib...
-
-File contents are:
-**********************************************************************
-@article{einstein1905does,
-  title={Does the inertia of a body depend upon its energy-content?},
-  author={Einstein, A.},
-  journal={Annalen der Physik},
-  volume={18},
-  pages={639--641},
-  year={1905}
-}
-**********************************************************************
-
-Testing FirstBiblio.bib...
+Testing UnixPrac1.txt...
 
 ======================================================================
 Inspecting script file tabtocsv.sh...
@@ -540,10 +671,20 @@ File contents are:
 # Arguments: 1 -> tab delimited file
 # Date: Oct 2019
 
-echo -e "\nCreating a comma delimited version of $1..."
-cat $1 | tr -s '\t' ',' >> $1.csv
+if [ -z $1 ]
+then echo "Provide an argument"
+     exit
+fi
+
+if [[ $1 == *".txt"* ]] || [[ $1 == *".csv"* ]];
+then echo -e "\nProvide the name of the file without the extension"
+    exit
+fi
+
+echo -e "\nCreating a comma delimited version of $1.txt..."
+cat $1.txt | tr -s '\t' ',' >> $1.csv
 echo -e '\nDone!\n'
-head $1
+head $1.csv
 echo
 
 exit
@@ -554,18 +695,13 @@ Testing tabtocsv.sh...
 Output (only first 500 characters): 
 
 **********************************************************************
-
-Creating a comma delimited version of ...
-
-Done!
-
-
+Provide an argument
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.00456s
+Time consumed = 0.00487s
 
 ======================================================================
 Inspecting script file boilerplate.sh...
@@ -597,19 +733,19 @@ this is a shell script!
 
 Code ran without errors
 
-Time consumed = 0.00405s
+Time consumed = 0.00314s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 6 errors
+Ran into 1 errors
 
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 99
+Current Points for the Week = 100
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
